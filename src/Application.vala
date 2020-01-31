@@ -8,7 +8,7 @@ public class Application : Gtk.Application {
     }
 
     protected override void activate () {
-        Gtk.ApplicationWindow window = new MyApp.Window (this);
+        Gtk.ApplicationWindow window = new RanNum.Window (this);
 
         add_window (window);
     }

@@ -1,4 +1,4 @@
-public class MyApp.Window : Gtk.ApplicationWindow {
+public class RanNum.Window : Gtk.ApplicationWindow {
     
     public Window (Application app) {
         Object (
