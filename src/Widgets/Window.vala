@@ -52,7 +52,6 @@ public class RanNum.Window : Gtk.ApplicationWindow {
 
         var start_button = new Gtk.Button.from_icon_name ("media-playback-start", Gtk.IconSize.LARGE_TOOLBAR);
         start_button.valign = Gtk.Align.CENTER;
-        // start_button.clicked.connect (Window.num_display);
         
         var menu_button = new Gtk.Button.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR);
         menu_button.valign = Gtk.Align.CENTER;
@@ -62,9 +61,17 @@ public class RanNum.Window : Gtk.ApplicationWindow {
 
         set_titlebar (header);
 
+        int min_num = 1, max_num = 100, num_gen;
 
-        var number_display = new RanNum.NumGen ();
+        var number_display = new Gtk.Label ("Ready!");
+        number_display.margin = 20;
+        number_display.get_style_context ().add_class ("h1");
         add (number_display);
+
+        start_button.clicked.connect (e => {
+            num_gen = Random.int_range (min_num, max_num);
+            number_display.set_label (@"$num_gen");
+        });
 
         show_all ();
     }
