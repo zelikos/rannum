@@ -43,8 +43,25 @@ public class RanNum.Window : Gtk.ApplicationWindow {
             maximize ();
         }
 
-        var headerbar = new RanNum.HeaderBar ();
-        set_titlebar (headerbar);
+
+        var header = new Gtk.HeaderBar ();
+        header.title = "RanNum";
+        header.subtitle = "Random number generation";
+
+        header.show_close_button = true;
+
+        var start_button = new Gtk.Button.from_icon_name ("media-playback-start", Gtk.IconSize.LARGE_TOOLBAR);
+        start_button.valign = Gtk.Align.CENTER;
+        // start_button.clicked.connect (Window.num_display);
+        
+        var menu_button = new Gtk.Button.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR);
+        menu_button.valign = Gtk.Align.CENTER;
+
+        header.pack_start (start_button);
+        // header.pack_end (menu_button);
+
+        set_titlebar (header);
+
 
         var number_display = new RanNum.NumGen ();
         add (number_display);
