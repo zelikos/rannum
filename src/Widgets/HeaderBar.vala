@@ -24,8 +24,7 @@ public class RanNum.HeaderBar : Gtk.HeaderBar {
 
         show_close_button = true;
 
-        var start_button = new Gtk.Button.with_label ("Go!");
-        start_button.get_style_context ().add_class ("suggested-action");
+        var start_button = new Gtk.Button.from_icon_name ("media-playback-start", Gtk.IconSize.LARGE_TOOLBAR);
         start_button.valign = Gtk.Align.CENTER;
 
         
