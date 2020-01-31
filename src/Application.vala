@@ -18,6 +18,11 @@
 
 public class Application : Gtk.Application {
 
+    public static GLib.Settings settings;
+    static construct {
+        settings = new GLib.Settings ("com.github.zelikos.rannum");
+    }
+
     public Application () {
         Object (
             application_id: "com.github.zelikos.rannum",

@@ -18,11 +18,6 @@
 
 public class RanNum.Window : Gtk.ApplicationWindow {
 
-    public static GLib.Settings settings;
-    static construct {
-        settings = new GLib.Settings ("com.github.zelikos.rannum");
-    }
-
     private uint configure_id;
 
     public Window (Application app) {
@@ -35,8 +30,8 @@ public class RanNum.Window : Gtk.ApplicationWindow {
         int window_x, window_y;
         var rect = Gtk.Allocation ();
 
-        settings.get ("window-position", "(ii)", out window_x, out window_y);
-        settings.get ("window-size", "(ii)", out rect.width, out rect.height);
+        Application.settings.get ("window-position", "(ii)", out window_x, out window_y);
+        Application.settings.get ("window-size", "(ii)", out rect.width, out rect.height);
 
         if (window_x != -1 || window_y != -1) {
             move (window_x, window_y);
@@ -44,7 +39,7 @@ public class RanNum.Window : Gtk.ApplicationWindow {
 
         set_allocation (rect);
 
-        if (settings.get_boolean ("window-maximized")) {
+        if (Application.settings.get_boolean ("window-maximized")) {
             maximize ();
         }
 
@@ -66,17 +61,17 @@ public class RanNum.Window : Gtk.ApplicationWindow {
             configure_id = 0;
 
             if (is_maximized) {
-                settings.set_boolean ("window-maximized", true);
+                Application.settings.set_boolean ("window-maximized", true);
             } else {
-                settings.set_boolean ("window-maximized", false);
+                Application.settings.set_boolean ("window-maximized", false);
 
                 Gdk.Rectangle rect;
                 get_allocation (out rect);
-                settings.set ("window-size", "(ii)", rect.width, rect.height);
+                Application.settings.set ("window-size", "(ii)", rect.width, rect.height);
 
                 int root_x, root_y;
                 get_position (out root_x, out root_y);
-                settings.set ("window-position", "(ii)", root_x, root_y);
+                Application.settings.set ("window-position", "(ii)", root_x, root_y);
             }
 
             return false;
