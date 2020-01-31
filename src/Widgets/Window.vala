@@ -48,6 +48,9 @@ public class RanNum.Window : Gtk.ApplicationWindow {
             maximize ();
         }
 
+        var headerbar = new RanNum.HeaderBar ();
+        set_titlebar (headerbar);
+
         show_all ();
     }
 
