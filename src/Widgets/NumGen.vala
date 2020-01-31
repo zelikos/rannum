@@ -16,18 +16,20 @@
  * Authored by Patrick Csikos <akzeldev@fastmail.com>
  */
 
-public class Application : Gtk.Application {
+public class RanNum.NumGen : Gtk.Box {
 
-    public Application () {
-        Object (
-            application_id: "com.github.zelikos.rannum",
-            flags: ApplicationFlags.FLAGS_NONE
-        );
-    }
+    construct {
+        spacing = 20;
 
-    protected override void activate () {
-        var window = new RanNum.Window (this);
+        int min_num = 1;
+        int max_num = 100;
 
-        add_window (window);
+        var num_gen = Random.int_range (min_num, max_num);
+
+        var num_display = new Gtk.Label (@"$num_gen");
+        num_display.margin = 20;
+        num_display.get_style_context ().add_class ("h1");
+
+        set_center_widget (num_display);
     }
 }

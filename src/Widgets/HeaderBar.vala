@@ -32,7 +32,7 @@ public class RanNum.HeaderBar : Gtk.HeaderBar {
         menu_button.valign = Gtk.Align.CENTER;
 
         pack_start (start_button);
-        pack_end (menu_button);
+        // pack_end (menu_button);
 
     }
 }

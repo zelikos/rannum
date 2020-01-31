@@ -51,6 +51,9 @@ public class RanNum.Window : Gtk.ApplicationWindow {
         var headerbar = new RanNum.HeaderBar ();
         set_titlebar (headerbar);
 
+        var number_display = new RanNum.NumGen ();
+        add (number_display);
+
         show_all ();
     }
 
