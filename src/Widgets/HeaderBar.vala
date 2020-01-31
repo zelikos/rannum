@@ -19,6 +19,21 @@
 public class RanNum.HeaderBar : Gtk.HeaderBar {
     
     construct {
-        set_show_close_button (true);
+        title = "RanNum";
+        subtitle = "Random number generation";
+
+        show_close_button = true;
+
+        var start_button = new Gtk.Button.with_label ("Go!");
+        start_button.get_style_context ().add_class ("suggested-action");
+        start_button.valign = Gtk.Align.CENTER;
+
+        
+        var menu_button = new Gtk.Button.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR);
+        menu_button.valign = Gtk.Align.CENTER;
+
+        pack_start (start_button);
+        pack_end (menu_button);
+
     }
 }
