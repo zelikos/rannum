@@ -18,18 +18,18 @@
 
 public class RanNum.Window : Gtk.ApplicationWindow {
 
-    public Window (Application app) {
-        Object (
-            application: app
-        );
-    }
-
     public static GLib.Settings settings;
     static construct {
         settings = new GLib.Settings ("com.github.zelikos.rannum");
     }
 
     private uint configure_id;
+
+    public Window (Application app) {
+        Object (
+            application: app
+        );
+    }
 
     construct {
         int window_x, window_y;
