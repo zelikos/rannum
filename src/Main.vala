@@ -1,4 +1,4 @@
-/*  Copyright (C) 2020  Patrick Csikos
+/*  Copyright (C) 2020 Patrick Csikos (https://zelikos.github.io)
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -12,6 +12,8 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * Authored by Patrick Csikos <akzeldev@fastmail.com>
  */
 
 public static int main (string[] args) {
