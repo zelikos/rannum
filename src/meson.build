@@ -4,7 +4,6 @@ executable(
     'Application.vala',
 
     'Widgets/Window.vala',
-    'Widgets/NumGen.vala',
 
     dependencies: [
         dependency('gtk+-3.0')
