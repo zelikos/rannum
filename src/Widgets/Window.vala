@@ -61,16 +61,11 @@ public class RanNum.Window : Gtk.ApplicationWindow {
 
         set_titlebar (header);
 
-        int min_num = 1, max_num = 100, num_gen;
-
-        var number_display = new Gtk.Label ("Ready!");
-        number_display.margin = 20;
-        number_display.get_style_context ().add_class ("h1");
+        var number_display = new RanNum.NumDisplay ();
         add (number_display);
 
         start_button.clicked.connect (e => {
-            num_gen = Random.int_range (min_num, max_num);
-            number_display.set_label (@"$num_gen");
+            number_display.num_gen();
         });
 
         show_all ();
