@@ -16,21 +16,8 @@
  * Authored by Patrick Csikos <akzeldev@fastmail.com>
  */
 
-public class RanNum.NumDisplay : Gtk.Label {
-
-    construct {
-        get_style_context ().add_class ("h1");
-        // To visually center the number display
-        margin_top = 10;
-        margin_start = 40;
-        margin_end = 40;
-        label = "";
-    }
-
-    public void num_gen () {
-        int min_num = 1, max_num = 100, rnd_num;
-
-        rnd_num = Random.int_range (min_num, max_num);
-        this.set_label (@"$rnd_num");
-    }
+label.h1 {
+    font-size: 12em;
+    font-weight: 600;
+    font-family: "Monospace";
 }

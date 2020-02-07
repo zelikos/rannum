@@ -1,6 +1,27 @@
 project('com.github.zelikos.rannum', 'vala', 'c')
 
-subdir('src')
+gnome = import('gnome')
+
+asresources = gnome.compile_resources (
+    'as-resources', join_paths ('data', 'gresource.xml'),
+    source_dir: 'data',
+    c_name: 'as'
+)
+
+executable(
+    meson.project_name(),
+    'src/Main.vala',
+    'src/Application.vala',
+    'src/Widgets/Window.vala',
+    'src/Widgets/NumDisplay.vala',
+    asresources,
+    dependencies: [
+        dependency('gtk+-3.0')
+    ],
+
+    install: true
+)
+
 subdir('data')
 
 install_data(

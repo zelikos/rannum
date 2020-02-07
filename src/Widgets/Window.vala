@@ -46,7 +46,7 @@ public class RanNum.Window : Gtk.ApplicationWindow {
 
         var header = new Gtk.HeaderBar ();
         header.title = "RanNum";
-        header.subtitle = "Random number generation";
+        // header.subtitle = "Random number generation";
 
         header.show_close_button = true;
 
