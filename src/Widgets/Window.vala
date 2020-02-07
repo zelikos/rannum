@@ -72,7 +72,8 @@ public class RanNum.Window : Gtk.ApplicationWindow {
         add (number_display);
 
         start_button.clicked.connect (e => {
-            number_display.num_gen();
+            int max_value = menu_grid.get_max_value ();
+            number_display.num_gen (max_value);
         });
 
         show_all ();

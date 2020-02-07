@@ -18,6 +18,8 @@
 
 public class RanNum.Menu : Gtk.Grid {
 
+    Gtk.SpinButton max_entry;
+
     construct {
         var style_switch = new Granite.ModeSwitch.from_icon_name (
             "display-brightness-symbolic",
@@ -30,7 +32,7 @@ public class RanNum.Menu : Gtk.Grid {
 
         var max_label = new Gtk.Label ("Max:");
         max_label.margin_end = 12;
-        var max_entry = new Gtk.SpinButton.with_range (1, 100, 1);
+        max_entry = new Gtk.SpinButton.with_range (1, 100, 1);
         max_entry.value = 10;
 
         var max_setting = new Gtk.Grid ();
@@ -45,5 +47,10 @@ public class RanNum.Menu : Gtk.Grid {
         add (new Gtk.Separator (HORIZONTAL));
         add (max_setting);
         show_all ();
+    }
+
+    public int get_max_value () {
+        var max_value = max_entry.get_value_as_int ();
+        return max_value;
     }
 }
