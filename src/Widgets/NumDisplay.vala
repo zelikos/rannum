@@ -20,7 +20,8 @@ public class RanNum.NumDisplay : Gtk.Label {
 
     construct {
         get_style_context ().add_class ("h1");
-        margin_bottom = 20;
+        // To visually center the number display
+        margin_top = 10;
         margin_start = 40;
         margin_end = 40;
         label = "";
