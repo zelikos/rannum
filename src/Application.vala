@@ -31,6 +31,14 @@ public class Application : Gtk.Application {
     }
 
     protected override void activate () {
+        var provider = new Gtk.CssProvider ();
+        provider.load_from_resource ("/com/github/zelikos/rannum/styles/global.css");
+        Gtk.StyleContext.add_provider_for_screen (
+            Gdk.Screen.get_default (),
+            provider,
+            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        );
+
         var window = new RanNum.Window (this);
 
         add_window (window);

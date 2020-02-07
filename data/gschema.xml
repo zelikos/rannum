@@ -12,7 +12,7 @@
             <description>Most recent window position (x, y)</description>
         </key>
         <key name="window-size" type="(ii)">
-            <default>(800, 600)</default>
+            <default>(660, 550)</default>
             <summary>Window size</summary>
             <description>Most recent window size (width, height)</description>
         </key>
