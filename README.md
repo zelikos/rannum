@@ -1,6 +1,8 @@
-# RanNum
+<h1 align="center">RanNum</h1>
 
-![Screenshot](data/screenshot_alpha2.png)
+<p align="center">
+    <a><img src="data/screenshot_alpha2.png" /></a>
+</p>
 
 ## Simple random number generator
 Simple random number generator designed for [elementary OS].
