@@ -16,7 +16,7 @@
  * Authored by Patrick Csikos <akzeldev@fastmail.com>
  */
 
-label.h1 {
+.number-label {
     font-size: 12em;
     font-weight: 600;
     font-family: "Monospace";
