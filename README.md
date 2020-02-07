@@ -1,7 +1,7 @@
 <h1 align="center">RanNum</h1>
 
 <p align="center">
-    <a><img src="data/screenshot_alpha2.png" /></a>
+    <a><img src="data/screenshot_alpha3.png" /></a>
 </p>
 
 ## Simple random number generator
