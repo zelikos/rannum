@@ -27,22 +27,16 @@ public class Rollit.Window : Gtk.ApplicationWindow {
     }
 
     construct {
+        default_height: 520;
+        default_width: 480;
+
         int window_x, window_y;
-        var rect = Gtk.Allocation ();
-
         Application.settings.get ("window-position", "(ii)", out window_x, out window_y);
-        Application.settings.get ("window-size", "(ii)", out rect.width, out rect.height);
 
+        
         if (window_x != -1 || window_y != -1) {
             move (window_x, window_y);
         }
-
-        set_allocation (rect);
-
-        if (Application.settings.get_boolean ("window-maximized")) {
-            maximize ();
-        }
-
 
         var header = new Gtk.HeaderBar ();
         header.title = "Roll-It";
