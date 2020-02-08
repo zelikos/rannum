@@ -20,7 +20,7 @@ public class Rollit.NumDisplay : Gtk.Label {
 
     construct {
         get_style_context ().add_class ("number-label");
-        margin = 40;
+        margin = 12;
         label = "";
     }
 

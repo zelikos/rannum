@@ -27,8 +27,8 @@ public class Rollit.Window : Gtk.ApplicationWindow {
     }
 
     construct {
-        default_height: 520;
-        default_width: 480;
+        default_width = 320;
+        default_height = 360;
 
         int window_x, window_y;
         Application.settings.get ("window-position", "(ii)", out window_x, out window_y);
@@ -40,12 +40,14 @@ public class Rollit.Window : Gtk.ApplicationWindow {
 
         var header = new Gtk.HeaderBar ();
         header.title = "Roll-It";
-
+        //header.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+        header.get_style_context ().add_class ("default-decoration");
         header.show_close_button = true;
+        //header.decoration_layout = "close:";
         
         var menu_button = new Gtk.MenuButton ();
-        menu_button.image = new Gtk.Image.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR);
-        menu_button.tooltip_text = "Menu";
+        menu_button.image = new Gtk.Image.from_icon_name ("open-menu-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
+        menu_button.tooltip_text = "Settings";
         menu_button.valign = Gtk.Align.CENTER;
 
         var menu_popover = new Gtk.Popover (menu_button);
@@ -57,18 +59,16 @@ public class Rollit.Window : Gtk.ApplicationWindow {
 
         set_titlebar (header);
 
+        var number_display = new Rollit.NumDisplay ();
+        number_display.vexpand = true;
+
         var roll_button = new Gtk.Button.with_label ("Roll");
         roll_button.margin = 12;
         roll_button.hexpand = true;
 
-        var number_display = new Rollit.NumDisplay ();
-        number_display.vexpand = true;
-
-        var main_view = new Gtk.Box (Gtk.Orientation.VERTICAL, 12);
-        main_view.homogeneous = false;
-
-        main_view.pack_start (number_display);
-        main_view.pack_end (roll_button);
+        var main_view = new Gtk.Grid ();
+        main_view.attach (number_display, 1, 1, 1, 1);
+        main_view.attach (roll_button, 1, 2, 1, 1);
 
         add (main_view);
 
@@ -88,22 +88,13 @@ public class Rollit.Window : Gtk.ApplicationWindow {
         configure_id = Timeout.add (100, () => {
             configure_id = 0;
 
-            if (is_maximized) {
-                Application.settings.set_boolean ("window-maximized", true);
-            } else {
-                Application.settings.set_boolean ("window-maximized", false);
-
-                Gdk.Rectangle rect;
-                get_allocation (out rect);
-                Application.settings.set ("window-size", "(ii)", rect.width, rect.height);
-
-                int root_x, root_y;
-                get_position (out root_x, out root_y);
-                Application.settings.set ("window-position", "(ii)", root_x, root_y);
-            }
+            int root_x, root_y;
+            get_position (out root_x, out root_y);
+            Application.settings.set ("window-position", "(ii)", root_x, root_y);
 
             return false;
-        });
+            }
+        );
 
         return base.configure_event (event);
     }
