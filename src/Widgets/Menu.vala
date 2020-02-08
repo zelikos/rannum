@@ -37,7 +37,7 @@ public class Rollit.Menu : Gtk.Grid {
         var max_label = new Gtk.Label ("Max:");
         max_label.margin_end = 12;
         max_entry = new Gtk.SpinButton.with_range (1, 100, 1);
-        max_entry.value = 10;
+        max_entry.value = 6; // to reflect a standard six-sided die
 
         var max_setting = new Gtk.Grid ();
         max_setting.orientation = Gtk.Orientation.HORIZONTAL;
