@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
-    <schema path="/com/github/zelikos/rannum/" id="com.github.zelikos.rannum">
-        <key name="dark-style" type="b">
-            <default>false</default>
-            <summary>Prefer dark style</summary>
-            <description>Switches between dark and light style</description>
-        </key>
-        <key name="window-maximized" type="b">
-            <default>false</default>
-            <summary>Maximized</summary>
-            <description>Whether the window is maximized</description>
-        </key>
-        <key name="window-position" type="(ii)">
-            <default>(-1, -1)</default>
-            <summary>Window position</summary>
-            <description>Most recent window position (x, y)</description>
-        </key>
-        <key name="window-size" type="(ii)">
-            <default>(660, 550)</default>
-            <summary>Window size</summary>
-            <description>Most recent window size (width, height)</description>
-        </key>
-    </schema>
+  <schema path="/com/github/zelikos/rannum/" id="com.github.zelikos.rannum">
+    <key name="dark-style" type="b">
+      <default>false</default>
+      <summary>Prefer dark style</summary>
+      <description>Switches between dark and light style</description>
+    </key>
+    <key name="window-maximized" type="b">
+      <default>false</default>
+      <summary>Maximized</summary>
+      <description>Whether the window is maximized</description>
+    </key>
+    <key name="window-position" type="(ii)">
+      <default>(-1, -1)</default>
+      <summary>Window position</summary>
+      <description>Most recent window position (x, y)</description>
+    </key>
+    <key name="window-size" type="(ii)">
+      <default>(660, 550)</default>
+      <summary>Window size</summary>
+      <description>Most recent window size (width, height)</description>
+    </key>
+  </schema>
 </schemalist>
