@@ -1,15 +1,15 @@
-<h1 align="center">RanNum</h1>
+<h1 align="center">Roll-It</h1>
 
-<p align="center">
-    <a><img src="data/screenshot_alpha3.png" /></a>
-</p>
+| ![Screenshot](data/screenshot_light1.png) | ![Screenshot](data/screenshot_dark1.png) |
+|-------------------------------------------|------------------------------------------|
 
-## Simple random number generator
-Simple random number generator designed for [elementary OS].
+## Roll the dice
+
+Simple dice-rolling app designed for [elementary OS].
 
 ## Building
 
-RanNum is designed for and developed on [elementary OS]. You'll need the following dependencies to build it yourself:
+Roll-It is designed for and developed on [elementary OS]. You'll need the following dependencies to build it yourself:
 
 * libgranite-dev
 * libgtk-3-dev
@@ -22,7 +22,7 @@ To install them on [elementary OS]:
 sudo apt install elementary-sdk
 ```
 
-To build and install RanNum:
+To build and install Roll-It:
 
 ```shell
 meson build --prefix=/usr

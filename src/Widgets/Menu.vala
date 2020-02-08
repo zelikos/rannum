@@ -16,7 +16,7 @@
  * Authored by Patrick Csikos <akzeldev@fastmail.com>
  */
 
-public class RanNum.Menu : Gtk.Grid {
+public class Rollit.Menu : Gtk.Grid {
 
     Gtk.SpinButton max_entry;
 

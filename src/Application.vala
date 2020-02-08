@@ -42,7 +42,7 @@ public class Application : Gtk.Application {
             Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
         );
 
-        var window = new RanNum.Window (this);
+        var window = new Rollit.Window (this);
 
         add_window (window);
     }

@@ -1,10 +1,10 @@
 [Desktop Entry]
-Name=RanNum
-GenericName=Random Number Generator
-Comment=Generate a random number
+Name=Roll-It
+GenericName=Dice Roller App
+Comment=Roll the dice
 Categories=Utility;
 Exec=com.github.zelikos.rannum
 Icon=application-default-icon
 Terminal=false
 Type=Application
-Keywords=Random;Number;Rnd;Num;
+Keywords=Die;Dice;Roll;Random;Number;Rnd;Num;

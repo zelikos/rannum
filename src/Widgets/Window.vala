@@ -16,7 +16,7 @@
  * Authored by Patrick Csikos <akzeldev@fastmail.com>
  */
 
-public class RanNum.Window : Gtk.ApplicationWindow {
+public class Rollit.Window : Gtk.ApplicationWindow {
 
     private uint configure_id;
 
@@ -45,7 +45,7 @@ public class RanNum.Window : Gtk.ApplicationWindow {
 
 
         var header = new Gtk.HeaderBar ();
-        header.title = "RanNum";
+        header.title = "Roll-It";
         // header.subtitle = "Random number generation";
 
         header.show_close_button = true;
@@ -60,7 +60,7 @@ public class RanNum.Window : Gtk.ApplicationWindow {
 
         var menu_popover = new Gtk.Popover (menu_button);
         menu_button.popover = menu_popover;
-        var menu_grid = new RanNum.Menu ();
+        var menu_grid = new Rollit.Menu ();
         menu_popover.add (menu_grid);
 
         header.pack_start (start_button);
@@ -68,7 +68,7 @@ public class RanNum.Window : Gtk.ApplicationWindow {
 
         set_titlebar (header);
 
-        var number_display = new RanNum.NumDisplay ();
+        var number_display = new Rollit.NumDisplay ();
         add (number_display);
 
         start_button.clicked.connect (e => {
