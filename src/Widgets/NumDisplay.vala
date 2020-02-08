@@ -20,10 +20,7 @@ public class Rollit.NumDisplay : Gtk.Label {
 
     construct {
         get_style_context ().add_class ("number-label");
-        // To visually center the number display
-        margin_top = 10;
-        margin_start = 40;
-        margin_end = 40;
+        margin = 40;
         label = "";
     }
 
@@ -31,7 +28,8 @@ public class Rollit.NumDisplay : Gtk.Label {
         const int MIN_NUM = 1;
         int rnd_num;
 
+        // max_num + 1 so that max num is included in roll
         rnd_num = Random.int_range (MIN_NUM, (max_num + 1));
-        this.set_label (@"$rnd_num");
+        this.label = @"$rnd_num";
     }
 }

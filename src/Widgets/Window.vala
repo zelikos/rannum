@@ -46,12 +46,8 @@ public class Rollit.Window : Gtk.ApplicationWindow {
 
         var header = new Gtk.HeaderBar ();
         header.title = "Roll-It";
-        // header.subtitle = "Random number generation";
 
         header.show_close_button = true;
-
-        var start_button = new Gtk.Button.from_icon_name ("media-playback-start", Gtk.IconSize.LARGE_TOOLBAR);
-        start_button.valign = Gtk.Align.CENTER;
         
         var menu_button = new Gtk.MenuButton ();
         menu_button.image = new Gtk.Image.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR);
@@ -63,17 +59,28 @@ public class Rollit.Window : Gtk.ApplicationWindow {
         var menu_grid = new Rollit.Menu ();
         menu_popover.add (menu_grid);
 
-        header.pack_start (start_button);
         header.pack_end (menu_button);
 
         set_titlebar (header);
 
-        var number_display = new Rollit.NumDisplay ();
-        add (number_display);
+        var roll_button = new Gtk.Button.with_label ("Roll");
+        roll_button.margin = 12;
+        roll_button.hexpand = true;
 
-        start_button.clicked.connect (e => {
-            int max_value = menu_grid.get_max_value ();
-            number_display.num_gen (max_value);
+        var number_display = new Rollit.NumDisplay ();
+        number_display.vexpand = true;
+
+        var main_view = new Gtk.Box (Gtk.Orientation.VERTICAL, 12);
+        main_view.homogeneous = false;
+
+        main_view.pack_start (number_display);
+        main_view.pack_end (roll_button);
+
+        add (main_view);
+
+        roll_button.clicked.connect (e => {
+            int max_roll = menu_grid.get_max_value ();
+            number_display.num_gen (max_roll);
         });
 
         show_all ();
