@@ -4,9 +4,9 @@
   <id>com.github.zelikos.rannum</id>
   <metadata_license>CC0</metadata_license>
   <project_license>GPL-3.0+</project_license>
-  <name>RanNum</name>
-  <summary>Random Number Generation</summary>
+  <name>Roll-It</name>
+  <summary>Roll the Dice</summary>
   <description>
-    <p>Generates a random number at the click of a button.</p>
+    <p>Rolls a random number at the click of a button.</p>
   </description>
 </component>

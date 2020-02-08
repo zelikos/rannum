@@ -16,7 +16,7 @@
  * Authored by Patrick Csikos <akzeldev@fastmail.com>
  */
 
-public class RanNum.NumDisplay : Gtk.Label {
+public class Rollit.NumDisplay : Gtk.Label {
 
     construct {
         get_style_context ().add_class ("number-label");
