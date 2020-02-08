@@ -30,6 +30,10 @@ public class RanNum.Menu : Gtk.Grid {
         style_switch.halign = Gtk.Align.CENTER;
         style_switch.margin = 12;
 
+        var gtk_settings = Gtk.Settings.get_default ();
+        style_switch.bind_property ("active", gtk_settings, "gtk_application_prefer_dark_theme");
+        Application.settings.bind ("dark-style", style_switch, "active", SettingsBindFlags.DEFAULT);
+
         var max_label = new Gtk.Label ("Max:");
         max_label.margin_end = 12;
         max_entry = new Gtk.SpinButton.with_range (1, 100, 1);
