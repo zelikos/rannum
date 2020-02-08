@@ -9,7 +9,7 @@ Simple dice-rolling app designed for [elementary OS].
 
 ## Building
 
-RanNum is designed for and developed on [elementary OS]. You'll need the following dependencies to build it yourself:
+Roll-It is designed for and developed on [elementary OS]. You'll need the following dependencies to build it yourself:
 
 * libgranite-dev
 * libgtk-3-dev
@@ -22,7 +22,7 @@ To install them on [elementary OS]:
 sudo apt install elementary-sdk
 ```
 
-To build and install RanNum:
+To build and install Roll-It:
 
 ```shell
 meson build --prefix=/usr
