@@ -27,10 +27,11 @@ public class RanNum.NumDisplay : Gtk.Label {
         label = "";
     }
 
-    public void num_gen () {
-        int min_num = 1, max_num = 100, rnd_num;
+    public void num_gen (int max_num) {
+        const int MIN_NUM = 1;
+        int rnd_num;
 
-        rnd_num = Random.int_range (min_num, max_num);
+        rnd_num = Random.int_range (MIN_NUM, (max_num + 1));
         this.set_label (@"$rnd_num");
     }
 }

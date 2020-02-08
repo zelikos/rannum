@@ -53,11 +53,18 @@ public class RanNum.Window : Gtk.ApplicationWindow {
         var start_button = new Gtk.Button.from_icon_name ("media-playback-start", Gtk.IconSize.LARGE_TOOLBAR);
         start_button.valign = Gtk.Align.CENTER;
         
-        var menu_button = new Gtk.Button.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR);
+        var menu_button = new Gtk.MenuButton ();
+        menu_button.image = new Gtk.Image.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR);
+        menu_button.tooltip_text = "Menu";
         menu_button.valign = Gtk.Align.CENTER;
 
+        var menu_popover = new Gtk.Popover (menu_button);
+        menu_button.popover = menu_popover;
+        var menu_grid = new RanNum.Menu ();
+        menu_popover.add (menu_grid);
+
         header.pack_start (start_button);
-        // header.pack_end (menu_button);
+        header.pack_end (menu_button);
 
         set_titlebar (header);
 
@@ -65,7 +72,8 @@ public class RanNum.Window : Gtk.ApplicationWindow {
         add (number_display);
 
         start_button.clicked.connect (e => {
-            number_display.num_gen();
+            int max_value = menu_grid.get_max_value ();
+            number_display.num_gen (max_value);
         });
 
         show_all ();

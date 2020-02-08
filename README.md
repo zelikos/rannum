@@ -11,6 +11,7 @@ Simple random number generator designed for [elementary OS].
 
 RanNum is designed for and developed on [elementary OS]. You'll need the following dependencies to build it yourself:
 
+* libgranite-dev
 * libgtk-3-dev
 * meson
 * valac
