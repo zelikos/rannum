@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.zelikos.rannum\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-09 00:28-0500\n"
+"POT-Creation-Date: 2020-02-09 02:05-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,19 +23,27 @@ msgid "Roll-It"
 msgstr ""
 
 #: data/com.github.zelikos.rannum.appdata.xml.in:8
-msgid "Roll the Dice"
+#: data/com.github.zelikos.rannum.desktop.in:5
+msgid "Roll the dice"
 msgstr ""
 
 #: data/com.github.zelikos.rannum.appdata.xml.in:10
-msgid "Rolls a random number at the click of a button."
+msgid "Roll-It simulates the results of rolling a die."
+msgstr ""
+
+#: data/com.github.zelikos.rannum.appdata.xml.in:11
+msgid ""
+"By default, the maximum possible roll is six, as six-sided dice are the most "
+"common. However, the user can set the maximum amount to any number between "
+"one and one-hundred."
+msgstr ""
+
+#: data/com.github.zelikos.rannum.appdata.xml.in:22
+msgid "Patrick Csikos"
 msgstr ""
 
 #: data/com.github.zelikos.rannum.desktop.in:4
 msgid "Dice Roller App"
-msgstr ""
-
-#: data/com.github.zelikos.rannum.desktop.in:5
-msgid "Roll the dice"
 msgstr ""
 
 #: data/com.github.zelikos.rannum.desktop.in:8
