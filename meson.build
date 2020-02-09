@@ -1,12 +1,15 @@
 project('com.github.zelikos.rannum', 'vala', 'c')
 
 gnome = import('gnome')
+i18n = import('i18n')
 
 asresources = gnome.compile_resources (
     'as-resources', join_paths ('data', 'gresource.xml'),
     source_dir: 'data',
     c_name: 'as'
 )
+
+add_global_arguments('-DGETTEXT_PACKAGE="@0@"'.format (meson.project_name()), langue:'c')
 
 executable(
     meson.project_name(),
@@ -24,16 +27,24 @@ executable(
     install: true
 )
 
-subdir('data')
-
-install_data(
-    join_paths('data', meson.project_name() + '.desktop'),
+i18n.merge_file(
+    input: join_paths('data', meson.project_name() + '.desktop.in'),
+    output: meson.project_name() + '.desktop',
+    po_dir: join_paths(meson.source_root(), 'po'),
+    type: 'desktop',
+    install: true,
     install_dir: join_paths(get_option('datadir'), 'applications')
 )
 
-install_data(
-    join_paths('data', meson.project_name() + '.appdata.xml'),
+i18n.merge_file(
+    input: join_paths('data', meson.project_name() + '.appdata.xml.in'),
+    output: meson.project_name() + '.appdata.xml',
+    po_dir: join_paths(meson.source_root(), 'po'),
+    install: true,
     install_dir: join_paths(get_option('datadir'), 'metainfo')
 )
+
+subdir('data')
+subdir('po')
 
 meson.add_install_script('meson/post_install.py')
