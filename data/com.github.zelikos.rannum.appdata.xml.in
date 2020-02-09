@@ -8,9 +8,8 @@
   <summary>Roll the dice</summary>
   <description>
     <p>
-    Roll-It simulates the results of rolling a die. By default, 
-    the maximum possible roll is six, as six-sided dice are the most common. 
-    However, the user can set the maximum amount 
+    Roll-It simulates the results of rolling a die. By default, the maximum possible roll is six, 
+    as six-sided dice are the most common. However, the user can set the maximum amount 
     to any number between one and one-hundred.
     </p>
   </description>
