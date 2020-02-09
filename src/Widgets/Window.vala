@@ -47,7 +47,7 @@ public class Rollit.Window : Gtk.ApplicationWindow {
         
         var menu_button = new Gtk.MenuButton ();
         menu_button.image = new Gtk.Image.from_icon_name ("open-menu-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
-        menu_button.tooltip_text = "Settings";
+        menu_button.tooltip_text = _("Settings");
         menu_button.valign = Gtk.Align.CENTER;
 
         var menu_popover = new Gtk.Popover (menu_button);
@@ -61,7 +61,7 @@ public class Rollit.Window : Gtk.ApplicationWindow {
 
         var number_display = new Rollit.NumDisplay ();
 
-        var roll_button = new Gtk.Button.with_label ("Roll");
+        var roll_button = new Gtk.Button.with_label (_("Roll"));
         var btn_box = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
         btn_box.halign = Gtk.Align.CENTER;
         btn_box.margin = 12;
