@@ -9,7 +9,7 @@ asresources = gnome.compile_resources (
     c_name: 'as'
 )
 
-add_global_arguments('-DGETTEXT_PACKAGE="@0@"'.format (meson.project_name()), langue:'c')
+add_global_arguments('-DGETTEXT_PACKAGE="@0@"'.format (meson.project_name()), language:'c')
 
 executable(
     meson.project_name(),

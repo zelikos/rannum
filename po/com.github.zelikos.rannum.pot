@@ -1,0 +1,71 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.github.zelikos.rannum package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: com.github.zelikos.rannum\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-09 00:28-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: data/com.github.zelikos.rannum.appdata.xml.in:7
+#: data/com.github.zelikos.rannum.desktop.in:3
+msgid "Roll-It"
+msgstr ""
+
+#: data/com.github.zelikos.rannum.appdata.xml.in:8
+msgid "Roll the Dice"
+msgstr ""
+
+#: data/com.github.zelikos.rannum.appdata.xml.in:10
+msgid "Rolls a random number at the click of a button."
+msgstr ""
+
+#: data/com.github.zelikos.rannum.desktop.in:4
+msgid "Dice Roller App"
+msgstr ""
+
+#: data/com.github.zelikos.rannum.desktop.in:5
+msgid "Roll the dice"
+msgstr ""
+
+#: data/com.github.zelikos.rannum.desktop.in:8
+msgid "application-default-icon"
+msgstr ""
+
+#: data/com.github.zelikos.rannum.desktop.in:11
+msgid "Die;Dice;Roll;Random;Number;Rnd;Num;"
+msgstr ""
+
+#: src/Widgets/Menu.vala:28
+msgid "Light"
+msgstr ""
+
+#: src/Widgets/Menu.vala:29
+msgid "Dark"
+msgstr ""
+
+#: src/Widgets/Menu.vala:37
+msgid "Max Roll:"
+msgstr ""
+
+#: src/Widgets/NumDisplay.vala:33
+msgid "Ready to Roll"
+msgstr ""
+
+#: src/Widgets/Window.vala:50
+msgid "Settings"
+msgstr ""
+
+#: src/Widgets/Window.vala:64
+msgid "Roll"
+msgstr ""
