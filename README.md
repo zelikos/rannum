@@ -1,3 +1,6 @@
+<p align="center">
+  <img src="data/icons/128.svg" alt="Icon" />
+</p>
 <h1 align="center">Roll-It</h1>
 
 | ![Screenshot](data/screenshot_light.png) | ![Screenshot](data/screenshot_dark.png) |
