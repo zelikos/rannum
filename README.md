@@ -5,7 +5,7 @@
 
 ## Roll the dice
 
-Simple dice-rolling app designed for [elementary OS].
+Simple dice-rolling app designed for [elementary OS]. Simulate the roll of a die with a configurable maximum value.
 
 ## Building
 
