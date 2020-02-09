@@ -1,11 +1,11 @@
 <h1 align="center">Roll-It</h1>
 
-| ![Screenshot](data/screenshot_light1.png) | ![Screenshot](data/screenshot_dark1.png) |
-|-------------------------------------------|------------------------------------------|
+| ![Screenshot](data/screenshot_light.png) | ![Screenshot](data/screenshot_dark.png) |
+|------------------------------------------|-----------------------------------------|
 
 ## Roll the dice
 
-Simple dice-rolling app designed for [elementary OS].
+Simple dice-rolling app designed for [elementary OS]. Simulate the roll of a die with a configurable maximum value.
 
 ## Building
 

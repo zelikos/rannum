@@ -27,35 +27,27 @@ public class Rollit.Window : Gtk.ApplicationWindow {
     }
 
     construct {
+        default_width = 280;
+        default_height = 260;
+
         int window_x, window_y;
-        var rect = Gtk.Allocation ();
-
         Application.settings.get ("window-position", "(ii)", out window_x, out window_y);
-        Application.settings.get ("window-size", "(ii)", out rect.width, out rect.height);
 
+        
         if (window_x != -1 || window_y != -1) {
             move (window_x, window_y);
         }
 
-        set_allocation (rect);
-
-        if (Application.settings.get_boolean ("window-maximized")) {
-            maximize ();
-        }
-
-
         var header = new Gtk.HeaderBar ();
         header.title = "Roll-It";
-        // header.subtitle = "Random number generation";
-
+        //header.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+        header.get_style_context ().add_class ("default-decoration");
         header.show_close_button = true;
-
-        var start_button = new Gtk.Button.from_icon_name ("media-playback-start", Gtk.IconSize.LARGE_TOOLBAR);
-        start_button.valign = Gtk.Align.CENTER;
+        header.decoration_layout = "close:";
         
         var menu_button = new Gtk.MenuButton ();
-        menu_button.image = new Gtk.Image.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR);
-        menu_button.tooltip_text = "Menu";
+        menu_button.image = new Gtk.Image.from_icon_name ("open-menu-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
+        menu_button.tooltip_text = "Settings";
         menu_button.valign = Gtk.Align.CENTER;
 
         var menu_popover = new Gtk.Popover (menu_button);
@@ -63,17 +55,28 @@ public class Rollit.Window : Gtk.ApplicationWindow {
         var menu_grid = new Rollit.Menu ();
         menu_popover.add (menu_grid);
 
-        header.pack_start (start_button);
         header.pack_end (menu_button);
 
         set_titlebar (header);
 
         var number_display = new Rollit.NumDisplay ();
-        add (number_display);
 
-        start_button.clicked.connect (e => {
-            int max_value = menu_grid.get_max_value ();
-            number_display.num_gen (max_value);
+        var roll_button = new Gtk.Button.with_label ("Roll");
+        var btn_box = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
+        btn_box.halign = Gtk.Align.CENTER;
+        btn_box.margin = 12;
+        btn_box.margin_top = 0;
+        btn_box.add (roll_button);
+
+        var main_view = new Gtk.Grid ();
+        main_view.attach (number_display, 1, 1, 1, 1);
+        main_view.attach (btn_box, 1, 2, 1, 1);
+
+        add (main_view);
+
+        roll_button.clicked.connect (e => {
+            int max_roll = menu_grid.get_max_value ();
+            number_display.num_gen (max_roll);
         });
 
         show_all ();
@@ -87,22 +90,13 @@ public class Rollit.Window : Gtk.ApplicationWindow {
         configure_id = Timeout.add (100, () => {
             configure_id = 0;
 
-            if (is_maximized) {
-                Application.settings.set_boolean ("window-maximized", true);
-            } else {
-                Application.settings.set_boolean ("window-maximized", false);
-
-                Gdk.Rectangle rect;
-                get_allocation (out rect);
-                Application.settings.set ("window-size", "(ii)", rect.width, rect.height);
-
-                int root_x, root_y;
-                get_position (out root_x, out root_y);
-                Application.settings.set ("window-position", "(ii)", root_x, root_y);
-            }
+            int root_x, root_y;
+            get_position (out root_x, out root_y);
+            Application.settings.set ("window-position", "(ii)", root_x, root_y);
 
             return false;
-        });
+            }
+        );
 
         return base.configure_event (event);
     }

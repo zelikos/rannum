@@ -16,22 +16,36 @@
  * Authored by Patrick Csikos <akzeldev@fastmail.com>
  */
 
-public class Rollit.NumDisplay : Gtk.Label {
+public class Rollit.NumDisplay : Gtk.Stack {
+    Gtk.Label roll_result;
 
     construct {
-        get_style_context ().add_class ("number-label");
-        // To visually center the number display
-        margin_top = 10;
-        margin_start = 40;
-        margin_end = 40;
-        label = "";
+        transition_type = Gtk.StackTransitionType.SLIDE_UP;
+        hexpand = true;
+        margin = 12;
+        vexpand = true;
+
+        roll_result = new Gtk.Label (null);
+        roll_result.get_style_context ().add_class ("result-label");
+
+        var welcome = new Gtk.Label (null);
+        welcome.get_style_context ().add_class (Granite.STYLE_CLASS_H2_LABEL);
+        welcome.label = "Ready to Roll";
+
+        add_named (welcome, "welcome");
+        add_named (roll_result, "roll-result");
+        visible_child_name = "welcome";
     }
 
     public void num_gen (int max_num) {
         const int MIN_NUM = 1;
         int rnd_num;
 
+        if (visible_child_name != "roll-result") {
+            visible_child_name = "roll-result";
+        }
+        // max_num + 1 so that max num is included in roll
         rnd_num = Random.int_range (MIN_NUM, (max_num + 1));
-        this.set_label (@"$rnd_num");
+        roll_result.label = @"$rnd_num";
     }
 }

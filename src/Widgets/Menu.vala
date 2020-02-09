@@ -34,10 +34,10 @@ public class Rollit.Menu : Gtk.Grid {
         style_switch.bind_property ("active", gtk_settings, "gtk_application_prefer_dark_theme");
         Application.settings.bind ("dark-style", style_switch, "active", SettingsBindFlags.DEFAULT);
 
-        var max_label = new Gtk.Label ("Max:");
+        var max_label = new Gtk.Label ("Max Roll:");
         max_label.margin_end = 12;
         max_entry = new Gtk.SpinButton.with_range (1, 100, 1);
-        max_entry.value = 10;
+        max_entry.value = 6; // to reflect a standard six-sided die
 
         var max_setting = new Gtk.Grid ();
         max_setting.orientation = Gtk.Orientation.HORIZONTAL;
