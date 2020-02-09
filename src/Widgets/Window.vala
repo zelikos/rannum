@@ -27,8 +27,8 @@ public class Rollit.Window : Gtk.ApplicationWindow {
     }
 
     construct {
-        default_width = 320;
-        default_height = 360;
+        default_width = 280;
+        default_height = 260;
 
         int window_x, window_y;
         Application.settings.get ("window-position", "(ii)", out window_x, out window_y);
@@ -43,7 +43,7 @@ public class Rollit.Window : Gtk.ApplicationWindow {
         //header.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
         header.get_style_context ().add_class ("default-decoration");
         header.show_close_button = true;
-        //header.decoration_layout = "close:";
+        header.decoration_layout = "close:";
         
         var menu_button = new Gtk.MenuButton ();
         menu_button.image = new Gtk.Image.from_icon_name ("open-menu-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
@@ -60,15 +60,17 @@ public class Rollit.Window : Gtk.ApplicationWindow {
         set_titlebar (header);
 
         var number_display = new Rollit.NumDisplay ();
-        number_display.vexpand = true;
 
         var roll_button = new Gtk.Button.with_label ("Roll");
-        roll_button.margin = 12;
-        roll_button.hexpand = true;
+        var btn_box = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
+        btn_box.halign = Gtk.Align.CENTER;
+        btn_box.margin = 12;
+        btn_box.margin_top = 0;
+        btn_box.add (roll_button);
 
         var main_view = new Gtk.Grid ();
         main_view.attach (number_display, 1, 1, 1, 1);
-        main_view.attach (roll_button, 1, 2, 1, 1);
+        main_view.attach (btn_box, 1, 2, 1, 1);
 
         add (main_view);
 
