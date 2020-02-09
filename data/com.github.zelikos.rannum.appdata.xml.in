@@ -7,8 +7,11 @@
   <name>Roll-It</name>
   <summary>Roll the dice</summary>
   <description>
-    <p>Roll-It simulates the results of rolling a die.</p>
-    <p>By default, the maximum possible roll is six, as six-sided dice are the most common. However, the user can set the maximum amount to any number between one and one-hundred.</p>
+    <p>
+    Roll-It simulates the results of rolling a die. By default, the maximum possible roll is six, 
+    as six-sided dice are the most common. However, the user can set the maximum amount 
+    to any number between one and one-hundred.
+    </p>
   </description>
   <screenshots>
     <screenshot type="default">
@@ -18,12 +21,40 @@
       <image>https://raw.githubusercontent.com/zelikos/rannum/master/data/screenshot_dark.png</image>
     </screenshot>
   </screenshots>
-  <content_rating type="oars-1.1" />
+  <content_rating type="oars-1.1">
+    <content_attribute id="violence-cartoon">none</content_attribute>
+    <content_attribute id="violence-fantasy">none</content_attribute>
+    <content_attribute id="violence-realistic">none</content_attribute>
+    <content_attribute id="violence-bloodshed">none</content_attribute>
+    <content_attribute id="violence-sexual">none</content_attribute>
+    <content_attribute id="violence-desecration">none</content_attribute>
+    <content_attribute id="violence-slavery">none</content_attribute>
+    <content_attribute id="violence-worship">none</content_attribute>
+    <content_attribute id="drugs-alcohol">none</content_attribute>
+    <content_attribute id="drugs-narcotics">none</content_attribute>
+    <content_attribute id="drugs-tobacco">none</content_attribute>
+    <content_attribute id="sex-nudity">none</content_attribute>
+    <content_attribute id="sex-themes">none</content_attribute>
+    <content_attribute id="sex-homosexuality">none</content_attribute>
+    <content_attribute id="sex-prostitution">none</content_attribute>
+    <content_attribute id="sex-adultery">none</content_attribute>
+    <content_attribute id="sex-appearance">none</content_attribute>
+    <content_attribute id="language-profanity">none</content_attribute>
+    <content_attribute id="language-humor">none</content_attribute>
+    <content_attribute id="language-discrimination">none</content_attribute>
+    <content_attribute id="social-chat">none</content_attribute>
+    <content_attribute id="social-info">none</content_attribute>
+    <content_attribute id="social-audio">none</content_attribute>
+    <content_attribute id="social-location">none</content_attribute>
+    <content_attribute id="social-contacts">none</content_attribute>
+    <content_attribute id="money-purchasing">none</content_attribute>
+    <content_attribute id="money-gambling">none</content_attribute>
+  </content_rating>
   <developer_name>Patrick Csikos</developer_name>
   <url type="homepage">https://github.com/zelikos/rannum</url>
   <url type="bugtracker">https://github.com/zelikos/rannum/issues</url>
   <url type="donation">https://zelikos.github.io/support</url>
-  <url type="contact">https://zelikos.github.io/contact</url>
+  <!--<url type="contact">https://zelikos.github.io/contact</url>-->
   <custom>
     <value key="x-appcenter-color-primary">#7739BE</value>
     <value key="x-appcenter-color-primary-text">#fff</value>
