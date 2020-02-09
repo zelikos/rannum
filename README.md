@@ -1,7 +1,7 @@
 <h1 align="center">Roll-It</h1>
 
-| ![Screenshot](data/screenshot_light2.png) | ![Screenshot](data/screenshot_dark2.png) |
-|-------------------------------------------|------------------------------------------|
+| ![Screenshot](data/screenshot_light.png) | ![Screenshot](data/screenshot_dark.png) |
+|------------------------------------------|-----------------------------------------|
 
 ## Roll the dice
 
