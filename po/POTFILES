@@ -1,5 +1,3 @@
-data/com.github.zelikos.rannum.appdata.xml.in
-data/com.github.zelikos.rannum.desktop.in
 src/Widgets/Menu.vala
 src/Widgets/NumDisplay.vala
 src/Widgets/Window.vala
