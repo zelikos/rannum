@@ -2,13 +2,24 @@
   <img src="data/icons/128.svg" alt="Icon" />
 </p>
 <h1 align="center">Roll-It</h1>
+<p align="center">
+  <a href="https://appcenter.elementary.io/com.github.zelikos.rannum"><img src="https://appcenter.elementary.io/badge.svg" alt="Get it on AppCenter" /></a>
+</p>
 
 | ![Screenshot](data/screenshot_light.png) | ![Screenshot](data/screenshot_dark.png) |
 |------------------------------------------|-----------------------------------------|
 
 ## Roll the dice
 
-Simple dice-rolling app designed for [elementary OS]. Simulate the roll of a die with a configurable maximum value.
+Simulate the results of rolling a die. Roll a six-sided die by default, or get the results of rolling a custom die with up to one-hundred sides.
+
+## Installation
+
+At this time, Roll-It is designed exclusively for [elementary OS], and is available for installation via AppCenter.
+
+[![Get it on AppCenter](https://appcenter.elementary.io/badge.svg)][AppCenter link]
+
+Any version distributed elsewhere is not provided nor supported by me.
 
 ## Building
 
@@ -35,3 +46,4 @@ sudo ninja install
 ```
 
 [elementary OS]: https://elementary.io
+[AppCenter link]: https://appcenter.elementary.io/com.github.zelikos.rannum
