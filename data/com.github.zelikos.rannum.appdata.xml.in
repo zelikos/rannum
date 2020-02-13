@@ -9,7 +9,7 @@
   <description>
     <p>Simulate the results of rolling a die.</p>
     
-    <p>Roll a six-sided die by default, or get the results of a custom die size of up to one-hundred sides.</p>
+    <p>Roll a six-sided die by default, or get the results of rolling a custom die with up to one-hundred sides.</p>
   </description>
   <screenshots>
     <screenshot type="default">
