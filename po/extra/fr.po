@@ -1,0 +1,72 @@
+# French translations for extra package.
+# Copyright (C) 2020 THE extra'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the extra package.
+# Nathan Bonnemains (@NathanBnm), 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: extra\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-13 20:38+0100\n"
+"PO-Revision-Date: 2020-02-13 20:30+0100\n"
+"Last-Translator: Nathan Bonnemains (@NathanBnm)\n"
+"Language-Team: none\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: data/com.github.zelikos.rannum.appdata.xml.in:7
+#: data/com.github.zelikos.rannum.desktop.in:3
+msgid "Roll-It"
+msgstr "Roll-It"
+
+#: data/com.github.zelikos.rannum.appdata.xml.in:8
+#: data/com.github.zelikos.rannum.desktop.in:5
+msgid "Roll the dice"
+msgstr "Lancez le dé"
+
+#: data/com.github.zelikos.rannum.appdata.xml.in:10
+msgid "Simulate the results of rolling a die."
+msgstr "Simulez le résultat d'un lancer de dé."
+
+#: data/com.github.zelikos.rannum.appdata.xml.in:12
+msgid ""
+"Roll a six-sided die by default, or get the results of a custom die size of "
+"up to one-hundred sides."
+msgstr ""
+"Lancez un dé à six faces par défaut, ou bien obtenez le résultat souhaité "
+"avec un nombre de faces personnalisé allant jusqu'à cent."
+
+#: data/com.github.zelikos.rannum.appdata.xml.in:26
+msgid "Add release info to AppData"
+msgstr "Ajout des informations de version aux métadonnées"
+
+#: data/com.github.zelikos.rannum.appdata.xml.in:27
+msgid "Rewrite app description"
+msgstr "Réecriture de la description de l'application"
+
+#: data/com.github.zelikos.rannum.appdata.xml.in:33
+msgid "AppData fixes"
+msgstr "Correction des métadonnées"
+
+#: data/com.github.zelikos.rannum.appdata.xml.in:38
+msgid "Initial release"
+msgstr "Version initiale"
+
+#: data/com.github.zelikos.rannum.appdata.xml.in:71
+msgid "Patrick Csikos"
+msgstr "Patrick Csikos"
+
+#: data/com.github.zelikos.rannum.desktop.in:4
+msgid "Dice Roller App"
+msgstr "Application de lancer de dé"
+
+#: data/com.github.zelikos.rannum.desktop.in:8
+msgid "com.github.zelikos.rannum"
+msgstr "com.github.zelikos.rannum"
+
+#: data/com.github.zelikos.rannum.desktop.in:11
+msgid "Die;Dice;Roll;Random;Number;Rnd;Num;"
+msgstr "Dé;Lancer;Aléatoire;Nombre;Rnd;Num;"
