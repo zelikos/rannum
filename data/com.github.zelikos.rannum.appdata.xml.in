@@ -23,8 +23,8 @@
     <release version="1.0.2" date="2020-02-13">
       <description>
         <ul>
-          <li>Add release info to AppData</li>
-          <li>Rewrite app description</li>
+          <li>Added release info to AppData</li>
+          <li>Rewrote app description to be more concise</li>
           <li>French translations by @NathanBnm</li>
         </ul>
       </description>
