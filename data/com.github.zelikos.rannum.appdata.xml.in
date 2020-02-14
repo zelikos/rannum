@@ -9,7 +9,7 @@
   <description>
     <p>Simulate the results of rolling a die.</p>
     
-    <p>Roll a six-sided die by default, or get the results of a custom die size of up to one-hundred sides.</p>
+    <p>Roll a six-sided die by default, or get the results of rolling a custom die with up to one-hundred sides.</p>
   </description>
   <screenshots>
     <screenshot type="default">
@@ -25,6 +25,7 @@
         <ul>
           <li>Add release info to AppData</li>
           <li>Rewrite app description</li>
+          <li>French translations by @NathanBnm</li>
         </ul>
       </description>
     </release>
@@ -74,7 +75,7 @@
   <url type="donation">https://zelikos.github.io/support</url>
   <!--<url type="contact">https://zelikos.github.io/contact</url>-->
   <custom>
-    <value key="x-appcenter-color-primary">#7739BE</value>
+    <value key="x-appcenter-color-primary">#a56de2</value>
     <value key="x-appcenter-color-primary-text">#fff</value>
     <value key="x-appcenter-suggested-price">0</value>
   </custom>
