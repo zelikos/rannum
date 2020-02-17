@@ -34,19 +34,33 @@ public class Rollit.Menu : Gtk.Grid {
         style_switch.bind_property ("active", gtk_settings, "gtk_application_prefer_dark_theme");
         Application.settings.bind ("dark-style", style_switch, "active", SettingsBindFlags.DEFAULT);
 
+        var six_sided = new Gtk.RadioButton.with_label (new SList<Gtk.RadioButton> (), _("d6"));
+        var ten_sided = new Gtk.RadioButton.with_label (six_sided.get_group (), _("d10"));
+        var twenty_sided = new Gtk.RadioButton.with_label (six_sided.get_group (), _("d20"));
+        var custom_sided = new Gtk.RadioButton.with_label (six_sided.get_group (), _("Custom"));
+        six_sided.margin = ten_sided.margin = twenty_sided.margin = custom_sided.margin = 6;
+        
+        /*
         var max_label = new Gtk.Label (_("Max Roll:"));
-        max_label.margin_end = 12;
+        max_label.margin_end = 12;*/
         max_entry = new Gtk.SpinButton.with_range (1, 100, 1);
-        max_entry.value = 6; // to reflect a standard six-sided die
+        max_entry.margin = 6;
+        max_entry.margin_top = 0;
+        // max_entry.value = ?; pull in last value set
+
 
         var max_setting = new Gtk.Grid ();
-        max_setting.orientation = Gtk.Orientation.HORIZONTAL;
-        max_setting.margin = 12;
-        max_setting.add (max_label);
+        max_setting.orientation = Gtk.Orientation.VERTICAL;
+        max_setting.margin = 6;
+        //max_setting.add (max_label);
+        max_setting.add (six_sided);
+        max_setting.add (ten_sided);
+        max_setting.add (twenty_sided);
+        max_setting.add (custom_sided);
         max_setting.add (max_entry);
 
+
         orientation = Gtk.Orientation.VERTICAL;
-        //width_request = 200;
         add (style_switch);
         add (new Gtk.Separator (HORIZONTAL));
         add (max_setting);
