@@ -27,7 +27,7 @@ public class Rollit.Window : Gtk.ApplicationWindow {
     }
 
     construct {
-        default_width = 280;
+        default_width = 320;
         default_height = 260;
 
         int window_x, window_y;
@@ -44,7 +44,7 @@ public class Rollit.Window : Gtk.ApplicationWindow {
         header.get_style_context ().add_class ("default-decoration");
         header.show_close_button = true;
         header.decoration_layout = "close:";
-        
+
         var menu_button = new Gtk.MenuButton ();
         menu_button.image = new Gtk.Image.from_icon_name ("open-menu-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
         menu_button.tooltip_text = _("Settings");
