@@ -21,19 +21,6 @@ public class Rollit.Menu : Gtk.Grid {
     Gtk.SpinButton max_entry;
 
     construct {
-        var style_switch = new Granite.ModeSwitch.from_icon_name (
-            "display-brightness-symbolic",
-            "weather-clear-night-symbolic"
-        );
-        style_switch.primary_icon_tooltip_text = _("Light");
-        style_switch.secondary_icon_tooltip_text = _("Dark");
-        style_switch.halign = Gtk.Align.CENTER;
-        style_switch.margin = 12;
-
-        var gtk_settings = Gtk.Settings.get_default ();
-        style_switch.bind_property ("active", gtk_settings, "gtk_application_prefer_dark_theme");
-        Application.settings.bind ("dark-style", style_switch, "active", SettingsBindFlags.DEFAULT);
-
         var six_sided = new Gtk.RadioButton.with_label (new SList<Gtk.RadioButton> (), _("d6"));
         var ten_sided = new Gtk.RadioButton.with_label (six_sided.get_group (), _("d10"));
         var twenty_sided = new Gtk.RadioButton.with_label (six_sided.get_group (), _("d20"));
@@ -61,7 +48,7 @@ public class Rollit.Menu : Gtk.Grid {
 
 
         orientation = Gtk.Orientation.VERTICAL;
-        add (style_switch);
+        // add (style_switch);
         add (new Gtk.Separator (HORIZONTAL));
         add (max_setting);
         show_all ();

@@ -27,8 +27,9 @@ public class Rollit.Window : Gtk.ApplicationWindow {
     }
 
     construct {
-        default_width = 320;
+        default_width = 260;
         default_height = 260;
+        resizable = false;
 
         int window_x, window_y;
         Application.settings.get ("window-position", "(ii)", out window_x, out window_y);
@@ -45,28 +46,45 @@ public class Rollit.Window : Gtk.ApplicationWindow {
         header.show_close_button = true;
         header.decoration_layout = "close:";
 
+        var style_switch = new Granite.ModeSwitch.from_icon_name (
+            "display-brightness-symbolic",
+            "weather-clear-night-symbolic"
+        );
+        style_switch.primary_icon_tooltip_text = _("Light");
+        style_switch.secondary_icon_tooltip_text = _("Dark");
+        style_switch.valign = Gtk.Align.CENTER;
+        // style_switch.margin = 12;
+
+        var gtk_settings = Gtk.Settings.get_default ();
+        style_switch.bind_property ("active", gtk_settings, "gtk_application_prefer_dark_theme");
+        Application.settings.bind ("dark-style", style_switch, "active", SettingsBindFlags.DEFAULT);
+
         var menu_button = new Gtk.MenuButton ();
         menu_button.image = new Gtk.Image.from_icon_name ("open-menu-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
-        menu_button.tooltip_text = _("Settings");
-        menu_button.valign = Gtk.Align.CENTER;
+        menu_button.tooltip_text = _("Dice Settings");
+        //menu_button.valign = Gtk.Align.CENTER;
 
         var menu_popover = new Gtk.Popover (menu_button);
         menu_button.popover = menu_popover;
         var menu_grid = new Rollit.Menu ();
         menu_popover.add (menu_grid);
 
-        header.pack_end (menu_button);
+        header.pack_end (style_switch);
 
         set_titlebar (header);
 
         var number_display = new Rollit.NumDisplay ();
 
         var roll_button = new Gtk.Button.with_label (_("Roll"));
+        roll_button.get_style_context ().add_class ("suggested-action");
         var btn_box = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
-        btn_box.halign = Gtk.Align.CENTER;
+        //btn_box.halign = Gtk.Align.CENTER;
+        btn_box.set_layout (Gtk.ButtonBoxStyle.SPREAD);
         btn_box.margin = 12;
         btn_box.margin_top = 0;
+        btn_box.spacing = 12;
         btn_box.add (roll_button);
+        btn_box.add (menu_button);
 
         var main_view = new Gtk.Grid ();
         main_view.attach (number_display, 1, 1, 1, 1);
