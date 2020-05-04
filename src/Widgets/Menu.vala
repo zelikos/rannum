@@ -37,7 +37,12 @@ public class Rollit.Menu : Gtk.Grid {
         var max_label = new Gtk.Label (_("Max Roll:"));
         max_label.margin_end = 12;
         max_entry = new Gtk.SpinButton.with_range (1, 100, 1);
-        max_entry.value = 6; // to reflect a standard six-sided die
+
+        // Read last value from settings (and save in settings when changed
+        max_entry.value = Application.settings.get_int("max-roll");
+        max_entry.value_changed.connect( () => {
+            Application.settings.set_int("max-roll", max_entry.get_value_as_int());
+        });
 
         var max_setting = new Gtk.Grid ();
         max_setting.orientation = Gtk.Orientation.HORIZONTAL;
