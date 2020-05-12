@@ -33,8 +33,12 @@ public class Rollit.Menu : Gtk.Grid {
         max_entry = new Gtk.SpinButton.with_range (1, 100, 1);
         max_entry.margin = 6;
         max_entry.margin_top = 0;
-        // max_entry.value = ?; pull in last value set
 
+        // Read last value from settings (and save in settings when changed
+        max_entry.value = Application.settings.get_int("max-roll");
+        max_entry.value_changed.connect( () => {
+            Application.settings.set_int("max-roll", max_entry.get_value_as_int());
+        });
 
         var max_setting = new Gtk.Grid ();
         max_setting.orientation = Gtk.Orientation.VERTICAL;
