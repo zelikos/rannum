@@ -22,7 +22,7 @@ public class Rollit.NumDisplay : Gtk.Stack {
     construct {
         transition_type = Gtk.StackTransitionType.SLIDE_UP;
         hexpand = true;
-        margin = 12;
+        //margin = 12;
         vexpand = true;
 
         roll_result = new Gtk.Label (null);
