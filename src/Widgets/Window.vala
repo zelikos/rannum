@@ -41,7 +41,6 @@ public class Rollit.Window : Gtk.ApplicationWindow {
 
         var header = new Gtk.HeaderBar () {
             title = "Roll-It",
-            //get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT),
             show_close_button = true,
             decoration_layout = "close:"
         };
@@ -54,7 +53,6 @@ public class Rollit.Window : Gtk.ApplicationWindow {
             primary_icon_tooltip_text = _("Light"),
             secondary_icon_tooltip_text = _("Dark"),
             valign = Gtk.Align.CENTER
-            //margin = 12
         };
         
         var gtk_settings = Gtk.Settings.get_default ();
@@ -87,20 +85,14 @@ public class Rollit.Window : Gtk.ApplicationWindow {
         action_buttons.get_style_context ().add_class (Gtk.STYLE_CLASS_LINKED);
         
         var btn_box = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
-        //btn_box.halign = Gtk.Align.CENTER;
-        //btn_box.margin_top = 0;
         btn_box.spacing = 6;
         
         btn_box.add (action_buttons);
-        
-        //btn_box.add (roll_button);
-        //btn_box.add (menu_button);
 
         var main_view = new Gtk.Grid ();
         main_view.margin = 12;
         main_view.attach (number_display, 0, 0, 1, 1);
         main_view.attach (btn_box, 0, 1, 1, 1);
-        //main_view.attach (action_buttons, 1, 2, 1, 1);
 
         add (main_view);
 
