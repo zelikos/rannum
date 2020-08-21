@@ -39,22 +39,24 @@ public class Rollit.Window : Gtk.ApplicationWindow {
             move (window_x, window_y);
         }
 
-        var header = new Gtk.HeaderBar ();
-        header.title = "Roll-It";
-        //header.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+        var header = new Gtk.HeaderBar () {
+            title = "Roll-It",
+            //get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT),
+            show_close_button = true,
+            decoration_layout = "close:"
+        };
         header.get_style_context ().add_class ("default-decoration");
-        header.show_close_button = true;
-        header.decoration_layout = "close:";
 
         var style_switch = new Granite.ModeSwitch.from_icon_name (
             "display-brightness-symbolic",
             "weather-clear-night-symbolic"
-        );
-        style_switch.primary_icon_tooltip_text = _("Light");
-        style_switch.secondary_icon_tooltip_text = _("Dark");
-        style_switch.valign = Gtk.Align.CENTER;
-        // style_switch.margin = 12;
-
+        ) {
+            primary_icon_tooltip_text = _("Light"),
+            secondary_icon_tooltip_text = _("Dark"),
+            valign = Gtk.Align.CENTER
+            //margin = 12
+        };
+        
         var gtk_settings = Gtk.Settings.get_default ();
         style_switch.bind_property ("active", gtk_settings, "gtk_application_prefer_dark_theme");
         Application.settings.bind ("dark-style", style_switch, "active", SettingsBindFlags.DEFAULT);
@@ -68,9 +70,11 @@ public class Rollit.Window : Gtk.ApplicationWindow {
         var roll_button = new Gtk.Button.with_label (_("Roll"));
         roll_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
 
-        var menu_button = new Gtk.MenuButton ();
-        menu_button.image = new Gtk.Image.from_icon_name ("open-menu-symbolic", Gtk.IconSize.MENU);
-        menu_button.tooltip_text = _("Dice Settings");
+        var menu_button = new Gtk.MenuButton () {
+            image = new Gtk.Image.from_icon_name ("open-menu-symbolic", Gtk.IconSize.MENU),
+            tooltip_text = _("Dice Settings")
+        };
+        
         menu_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
 
         var menu_popover = new Gtk.Popover (menu_button);

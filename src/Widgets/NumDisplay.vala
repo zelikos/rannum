@@ -29,8 +29,8 @@ public class Rollit.NumDisplay : Gtk.Stack {
         roll_result.get_style_context ().add_class ("result-label");
 
         var welcome = new Gtk.Label (null);
-        welcome.get_style_context ().add_class (Granite.STYLE_CLASS_H2_LABEL);
         welcome.label = _("Ready to Roll");
+        welcome.get_style_context ().add_class (Granite.STYLE_CLASS_H2_LABEL);
 
         add_named (welcome, "welcome");
         add_named (roll_result, "roll-result");
