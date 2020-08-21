@@ -18,48 +18,72 @@
 
 public class Rollit.Menu : Gtk.Grid {
 
-    Gtk.SpinButton max_entry;
-
     construct {
-        var style_switch = new Granite.ModeSwitch.from_icon_name (
-            "display-brightness-symbolic",
-            "weather-clear-night-symbolic"
-        );
-        style_switch.primary_icon_tooltip_text = _("Light");
-        style_switch.secondary_icon_tooltip_text = _("Dark");
-        style_switch.halign = Gtk.Align.CENTER;
-        style_switch.margin = 12;
+        var six_sided = new Gtk.RadioButton.with_label (new SList<Gtk.RadioButton> (), _("d6"));
+        var ten_sided = new Gtk.RadioButton.with_label (six_sided.get_group (), _("d10"));
+        var twenty_sided = new Gtk.RadioButton.with_label (six_sided.get_group (), _("d20"));
+        var custom_sided = new Gtk.RadioButton.with_label (six_sided.get_group (), _("Custom"));
+        six_sided.margin = ten_sided.margin = twenty_sided.margin = custom_sided.margin = 6;
+        
 
-        var gtk_settings = Gtk.Settings.get_default ();
-        style_switch.bind_property ("active", gtk_settings, "gtk_application_prefer_dark_theme");
-        Application.settings.bind ("dark-style", style_switch, "active", SettingsBindFlags.DEFAULT);
+        var max_entry = new Gtk.SpinButton.with_range (1, 100, 1);
+        max_entry.margin = 6;
+        max_entry.margin_top = 0;
 
-        var max_label = new Gtk.Label (_("Max Roll:"));
-        max_label.margin_end = 12;
-        max_entry = new Gtk.SpinButton.with_range (1, 100, 1);
-
-        // Read last value from settings (and save in settings when changed
-        max_entry.value = Application.settings.get_int("max-roll");
-        max_entry.value_changed.connect( () => {
-            Application.settings.set_int("max-roll", max_entry.get_value_as_int());
-        });
+        // Read last value from settings
+        int last_value = Application.settings.get_int ("max-roll");
+        
+        switch (last_value) {
+            case 6:
+                six_sided.active = true;
+                break;
+            case 10:
+                ten_sided.active = true;
+                break;
+            case 20:
+                twenty_sided.active = true;
+                break;
+            default:
+                custom_sided.active = true;
+                max_entry.value = last_value;
+                break;
+        }
 
         var max_setting = new Gtk.Grid ();
-        max_setting.orientation = Gtk.Orientation.HORIZONTAL;
-        max_setting.margin = 12;
-        max_setting.add (max_label);
+        max_setting.orientation = Gtk.Orientation.VERTICAL;
+        max_setting.margin = 6;
+        max_setting.add (six_sided);
+        max_setting.add (ten_sided);
+        max_setting.add (twenty_sided);
+        max_setting.add (custom_sided);
         max_setting.add (max_entry);
 
+
         orientation = Gtk.Orientation.VERTICAL;
-        //width_request = 200;
-        add (style_switch);
         add (new Gtk.Separator (HORIZONTAL));
         add (max_setting);
         show_all ();
-    }
 
-    public int get_max_value () {
-        var max_value = max_entry.get_value_as_int ();
-        return max_value;
+        
+        six_sided.clicked.connect ( () => {
+            Application.settings.set_int ("max-roll", 6);
+        });
+        
+        ten_sided.clicked.connect ( () => {
+            Application.settings.set_int ("max-roll", 10);
+        });
+        
+        twenty_sided.clicked.connect ( () => {
+            Application.settings.set_int ("max-roll", 20);
+        });
+        
+        custom_sided.clicked.connect ( () => {
+            Application.settings.set_int ("max-roll", max_entry.get_value_as_int ());
+        });
+        
+        max_entry.value_changed.connect ( () => {
+            Application.settings.set_int ("max-roll", max_entry.get_value_as_int ());
+            custom_sided.active = true;
+        });
     }
 }

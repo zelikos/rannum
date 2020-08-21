@@ -27,8 +27,9 @@ public class Rollit.Window : Gtk.ApplicationWindow {
     }
 
     construct {
-        default_width = 280;
+        default_width = 260;
         default_height = 260;
+        resizable = false;
 
         int window_x, window_y;
         Application.settings.get ("window-position", "(ii)", out window_x, out window_y);
@@ -38,44 +39,65 @@ public class Rollit.Window : Gtk.ApplicationWindow {
             move (window_x, window_y);
         }
 
-        var header = new Gtk.HeaderBar ();
-        header.title = "Roll-It";
-        //header.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+        var header = new Gtk.HeaderBar () {
+            title = "Roll-It",
+            show_close_button = true,
+            decoration_layout = "close:"
+        };
         header.get_style_context ().add_class ("default-decoration");
-        header.show_close_button = true;
-        header.decoration_layout = "close:";
+
+        var style_switch = new Granite.ModeSwitch.from_icon_name (
+            "display-brightness-symbolic",
+            "weather-clear-night-symbolic"
+        ) {
+            primary_icon_tooltip_text = _("Light"),
+            secondary_icon_tooltip_text = _("Dark"),
+            valign = Gtk.Align.CENTER
+        };
         
-        var menu_button = new Gtk.MenuButton ();
-        menu_button.image = new Gtk.Image.from_icon_name ("open-menu-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
-        menu_button.tooltip_text = _("Settings");
-        menu_button.valign = Gtk.Align.CENTER;
+        var gtk_settings = Gtk.Settings.get_default ();
+        style_switch.bind_property ("active", gtk_settings, "gtk_application_prefer_dark_theme");
+        Application.settings.bind ("dark-style", style_switch, "active", SettingsBindFlags.DEFAULT);
+
+        header.pack_end (style_switch);
+        set_titlebar (header);
+
+
+        var number_display = new Rollit.NumDisplay ();
+
+        var roll_button = new Gtk.Button.with_label (_("Roll"));
+        roll_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
+
+        var menu_button = new Gtk.MenuButton () {
+            image = new Gtk.Image.from_icon_name ("open-menu-symbolic", Gtk.IconSize.MENU),
+            tooltip_text = _("Dice Settings")
+        };
+        menu_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
 
         var menu_popover = new Gtk.Popover (menu_button);
         menu_button.popover = menu_popover;
         var menu_grid = new Rollit.Menu ();
         menu_popover.add (menu_grid);
 
-        header.pack_end (menu_button);
-
-        set_titlebar (header);
-
-        var number_display = new Rollit.NumDisplay ();
-
-        var roll_button = new Gtk.Button.with_label (_("Roll"));
+        var action_buttons = new Gtk.Grid ();
+        action_buttons.add (roll_button);
+        action_buttons.add (menu_button);
+        action_buttons.get_style_context ().add_class (Gtk.STYLE_CLASS_LINKED);
+        
         var btn_box = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
-        btn_box.halign = Gtk.Align.CENTER;
-        btn_box.margin = 12;
-        btn_box.margin_top = 0;
-        btn_box.add (roll_button);
+        btn_box.spacing = 6;
+        
+        btn_box.add (action_buttons);
 
         var main_view = new Gtk.Grid ();
-        main_view.attach (number_display, 1, 1, 1, 1);
-        main_view.attach (btn_box, 1, 2, 1, 1);
+        main_view.margin = 12;
+        main_view.attach (number_display, 0, 0, 1, 1);
+        main_view.attach (btn_box, 0, 1, 1, 1);
 
         add (main_view);
 
         roll_button.clicked.connect (e => {
-            int max_roll = menu_grid.get_max_value ();
+            int max_roll = Application.settings.get_int ("max-roll");
             number_display.num_gen (max_roll);
         });
 
