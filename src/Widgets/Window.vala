@@ -74,7 +74,6 @@ public class Rollit.Window : Gtk.ApplicationWindow {
             image = new Gtk.Image.from_icon_name ("open-menu-symbolic", Gtk.IconSize.MENU),
             tooltip_text = _("Dice Settings")
         };
-        
         menu_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
 
         var menu_popover = new Gtk.Popover (menu_button);
@@ -106,7 +105,7 @@ public class Rollit.Window : Gtk.ApplicationWindow {
         add (main_view);
 
         roll_button.clicked.connect (e => {
-            int max_roll = menu_grid.get_max_value ();
+            int max_roll = Application.settings.get_int ("max-roll");
             number_display.num_gen (max_roll);
         });
 
