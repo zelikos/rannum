@@ -1,4 +1,6 @@
-project('com.github.zelikos.rannum', 'vala', 'c')
+project('com.github.zelikos.rannum',
+    'vala', 'c',
+    version: '1.2.0')
 
 gnome = import('gnome')
 i18n = import('i18n')
