@@ -18,8 +18,16 @@
     <screenshot>
       <image>https://raw.githubusercontent.com/zelikos/rannum/master/data/screenshot_dark.png</image>
     </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/zelikos/rannum/master/data/screenshot_menu.png</image>
+    </screenshot>
   </screenshots>
   <releases>
+    <release version="1.2.0" date="2020-08-21">
+      <description>
+        <p>Implemented dice presets</p>
+      </description>
+    </release>
     <release version="1.1.0" date="2020-05-08">
       <description>
         <p>Remembers previously-selected number for highest possible roll</p>
