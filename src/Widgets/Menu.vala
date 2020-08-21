@@ -17,7 +17,6 @@
  */
 
 public class Rollit.Menu : Gtk.Grid {
-    Gtk.SpinButton max_entry { get; set; }
 
     construct {
         var six_sided = new Gtk.RadioButton.with_label (new SList<Gtk.RadioButton> (), _("d6"));
@@ -27,7 +26,7 @@ public class Rollit.Menu : Gtk.Grid {
         six_sided.margin = ten_sided.margin = twenty_sided.margin = custom_sided.margin = 6;
         
 
-        max_entry = new Gtk.SpinButton.with_range (1, 100, 1);
+        var max_entry = new Gtk.SpinButton.with_range (1, 100, 1);
         max_entry.margin = 6;
         max_entry.margin_top = 0;
 
