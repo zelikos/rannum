@@ -36,6 +36,12 @@ To install them on [elementary OS]:
 sudo apt install elementary-sdk
 ```
 
+To install them on Fedora:
+
+```shell
+sudo dnf install granite-devel gtk3-devel meson vala
+```
+
 To build and install Roll-It:
 
 ```shell
