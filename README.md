@@ -48,7 +48,7 @@ To build and install Roll-It:
 meson build --prefix=/usr
 cd build
 ninja
-sudo ninja install
+ninja install
 ```
 
 [elementary OS]: https://elementary.io
