@@ -29,8 +29,8 @@ public class Rollit.Window : Hdy.Window {
     construct {
         Hdy.init ();
 
-        default_width = 260;
-        default_height = 260;
+        default_width = 300;
+        default_height = 300;
 
         int window_x, window_y;
         Application.settings.get ("window-position", "(ii)", out window_x, out window_y);
