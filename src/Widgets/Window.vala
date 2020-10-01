@@ -16,7 +16,7 @@
  * Authored by Patrick Csikos <akzeldev@fastmail.com>
  */
 
-public class Rollit.Window : Gtk.ApplicationWindow {
+public class Rollit.Window : Hdy.Window {
 
     private uint configure_id;
 
@@ -27,9 +27,11 @@ public class Rollit.Window : Gtk.ApplicationWindow {
     }
 
     construct {
+        Hdy.init ();
+
         default_width = 260;
         default_height = 260;
-        resizable = false;
+        //resizable = false;
 
         int window_x, window_y;
         Application.settings.get ("window-position", "(ii)", out window_x, out window_y);
@@ -67,7 +69,7 @@ public class Rollit.Window : Gtk.ApplicationWindow {
         Application.settings.bind ("dark-style", style_switch, "active", SettingsBindFlags.DEFAULT);
 
         header.pack_end (style_switch);
-        set_titlebar (header);
+        //set_titlebar (header);
 
 
         var number_display = new Rollit.NumDisplay ();
@@ -97,9 +99,10 @@ public class Rollit.Window : Gtk.ApplicationWindow {
         btn_box.add (action_buttons);
 
         var main_view = new Gtk.Grid ();
-        main_view.margin = 12;
-        main_view.attach (number_display, 0, 0, 1, 1);
-        main_view.attach (btn_box, 0, 1, 1, 1);
+        //main_view.margin = 12;
+        main_view.attach (header, 0, 0);
+        main_view.attach (number_display, 0, 1);
+        main_view.attach (btn_box, 0, 2);
 
         add (main_view);
 
