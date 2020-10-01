@@ -39,12 +39,19 @@ public class Rollit.Window : Gtk.ApplicationWindow {
             move (window_x, window_y);
         }
 
+        /*
         var header = new Gtk.HeaderBar () {
             title = "Roll-It",
             show_close_button = true,
             decoration_layout = "close:"
         };
         header.get_style_context ().add_class ("default-decoration");
+        */
+
+        var header = new Hdy.HeaderBar () {
+            title = "Roll-It",
+            show_close_button = true
+        };
 
         var style_switch = new Granite.ModeSwitch.from_icon_name (
             "display-brightness-symbolic",
