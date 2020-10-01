@@ -31,7 +31,6 @@ public class Rollit.Window : Hdy.Window {
 
         default_width = 260;
         default_height = 260;
-        //resizable = false;
 
         int window_x, window_y;
         Application.settings.get ("window-position", "(ii)", out window_x, out window_y);
@@ -40,15 +39,6 @@ public class Rollit.Window : Hdy.Window {
         if (window_x != -1 || window_y != -1) {
             move (window_x, window_y);
         }
-
-        /*
-        var header = new Gtk.HeaderBar () {
-            title = "Roll-It",
-            show_close_button = true,
-            decoration_layout = "close:"
-        };
-        header.get_style_context ().add_class ("default-decoration");
-        */
 
         var header = new Hdy.HeaderBar () {
             title = "Roll-It",
@@ -69,8 +59,6 @@ public class Rollit.Window : Hdy.Window {
         Application.settings.bind ("dark-style", style_switch, "active", SettingsBindFlags.DEFAULT);
 
         header.pack_end (style_switch);
-        //set_titlebar (header);
-
 
         var number_display = new Rollit.NumDisplay ();
 
@@ -88,21 +76,20 @@ public class Rollit.Window : Hdy.Window {
         var menu_grid = new Rollit.Menu ();
         menu_popover.add (menu_grid);
 
-        var action_buttons = new Gtk.Grid ();
+        var action_buttons = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         action_buttons.add (roll_button);
         action_buttons.add (menu_button);
         action_buttons.get_style_context ().add_class (Gtk.STYLE_CLASS_LINKED);
         
         var btn_box = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
-        btn_box.spacing = 6;
-        
+        btn_box.margin = 12;
         btn_box.add (action_buttons);
 
         var main_view = new Gtk.Grid ();
-        //main_view.margin = 12;
         main_view.attach (header, 0, 0);
         main_view.attach (number_display, 0, 1);
         main_view.attach (btn_box, 0, 2);
+
 
         add (main_view);
 
