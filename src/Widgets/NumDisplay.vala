@@ -31,8 +31,12 @@ public class Rollit.NumDisplay : Gtk.Stack {
         welcome.label = _("Ready to Roll");
         welcome.get_style_context ().add_class (Granite.STYLE_CLASS_H2_LABEL);
 
+        var blank = new Gtk.Label (null);
+        blank.label = "";
+
         add_named (welcome, "welcome");
         add_named (roll_result, "roll-result");
+        add_named (blank, "blank");
         visible_child_name = "welcome";
     }
 
@@ -40,11 +44,18 @@ public class Rollit.NumDisplay : Gtk.Stack {
         const int MIN_NUM = 1;
         int rnd_num;
 
+        /*
         if (visible_child_name != "roll-result") {
             visible_child_name = "roll-result";
         }
+        */
+
+       visible_child_name = "blank";
+
         // max_num + 1 so that max num is included in roll
         rnd_num = Random.int_range (MIN_NUM, (max_num + 1));
         roll_result.label = @"$rnd_num";
+
+        visible_child_name = "roll-result";
     }
 }
