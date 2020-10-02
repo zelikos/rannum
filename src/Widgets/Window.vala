@@ -42,7 +42,8 @@ public class Rollit.Window : Hdy.Window {
 
         var header = new Hdy.HeaderBar () {
             title = "Roll-It",
-            show_close_button = true
+            show_close_button = true,
+            decoration_layout = "close:"
         };
 
         var style_switch = new Granite.ModeSwitch.from_icon_name (
