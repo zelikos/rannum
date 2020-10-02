@@ -76,20 +76,19 @@ public class Rollit.Window : Hdy.Window {
         var menu_grid = new Rollit.Menu ();
         menu_popover.add (menu_grid);
 
-        var action_buttons = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+        var action_buttons = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0) {
+            halign = Gtk.Align.CENTER,
+            margin = 12
+        };
+
         action_buttons.add (roll_button);
         action_buttons.add (menu_button);
         action_buttons.get_style_context ().add_class (Gtk.STYLE_CLASS_LINKED);
-        
-        var btn_box = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
-        btn_box.margin = 12;
-        btn_box.add (action_buttons);
 
         var main_view = new Gtk.Grid ();
         main_view.attach (header, 0, 0);
         main_view.attach (number_display, 0, 1);
-        main_view.attach (btn_box, 0, 2);
-
+        main_view.attach (action_buttons, 0, 2);
 
         add (main_view);
 
