@@ -61,7 +61,9 @@ public class Rollit.Window : Hdy.Window {
 
         header.pack_end (style_switch);
 
-        var number_display = new Rollit.NumDisplay ();
+        var number_display = new Rollit.NumDisplay () {
+            margin_top = 12
+        };
 
         var roll_button = new Gtk.Button.with_label (_("Roll"));
         roll_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
