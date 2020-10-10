@@ -1,7 +1,7 @@
 Source: com.github.zelikos.rannum
 Section: x11
 Priority: extra
-Maintainer: Patrick Csikos <akzeldev@fastmail.com>
+Maintainer: Patrick Csikos <zelikos@pm.me>
 Build-Depends: debhelper (>= 9),
                libgranite-dev,
                libgtk-3-dev,
