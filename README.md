@@ -27,7 +27,6 @@ Roll-It is designed for and developed on [elementary OS]. You'll need the follow
 
 * libgranite-dev
 * libgtk-3-dev
-* libhandy-1-dev
 * meson
 * valac
 
@@ -40,7 +39,7 @@ sudo apt install elementary-sdk
 To install them on Fedora:
 
 ```shell
-sudo dnf install granite-devel gtk3-devel libhandy1-devel meson vala
+sudo dnf install granite-devel gtk3-devel meson vala
 ```
 
 To build and install Roll-It:
