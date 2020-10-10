@@ -13,17 +13,17 @@
   </description>
   <screenshots>
     <screenshot type="default">
-      <image>https://raw.githubusercontent.com/zelikos/rannum/master/data/screenshot_light.png</image>
+      <image>https://raw.githubusercontent.com/zelikos/rannum/main/data/screenshot_light.png</image>
     </screenshot>
     <screenshot>
-      <image>https://raw.githubusercontent.com/zelikos/rannum/master/data/screenshot_dark.png</image>
+      <image>https://raw.githubusercontent.com/zelikos/rannum/main/data/screenshot_dark.png</image>
     </screenshot>
     <screenshot>
-      <image>https://raw.githubusercontent.com/zelikos/rannum/master/data/screenshot_menu.png</image>
+      <image>https://raw.githubusercontent.com/zelikos/rannum/main/data/screenshot_menu.png</image>
     </screenshot>
   </screenshots>
   <releases>
-    <release version="1.2.1" date="2020-10-10">
+    <release version="1.2.2" date="2020-10-10">
       <description>
         <p>Visual Tweaks and Backend Stuff</p>
         <ul>
