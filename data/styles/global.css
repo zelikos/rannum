@@ -13,13 +13,13 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
- * Authored by Patrick Csikos <akzeldev@fastmail.com>
+ * Authored by Patrick Csikos <zelikos@pm.me>
  */
 
- @define-color colorPrimary @GRAPE_700;
- @define-color colorAccent @GRAPE_500;
- @define-color textColorPrimary shade (white, 0.9);
- @define-color textColorPrimaryShadow alpha (shade (@colorPrimary, 0.5), 0.6);
+@define-color colorPrimary @GRAPE_700;
+@define-color colorAccent @GRAPE_500;
+@define-color textColorPrimary shade (white, 0.9);
+@define-color textColorPrimaryShadow alpha (shade (@colorPrimary, 0.5), 0.6);
 
 .result-label {
     font-size: 8em;

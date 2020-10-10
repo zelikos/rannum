@@ -13,9 +13,10 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
- * Authored by Patrick Csikos <akzeldev@fastmail.com>
+ * Authored by Patrick Csikos <zelikos@pm.me>
  */
 
+//  public class Rollit.Window : Hdy.Window {
 public class Rollit.Window : Gtk.ApplicationWindow {
 
     private uint configure_id;
@@ -27,9 +28,10 @@ public class Rollit.Window : Gtk.ApplicationWindow {
     }
 
     construct {
-        default_width = 260;
-        default_height = 260;
-        resizable = false;
+        //  Hdy.init ();
+
+        default_width = 300;
+        default_height = 300;
 
         int window_x, window_y;
         Application.settings.get ("window-position", "(ii)", out window_x, out window_y);
@@ -39,12 +41,12 @@ public class Rollit.Window : Gtk.ApplicationWindow {
             move (window_x, window_y);
         }
 
+        //  var header = new Hdy.HeaderBar () {
         var header = new Gtk.HeaderBar () {
             title = "Roll-It",
             show_close_button = true,
             decoration_layout = "close:"
         };
-        header.get_style_context ().add_class ("default-decoration");
 
         var style_switch = new Granite.ModeSwitch.from_icon_name (
             "display-brightness-symbolic",
@@ -60,10 +62,10 @@ public class Rollit.Window : Gtk.ApplicationWindow {
         Application.settings.bind ("dark-style", style_switch, "active", SettingsBindFlags.DEFAULT);
 
         header.pack_end (style_switch);
-        set_titlebar (header);
 
-
-        var number_display = new Rollit.NumDisplay ();
+        var number_display = new Rollit.NumDisplay () {
+            margin_top = 12
+        };
 
         var roll_button = new Gtk.Button.with_label (_("Roll"));
         roll_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
@@ -79,20 +81,19 @@ public class Rollit.Window : Gtk.ApplicationWindow {
         var menu_grid = new Rollit.Menu ();
         menu_popover.add (menu_grid);
 
-        var action_buttons = new Gtk.Grid ();
+        var action_buttons = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0) {
+            halign = Gtk.Align.CENTER,
+            margin = 12
+        };
+
         action_buttons.add (roll_button);
         action_buttons.add (menu_button);
         action_buttons.get_style_context ().add_class (Gtk.STYLE_CLASS_LINKED);
-        
-        var btn_box = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
-        btn_box.spacing = 6;
-        
-        btn_box.add (action_buttons);
 
         var main_view = new Gtk.Grid ();
-        main_view.margin = 12;
-        main_view.attach (number_display, 0, 0, 1, 1);
-        main_view.attach (btn_box, 0, 1, 1, 1);
+        //  main_view.attach (header, 0, 0);
+        main_view.attach (number_display, 0, 1);
+        main_view.attach (action_buttons, 0, 2);
 
         add (main_view);
 
@@ -101,6 +102,7 @@ public class Rollit.Window : Gtk.ApplicationWindow {
             number_display.num_gen (max_roll);
         });
 
+        set_titlebar (header);
         show_all ();
     }
 

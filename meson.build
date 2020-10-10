@@ -22,6 +22,7 @@ asresources = gnome.compile_resources(
 dependencies = [
     dependency('gtk+-3.0'),
     dependency('granite')
+    # dependency('libhandy-1')
 ]
 
 executable(

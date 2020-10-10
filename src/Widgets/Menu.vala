@@ -13,7 +13,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
- * Authored by Patrick Csikos <akzeldev@fastmail.com>
+ * Authored by Patrick Csikos <zelikos@pm.me>
  */
 
 public class Rollit.Menu : Gtk.Grid {
@@ -49,19 +49,14 @@ public class Rollit.Menu : Gtk.Grid {
                 break;
         }
 
-        var max_setting = new Gtk.Grid ();
-        max_setting.orientation = Gtk.Orientation.VERTICAL;
-        max_setting.margin = 6;
-        max_setting.add (six_sided);
-        max_setting.add (ten_sided);
-        max_setting.add (twenty_sided);
-        max_setting.add (custom_sided);
-        max_setting.add (max_entry);
-
-
         orientation = Gtk.Orientation.VERTICAL;
+        margin = 6;
+        add (six_sided);
+        add (ten_sided);
+        add (twenty_sided);
         add (new Gtk.Separator (HORIZONTAL));
-        add (max_setting);
+        add (custom_sided);
+        add (max_entry);
         show_all ();
 
         
