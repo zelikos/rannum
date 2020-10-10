@@ -16,7 +16,8 @@
  * Authored by Patrick Csikos <zelikos@pm.me>
  */
 
-public class Rollit.Window : Hdy.Window {
+//  public class Rollit.Window : Hdy.Window {
+public class Rollit.Window : Gtk.ApplicationWindow {
 
     private uint configure_id;
 
@@ -27,7 +28,7 @@ public class Rollit.Window : Hdy.Window {
     }
 
     construct {
-        Hdy.init ();
+        //  Hdy.init ();
 
         default_width = 300;
         default_height = 300;
@@ -40,7 +41,8 @@ public class Rollit.Window : Hdy.Window {
             move (window_x, window_y);
         }
 
-        var header = new Hdy.HeaderBar () {
+        //  var header = new Hdy.HeaderBar () {
+        var header = new Gtk.HeaderBar () {
             title = "Roll-It",
             show_close_button = true,
             decoration_layout = "close:"
@@ -89,7 +91,7 @@ public class Rollit.Window : Hdy.Window {
         action_buttons.get_style_context ().add_class (Gtk.STYLE_CLASS_LINKED);
 
         var main_view = new Gtk.Grid ();
-        main_view.attach (header, 0, 0);
+        //  main_view.attach (header, 0, 0);
         main_view.attach (number_display, 0, 1);
         main_view.attach (action_buttons, 0, 2);
 
@@ -100,6 +102,7 @@ public class Rollit.Window : Hdy.Window {
             number_display.num_gen (max_roll);
         });
 
+        set_titlebar (header);
         show_all ();
     }
 
