@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright 2020 Patrick Csikos <akzeldev@fastmail.com> -->
+<!-- Copyright 2020 Patrick Csikos <zelikos@pm.me.com> -->
 <component type="desktop">
   <id>com.github.zelikos.rannum</id>
   <metadata_license>CC0</metadata_license>
@@ -23,9 +23,19 @@
     </screenshot>
   </screenshots>
   <releases>
-    <release version="1.2.1" date="2020-09-30">
+    <release version="1.2.1" date="2020-10-10">
       <description>
-        <p>Fixed donation link in AppData</p>
+        <p>Visual Tweaks</p>
+        <ul>
+          <li>Fixed spacing of the combo-button and number display</li>
+          <li>Header is larger to accomodate future updates</li>
+        </ul>
+        <p>Backend Stuff</p>
+        <ul>
+          <li>Code cleanup</li>
+          <li>Prep for elementary OS 6 support</li>
+          <li>AppData updates</li>
+        </ul>
       </description>
     </release>
     <release version="1.2.0" date="2020-08-21">
@@ -90,7 +100,7 @@
   <developer_name>Patrick Csikos</developer_name>
   <url type="homepage">https://github.com/zelikos/rannum</url>
   <url type="bugtracker">https://github.com/zelikos/rannum/issues</url>
-  <url type="donation">https://zelikos.github.io/</url>
+  <url type="donation">https://liberapay.com/zelikos/</url>
   <custom>
     <value key="x-appcenter-color-primary">#a56de2</value>
     <value key="x-appcenter-color-primary-text">#fff</value>
