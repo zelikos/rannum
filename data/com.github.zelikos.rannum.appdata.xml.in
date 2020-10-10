@@ -25,15 +25,12 @@
   <releases>
     <release version="1.2.1" date="2020-10-10">
       <description>
-        <p>Visual Tweaks</p>
+        <p>Visual Tweaks and Backend Stuff</p>
         <ul>
           <li>Fixed spacing of the combo-button and number display</li>
-          <li>Header is larger to accomodate future updates</li>
-        </ul>
-        <p>Backend Stuff</p>
-        <ul>
-          <li>Code cleanup</li>
+          <li>Header styling adjusted</li>
           <li>Prep for elementary OS 6 support</li>
+          <li>Code cleanups</li>
         </ul>
       </description>
     </release>
