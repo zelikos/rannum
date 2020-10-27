@@ -27,9 +27,9 @@ public class Rollit.Menu : Gtk.Grid {
 
     construct {
         six_sided = new Gtk.RadioButton.with_label (new SList<Gtk.RadioButton> (), _("d6"));
-        ten_sided = new Gtk.RadioButton.with_label (six_sided.get_group (), _("d10"));
-        twenty_sided = new Gtk.RadioButton.with_label (six_sided.get_group (), _("d20"));
-        custom_sided = new Gtk.RadioButton.with_label (six_sided.get_group (), _("Custom"));
+        ten_sided = new Gtk.RadioButton.with_label_from_widget (six_sided, _("d10"));
+        twenty_sided = new Gtk.RadioButton.with_label_from_widget (six_sided, _("d20"));
+        custom_sided = new Gtk.RadioButton.with_label_from_widget (six_sided, _("Custom"));
         six_sided.margin = ten_sided.margin = twenty_sided.margin = custom_sided.margin = 6;
 
         max_entry = new Gtk.SpinButton.with_range (1, 100, 1) {
@@ -62,12 +62,11 @@ public class Rollit.Menu : Gtk.Grid {
         });
 
         custom_sided.clicked.connect ( () => {
-            save_max (max_entry.get_value_as_int ());
+            save_max (max_entry.get_value_as_int (), true);
         });
 
         max_entry.value_changed.connect ( () => {
-            save_max (max_entry.get_value_as_int ());
-            custom_sided.active = true;
+            save_max (max_entry.get_value_as_int (), true);
         });
 
         show_all ();
@@ -75,6 +74,7 @@ public class Rollit.Menu : Gtk.Grid {
 
     private void load_max () {
         max_roll = Application.settings.get_int ("max-roll");
+        max_entry.sensitive = false;
 
         switch (max_roll) {
             case 6:
@@ -89,12 +89,18 @@ public class Rollit.Menu : Gtk.Grid {
             default:
                 custom_sided.active = true;
                 max_entry.value = max_roll;
+                max_entry.sensitive = true;
                 break;
         }
     }
 
-    private void save_max (int roll) {
+    private void save_max (int roll, bool custom = false) {
         max_roll = roll;
         Application.settings.set_int ("max-roll", max_roll);
+        if (!custom) {
+            max_entry.sensitive = false;
+        } else if (custom) {
+            max_entry.sensitive = true;
+        }
     }
 }
