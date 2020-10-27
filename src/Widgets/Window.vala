@@ -18,6 +18,7 @@
 
 public class Rollit.Window : Hdy.Window {
 
+    private Rollit.Menu menu_grid;
     private uint configure_id;
 
     public Window (Application app) {
@@ -68,8 +69,10 @@ public class Rollit.Window : Hdy.Window {
         var roll_button = new Gtk.Button.with_label (_("Roll"));
         roll_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
 
+        menu_grid = new Rollit.Menu ();
+
         var menu_button = new Gtk.MenuButton () {
-            image = new Gtk.Image.from_icon_name ("open-menu-symbolic", Gtk.IconSize.MENU),
+            label = menu_grid.max_roll.to_string(),
             tooltip_text = _("Dice Settings")
         };
         menu_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
@@ -77,7 +80,6 @@ public class Rollit.Window : Hdy.Window {
         var menu_popover = new Gtk.Popover (menu_button);
         menu_button.popover = menu_popover;
 
-        var menu_grid = new Rollit.Menu ();
         menu_popover.add (menu_grid);
 
         var action_buttons = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0) {
@@ -95,6 +97,10 @@ public class Rollit.Window : Hdy.Window {
         main_view.attach (action_buttons, 0, 2);
 
         add (main_view);
+
+        menu_grid.roll_changed.connect (e => {
+            menu_button.label = menu_grid.max_roll.to_string();
+        });
 
         roll_button.clicked.connect (e => {
             number_display.num_gen (menu_grid.max_roll);

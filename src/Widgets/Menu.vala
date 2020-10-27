@@ -25,6 +25,8 @@ public class Rollit.Menu : Gtk.Grid {
     private Gtk.RadioButton custom_sided;
     private Gtk.SpinButton max_entry;
 
+    public signal void roll_changed ();
+
     construct {
         six_sided = new Gtk.RadioButton.with_label (new SList<Gtk.RadioButton> (), _("d6"));
         ten_sided = new Gtk.RadioButton.with_label_from_widget (six_sided, _("d10"));
@@ -102,5 +104,6 @@ public class Rollit.Menu : Gtk.Grid {
         } else if (custom) {
             max_entry.sensitive = true;
         }
+        roll_changed ();
     }
 }
