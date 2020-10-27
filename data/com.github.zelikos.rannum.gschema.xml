@@ -11,10 +11,15 @@
       <summary>Window position</summary>
       <description>Most recent window position (x, y)</description>
     </key>
-    <key name="max-roll" type="i">
+    <key name="custom-roll" type="i">
       <default>6</default>
       <summary>Number of sides</summary>
       <description>Number of sides of the dice</description>
+    </key>
+    <key name="last-selected" type="s">
+      <default>"d6"</default>
+      <summary>Last-selected dice sides</summary>
+      <description>Last-selected value to determine highest possible dice roll</description>
     </key>
   </schema>
 </schemalist>
