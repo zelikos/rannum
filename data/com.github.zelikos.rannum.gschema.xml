@@ -19,7 +19,7 @@
     <key name="last-selected" type="s">
       <default>"d6"</default>
       <summary>Last-selected dice sides</summary>
-      <description>Last-selected value to determine highest possible dice roll</description>
+      <description>Last-selected dice side preset</description>
     </key>
   </schema>
 </schemalist>
