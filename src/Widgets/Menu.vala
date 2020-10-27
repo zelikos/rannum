@@ -18,22 +18,65 @@
 
 public class Rollit.Menu : Gtk.Grid {
 
+    public int max_roll { get; set; }
+    private Gtk.RadioButton six_sided;
+    private Gtk.RadioButton ten_sided;
+    private Gtk.RadioButton twenty_sided;
+    private Gtk.RadioButton custom_sided;
+    private Gtk.SpinButton max_entry;
+
     construct {
-        var six_sided = new Gtk.RadioButton.with_label (new SList<Gtk.RadioButton> (), _("d6"));
-        var ten_sided = new Gtk.RadioButton.with_label (six_sided.get_group (), _("d10"));
-        var twenty_sided = new Gtk.RadioButton.with_label (six_sided.get_group (), _("d20"));
-        var custom_sided = new Gtk.RadioButton.with_label (six_sided.get_group (), _("Custom"));
+        six_sided = new Gtk.RadioButton.with_label (new SList<Gtk.RadioButton> (), _("d6"));
+        ten_sided = new Gtk.RadioButton.with_label (six_sided.get_group (), _("d10"));
+        twenty_sided = new Gtk.RadioButton.with_label (six_sided.get_group (), _("d20"));
+        custom_sided = new Gtk.RadioButton.with_label (six_sided.get_group (), _("Custom"));
         six_sided.margin = ten_sided.margin = twenty_sided.margin = custom_sided.margin = 6;
-        
 
-        var max_entry = new Gtk.SpinButton.with_range (1, 100, 1);
-        max_entry.margin = 6;
-        max_entry.margin_top = 0;
+        max_entry = new Gtk.SpinButton.with_range (1, 100, 1) {
+            margin = 6,
+            margin_top = 0
+        };
 
-        // Read last value from settings
-        int last_value = Application.settings.get_int ("max-roll");
-        
-        switch (last_value) {
+        orientation = Gtk.Orientation.VERTICAL;
+        margin = 6;
+
+        add (six_sided);
+        add (ten_sided);
+        add (twenty_sided);
+        add (new Gtk.Separator (HORIZONTAL));
+        add (custom_sided);
+        add (max_entry);
+
+        load_max ();
+
+        six_sided.clicked.connect ( () => {
+            save_max (6);
+        });
+
+        ten_sided.clicked.connect ( () => {
+            save_max (10);
+        });
+
+        twenty_sided.clicked.connect ( () => {
+            save_max (20);
+        });
+
+        custom_sided.clicked.connect ( () => {
+            save_max (max_entry.get_value_as_int ());
+        });
+
+        max_entry.value_changed.connect ( () => {
+            save_max (max_entry.get_value_as_int ());
+            custom_sided.active = true;
+        });
+
+        show_all ();
+    }
+
+    private void load_max () {
+        max_roll = Application.settings.get_int ("max-roll");
+
+        switch (max_roll) {
             case 6:
                 six_sided.active = true;
                 break;
@@ -45,40 +88,13 @@ public class Rollit.Menu : Gtk.Grid {
                 break;
             default:
                 custom_sided.active = true;
-                max_entry.value = last_value;
+                max_entry.value = max_roll;
                 break;
         }
+    }
 
-        orientation = Gtk.Orientation.VERTICAL;
-        margin = 6;
-        add (six_sided);
-        add (ten_sided);
-        add (twenty_sided);
-        add (new Gtk.Separator (HORIZONTAL));
-        add (custom_sided);
-        add (max_entry);
-        show_all ();
-
-        
-        six_sided.clicked.connect ( () => {
-            Application.settings.set_int ("max-roll", 6);
-        });
-        
-        ten_sided.clicked.connect ( () => {
-            Application.settings.set_int ("max-roll", 10);
-        });
-        
-        twenty_sided.clicked.connect ( () => {
-            Application.settings.set_int ("max-roll", 20);
-        });
-        
-        custom_sided.clicked.connect ( () => {
-            Application.settings.set_int ("max-roll", max_entry.get_value_as_int ());
-        });
-        
-        max_entry.value_changed.connect ( () => {
-            Application.settings.set_int ("max-roll", max_entry.get_value_as_int ());
-            custom_sided.active = true;
-        });
+    private void save_max (int roll) {
+        max_roll = roll;
+        Application.settings.set_int ("max-roll", max_roll);
     }
 }

@@ -35,7 +35,7 @@ public class Rollit.Window : Hdy.Window {
         int window_x, window_y;
         Application.settings.get ("window-position", "(ii)", out window_x, out window_y);
 
-        
+
         if (window_x != -1 || window_y != -1) {
             move (window_x, window_y);
         }
@@ -54,7 +54,7 @@ public class Rollit.Window : Hdy.Window {
             secondary_icon_tooltip_text = _("Dark"),
             valign = Gtk.Align.CENTER
         };
-        
+
         var gtk_settings = Gtk.Settings.get_default ();
         style_switch.bind_property ("active", gtk_settings, "gtk_application_prefer_dark_theme");
         Application.settings.bind ("dark-style", style_switch, "active", SettingsBindFlags.DEFAULT);
@@ -76,6 +76,7 @@ public class Rollit.Window : Hdy.Window {
 
         var menu_popover = new Gtk.Popover (menu_button);
         menu_button.popover = menu_popover;
+
         var menu_grid = new Rollit.Menu ();
         menu_popover.add (menu_grid);
 
@@ -96,8 +97,7 @@ public class Rollit.Window : Hdy.Window {
         add (main_view);
 
         roll_button.clicked.connect (e => {
-            int max_roll = Application.settings.get_int ("max-roll");
-            number_display.num_gen (max_roll);
+            number_display.num_gen (menu_grid.max_roll);
         });
 
         show_all ();
