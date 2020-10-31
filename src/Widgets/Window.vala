@@ -30,16 +30,7 @@ public class Rollit.Window : Hdy.Window {
     construct {
         Hdy.init ();
 
-        default_width = 240;
-        default_height = 220;
-
-        int window_x, window_y;
-        Application.settings.get ("window-position", "(ii)", out window_x, out window_y);
-
-
-        if (window_x != -1 || window_y != -1) {
-            move (window_x, window_y);
-        }
+        restore_state ();
 
         var header = new Hdy.HeaderBar () {
             title = "Roll-It",
@@ -109,21 +100,49 @@ public class Rollit.Window : Hdy.Window {
         show_all ();
     }
 
+    private void restore_state () {
+        var rect = Gdk.Rectangle ();
+        Application.settings.get ("window-size", "(ii)", out rect.width, out rect.height);
+
+        default_width = rect.width;
+        default_height = rect.height;
+
+        int window_x, window_y;
+        Application.settings.get ("window-position", "(ii)", out window_x, out window_y);
+
+        if (window_x != -1 || window_y != -1) {
+            move (window_x, window_y);
+        }
+
+        var window_maximized = Application.settings.get_boolean ("maximized");
+        if (window_maximized) {
+            maximize ();
+        }
+    }
+
     public override bool configure_event (Gdk.EventConfigure event) {
         if (configure_id != 0) {
             GLib.Source.remove (configure_id);
         }
 
-        configure_id = Timeout.add (100, () => {
+        configure_id = Timeout.add (400, () => {
             configure_id = 0;
 
-            int root_x, root_y;
-            get_position (out root_x, out root_y);
-            Application.settings.set ("window-position", "(ii)", root_x, root_y);
+            if (is_maximized) {
+                Application.settings.set_boolean ("maximized", true);
+            } else {
+                Application.settings.set_boolean ("maximized", false);
 
-            return false;
+                var rect = Gdk.Rectangle ();
+                get_size (out rect.width, out rect.height);
+                Application.settings.set ("window-size", "(ii)", rect.width, rect.height);
+
+                int root_x, root_y;
+                get_position (out root_x, out root_y);
+                Application.settings.set ("window-position", "(ii)", root_x, root_y);
             }
-        );
+            return false;
+        });
 
         return base.configure_event (event);
     }
