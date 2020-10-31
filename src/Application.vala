@@ -32,7 +32,15 @@ public class Application : Gtk.Application {
 
     protected override void activate () {
         var gtk_settings = Gtk.Settings.get_default ();
-        gtk_settings.gtk_application_prefer_dark_theme = settings.get_boolean ("dark-style");
+        var granite_settings = Granite.Settings.get_default ();
+
+        // gtk_settings.gtk_application_prefer_dark_theme = settings.get_boolean ("dark-style");
+
+        gtk_settings.gtk_application_prefer_dark_theme = granite_settings.prefers_color_scheme == Granite.Settings.ColorScheme.DARK;
+
+        granite_settings.notify["prefers-color-scheme"].connect (() => {
+            gtk_settings.gtk_application_prefer_dark_theme = granite_settings.prefers_color_scheme == Granite.Settings.ColorScheme.DARK;
+        });
 
         var provider = new Gtk.CssProvider ();
         provider.load_from_resource ("/com/github/zelikos/rannum/styles/global.css");
