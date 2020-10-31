@@ -35,23 +35,7 @@ public class Rollit.Window : Hdy.Window {
         var header = new Hdy.HeaderBar () {
             title = "Roll-It",
             show_close_button = true
-            //  decoration_layout = "close:"
         };
-
-        //  var style_switch = new Granite.ModeSwitch.from_icon_name (
-        //     "display-brightness-symbolic",
-        //     "weather-clear-night-symbolic"
-        //  ) {
-        //     primary_icon_tooltip_text = _("Light"),
-        //     secondary_icon_tooltip_text = _("Dark"),
-        //     valign = Gtk.Align.CENTER
-        //  };
-
-        // var gtk_settings = Gtk.Settings.get_default ();
-        // style_switch.bind_property ("active", gtk_settings, "gtk_application_prefer_dark_theme");
-        // Application.settings.bind ("dark-style", style_switch, "active", SettingsBindFlags.DEFAULT);
-
-        //  header.pack_end (style_switch);
 
         var number_display = new Rollit.NumDisplay () {
             margin_top = 12
