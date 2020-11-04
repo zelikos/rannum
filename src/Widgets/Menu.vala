@@ -19,13 +19,14 @@
 public class Rollit.Menu : Gtk.Grid {
 
     public int max_roll { get; set; }
+
+    public signal void roll_changed ();
+
     private Gtk.RadioButton six_sided;
     private Gtk.RadioButton ten_sided;
     private Gtk.RadioButton twenty_sided;
     private Gtk.RadioButton custom_sided;
     private Gtk.SpinButton max_entry;
-
-    public signal void roll_changed ();
 
     construct {
         six_sided = new Gtk.RadioButton.with_label (new SList<Gtk.RadioButton> (), _("d6"));
@@ -37,6 +38,7 @@ public class Rollit.Menu : Gtk.Grid {
         max_entry = new Gtk.SpinButton.with_range (1, 100, 1) {
             margin = 6,
             margin_top = 0
+            sensitive = false;
         };
 
         orientation = Gtk.Orientation.VERTICAL;
@@ -52,23 +54,23 @@ public class Rollit.Menu : Gtk.Grid {
         load_max ();
 
         six_sided.clicked.connect ( () => {
-            save_max (6, "d6");
+            change_max (6, "d6");
         });
 
         ten_sided.clicked.connect ( () => {
-            save_max (10, "d10");
+            change_max (10, "d10");
         });
 
         twenty_sided.clicked.connect ( () => {
-            save_max (20, "d20");
+            change_max (20, "d20");
         });
 
         custom_sided.clicked.connect ( () => {
-            save_max (max_entry.get_value_as_int ());
+            change_max (max_entry.get_value_as_int ());
         });
 
         max_entry.value_changed.connect ( () => {
-            save_max (max_entry.get_value_as_int ());
+            change_max (max_entry.get_value_as_int ());
         });
 
         show_all ();
@@ -77,7 +79,6 @@ public class Rollit.Menu : Gtk.Grid {
     private void load_max () {
         var custom_roll = Application.settings.get_int ("custom-roll");
         var selection = Application.settings.get_string ("last-selected");
-        max_entry.sensitive = false;
 
         switch (selection) {
             case "d6":
@@ -101,13 +102,12 @@ public class Rollit.Menu : Gtk.Grid {
         max_entry.value = custom_roll;
     }
 
-    private void save_max (int roll, string selection = "custom") {
+    private void change_max (int roll, string selection = "custom") {
         max_roll = roll;
+        Application.settings.set_string ("last-selected", selection);
         if (selection != "custom") {
-            Application.settings.set_string ("last-selected", selection);
             max_entry.sensitive = false;
         } else if (selection == "custom") {
-            Application.settings.set_string ("last-selected", selection);
             Application.settings.set_int ("custom-roll", roll);
             max_entry.sensitive = true;
         }
