@@ -16,12 +16,12 @@
  * Authored by Patrick Csikos <zelikos@pm.me>
  */
 
-public class Rollit.Window : Hdy.Window {
+ public class Rollit.MainWindow : Hdy.Window {
 
     private Rollit.Menu menu_grid;
     private uint configure_id;
 
-    public Window (Application app) {
+    public MainWindow (Rollit.Application app) {
         Object (
             application: app
         );

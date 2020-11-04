@@ -16,7 +16,7 @@
  * Authored by Patrick Csikos <zelikos@pm.me>
  */
 
-public class Application : Gtk.Application {
+public class Rollit.Application : Gtk.Application {
 
     public static GLib.Settings settings;
     static construct {
@@ -50,8 +50,14 @@ public class Application : Gtk.Application {
             Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
         );
 
-        var window = new Rollit.Window (this);
+        var window = new Rollit.MainWindow (this);
 
         add_window (window);
+    }
+
+    public static int main (string[] args) {
+        var app = new Application ();
+
+        return app.run (args);
     }
 }
