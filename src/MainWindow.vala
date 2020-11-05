@@ -16,7 +16,7 @@
  * Authored by Patrick Csikos <zelikos@pm.me>
  */
 
- public class Rollit.MainWindow : Hdy.Window {
+public class Rollit.MainWindow : Hdy.Window {
 
     private Rollit.Menu menu_grid;
     private uint configure_id;

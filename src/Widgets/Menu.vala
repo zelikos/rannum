@@ -37,8 +37,8 @@ public class Rollit.Menu : Gtk.Grid {
 
         max_entry = new Gtk.SpinButton.with_range (1, 100, 1) {
             margin = 6,
-            margin_top = 0
-            sensitive = false;
+            margin_top = 0,
+            sensitive = false
         };
 
         orientation = Gtk.Orientation.VERTICAL;
