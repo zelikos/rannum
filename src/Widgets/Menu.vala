@@ -18,8 +18,6 @@
 
 public class Rollit.Menu : Gtk.MenuButton {
 
-    private int _max_roll;
-
     private Gtk.Popover menu_popover;
     private Gtk.Grid menu_grid;
 
@@ -32,9 +30,7 @@ public class Rollit.Menu : Gtk.MenuButton {
     private Gtk.RadioButton custom_sided;
     private Gtk.SpinButton max_entry;
 
-    public int max_roll {
-        get { return _max_roll; }
-    }
+    public int max_roll { get; private set; }
 
     construct {
         six_sided = new Gtk.RadioButton.with_label (new SList<Gtk.RadioButton> (), _("d6"));
@@ -115,19 +111,19 @@ public class Rollit.Menu : Gtk.MenuButton {
         switch (selection) {
             case "d6":
                 six_sided.active = true;
-                _max_roll = 6;
+                max_roll = 6;
                 break;
             case "d10":
                 ten_sided.active = true;
-                _max_roll = 10;
+                max_roll = 10;
                 break;
             case "d20":
                 twenty_sided.active = true;
-                _max_roll = 20;
+                max_roll = 20;
                 break;
             default:
                 custom_sided.active = true;
-                _max_roll = custom_roll;
+                max_roll = custom_roll;
                 max_entry.sensitive = true;
                 break;
         }
@@ -135,7 +131,7 @@ public class Rollit.Menu : Gtk.MenuButton {
     }
 
     private void change_max (int roll, string selection = "custom") {
-        _max_roll = roll;
+        max_roll = roll;
         Application.settings.set_string ("last-selected", selection);
         if (selection != "custom") {
             max_entry.sensitive = false;
