@@ -16,8 +16,9 @@
  * Authored by Patrick Csikos <zelikos@pm.me>
  */
 
-@define-color color_primary @accent_color;
+@define-color color_primary alpha (shade (@accent_color, 1.0), 0.5);
 
+/* elementary OS 5 styling */
 @define-color colorPrimary @GRAPE_700;
 @define-color colorAccent @GRAPE_500;
 @define-color textColorPrimary shade (white, 0.9);
