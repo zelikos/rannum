@@ -18,7 +18,13 @@
 
 public class Rollit.MainWindow : Hdy.Window {
 
-    private Rollit.Menu menu_grid;
+    private Rollit.Menu menu_button;
+    private Rollit.NumDisplay number_display;
+    private Hdy.HeaderBar header;
+    private Gtk.Button roll_button;
+    private Gtk.Box action_buttons;
+    private Gtk.Grid main_view;
+
     private uint configure_id;
 
     public MainWindow (Rollit.Application app) {
@@ -32,32 +38,21 @@ public class Rollit.MainWindow : Hdy.Window {
 
         restore_state ();
 
-        var header = new Hdy.HeaderBar () {
+        header = new Hdy.HeaderBar () {
             title = "Roll-It",
             show_close_button = true
         };
 
-        var number_display = new Rollit.NumDisplay () {
+        number_display = new Rollit.NumDisplay () {
             margin_top = 12
         };
 
-        var roll_button = new Gtk.Button.with_label (_("Roll"));
+        roll_button = new Gtk.Button.with_label (_("Roll"));
         roll_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
 
-        menu_grid = new Rollit.Menu ();
+        menu_button = new Rollit.Menu ();
 
-        var menu_button = new Gtk.MenuButton () {
-            label = menu_grid.max_roll.to_string(),
-            tooltip_text = _("Dice Settings")
-        };
-        menu_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
-
-        var menu_popover = new Gtk.Popover (menu_button);
-        menu_button.popover = menu_popover;
-
-        menu_popover.add (menu_grid);
-
-        var action_buttons = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0) {
+        action_buttons = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0) {
             halign = Gtk.Align.CENTER,
             margin = 12
         };
@@ -66,19 +61,15 @@ public class Rollit.MainWindow : Hdy.Window {
         action_buttons.add (menu_button);
         action_buttons.get_style_context ().add_class (Gtk.STYLE_CLASS_LINKED);
 
-        var main_view = new Gtk.Grid ();
+        main_view = new Gtk.Grid ();
         main_view.attach (header, 0, 0);
         main_view.attach (number_display, 0, 1);
         main_view.attach (action_buttons, 0, 2);
 
         add (main_view);
 
-        menu_grid.roll_changed.connect (e => {
-            menu_button.label = menu_grid.max_roll.to_string();
-        });
-
         roll_button.clicked.connect (e => {
-            number_display.num_gen (menu_grid.max_roll);
+            number_display.num_gen (menu_button.max_roll);
         });
 
         show_all ();
