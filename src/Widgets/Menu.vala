@@ -83,6 +83,7 @@ public class Rollit.Menu : Gtk.MenuButton {
         popover = menu_popover;
 
         label = max_roll.to_string();
+        tooltip_text = _("Dice Settings");
         get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
 
         six_sided.clicked.connect ( () => {
