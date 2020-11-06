@@ -18,7 +18,7 @@
 
 public class Rollit.Menu : Gtk.MenuButton {
 
-    public int max_roll { get; set; }
+    private int _max_roll;
 
     private Gtk.Popover menu_popover;
     private Gtk.Grid menu_grid;
@@ -31,6 +31,10 @@ public class Rollit.Menu : Gtk.MenuButton {
     private Gtk.Separator separator;
     private Gtk.RadioButton custom_sided;
     private Gtk.SpinButton max_entry;
+
+    public int max_roll {
+        get { return _max_roll; }
+    }
 
     construct {
         six_sided = new Gtk.RadioButton.with_label (new SList<Gtk.RadioButton> (), _("d6"));
@@ -68,9 +72,6 @@ public class Rollit.Menu : Gtk.MenuButton {
 
         menu_popover = new Gtk.Popover (this);
 
-        //  menu_grid.attach (six_sided, 0, 0, 2);
-        //  menu_grid.attach (ten_sided, 0, 1, 2);
-        //  menu_grid.attach (twenty_sided, 0, 2, 2);
         menu_grid.attach (preset_box, 0, 0, 2);
         menu_grid.attach (separator, 0, 1, 2);
         menu_grid.attach (custom_sided, 0, 2, 1);
@@ -114,19 +115,19 @@ public class Rollit.Menu : Gtk.MenuButton {
         switch (selection) {
             case "d6":
                 six_sided.active = true;
-                max_roll = 6;
+                _max_roll = 6;
                 break;
             case "d10":
                 ten_sided.active = true;
-                max_roll = 10;
+                _max_roll = 10;
                 break;
             case "d20":
                 twenty_sided.active = true;
-                max_roll = 20;
+                _max_roll = 20;
                 break;
             default:
                 custom_sided.active = true;
-                max_roll = custom_roll;
+                _max_roll = custom_roll;
                 max_entry.sensitive = true;
                 break;
         }
@@ -134,7 +135,7 @@ public class Rollit.Menu : Gtk.MenuButton {
     }
 
     private void change_max (int roll, string selection = "custom") {
-        max_roll = roll;
+        _max_roll = roll;
         Application.settings.set_string ("last-selected", selection);
         if (selection != "custom") {
             max_entry.sensitive = false;
