@@ -16,6 +16,8 @@
  * Authored by Patrick Csikos <zelikos@pm.me>
  */
 
+@define-color color_primary @accent_color;
+
 @define-color colorPrimary @GRAPE_700;
 @define-color colorAccent @GRAPE_500;
 @define-color textColorPrimary shade (white, 0.9);
