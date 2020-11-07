@@ -48,6 +48,7 @@ public class Rollit.MainWindow : Hdy.Window {
         };
 
         roll_button = new Gtk.Button.with_label (_("Roll"));
+        roll_button.tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>R"}, roll_button.label);
         roll_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
 
         menu_button = new Rollit.Menu ();
@@ -68,11 +69,65 @@ public class Rollit.MainWindow : Hdy.Window {
 
         add (main_view);
 
+        show_all ();
+
         roll_button.clicked.connect (e => {
             number_display.num_gen (menu_button.max_roll);
         });
 
-        show_all ();
+        var accel_group = new Gtk.AccelGroup ();
+
+        accel_group.connect (
+            Gdk.Key.@1,
+            Gdk.ModifierType.CONTROL_MASK,
+            Gtk.AccelFlags.VISIBLE | Gtk.AccelFlags.LOCKED,
+            () => {
+                menu_button.shortcut_pressed(1);
+                return true;
+            }
+        );
+
+        accel_group.connect (
+            Gdk.Key.@2,
+            Gdk.ModifierType.CONTROL_MASK,
+            Gtk.AccelFlags.VISIBLE | Gtk.AccelFlags.LOCKED,
+            () => {
+                menu_button.shortcut_pressed(2);
+                return true;
+            }
+        );
+
+        accel_group.connect (
+            Gdk.Key.@3,
+            Gdk.ModifierType.CONTROL_MASK,
+            Gtk.AccelFlags.VISIBLE | Gtk.AccelFlags.LOCKED,
+            () => {
+                menu_button.shortcut_pressed(3);
+                return true;
+            }
+        );
+
+        accel_group.connect (
+            Gdk.Key.R,
+            Gdk.ModifierType.CONTROL_MASK,
+            Gtk.AccelFlags.VISIBLE | Gtk.AccelFlags.LOCKED,
+            () => {
+                roll_button.clicked();
+                return true;
+            }
+        );
+
+        accel_group.connect (
+            Gdk.Key.D,
+            Gdk.ModifierType.CONTROL_MASK,
+            Gtk.AccelFlags.VISIBLE | Gtk.AccelFlags.LOCKED,
+            () => {
+                menu_button.clicked();
+                return true;
+            }
+        );
+
+        add_accel_group (accel_group);
     }
 
     private void restore_state () {
