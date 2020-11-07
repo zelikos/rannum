@@ -15,7 +15,7 @@ Simulate the results of rolling a die. Roll a six-sided die by default, or get t
 
 ## Installation
 
-At this time, Roll-It is designed exclusively for [elementary OS], and is available for installation via AppCenter.
+Roll-It is designed and developed primarily for [elementary OS]. The latest stable release is available via AppCenter.
 
 [![Get it on AppCenter](https://appcenter.elementary.io/badge.svg)][AppCenter link]
 
@@ -33,6 +33,11 @@ Roll-It is designed for and developed on [elementary OS]. You'll need the follow
 
 To install them on [elementary OS]:
 
+```shell
+sudo apt install libgranite-dev libgtk-3-dev libhandy-1-dev meson valac
+```
+
+Or you can use the following to install the entire elementary SDK:
 ```shell
 sudo apt install elementary-sdk
 ```
