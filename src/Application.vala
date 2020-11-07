@@ -16,7 +16,7 @@
  * Authored by Patrick Csikos <zelikos@pm.me>
  */
 
-public class Application : Gtk.Application {
+public class Rollit.Application : Gtk.Application {
 
     public static GLib.Settings settings;
     static construct {
@@ -32,7 +32,15 @@ public class Application : Gtk.Application {
 
     protected override void activate () {
         var gtk_settings = Gtk.Settings.get_default ();
-        gtk_settings.gtk_application_prefer_dark_theme = settings.get_boolean ("dark-style");
+        var granite_settings = Granite.Settings.get_default ();
+
+        // gtk_settings.gtk_application_prefer_dark_theme = settings.get_boolean ("dark-style");
+
+        gtk_settings.gtk_application_prefer_dark_theme = granite_settings.prefers_color_scheme == Granite.Settings.ColorScheme.DARK;
+
+        granite_settings.notify["prefers-color-scheme"].connect (() => {
+            gtk_settings.gtk_application_prefer_dark_theme = granite_settings.prefers_color_scheme == Granite.Settings.ColorScheme.DARK;
+        });
 
         var provider = new Gtk.CssProvider ();
         provider.load_from_resource ("/com/github/zelikos/rannum/styles/global.css");
@@ -42,8 +50,14 @@ public class Application : Gtk.Application {
             Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
         );
 
-        var window = new Rollit.Window (this);
+        var window = new Rollit.MainWindow (this);
 
         add_window (window);
+    }
+
+    public static int main (string[] args) {
+        var app = new Application ();
+
+        return app.run (args);
     }
 }
