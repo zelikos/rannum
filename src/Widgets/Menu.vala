@@ -25,6 +25,8 @@ public class Rollit.Menu : Gtk.MenuButton {
     private Gtk.RadioButton custom_sided;
     private Gtk.SpinButton max_entry;
 
+    private Gtk.Popover menu_popover;
+
     public int max_roll { get; private set; }
 
     construct {
@@ -81,7 +83,7 @@ public class Rollit.Menu : Gtk.MenuButton {
             row_spacing = 6
         };
 
-        var menu_popover = new Gtk.Popover (this);
+        menu_popover = new Gtk.Popover (this);
 
         menu_grid.attach (presets, 0, 0);
         menu_grid.attach (separator, 0, 1);
@@ -167,6 +169,12 @@ public class Rollit.Menu : Gtk.MenuButton {
                 break;
             case 3:
                 twenty_sided.clicked();
+                break;
+            case 4:
+                custom_sided.clicked();
+                if (menu_popover.visible) {
+                    max_entry.grab_focus();
+                }
                 break;
         }
     }

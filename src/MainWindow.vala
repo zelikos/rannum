@@ -108,6 +108,16 @@ public class Rollit.MainWindow : Hdy.Window {
         );
 
         accel_group.connect (
+            Gdk.Key.@4,
+            Gdk.ModifierType.CONTROL_MASK,
+            Gtk.AccelFlags.VISIBLE | Gtk.AccelFlags.LOCKED,
+            () => {
+                menu_button.shortcut_pressed(4);
+                return true;
+            }
+        );
+
+        accel_group.connect (
             Gdk.Key.R,
             Gdk.ModifierType.CONTROL_MASK,
             Gtk.AccelFlags.VISIBLE | Gtk.AccelFlags.LOCKED,
