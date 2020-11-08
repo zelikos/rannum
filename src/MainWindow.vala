@@ -20,6 +20,7 @@ public class Rollit.MainWindow : Hdy.Window {
 
     private Rollit.Menu menu_button;
     private Rollit.NumDisplay number_display;
+    //  private Rollit.RollHistory roll_history;
     private Hdy.HeaderBar header;
     private Gtk.Button roll_button;
     private Gtk.Box action_buttons;
@@ -42,6 +43,12 @@ public class Rollit.MainWindow : Hdy.Window {
             title = "Roll-It",
             show_close_button = true
         };
+
+        var history_button = new Gtk.Button.from_icon_name ("document-open-recent-symbolic", Gtk.IconSize.MENU) {
+            tooltip_text = _("Roll History")
+        };
+
+        header.pack_end (history_button);
 
         number_display = new Rollit.NumDisplay () {
             margin_top = 12
