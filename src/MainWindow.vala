@@ -28,7 +28,7 @@ public class Rollit.MainWindow : Hdy.Window {
     private Gtk.Grid main_view;
     private Gtk.Paned hp;
 
-    private bool history_visible = true;
+    private bool history_visible = false;
     private uint configure_id;
 
     public MainWindow (Rollit.Application app) {
@@ -48,15 +48,12 @@ public class Rollit.MainWindow : Hdy.Window {
         };
 
         history_button = new Gtk.Button.from_icon_name ("document-open-recent-symbolic", Gtk.IconSize.MENU) {
-            tooltip_text = _("Roll History"),
-            tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>H"}, tooltip_text)
+            tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>H"}, _("Roll History"))
         };
 
         header.pack_end (history_button);
 
-        number_display = new Rollit.NumDisplay () {
-            margin_top = 12
-        };
+        number_display = new Rollit.NumDisplay ();
 
         roll_button = new Gtk.Button.with_label (_("Roll"));
         roll_button.tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>R"}, roll_button.label);
@@ -65,27 +62,25 @@ public class Rollit.MainWindow : Hdy.Window {
         menu_button = new Rollit.Menu ();
 
         action_buttons = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0) {
-            halign = Gtk.Align.CENTER,
-            margin = 12
+            halign = Gtk.Align.CENTER
         };
 
         action_buttons.add (roll_button);
         action_buttons.add (menu_button);
         action_buttons.get_style_context ().add_class (Gtk.STYLE_CLASS_LINKED);
 
-        main_view = new Gtk.Grid ();
+        main_view = new Gtk.Grid () {
+            row_spacing = 12,
+            margin = 12
+        };
         main_view.attach (number_display, 0, 0);
         main_view.attach (action_buttons, 0, 1);
 
         roll_history = new Rollit.RollHistory ();
 
-        int width, height;
-        get_size (out width, out height);
-
         hp = new Gtk.Paned (HORIZONTAL);
         hp.pack1 (main_view, true, false);
         hp.pack2 (roll_history, false, false);
-        //  hp.position = width - 32;
 
         var grid = new Gtk.Grid ();
         grid.attach (header, 0, 0);
@@ -95,10 +90,10 @@ public class Rollit.MainWindow : Hdy.Window {
 
         show_all ();
 
-        roll_history.visible = history_visible;
+        roll_history.visible = !history_visible;
 
         roll_button.clicked.connect (e => {
-            number_display.num_gen (menu_button.max_roll);
+            roll_history.add_roll (number_display.num_gen (menu_button.max_roll));
         });
 
         history_button.clicked.connect (e => {

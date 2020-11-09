@@ -18,29 +18,46 @@
 
  public class Rollit.PreviousRoll : Gtk.Button {
 
-    private Gtk.Grid button_layout;
     private Gtk.Image copy_icon;
+
+    public string roll_label { get; construct set; }
 
     public Gtk.Label roll_amount { get; set; }
 
+    public PreviousRoll () {
+        Object (
+            roll_label: "0"
+        );
+    }
+
+    public PreviousRoll.with_num (int roll) {
+        Object (
+            roll_label: roll.to_string()
+        );
+    }
+
     construct {
-        button_layout = new Gtk.Grid () {
-            column_homogeneous = true,
-            column_spacing = 24,
-            margin = 12
+        margin = 12;
+        margin_bottom = 0;
+
+        roll_amount = new Gtk.Label (roll_label) {
+            halign = START,
+            valign = CENTER
         };
 
-        roll_amount = new Gtk.Label ("0");
+        copy_icon = new Gtk.Image.from_icon_name ("edit-copy-symbolic", Gtk.IconSize.SMALL_TOOLBAR) {
+            halign = END,
+            valign = CENTER
+        };
 
-        copy_icon = new Gtk.Image.from_icon_name ("edit-copy-symbolic", Gtk.IconSize.MENU);
-
-        button_layout.attach (roll_amount, 0, 0);
-        button_layout.attach (copy_icon, 1, 0);
+        var button_layout = new Gtk.Box (HORIZONTAL, 32);
+        button_layout.pack_start (roll_amount);
+        button_layout.pack_end (copy_icon);
 
         add (button_layout);
 
         //  clicked.connect ( () => {
-
+        //      TODO: Copy roll_amount to clipboard
         //  });
     }
  }

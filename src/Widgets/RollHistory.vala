@@ -16,50 +16,77 @@
  * Authored by Patrick Csikos <zelikos@pm.me>
  */
 
-public class Rollit.RollHistory : Gtk.Grid { // TODO: Change to appropriate type of widget
+public class Rollit.RollHistory : Gtk.Grid {
 
-    private SList<Rollit.PreviousRoll> previous_rolls;
-    private Gtk.Box previous_rolls_box;
+    private GLib.List<PreviousRoll> previous_rolls_list;
+    private Gtk.ScrolledWindow scroll_box;
+    private Gtk.ListBox previous_rolls_box;
     private Gtk.Button clear_button;
-    //  private Gtk.Box average_roll;
+    //  private Gtk.Label average_roll;
 
-    private const uint MAX_PREVIOUS_ROLLS = 10;
+    //  private const string avg_text = _("Average: ");
+    //  private const uint MAX_PREVIOUS_ROLLS = 10;
 
     construct {
         row_spacing = 12;
-        margin = 12;
 
-        //  previous_rolls = new SList<Rollit.PreviousRoll> ();
-        var previous_roll = new Rollit.PreviousRoll ();
-
-        previous_rolls_box = new Gtk.Box (VERTICAL, 12) {
+        previous_rolls_box = new Gtk.ListBox () {
             hexpand = true,
             vexpand = true
         };
 
-        previous_rolls_box.add (previous_roll);
+        scroll_box = new Gtk.ScrolledWindow (null, null);
+        scroll_box.hscrollbar_policy = NEVER;
+        scroll_box.add (previous_rolls_box);
 
-        clear_button = new Gtk.Button.with_label (_("Clear"));
-        clear_button.get_style_context ().add_class ("destructive-action");
+        //  average_roll = new Gtk.Label (avg_text);
+        //  average_roll.margin_start = 6;
 
-        var separator = new Gtk.Separator (HORIZONTAL);
+        var clear_text = new Gtk.Label (_("Clear"));
+        var clear_icon = new Gtk.Image.from_icon_name ("edit-clear-all-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
 
-        attach (previous_rolls_box, 0, 0);
-        //  attach (separator, 0, 1);
+        var bottom_row = new Gtk.Box (HORIZONTAL, 32);
+        bottom_row.pack_start (clear_text);
+        bottom_row.pack_end (clear_icon);
+        bottom_row.margin = 6;
+
+        clear_button = new Gtk.Button ();
+        clear_button.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+        clear_button.add (bottom_row);
+
+        attach (scroll_box, 0, 0);
         attach (clear_button, 0, 1);
+
+        clear_button.clicked.connect (() => {
+            clear_rolls ();
+        });
 
         show_all ();
     }
 
     private void clear_rolls () {
-        //  previous_rolls.remove_all();
+        foreach (PreviousRoll item in previous_rolls_list) {
+            item.destroy ();
+        }
     }
 
     //  private void set_average () {
+    //      int total = 0, count = 0;
+    //      foreach (PreviousRoll item in previous_rolls_list) {
+    //          total += int.parse (item.roll_amount.label);
+    //          count++;
+    //      }
 
+    //      average_roll.label = avg_text + (total / count).to_string ();
     //  }
 
     public void add_roll (int roll) {
+        var new_roll = new Rollit.PreviousRoll.with_num (roll);
+        previous_rolls_list.append (new_roll);
 
+        previous_rolls_box.prepend (new_roll);
+        previous_rolls_box.show_all ();
+
+        //  set_average ();
     }
 }
