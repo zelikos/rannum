@@ -39,8 +39,7 @@
     }
 
     construct {
-        margin = 12;
-        margin_bottom = 0;
+        margin = 6;
 
         roll_amount = new Gtk.Label (roll_label) {
             halign = START,

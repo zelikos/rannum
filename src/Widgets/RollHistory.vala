@@ -28,8 +28,6 @@ public class Rollit.RollHistory : Gtk.Grid {
     //  private const uint MAX_PREVIOUS_ROLLS = 10;
 
     construct {
-        row_spacing = 12;
-
         previous_rolls_box = new Gtk.ListBox () {
             hexpand = true,
             vexpand = true
