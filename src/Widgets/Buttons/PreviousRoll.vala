@@ -16,7 +16,7 @@
  * Authored by Patrick Csikos <zelikos@pm.me>
  */
 
- public class Rollit.PreviousRoll : Gtk.Button {
+ public class Rollit.PreviousRoll : Gtk.ListBoxRow {
 
     //  public signal void copied ();
 
@@ -39,8 +39,6 @@
     }
 
     construct {
-        margin = 6;
-
         roll_amount = new Gtk.Label (roll_label) {
             halign = START,
             valign = CENTER
@@ -66,9 +64,15 @@
         stack.add_named (copied_label, "copied");
         stack.visible_child_name = "button-box";
 
-        add (stack);
+        var button = new Gtk.Button () {
+            margin = 6
+        };
 
-        clicked.connect ( () => {
+        button.add (stack);
+
+        add (button);
+
+        button.clicked.connect ( () => {
             var cb = Gtk.Clipboard.get (Gdk.Atom.NONE);
             cb.set_text (roll_amount.label, -1);
 
@@ -80,6 +84,10 @@
                 timeout_id = 0;
                 return false;
             });
+        });
+
+        activate.connect ( () => {
+            button.clicked();
         });
     }
  }
