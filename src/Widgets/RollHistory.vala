@@ -82,8 +82,8 @@ public class Rollit.RollHistory : Gtk.Grid {
 
     public void add_roll (int roll) {
         var new_roll = new Rollit.PreviousRoll.with_num (roll);
-        previous_rolls_list.append (new_roll);
 
+        previous_rolls_list.append (new_roll);
         previous_rolls_box.prepend (new_roll);
         previous_rolls_box.show_all ();
 

@@ -18,10 +18,12 @@
 
  public class Rollit.PreviousRoll : Gtk.Button {
 
+    //  public signal void copied ();
+
     private Gtk.Image copy_icon;
+    private uint timeout_id;
 
     public string roll_label { get; construct set; }
-
     public Gtk.Label roll_amount { get; set; }
 
     public PreviousRoll () {
@@ -54,10 +56,31 @@
         button_layout.pack_start (roll_amount);
         button_layout.pack_end (copy_icon);
 
-        add (button_layout);
+        var copied_label = new Gtk.Label (_("Copied"));
 
-        //  clicked.connect ( () => {
-        //      TODO: Copy roll_amount to clipboard
-        //  });
+        var stack = new Gtk.Stack () {
+            transition_duration = 200,
+            transition_type = Gtk.StackTransitionType.CROSSFADE
+        };
+
+        stack.add_named (button_layout, "button-box");
+        stack.add_named (copied_label, "copied");
+        stack.visible_child_name = "button-box";
+
+        add (stack);
+
+        clicked.connect ( () => {
+            var cb = Gtk.Clipboard.get (Gdk.Atom.NONE);
+            cb.set_text (roll_amount.label, -1);
+
+            uint duration = 1000;
+
+            stack.visible_child_name = "copied";
+            timeout_id = GLib.Timeout.add (duration, () => {
+                stack.visible_child_name = "button-box";
+                timeout_id = 0;
+                return false;
+            });
+        });
     }
  }
