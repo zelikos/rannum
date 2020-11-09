@@ -20,12 +20,15 @@ public class Rollit.MainWindow : Hdy.Window {
 
     private Rollit.Menu menu_button;
     private Rollit.NumDisplay number_display;
-    //  private Rollit.RollHistory roll_history;
+    private Rollit.RollHistory roll_history;
     private Hdy.HeaderBar header;
     private Gtk.Button roll_button;
+    private Gtk.Button history_button;
     private Gtk.Box action_buttons;
     private Gtk.Grid main_view;
+    private Gtk.Paned hp;
 
+    private bool history_visible = true;
     private uint configure_id;
 
     public MainWindow (Rollit.Application app) {
@@ -44,8 +47,9 @@ public class Rollit.MainWindow : Hdy.Window {
             show_close_button = true
         };
 
-        var history_button = new Gtk.Button.from_icon_name ("document-open-recent-symbolic", Gtk.IconSize.MENU) {
-            tooltip_text = _("Roll History")
+        history_button = new Gtk.Button.from_icon_name ("document-open-recent-symbolic", Gtk.IconSize.MENU) {
+            tooltip_text = _("Roll History"),
+            tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>H"}, tooltip_text)
         };
 
         header.pack_end (history_button);
@@ -70,16 +74,36 @@ public class Rollit.MainWindow : Hdy.Window {
         action_buttons.get_style_context ().add_class (Gtk.STYLE_CLASS_LINKED);
 
         main_view = new Gtk.Grid ();
-        main_view.attach (header, 0, 0);
-        main_view.attach (number_display, 0, 1);
-        main_view.attach (action_buttons, 0, 2);
+        main_view.attach (number_display, 0, 0);
+        main_view.attach (action_buttons, 0, 1);
 
-        add (main_view);
+        roll_history = new Rollit.RollHistory ();
+
+        int width, height;
+        get_size (out width, out height);
+
+        hp = new Gtk.Paned (HORIZONTAL);
+        hp.pack1 (main_view, true, false);
+        hp.pack2 (roll_history, false, false);
+        //  hp.position = width - 32;
+
+        var grid = new Gtk.Grid ();
+        grid.attach (header, 0, 0);
+        grid.attach (hp, 0, 1);
+
+        add (grid);
 
         show_all ();
 
+        roll_history.visible = history_visible;
+
         roll_button.clicked.connect (e => {
             number_display.num_gen (menu_button.max_roll);
+        });
+
+        history_button.clicked.connect (e => {
+            roll_history.visible = !roll_history.visible;
+            // TODO: Save visibility state of history pane
         });
 
         var accel_group = new Gtk.AccelGroup ();
@@ -140,6 +164,16 @@ public class Rollit.MainWindow : Hdy.Window {
             Gtk.AccelFlags.VISIBLE | Gtk.AccelFlags.LOCKED,
             () => {
                 menu_button.clicked();
+                return true;
+            }
+        );
+
+        accel_group.connect (
+            Gdk.Key.H,
+            Gdk.ModifierType.CONTROL_MASK,
+            Gtk.AccelFlags.VISIBLE | Gtk.AccelFlags.LOCKED,
+            () => {
+                history_button.clicked();
                 return true;
             }
         );

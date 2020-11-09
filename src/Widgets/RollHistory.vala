@@ -18,15 +18,46 @@
 
 public class Rollit.RollHistory : Gtk.Grid { // TODO: Change to appropriate type of widget
 
-    private SList<Gtk.Button> previous_rolls;
+    private SList<Rollit.PreviousRoll> previous_rolls;
+    private Gtk.Box previous_rolls_box;
+    private Gtk.Button clear_button;
+    //  private Gtk.Box average_roll;
+
+    private const uint MAX_PREVIOUS_ROLLS = 10;
 
     construct {
+        row_spacing = 12;
+        margin = 12;
 
+        //  previous_rolls = new SList<Rollit.PreviousRoll> ();
+        var previous_roll = new Rollit.PreviousRoll ();
+
+        previous_rolls_box = new Gtk.Box (VERTICAL, 12) {
+            hexpand = true,
+            vexpand = true
+        };
+
+        previous_rolls_box.add (previous_roll);
+
+        clear_button = new Gtk.Button.with_label (_("Clear"));
+        clear_button.get_style_context ().add_class ("destructive-action");
+
+        var separator = new Gtk.Separator (HORIZONTAL);
+
+        attach (previous_rolls_box, 0, 0);
+        //  attach (separator, 0, 1);
+        attach (clear_button, 0, 1);
+
+        show_all ();
     }
 
     private void clear_rolls () {
-
+        //  previous_rolls.remove_all();
     }
+
+    //  private void set_average () {
+
+    //  }
 
     public void add_roll (int roll) {
 
