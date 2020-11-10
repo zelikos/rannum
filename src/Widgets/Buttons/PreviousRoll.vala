@@ -18,8 +18,6 @@
 
  public class Rollit.PreviousRoll : Gtk.ListBoxRow {
 
-    //  public signal void copied ();
-
     private Gtk.Image copy_icon;
     private uint timeout_id;
 

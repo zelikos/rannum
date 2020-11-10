@@ -22,12 +22,7 @@ public class Rollit.RollHistory : Gtk.Grid {
     private Gtk.ScrolledWindow scroll_box;
     private Gtk.ListBox previous_rolls_box;
 
-
     public Gtk.Button clear_button;
-    //  private Gtk.Label average_roll;
-
-    //  private const string avg_text = _("Average: ");
-    //  private const uint MAX_PREVIOUS_ROLLS = 10;
 
     construct {
         previous_rolls_box = new Gtk.ListBox () {
@@ -38,9 +33,6 @@ public class Rollit.RollHistory : Gtk.Grid {
         scroll_box = new Gtk.ScrolledWindow (null, null);
         scroll_box.hscrollbar_policy = NEVER;
         scroll_box.add (previous_rolls_box);
-
-        //  average_roll = new Gtk.Label (avg_text);
-        //  average_roll.margin_start = 6;
 
         var clear_text = new Gtk.Label (_("Clear"));
         var clear_icon = new Gtk.Image.from_icon_name ("edit-clear-all-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
@@ -72,23 +64,11 @@ public class Rollit.RollHistory : Gtk.Grid {
         }
     }
 
-    //  private void set_average () {
-    //      int total = 0, count = 0;
-    //      foreach (PreviousRoll item in previous_rolls_list) {
-    //          total += int.parse (item.roll_amount.label);
-    //          count++;
-    //      }
-
-    //      average_roll.label = avg_text + (total / count).to_string ();
-    //  }
-
     public void add_roll (int roll) {
         var new_roll = new Rollit.PreviousRoll.with_num (roll);
 
         previous_rolls_list.append (new_roll);
         previous_rolls_box.prepend (new_roll);
         previous_rolls_box.show_all ();
-
-        //  set_average ();
     }
 }
