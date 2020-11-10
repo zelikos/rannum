@@ -149,7 +149,7 @@ public class Rollit.MainWindow : Hdy.Window {
             Gtk.AccelFlags.VISIBLE | Gtk.AccelFlags.LOCKED,
             () => {
                 roll_button.clicked ();
-                menu_button.rolled ();
+                menu_button.close_menu ();
                 return true;
             }
         );

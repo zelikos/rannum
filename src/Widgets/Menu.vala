@@ -18,7 +18,7 @@
 
 public class Rollit.Menu : Gtk.MenuButton {
 
-    public signal void rolled ();
+    public signal void close_menu ();
 
     private Gtk.RadioButton six_sided;
     private Gtk.RadioButton ten_sided;
@@ -122,7 +122,7 @@ public class Rollit.Menu : Gtk.MenuButton {
             change_max (max_entry.get_value_as_int ());
         });
 
-        rolled.connect ( () => {
+        close_menu.connect ( () => {
             popover.popdown ();
         });
     }
