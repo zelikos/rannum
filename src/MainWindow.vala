@@ -108,7 +108,7 @@ public class Rollit.MainWindow : Hdy.Window {
             Gdk.ModifierType.CONTROL_MASK,
             Gtk.AccelFlags.VISIBLE | Gtk.AccelFlags.LOCKED,
             () => {
-                menu_button.shortcut_pressed(1);
+                menu_button.shortcut_pressed (1);
                 return true;
             }
         );
@@ -118,7 +118,7 @@ public class Rollit.MainWindow : Hdy.Window {
             Gdk.ModifierType.CONTROL_MASK,
             Gtk.AccelFlags.VISIBLE | Gtk.AccelFlags.LOCKED,
             () => {
-                menu_button.shortcut_pressed(2);
+                menu_button.shortcut_pressed (2);
                 return true;
             }
         );
@@ -128,7 +128,7 @@ public class Rollit.MainWindow : Hdy.Window {
             Gdk.ModifierType.CONTROL_MASK,
             Gtk.AccelFlags.VISIBLE | Gtk.AccelFlags.LOCKED,
             () => {
-                menu_button.shortcut_pressed(3);
+                menu_button.shortcut_pressed (3);
                 return true;
             }
         );
@@ -138,7 +138,7 @@ public class Rollit.MainWindow : Hdy.Window {
             Gdk.ModifierType.CONTROL_MASK,
             Gtk.AccelFlags.VISIBLE | Gtk.AccelFlags.LOCKED,
             () => {
-                menu_button.shortcut_pressed(4);
+                menu_button.shortcut_pressed (4);
                 return true;
             }
         );
@@ -148,7 +148,8 @@ public class Rollit.MainWindow : Hdy.Window {
             Gdk.ModifierType.CONTROL_MASK,
             Gtk.AccelFlags.VISIBLE | Gtk.AccelFlags.LOCKED,
             () => {
-                roll_button.clicked();
+                roll_button.clicked ();
+                menu_button.rolled ();
                 return true;
             }
         );
@@ -158,7 +159,7 @@ public class Rollit.MainWindow : Hdy.Window {
             Gdk.ModifierType.CONTROL_MASK,
             Gtk.AccelFlags.VISIBLE | Gtk.AccelFlags.LOCKED,
             () => {
-                menu_button.clicked();
+                menu_button.clicked ();
                 return true;
             }
         );
@@ -168,17 +169,17 @@ public class Rollit.MainWindow : Hdy.Window {
             Gdk.ModifierType.CONTROL_MASK,
             Gtk.AccelFlags.VISIBLE | Gtk.AccelFlags.LOCKED,
             () => {
-                history_button.clicked();
+                history_button.clicked ();
                 return true;
             }
         );
-        
+
         accel_group.connect (
             Gdk.Key.D,
             Gdk.ModifierType.MOD1_MASK, // TODO: Replace with ALT_MASK for GTK4
             Gtk.AccelFlags.VISIBLE | Gtk.AccelFlags.LOCKED,
             () => {
-                roll_history.clear_button.clicked();
+                roll_history.clear_button.clicked ();
                 return true;
             }
         );
