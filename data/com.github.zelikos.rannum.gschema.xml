@@ -16,6 +16,11 @@
       <summary>Maximized</summary>
       <description>Whether the window is maximized or not</description>
     </key>
+    <key name="show-history" type="b">
+      <default>true</default>
+      <summary>Show History</summary>
+      <description>Show roll history pane</description>
+    </key>
     <key name="custom-roll" type="i">
       <default>6</default>
       <summary>Number of sides</summary>

@@ -28,7 +28,7 @@ public class Rollit.MainWindow : Hdy.Window {
     private Gtk.Grid main_view;
     private Gtk.Paned hp;
 
-    private bool history_visible = false;
+    private bool history_visible;
     private uint configure_id;
 
     public MainWindow (Rollit.Application app) {
@@ -90,7 +90,7 @@ public class Rollit.MainWindow : Hdy.Window {
 
         show_all ();
 
-        roll_history.visible = !history_visible;
+        roll_history.visible = history_visible;
 
         roll_button.clicked.connect (e => {
             roll_history.add_roll (number_display.num_gen (menu_button.max_roll));
@@ -98,7 +98,7 @@ public class Rollit.MainWindow : Hdy.Window {
 
         history_button.clicked.connect (e => {
             roll_history.visible = !roll_history.visible;
-            // TODO: Save visibility state of history pane
+            Application.settings.set_boolean ("show-history", roll_history.visible);
         });
 
         var accel_group = new Gtk.AccelGroup ();
@@ -194,6 +194,8 @@ public class Rollit.MainWindow : Hdy.Window {
         if (window_maximized) {
             maximize ();
         }
+
+        history_visible = Application.settings.get_boolean ("show-history");
     }
 
     public override bool configure_event (Gdk.EventConfigure event) {
