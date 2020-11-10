@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
   <schema path="/com/github/zelikos/rannum/" id="com.github.zelikos.rannum">
-    <key name="dark-style" type="b">
-      <default>false</default>
-      <summary>Prefer dark style</summary>
-      <description>Switches between dark and light style</description>
-    </key>
     <key name="window-position" type="(ii)">
       <default>(-1, -1)</default>
       <summary>Window position</summary>
       <description>Most recent window position (x, y)</description>
     </key>
     <key name="window-size" type="(ii)">
-      <default>(240, 220)</default>
+      <default>(320, 260)</default>
       <summary>Window size</summary>
       <description>Most recent window size (width, height)</description>
     </key>
@@ -20,6 +15,11 @@
       <default>false</default>
       <summary>Maximized</summary>
       <description>Whether the window is maximized or not</description>
+    </key>
+    <key name="show-history" type="b">
+      <default>true</default>
+      <summary>Show History</summary>
+      <description>Show roll history pane</description>
     </key>
     <key name="custom-roll" type="i">
       <default>6</default>

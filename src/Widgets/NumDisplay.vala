@@ -22,6 +22,7 @@ public class Rollit.NumDisplay : Gtk.Stack {
 
     construct {
         transition_type = Gtk.StackTransitionType.SLIDE_UP;
+        transition_duration = 200;
         hexpand = true;
         vexpand = true;
 
@@ -40,7 +41,7 @@ public class Rollit.NumDisplay : Gtk.Stack {
         visible_child_name = "welcome";
     }
 
-    public void num_gen (int max_num) {
+    public int num_gen (int max_num) {
         const int MIN_NUM = 1;
         int rnd_num;
 
@@ -51,5 +52,7 @@ public class Rollit.NumDisplay : Gtk.Stack {
         roll_result.label = @"$rnd_num";
 
         visible_child_name = "roll-result";
+
+        return rnd_num;
     }
 }
