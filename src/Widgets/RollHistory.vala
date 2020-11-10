@@ -21,7 +21,9 @@ public class Rollit.RollHistory : Gtk.Grid {
     private GLib.List<PreviousRoll> previous_rolls_list;
     private Gtk.ScrolledWindow scroll_box;
     private Gtk.ListBox previous_rolls_box;
-    private Gtk.Button clear_button;
+
+
+    public Gtk.Button clear_button;
     //  private Gtk.Label average_roll;
 
     //  private const string avg_text = _("Average: ");
@@ -48,7 +50,9 @@ public class Rollit.RollHistory : Gtk.Grid {
         bottom_row.pack_end (clear_icon);
         bottom_row.margin = 6;
 
-        clear_button = new Gtk.Button ();
+        clear_button = new Gtk.Button () {
+            tooltip_markup = Granite.markup_accel_tooltip ({"<Alt>D"}, _("Clear History"))
+        };
         clear_button.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
         clear_button.add (bottom_row);
 
