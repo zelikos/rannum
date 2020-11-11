@@ -23,7 +23,7 @@ Any version distributed elsewhere is not provided nor supported by me.
 
 ## Building
 
-Roll-It is designed for and developed on [elementary OS]. You'll need the following dependencies to build it yourself:
+You'll need the following dependencies to build Roll-It yourself:
 
 * libgranite-dev
 * libgtk-3-dev
