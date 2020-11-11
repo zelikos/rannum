@@ -31,15 +31,16 @@ Roll-It is designed for and developed on [elementary OS]. You'll need the follow
 * meson
 * valac
 
-To install them on [elementary OS]:
+If running [elementary OS], the simplest way is to install the elementary SDK:
+
+```shell
+sudo apt install elementary-sdk
+```
+
+To only install the required dependencies, or to install them on Ubuntu (20.10 or later):
 
 ```shell
 sudo apt install libgranite-dev libgtk-3-dev libhandy-1-dev meson valac
-```
-
-Or you can use the following to install the entire elementary SDK:
-```shell
-sudo apt install elementary-sdk
 ```
 
 To install them on Fedora:
