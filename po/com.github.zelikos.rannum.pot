@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.zelikos.rannum\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-13 20:38+0100\n"
+"POT-Creation-Date: 2020-11-13 15:51-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,26 +17,42 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/Widgets/Menu.vala:28
-msgid "Light"
+#: src/Widgets/Menu.vala:35
+msgid "d6"
 msgstr ""
 
-#: src/Widgets/Menu.vala:29
-msgid "Dark"
+#: src/Widgets/Menu.vala:36
+msgid "d10"
 msgstr ""
 
 #: src/Widgets/Menu.vala:37
-msgid "Max Roll:"
+msgid "d20"
+msgstr ""
+
+#: src/Widgets/Menu.vala:101
+msgid "Dice Settings"
 msgstr ""
 
 #: src/Widgets/NumDisplay.vala:33
 msgid "Ready to Roll"
 msgstr ""
 
-#: src/Widgets/Window.vala:50
-msgid "Settings"
+#: src/Widgets/RollHistory.vala:37
+msgid "Clear"
 msgstr ""
 
-#: src/Widgets/Window.vala:64
+#: src/Widgets/RollHistory.vala:46
+msgid "Clear History"
+msgstr ""
+
+#: src/Widgets/Buttons/PreviousRoll.vala:54
+msgid "Copied"
+msgstr ""
+
+#: src/MainWindow.vala:54
+msgid "Roll History"
+msgstr ""
+
+#: src/MainWindow.vala:61
 msgid "Roll"
 msgstr ""

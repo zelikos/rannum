@@ -6,7 +6,7 @@
   <a href="https://appcenter.elementary.io/com.github.zelikos.rannum"><img src="https://appcenter.elementary.io/badge.svg" alt="Get it on AppCenter" /></a>
 </p>
 
-| ![Screenshot](data/screenshot_light.png) | ![Screenshot](data/screenshot_dark.png) |
+| ![Screenshot](data/screenshot2.png) | ![Screenshot](data/screenshot3.png) |
 |------------------------------------------|-----------------------------------------|
 
 ## Roll the dice
@@ -27,7 +27,6 @@ You'll need the following dependencies to build Roll-It yourself:
 
 * libgranite-dev
 * libgtk-3-dev
-* libhandy-1-dev
 * meson
 * valac
 
@@ -37,16 +36,16 @@ If running [elementary OS], the simplest way is to install the elementary SDK:
 sudo apt install elementary-sdk
 ```
 
-To only install the required dependencies, or to install them on Ubuntu (20.10 or later):
+To only install the required dependencies, or to install them on Ubuntu:
 
 ```shell
-sudo apt install libgranite-dev libgtk-3-dev libhandy-1-dev meson valac
+sudo apt install libgranite-dev libgtk-3-dev meson valac
 ```
 
 To install them on Fedora:
 
 ```shell
-sudo dnf install granite-devel gtk3-devel libhandy1-devel meson vala
+sudo dnf install granite-devel gtk3-devel meson vala
 ```
 
 To build and install Roll-It:
