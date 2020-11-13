@@ -6,7 +6,7 @@
   <a href="https://appcenter.elementary.io/com.github.zelikos.rannum"><img src="https://appcenter.elementary.io/badge.svg" alt="Get it on AppCenter" /></a>
 </p>
 
-| ![Screenshot](data/screenshot_light.png) | ![Screenshot](data/screenshot_dark.png) |
+| ![Screenshot](data/screenshot2.png) | ![Screenshot](data/screenshot3.png) |
 |------------------------------------------|-----------------------------------------|
 
 ## Roll the dice
