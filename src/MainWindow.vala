@@ -179,7 +179,7 @@ public class Rollit.MainWindow : Gtk.ApplicationWindow {
         );
 
         accel_group.connect (
-            Gdk.Key.D,
+            Gdk.Key.C,
             Gdk.ModifierType.MOD1_MASK, // TODO: Replace with ALT_MASK for GTK4
             Gtk.AccelFlags.VISIBLE | Gtk.AccelFlags.LOCKED,
             () => {
