@@ -16,12 +16,14 @@
  * Authored by Patrick Csikos <zelikos@pm.me>
  */
 
-public class Rollit.MainWindow : Hdy.Window {
+// public class Rollit.MainWindow : Hdy.Window {
+public class Rollit.MainWindow : Gtk.ApplicationWindow {
 
     private Rollit.Menu menu_button;
     private Rollit.NumDisplay number_display;
     private Rollit.RollHistory roll_history;
-    private Hdy.HeaderBar header;
+    // private Hdy.HeaderBar header;
+    private Gtk.HeaderBar header;
     private Gtk.Button roll_button;
     private Gtk.Button history_button;
     private Gtk.Box action_buttons;
@@ -38,11 +40,12 @@ public class Rollit.MainWindow : Hdy.Window {
     }
 
     construct {
-        Hdy.init ();
+        // Hdy.init ();
 
         restore_state ();
 
-        header = new Hdy.HeaderBar () {
+        // header = new Hdy.HeaderBar () {
+        header = new Gtk.HeaderBar () {
             title = "Roll-It",
             show_close_button = true
         };
@@ -83,10 +86,11 @@ public class Rollit.MainWindow : Hdy.Window {
         hp.pack2 (roll_history, false, false);
 
         var grid = new Gtk.Grid ();
-        grid.attach (header, 0, 0);
-        grid.attach (hp, 0, 1);
+        // grid.attach (header, 0, 0);
+        grid.attach (hp, 0, 0);
 
         add (grid);
+        set_titlebar (header); // TODO: Remove after switching back to HdyHeaderBar
 
         show_all ();
 

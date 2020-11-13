@@ -1,6 +1,6 @@
 project('com.github.zelikos.rannum',
     'vala', 'c',
-    version: '1.2.2')
+    version: '2.0.0')
 
 gnome = import('gnome')
 i18n = import('i18n')
@@ -21,8 +21,8 @@ asresources = gnome.compile_resources(
 
 dependencies = [
     dependency('gtk+-3.0'),
-    dependency('granite'),
-    dependency('libhandy-1')
+    dependency('granite')
+    #dependency('libhandy-1')
 ]
 
 executable(
