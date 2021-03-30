@@ -1,0 +1,19 @@
+app-id: com.github.zelikos.rannum
+
+runtime: org.gnome.Platform
+runtime-version: '3.38'
+sdk: org.gnome.Sdk
+
+command: com.github.zelikos.rannum
+
+finish-args:
+  - '--socket=fallback-x11'
+  - '--socket=wayland'
+
+modules:
+  - name: rannum
+    buildsystem: meson
+    sources:
+      - type: dir
+        path: .
+
