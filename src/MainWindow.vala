@@ -70,7 +70,6 @@ public class Rollit.MainWindow : Gtk.ApplicationWindow {
 
         action_buttons.add (roll_button);
         action_buttons.add (menu_button);
-        //action_buttons.get_style_context ().add_class (Gtk.STYLE_CLASS_LINKED);
 
         main_view = new Gtk.Grid () {
             row_spacing = 12,
