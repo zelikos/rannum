@@ -64,13 +64,13 @@ public class Rollit.MainWindow : Gtk.ApplicationWindow {
 
         menu_button = new Rollit.Menu ();
 
-        action_buttons = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0) {
-            halign = Gtk.Align.CENTER
+        action_buttons = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL) {
+            layout_style = Gtk.ButtonBoxStyle.CENTER
         };
 
         action_buttons.add (roll_button);
         action_buttons.add (menu_button);
-        action_buttons.get_style_context ().add_class (Gtk.STYLE_CLASS_LINKED);
+        //action_buttons.get_style_context ().add_class (Gtk.STYLE_CLASS_LINKED);
 
         main_view = new Gtk.Grid () {
             row_spacing = 12,
