@@ -1,12 +1,13 @@
 app-id: com.github.zelikos.rannum
 
-runtime: org.gnome.Platform
-runtime-version: '3.38'
-sdk: org.gnome.Sdk
+runtime: io.elementary.Platform
+runtime-version: '0.1.0'
+sdk: io.elementary.Sdk
 
 command: com.github.zelikos.rannum
 
 finish-args:
+  - '--share=ipc'
   - '--socket=fallback-x11'
   - '--socket=wayland'
 
@@ -16,4 +17,3 @@ modules:
     sources:
       - type: dir
         path: .
-
