@@ -1,7 +1,7 @@
 app-id: com.github.zelikos.rannum
 
 runtime: io.elementary.Platform
-runtime-version: '0.1.0'
+runtime-version: 'daily'
 sdk: io.elementary.Sdk
 
 command: com.github.zelikos.rannum
@@ -10,6 +10,8 @@ finish-args:
   - '--share=ipc'
   - '--socket=fallback-x11'
   - '--socket=wayland'
+  # For prefers-color-scheme to work
+  - '--system-talk-name=org.freedesktop.Accounts'
 
 modules:
   - name: rannum
