@@ -33,7 +33,8 @@ public class Rollit.MainWindow : Hdy.Window {
 
     public MainWindow (Rollit.Application app) {
         Object (
-            application: app
+            application: app,
+            title: "Roll-It"
         );
     }
 
