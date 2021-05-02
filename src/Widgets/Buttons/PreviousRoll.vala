@@ -54,7 +54,7 @@
         var copied_label = new Gtk.Label (_("Copied"));
 
         var stack = new Gtk.Stack () {
-            transition_duration = 200,
+            transition_duration = Granite.TRANSITION_DURATION_OPEN,
             transition_type = Gtk.StackTransitionType.CROSSFADE
         };
 
