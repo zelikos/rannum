@@ -2,6 +2,7 @@
 <!-- Copyright 2020-2021 Pat Csikos <zelikos@pm.me> -->
 <component type="desktop">
   <id>com.github.zelikos.rannum</id>
+  <launchable type="desktop-id">com.github.zelikos.rannum.desktop</launchable>
   <metadata_license>CC0</metadata_license>
   <project_license>GPL-3.0+</project_license>
   <name>Roll-It</name>
