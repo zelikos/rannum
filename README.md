@@ -35,7 +35,7 @@ flatpak install appcenter io.elementary.Platform io.elementary.Sdk
 Then, to build and install Roll-It:
 
 ```shell
-flatpak-builder build  com.github.zelikos.rannum.yml --user --install --force-clean
+flatpak-builder build com.github.zelikos.rannum.yml --user --install --force-clean
 ```
 
 ### Distro Packages
