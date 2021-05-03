@@ -175,8 +175,8 @@ public class Rollit.MainWindow : Hdy.Window {
         );
 
         accel_group.connect (
-            Gdk.Key.C,
-            Gdk.ModifierType.MOD1_MASK, // TODO: Replace with ALT_MASK for GTK4
+            Gdk.Key.L,
+            Gdk.ModifierType.CONTROL_MASK,
             Gtk.AccelFlags.VISIBLE | Gtk.AccelFlags.LOCKED,
             () => {
                 roll_history.clear_button.clicked ();
