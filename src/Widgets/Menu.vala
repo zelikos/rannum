@@ -53,8 +53,7 @@ public class Rollit.Menu : Gtk.MenuButton {
         var presets = new Gtk.Grid () {
             column_homogeneous = true,
             row_spacing = 12,
-            margin = 12,
-            margin_bottom = 6
+            margin = 12
         };
 
         presets.attach (six_sided, 0, 0);
@@ -72,8 +71,7 @@ public class Rollit.Menu : Gtk.MenuButton {
 
         var custom_setting = new Gtk.Grid () {
             column_spacing = 6,
-            margin = 12,
-            margin_top = 6
+            margin = 12
         };
 
         custom_setting.attach (custom_sided, 0, 0);
@@ -81,9 +79,7 @@ public class Rollit.Menu : Gtk.MenuButton {
 
         var separator = new Gtk.Separator (HORIZONTAL);
 
-        var menu_grid = new Gtk.Grid () {
-            row_spacing = 6
-        };
+        var menu_grid = new Gtk.Grid ();
 
         menu_popover = new Gtk.Popover (this);
 

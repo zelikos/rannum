@@ -63,7 +63,8 @@ public class Rollit.MainWindow : Hdy.Window {
         menu_button = new Rollit.Menu ();
 
         action_buttons = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL) {
-            layout_style = Gtk.ButtonBoxStyle.CENTER
+            layout_style = Gtk.ButtonBoxStyle.CENTER,
+            spacing = 6
         };
 
         action_buttons.add (roll_button);
