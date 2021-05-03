@@ -16,7 +16,7 @@
  * Authored by Patrick Csikos <zelikos@pm.me>
  */
 
- public class Rollit.PreviousRoll : Gtk.ListBoxRow {
+public class Rollit.PreviousRoll : Gtk.ListBoxRow {
 
     private Gtk.Image copy_icon;
     private uint timeout_id;
