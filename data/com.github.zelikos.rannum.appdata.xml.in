@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright 2020 Patrick Csikos <zelikos@pm.me.com> -->
+<!-- Copyright 2020-2021 Pat Csikos <zelikos@pm.me> -->
 <component type="desktop">
   <id>com.github.zelikos.rannum</id>
+  <launchable type="desktop-id">com.github.zelikos.rannum.desktop</launchable>
   <metadata_license>CC0</metadata_license>
   <project_license>GPL-3.0+</project_license>
   <name>Roll-It</name>
@@ -114,13 +115,13 @@
     <content_attribute id="money-purchasing">none</content_attribute>
     <content_attribute id="money-gambling">none</content_attribute>
   </content_rating>
-  <developer_name>Patrick Csikos</developer_name>
+  <developer_name>Pat Csikos</developer_name>
   <url type="homepage">https://github.com/zelikos/rannum</url>
   <url type="bugtracker">https://github.com/zelikos/rannum/issues</url>
   <url type="donation">https://liberapay.com/zelikos/</url>
   <custom>
     <value key="x-appcenter-color-primary">#a56de2</value>
     <value key="x-appcenter-color-primary-text">#fff</value>
-    <value key="x-appcenter-suggested-price">0</value>
+    <value key="x-appcenter-suggested-price">3</value>
   </custom>
 </component>
