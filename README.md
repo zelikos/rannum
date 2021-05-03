@@ -23,6 +23,23 @@ Any version distributed elsewhere is not provided nor supported by me.
 
 ## Building
 
+### Flatpak
+
+Roll-It depends on the elementary Flatpak runtime & SDK:
+
+```shell
+flatpak remote-add --if-not-exists appcenter https://flatpak.elementary.io/repo.flatpakrepo
+flatpak install appcenter io.elementary.Platform io.elementary.Sdk
+```
+
+Build and install Roll-It:
+
+```shell
+flatpak-builder build  com.github.yourusername.yourrepositoryname.yml --user --install --force-clean
+```
+
+### Distro Packages
+
 You'll need the following dependencies to build Roll-It yourself:
 
 * libgranite-dev
