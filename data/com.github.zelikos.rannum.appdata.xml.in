@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright 2020-2021 Pat Csikos <zelikos@pm.me> -->
+<!-- Copyright 2020-2021 Patrick Csikos <zelikos@pm.me> -->
 <component type="desktop">
   <id>com.github.zelikos.rannum</id>
   <launchable type="desktop-id">com.github.zelikos.rannum.desktop</launchable>
