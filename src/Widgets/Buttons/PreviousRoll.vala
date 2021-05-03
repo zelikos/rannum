@@ -54,7 +54,7 @@ public class Rollit.PreviousRoll : Gtk.ListBoxRow {
 
         var button = new Gtk.Button () {
             margin = 6,
-            tooltip_markup = _("Copy value to clipboard")
+            tooltip_markup = _("Copy result to clipboard")
         };
 
         button.add (stack);
