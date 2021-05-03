@@ -26,24 +26,28 @@ public class Rollit.RollHistory : Gtk.Grid {
 
     construct {
         previous_rolls_box = new Gtk.ListBox () {
+            activate_on_single_click = true,
+            visible = true
+        };
+
+        scroll_box = new Gtk.ScrolledWindow (null, null) {
+            hscrollbar_policy = NEVER,
+            propagate_natural_height = true,
             hexpand = true,
             vexpand = true
         };
-
-        scroll_box = new Gtk.ScrolledWindow (null, null);
-        scroll_box.hscrollbar_policy = NEVER;
         scroll_box.add (previous_rolls_box);
 
         var clear_text = new Gtk.Label (_("Clear"));
         var clear_icon = new Gtk.Image.from_icon_name ("edit-clear-all-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
 
-        var bottom_row = new Gtk.Box (HORIZONTAL, 32);
+        var bottom_row = new Gtk.Box (HORIZONTAL, 12);
         bottom_row.pack_start (clear_text);
         bottom_row.pack_end (clear_icon);
         bottom_row.margin = 6;
 
         clear_button = new Gtk.Button () {
-            tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>L"}, _("Clear History")),
+            tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>L"}, _("Clear history")),
             sensitive = false
         };
         clear_button.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
@@ -67,7 +71,7 @@ public class Rollit.RollHistory : Gtk.Grid {
     }
 
     public void add_roll (int roll) {
-        var new_roll = new Rollit.PreviousRoll.with_num (roll);
+        var new_roll = new Rollit.PreviousRoll (roll);
 
         previous_rolls_list.append (new_roll);
         previous_rolls_box.prepend (new_roll);

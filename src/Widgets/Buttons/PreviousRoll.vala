@@ -18,36 +18,26 @@
 
 public class Rollit.PreviousRoll : Gtk.ListBoxRow {
 
+    public signal void copied ();
+
     private Gtk.Image copy_icon;
     private uint timeout_id;
 
     public string roll_label { get; construct set; }
     public Gtk.Label roll_amount { get; set; }
 
-    public PreviousRoll () {
-        Object (
-            roll_label: "0"
-        );
-    }
-
-    public PreviousRoll.with_num (int roll) {
+    public PreviousRoll (int roll) {
         Object (
             roll_label: roll.to_string()
         );
     }
 
     construct {
-        roll_amount = new Gtk.Label (roll_label) {
-            halign = START,
-            valign = CENTER
-        };
+        roll_amount = new Gtk.Label (roll_label);
 
-        copy_icon = new Gtk.Image.from_icon_name ("edit-copy-symbolic", Gtk.IconSize.SMALL_TOOLBAR) {
-            halign = END,
-            valign = CENTER
-        };
+        copy_icon = new Gtk.Image.from_icon_name ("edit-copy-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
 
-        var button_layout = new Gtk.Box (HORIZONTAL, 32);
+        var button_layout = new Gtk.Box (HORIZONTAL, 12);
         button_layout.pack_start (roll_amount);
         button_layout.pack_end (copy_icon);
 
@@ -63,7 +53,8 @@ public class Rollit.PreviousRoll : Gtk.ListBoxRow {
         stack.visible_child_name = "button-box";
 
         var button = new Gtk.Button () {
-            margin = 6
+            margin = 6,
+            tooltip_text = _("Copy result to clipboard")
         };
 
         button.add (stack);
@@ -71,10 +62,8 @@ public class Rollit.PreviousRoll : Gtk.ListBoxRow {
         add (button);
 
         button.clicked.connect ( () => {
-            var cb = Gtk.Clipboard.get (Gdk.Atom.NONE);
-            cb.set_text (roll_amount.label, -1);
-
             uint duration = 1000;
+            copy_to_clipboard (roll_label);
 
             stack.visible_child_name = "copied";
             timeout_id = GLib.Timeout.add (duration, () => {
@@ -85,7 +74,13 @@ public class Rollit.PreviousRoll : Gtk.ListBoxRow {
         });
 
         activate.connect ( () => {
-            button.clicked();
+            button.clicked ();
         });
+    }
+
+    private void copy_to_clipboard (string roll) {
+        var cb = Gtk.Clipboard.get (Gdk.Atom.NONE);
+        cb.set_text (roll, -1);
+        copied ();
     }
  }

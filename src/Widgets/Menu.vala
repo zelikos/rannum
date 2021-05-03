@@ -94,7 +94,7 @@ public class Rollit.Menu : Gtk.MenuButton {
         popover = menu_popover;
 
         label = max_roll.to_string();
-        tooltip_text = _("Dice Settings");
+        tooltip_text = _("Dice settings");
         tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>D"}, tooltip_text);
 
         six_sided.clicked.connect ( () => {
