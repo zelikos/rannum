@@ -43,7 +43,8 @@ public class Rollit.RollHistory : Gtk.Grid {
         bottom_row.margin = 6;
 
         clear_button = new Gtk.Button () {
-            tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>L"}, _("Clear History"))
+            tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>L"}, _("Clear History")),
+            sensitive = false
         };
         clear_button.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
         clear_button.add (bottom_row);
@@ -53,6 +54,7 @@ public class Rollit.RollHistory : Gtk.Grid {
 
         clear_button.clicked.connect (() => {
             clear_rolls ();
+            clear_button.sensitive = false;
         });
 
         show_all ();
@@ -70,5 +72,9 @@ public class Rollit.RollHistory : Gtk.Grid {
         previous_rolls_list.append (new_roll);
         previous_rolls_box.prepend (new_roll);
         previous_rolls_box.show_all ();
+
+        if (clear_button.sensitive == false) {
+            clear_button.sensitive = true;
+        }
     }
 }
