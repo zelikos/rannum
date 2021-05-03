@@ -25,14 +25,14 @@ Any version distributed elsewhere is not provided nor supported by me.
 
 ### Flatpak
 
-Roll-It depends on the elementary Flatpak runtime & SDK:
+First, install the elementary Flatpak runtime & SDK:
 
 ```shell
 flatpak remote-add --if-not-exists appcenter https://flatpak.elementary.io/repo.flatpakrepo
 flatpak install appcenter io.elementary.Platform io.elementary.Sdk
 ```
 
-Build and install Roll-It:
+Then, to build and install Roll-It:
 
 ```shell
 flatpak-builder build  com.github.zelikos.rannum.yml --user --install --force-clean
