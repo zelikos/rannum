@@ -1,4 +1,4 @@
-/*  Copyright (C) 2020 Patrick Csikos (https://zelikos.github.io)
+/*  Copyright (C) 2020-2021 Patrick Csikos (https://zelikos.github.io)
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -43,7 +43,7 @@ public class Rollit.RollHistory : Gtk.Grid {
         bottom_row.margin = 6;
 
         clear_button = new Gtk.Button () {
-            tooltip_markup = Granite.markup_accel_tooltip ({"<Alt>C"}, _("Clear History"))
+            tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>L"}, _("Clear History"))
         };
         clear_button.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
         clear_button.add (bottom_row);
