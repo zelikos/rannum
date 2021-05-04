@@ -1,8 +1,8 @@
 app-id: com.github.zelikos.rannum
 
-runtime: io.elementary.Platform
-runtime-version: 'daily'
-sdk: io.elementary.Sdk
+runtime: org.gnome.Platform
+runtime-version: '40'
+sdk: org.gnome.Sdk
 
 command: com.github.zelikos.rannum
 
@@ -16,6 +16,13 @@ finish-args:
   - '--metadata=X-DConf=migrate-path=/com/github/zelikos/rannum/'
 
 modules:
+  - name: granite
+    buildsystem: meson
+    sources:
+      - type: git
+        url: https://github.com/elementary/granite.git
+        disable-shallow-clone: true
+
   - name: rannum
     buildsystem: meson
     sources:
