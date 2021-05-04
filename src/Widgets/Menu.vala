@@ -40,17 +40,27 @@ public class Rollit.Menu : Gtk.MenuButton {
         ten_sided = new Rollit.MenuItem ("d10", "<Ctrl>2");
         twenty_sided = new Rollit.MenuItem ("d20", "<ctrl>3");
 
-        custom_sided = new Gtk.RadioButton (dice_selection);
-        six_sided.dice_radio.join_group (custom_sided);
-        ten_sided.dice_radio.join_group (custom_sided);
-        twenty_sided.dice_radio.join_group (custom_sided);
+        var presets = new Gtk.Box (VERTICAL, 6) {
+            margin = 6,
+            margin_bottom = 0
+        };
+
+        presets.add (six_sided);
+        presets.add (ten_sided);
+        presets.add (twenty_sided);
 
         max_entry = new Gtk.SpinButton.with_range (1, 100, 1) {
             sensitive = false
         };
 
+        custom_sided = new Gtk.RadioButton (dice_selection);
+        six_sided.dice_radio.join_group (custom_sided);
+        ten_sided.dice_radio.join_group (custom_sided);
+        twenty_sided.dice_radio.join_group (custom_sided);
+
         var custom_setting = new Gtk.Box (HORIZONTAL, 6) {
-            margin = 12
+            margin = 12,
+            margin_top = 6
         };
 
         custom_setting.pack_start (custom_sided);
@@ -58,14 +68,14 @@ public class Rollit.Menu : Gtk.MenuButton {
 
         var separator = new Gtk.Separator (HORIZONTAL);
 
-        var menu_box = new Gtk.Box (VERTICAL, 0);
+        var menu_box = new Gtk.Box (VERTICAL, 6);
 
-        menu_box.add (six_sided);
-        menu_box.add (ten_sided);
-        menu_box.add (twenty_sided);
+        menu_box.add (presets);
         menu_box.add (separator);
         menu_box.add (custom_setting);
         menu_box.show_all ();
+
+
 
         load_max ();
 
