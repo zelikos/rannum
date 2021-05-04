@@ -35,9 +35,7 @@ public class Rollit.MenuItem : Gtk.Button {
         dice_radio = new Gtk.RadioButton (null);
         var accel_label = new Granite.AccelLabel (dice_label, dice_accel);
 
-        var box = new Gtk.Box (HORIZONTAL, 6) {
-            margin = 6
-        };
+        var box = new Gtk.Box (HORIZONTAL, 6);
         box.pack_start (dice_radio);
         box.pack_end (accel_label);
 
