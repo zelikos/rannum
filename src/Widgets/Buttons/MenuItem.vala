@@ -16,6 +16,35 @@
  * Authored by Patrick Csikos <zelikos@pm.me>
  */
 
-// public class Rollit.MenuItem : Gtk.ModelButton {
-//
-// }
+public class Rollit.MenuItem : Gtk.Button {
+
+    public Gtk.RadioButton dice_radio { get; private set; }
+    public string dice_label { get; construct set; }
+    public string dice_accel { get; construct set; }
+
+    public MenuItem (string label, string accel) {
+        Object (
+            dice_label: label,
+            dice_accel: accel
+        );
+    }
+
+    construct {
+        get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+
+        dice_radio = new Gtk.RadioButton (null);
+        var accel_label = new Granite.AccelLabel (dice_label, dice_accel);
+
+        var box = new Gtk.Box (HORIZONTAL, 6) {
+            margin = 6
+        };
+        box.pack_start (dice_radio);
+        box.pack_end (accel_label);
+
+        add (box);
+
+        clicked.connect ( () => {
+           dice_radio.clicked ();
+        });
+    }
+}
