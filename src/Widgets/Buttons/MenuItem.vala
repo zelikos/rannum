@@ -16,6 +16,6 @@
  * Authored by Patrick Csikos <zelikos@pm.me>
  */
 
-public class Rollit.MenuItem : Gtk.ListBoxRow {
-    
-}
+// public class Rollit.MenuItem : Gtk.ModelButton {
+//
+// }

@@ -32,36 +32,68 @@ public class Rollit.Menu : Gtk.MenuButton {
     public int max_roll { get; private set; }
 
     construct {
-        six_sided = new Gtk.RadioButton.with_label (new SList<Gtk.RadioButton> (), _("d6"));
-        ten_sided = new Gtk.RadioButton.with_label_from_widget (six_sided, _("d10"));
-        twenty_sided = new Gtk.RadioButton.with_label_from_widget (six_sided, _("d20"));
+        six_sided = new Gtk.RadioButton (new SList<Gtk.RadioButton> ());
+        var six_sided_accel_label = new Granite.AccelLabel ("d6", "<Ctrl>1");
 
-        var six_sided_accel_label = new Gtk.Label (Granite.markup_accel_tooltip ({"<Ctrl>1"})) {
-            halign = Gtk.Align.END,
-            use_markup = true
-        };
+        var six_button = new Gtk.Button ();
+        six_button.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+        six_button.add (six_sided_accel_label);
+        six_button.clicked.connect ( () => {
+            six_sided.clicked ();
+        });
 
-        var ten_sided_accel_label = new Gtk.Label (Granite.markup_accel_tooltip ({"<Ctrl>2"})) {
-            halign = Gtk.Align.END,
-            use_markup = true
-        };
-        var twenty_sided_accel_label = new Gtk.Label (Granite.markup_accel_tooltip ({"<Ctrl>3"})) {
-            halign = Gtk.Align.END,
-            use_markup = true
-        };
+        ten_sided = new Gtk.RadioButton.from_widget (six_sided);
+        var ten_sided_accel_label = new Granite.AccelLabel ("d10", "<Ctrl>2");
+
+        var ten_button = new Gtk.Button ();
+        ten_button.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+        ten_button.add (ten_sided_accel_label);
+        ten_button.clicked.connect ( () => {
+            ten_sided.clicked ();
+        });
+
+        twenty_sided = new Gtk.RadioButton.from_widget (six_sided);
+        var twenty_sided_accel_label = new Granite.AccelLabel ("d20", "<Ctrl>3");
+
+        var twenty_button = new Gtk.Button ();
+        twenty_button.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+        twenty_button.add (twenty_sided_accel_label);
+        twenty_button.clicked.connect ( () => {
+            twenty_sided.clicked ();
+        });
+
+        // var six_sided_accel_label = new Gtk.Label (Granite.markup_accel_tooltip ({"<Ctrl>1"})) {
+        //     halign = Gtk.Align.END,
+        //     use_markup = true
+        // };
+        // six_sided_accel_label.get_style_context ().add_class (Granite.STYLE_CLASS_KEYCAP);
+        // var ten_sided_accel_label = new Gtk.Label (Granite.markup_accel_tooltip ({"<Ctrl>2"})) {
+        //     halign = Gtk.Align.END,
+        //     use_markup = true
+        // };
+        // var twenty_sided_accel_label = new Gtk.Label (Granite.markup_accel_tooltip ({"<Ctrl>3"})) {
+        //     halign = Gtk.Align.END,
+        //     use_markup = true
+        // };
 
         var presets = new Gtk.Grid () {
-            column_homogeneous = true,
-            row_spacing = 12,
-            margin = 12
+            column_spacing = 6,
+            row_spacing = 6,
+            margin = 12,
+            margin_bottom = 0
         };
 
         presets.attach (six_sided, 0, 0);
-        presets.attach (six_sided_accel_label, 1, 0);
+        presets.attach (six_button, 1, 0);
         presets.attach (ten_sided, 0, 1);
-        presets.attach (ten_sided_accel_label, 1, 1);
+        presets.attach (ten_button, 1, 1);
         presets.attach (twenty_sided, 0, 2);
-        presets.attach (twenty_sided_accel_label, 1, 2);
+        presets.attach (twenty_button, 1, 2);
+
+        // var presets = new Gtk.Box (VERTICAL, 12);
+        // presets.add (six_button);
+        // presets.add (ten_sided);
+        // presets.add (twenty_sided);
 
         custom_sided = new Gtk.RadioButton.from_widget (six_sided);
 
@@ -69,28 +101,27 @@ public class Rollit.Menu : Gtk.MenuButton {
             sensitive = false
         };
 
-        var custom_setting = new Gtk.Grid () {
-            column_spacing = 6,
-            margin = 12
+        var custom_setting = new Gtk.Box (HORIZONTAL, 6) {
+            margin = 12,
+            margin_top = 0
         };
 
-        custom_setting.attach (custom_sided, 0, 0);
-        custom_setting.attach (max_entry, 1, 0);
+        custom_setting.pack_start (custom_sided);
+        custom_setting.pack_end (max_entry);
 
         var separator = new Gtk.Separator (HORIZONTAL);
 
-        var menu_grid = new Gtk.Grid ();
+        var menu_box = new Gtk.Box (VERTICAL, 12);
 
-        menu_popover = new Gtk.Popover (this);
-
-        menu_grid.attach (presets, 0, 0);
-        menu_grid.attach (separator, 0, 1);
-        menu_grid.attach (custom_setting, 0, 2);
-        menu_grid.show_all ();
+        menu_box.add (presets);
+        menu_box.add (separator);
+        menu_box.add (custom_setting);
+        menu_box.show_all ();
 
         load_max ();
 
-        menu_popover.add (menu_grid);
+        menu_popover = new Gtk.Popover (this);
+        menu_popover.add (menu_box);
         popover = menu_popover;
 
         label = max_roll.to_string();
