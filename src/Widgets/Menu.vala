@@ -22,10 +22,6 @@ public class Rollit.Menu : Gtk.MenuButton {
 
     private SList<Gtk.RadioButton> dice_selection;
 
-    // private Gtk.RadioButton six_sided;
-    // private Gtk.RadioButton ten_sided;
-    // private Gtk.RadioButton twenty_sided;
-
     private Rollit.MenuItem six_sided;
     private Rollit.MenuItem ten_sided;
     private Rollit.MenuItem twenty_sided;
@@ -43,69 +39,6 @@ public class Rollit.Menu : Gtk.MenuButton {
         six_sided = new Rollit.MenuItem ("d6", "<Ctrl>1");
         ten_sided = new Rollit.MenuItem ("d10", "<Ctrl>2");
         twenty_sided = new Rollit.MenuItem ("d20", "<ctrl>3");
-
-        // six_sided = new Gtk.RadioButton (new SList<Gtk.RadioButton> ());
-        // var six_sided_accel_label = new Granite.AccelLabel ("d6", "<Ctrl>1");
-
-        // var six_button = new Gtk.Button ();
-        // six_button.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
-        // six_button.add (six_sided_accel_label);
-        // six_button.clicked.connect ( () => {
-        //     six_sided.clicked ();
-        // });
-
-        // ten_sided = new Gtk.RadioButton.from_widget (six_sided);
-        // var ten_sided_accel_label = new Granite.AccelLabel ("d10", "<Ctrl>2");
-
-        // var ten_button = new Gtk.Button ();
-        // ten_button.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
-        // ten_button.add (ten_sided_accel_label);
-        // ten_button.clicked.connect ( () => {
-        //     ten_sided.clicked ();
-        // });
-
-        // twenty_sided = new Gtk.RadioButton.from_widget (six_sided);
-        // var twenty_sided_accel_label = new Granite.AccelLabel ("d20", "<Ctrl>3");
-
-        // var twenty_button = new Gtk.Button ();
-        // twenty_button.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
-        // twenty_button.add (twenty_sided_accel_label);
-        // twenty_button.clicked.connect ( () => {
-        //     twenty_sided.clicked ();
-        // });
-
-        // var six_sided_accel_label = new Gtk.Label (Granite.markup_accel_tooltip ({"<Ctrl>1"})) {
-        //     halign = Gtk.Align.END,
-        //     use_markup = true
-        // };
-        // six_sided_accel_label.get_style_context ().add_class (Granite.STYLE_CLASS_KEYCAP);
-        // var ten_sided_accel_label = new Gtk.Label (Granite.markup_accel_tooltip ({"<Ctrl>2"})) {
-        //     halign = Gtk.Align.END,
-        //     use_markup = true
-        // };
-        // var twenty_sided_accel_label = new Gtk.Label (Granite.markup_accel_tooltip ({"<Ctrl>3"})) {
-        //     halign = Gtk.Align.END,
-        //     use_markup = true
-        // };
-
-        // var presets = new Gtk.Grid () {
-        //     column_spacing = 6,
-        //     row_spacing = 6,
-        //     margin = 12,
-        //     margin_bottom = 0
-        // };
-
-        // presets.attach (six_sided, 0, 0);
-        // presets.attach (six_button, 1, 0);
-        // presets.attach (ten_sided, 0, 1);
-        // presets.attach (ten_button, 1, 1);
-        // presets.attach (twenty_sided, 0, 2);
-        // presets.attach (twenty_button, 1, 2);
-
-        // var presets = new Gtk.Box (VERTICAL, 12);
-        // presets.add (six_button);
-        // presets.add (ten_sided);
-        // presets.add (twenty_sided);
 
         custom_sided = new Gtk.RadioButton (dice_selection);
         six_sided.dice_radio.join_group (custom_sided);
@@ -127,7 +60,6 @@ public class Rollit.Menu : Gtk.MenuButton {
 
         var menu_box = new Gtk.Box (VERTICAL, 0);
 
-        // menu_box.add (presets);
         menu_box.add (six_sided);
         menu_box.add (ten_sided);
         menu_box.add (twenty_sided);
