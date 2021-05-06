@@ -16,12 +16,12 @@
  * Authored by Patrick Csikos <zelikos@pm.me>
  */
 
-public class Rollit.MainWindow : Hdy.Window {
+public class Rollit.MainWindow : Adw.ApplicationWindow {
 
     private Rollit.Menu menu_button;
     private Rollit.NumDisplay number_display;
     private Rollit.RollHistory roll_history;
-    private Hdy.HeaderBar header;
+    private Adw.HeaderBar header;
     private Gtk.Button roll_button;
     private Gtk.Button history_button;
     private Gtk.Box action_buttons;
@@ -39,11 +39,11 @@ public class Rollit.MainWindow : Hdy.Window {
     }
 
     construct {
-        Hdy.init ();
+        Adw.init ();
 
         restore_state ();
 
-        header = new Hdy.HeaderBar () {
+        header = new Adw.HeaderBar () {
             title = "Roll-It",
             show_close_button = true
         };
