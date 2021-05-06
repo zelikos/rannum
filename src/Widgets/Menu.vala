@@ -26,7 +26,7 @@ public class Rollit.Menu : Gtk.MenuButton {
     private Rollit.MenuItem ten_sided;
     private Rollit.MenuItem twenty_sided;
 
-    private Gtk.RadioButton custom_sided;
+    private Gtk.RadioButton custom_sided; // TODO: Error in GTK4
     private Gtk.SpinButton max_entry;
 
     private Gtk.Popover menu_popover;

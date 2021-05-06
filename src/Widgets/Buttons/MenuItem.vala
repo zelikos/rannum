@@ -18,7 +18,7 @@
 
 public class Rollit.MenuItem : Gtk.Button {
 
-    public Gtk.RadioButton dice_radio { get; private set; }
+    public Gtk.RadioButton dice_radio { get; private set; } // TODO: Error in GTK4
     public string dice_label { get; construct set; }
     public string dice_accel { get; construct set; }
 
