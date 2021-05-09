@@ -13,6 +13,8 @@
 
 Simulate the results of rolling a die. Roll a six-sided die by default, or get the results of rolling a custom die with up to one-hundred sides.
 
+This branch is a highly experimental port to GTK4; many features are still non-functional.
+
 ## Installation
 
 Roll-It is designed and developed primarily for [elementary OS]. The latest stable release is available via AppCenter.
@@ -25,11 +27,21 @@ Any version distributed elsewhere is not provided nor supported by me.
 
 ### Flatpak
 
-First, install the elementary Flatpak runtime & SDK:
+This branch is for experimental support for building on ARM devices like the Pinebook Pro.
 
+Because the elementary Flatpak runtime currently does not build for aarch64, this branch leverages the GNOME platform and Flathub instead.
+
+<!--First, install the elementary Flatpak runtime & SDK:-->
+
+<!--```shell-->-->
+<!--flatpak remote-add --if-not-exists appcenter https://flatpak.elementary.io/repo.flatpakrepo-->
+<!--flatpak install appcenter io.elementary.Platform io.elementary.Sdk-->
+<!--```-->
+
+First, install Flathub and the GNOME runtime and SDK:
 ```shell
-flatpak remote-add --if-not-exists appcenter https://flatpak.elementary.io/repo.flatpakrepo
-flatpak install appcenter io.elementary.Platform io.elementary.Sdk
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+flatpak install flathub org.gnome.Platform/aarch64/40 org.gnome.Sdk/aarch64/40
 ```
 
 Then, to build and install Roll-It:

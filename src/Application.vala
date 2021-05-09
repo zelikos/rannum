@@ -31,26 +31,27 @@ public class Rollit.Application : Gtk.Application {
     }
 
     protected override void activate () {
-        var gtk_settings = Gtk.Settings.get_default ();
-        var granite_settings = Granite.Settings.get_default ();
+        // var gtk_settings = Gtk.Settings.get_default ();
+        // var granite_settings = Granite.Settings.get_default ();
 
         // gtk_settings.gtk_application_prefer_dark_theme = settings.get_boolean ("dark-style");
 
-        gtk_settings.gtk_application_prefer_dark_theme = granite_settings.prefers_color_scheme == Granite.Settings.ColorScheme.DARK;
+        // gtk_settings.gtk_application_prefer_dark_theme = granite_settings.prefers_color_scheme == Granite.Settings.ColorScheme.DARK;
 
-        granite_settings.notify["prefers-color-scheme"].connect (() => {
-            gtk_settings.gtk_application_prefer_dark_theme = granite_settings.prefers_color_scheme == Granite.Settings.ColorScheme.DARK;
-        });
+        // granite_settings.notify["prefers-color-scheme"].connect (() => {
+        //     gtk_settings.gtk_application_prefer_dark_theme = granite_settings.prefers_color_scheme == Granite.Settings.ColorScheme.DARK;
+        // });
 
-        var provider = new Gtk.CssProvider ();
-        provider.load_from_resource ("/com/github/zelikos/rannum/styles/global.css");
-        Gtk.StyleContext.add_provider_for_screen (
-            Gdk.Screen.get_default (),
-            provider,
-            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-        );
+        // var provider = new Gtk.CssProvider ();
+        // provider.load_from_resource ("/com/github/zelikos/rannum/styles/global.css");
+        // Gtk.StyleContext.add_provider_for_screen (
+        //     Gdk.Screen.get_default (),
+        //     provider,
+        //     Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        // );
 
         var window = new Rollit.MainWindow (this);
+        window.show ();
 
         add_window (window);
     }

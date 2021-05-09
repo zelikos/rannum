@@ -35,16 +35,16 @@ public class Rollit.PreviousRoll : Gtk.ListBoxRow {
     construct {
         roll_amount = new Gtk.Label (roll_label);
 
-        copy_icon = new Gtk.Image.from_icon_name ("edit-copy-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
+        copy_icon = new Gtk.Image.from_icon_name ("edit-copy-symbolic");//, Gtk.IconSize.SMALL_TOOLBAR);
 
         var button_layout = new Gtk.Box (HORIZONTAL, 12);
-        button_layout.pack_start (roll_amount);
-        button_layout.pack_end (copy_icon);
+        button_layout.append (roll_amount);
+        button_layout.append (copy_icon);
 
         var copied_label = new Gtk.Label (_("Copied"));
 
         var stack = new Gtk.Stack () {
-            transition_duration = Granite.TRANSITION_DURATION_OPEN,
+            transition_duration = 200, // Granite.TRANSITION_DURATION_OPEN,
             transition_type = Gtk.StackTransitionType.CROSSFADE
         };
 
@@ -53,17 +53,20 @@ public class Rollit.PreviousRoll : Gtk.ListBoxRow {
         stack.visible_child_name = "button-box";
 
         var button = new Gtk.Button () {
-            margin = 6,
+            margin_start = 6,
+            margin_end = 6,
+            margin_top = 6,
+            margin_bottom = 6,
             tooltip_text = _("Copy result to clipboard")
         };
 
-        button.add (stack);
+        button.set_child (stack);
 
-        add (button);
+        set_child (button);
 
         button.clicked.connect ( () => {
             uint duration = 1000;
-            copy_to_clipboard (roll_label);
+            // copy_to_clipboard (roll_label);
 
             stack.visible_child_name = "copied";
             timeout_id = GLib.Timeout.add (duration, () => {
@@ -78,9 +81,9 @@ public class Rollit.PreviousRoll : Gtk.ListBoxRow {
         });
     }
 
-    private void copy_to_clipboard (string roll) {
-        var cb = Gtk.Clipboard.get (Gdk.Atom.NONE);
-        cb.set_text (roll, -1);
-        copied ();
-    }
+    // private void copy_to_clipboard (string roll) {
+    //     var cb = Gtk.Clipboard.get (Gdk.Atom.NONE);
+    //     cb.set_text (roll, -1);
+    //     copied ();
+    // }
  }
