@@ -210,7 +210,7 @@ public class Rollit.MainWindow : Adw.ApplicationWindow {
         history_visible = Application.settings.get_boolean ("show-history");
     }
 
-    public override bool configure_event (Gdk.EventConfigure event) {
+    public override bool configure_event (Gdk.EventConfigure event) { // TODO: Error in GTK4
         if (configure_id != 0) {
             GLib.Source.remove (configure_id);
         }
