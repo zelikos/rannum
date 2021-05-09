@@ -42,13 +42,13 @@ public class Rollit.Application : Gtk.Application {
         //     gtk_settings.gtk_application_prefer_dark_theme = granite_settings.prefers_color_scheme == Granite.Settings.ColorScheme.DARK;
         // });
 
-        var provider = new Gtk.CssProvider ();
-        provider.load_from_resource ("/com/github/zelikos/rannum/styles/global.css");
-        Gtk.StyleContext.add_provider_for_screen (
-            Gdk.Screen.get_default (),
-            provider,
-            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-        );
+        // var provider = new Gtk.CssProvider ();
+        // provider.load_from_resource ("/com/github/zelikos/rannum/styles/global.css");
+        // Gtk.StyleContext.add_provider_for_screen (
+        //     Gdk.Screen.get_default (),
+        //     provider,
+        //     Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        // );
 
         var window = new Rollit.MainWindow (this);
 

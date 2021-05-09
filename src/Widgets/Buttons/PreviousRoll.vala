@@ -38,8 +38,8 @@ public class Rollit.PreviousRoll : Gtk.ListBoxRow {
         copy_icon = new Gtk.Image.from_icon_name ("edit-copy-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
 
         var button_layout = new Gtk.Box (HORIZONTAL, 12);
-        button_layout.pack_start (roll_amount);
-        button_layout.pack_end (copy_icon);
+        button_layout.append (roll_amount);
+        button_layout.append (copy_icon);
 
         var copied_label = new Gtk.Label (_("Copied"));
 

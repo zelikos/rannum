@@ -30,20 +30,20 @@ public class Rollit.MenuItem : Gtk.Button {
     }
 
     construct {
-        get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+        // get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
 
         dice_radio = new Gtk.CheckButton.with_label (dice_label);
         // var accel_label = new Granite.AccelLabel (dice_label, dice_accel);
         var accel_label = new Gtk.Label (dice_accel);
 
         var box = new Gtk.Box (HORIZONTAL, 6);
-        box.pack_start (dice_radio);
-        box.pack_end (accel_label);
+        box.append (dice_radio);
+        box.append (accel_label);
 
-        add (box);
+        set_child (box);
 
         clicked.connect ( () => {
-           dice_radio.clicked ();
+           dice_radio.toggled ();
         });
     }
 }

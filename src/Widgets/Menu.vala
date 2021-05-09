@@ -41,46 +41,50 @@ public class Rollit.Menu : Gtk.MenuButton {
         twenty_sided = new Rollit.MenuItem ("d20", "<ctrl>3");
 
         var presets = new Gtk.Box (VERTICAL, 6) {
-            margin = 6,
+            margin_start = 6,
+            margin_end = 6,
+            margin_top = 6,
             margin_bottom = 0
         };
 
-        presets.add (six_sided);
-        presets.add (ten_sided);
-        presets.add (twenty_sided);
+        presets.append (six_sided);
+        presets.append (ten_sided);
+        presets.append (twenty_sided);
 
         max_entry = new Gtk.SpinButton.with_range (1, 100, 1) {
             sensitive = false
         };
 
-        custom_sided = new Gtk.CheckButton (dice_selection);
-        six_sided.dice_radio.join_group (custom_sided);
-        ten_sided.dice_radio.join_group (custom_sided);
-        twenty_sided.dice_radio.join_group (custom_sided);
+        custom_sided = new Gtk.CheckButton ();
+        six_sided.dice_radio.set_group (custom_sided);
+        ten_sided.dice_radio.set_group (custom_sided);
+        twenty_sided.dice_radio.set_group (custom_sided);
 
         var custom_setting = new Gtk.Box (HORIZONTAL, 6) {
-            margin = 12,
+            margin_start = 12,
+            margin_end = 12,
+            margin_bottom = 12,
             margin_top = 6
         };
 
-        custom_setting.pack_start (custom_sided);
-        custom_setting.pack_end (max_entry);
+        custom_setting.append (custom_sided);
+        custom_setting.append (max_entry);
 
         var separator = new Gtk.Separator (HORIZONTAL);
 
         var menu_box = new Gtk.Box (VERTICAL, 6);
 
-        menu_box.add (presets);
-        menu_box.add (separator);
-        menu_box.add (custom_setting);
-        menu_box.show_all ();
+        menu_box.append (presets);
+        menu_box.append (separator);
+        menu_box.append (custom_setting);
+        // menu_box.show_all ();
 
 
 
         load_max ();
 
-        menu_popover = new Gtk.Popover (this);
-        menu_popover.add (menu_box);
+        menu_popover = new Gtk.Popover ();
+        menu_popover.set_child (menu_box);
         popover = menu_popover;
 
         label = max_roll.to_string();
@@ -100,7 +104,7 @@ public class Rollit.Menu : Gtk.MenuButton {
             change_max (20, "d20");
         });
 
-        custom_sided.clicked.connect ( () => {
+        custom_sided.toggled.connect ( () => {
             change_max (max_entry.get_value_as_int ());
         });
 
@@ -163,7 +167,7 @@ public class Rollit.Menu : Gtk.MenuButton {
                 twenty_sided.clicked();
                 break;
             case 4:
-                custom_sided.clicked();
+                custom_sided.toggled();
                 if (menu_popover.visible) {
                     max_entry.grab_focus();
                 }
