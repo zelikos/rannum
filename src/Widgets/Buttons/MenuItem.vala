@@ -32,8 +32,9 @@ public class Rollit.MenuItem : Gtk.Button {
     construct {
         get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
 
-        dice_radio = new Gtk.CheckButton (null);
-        var accel_label = new Granite.AccelLabel (dice_label, dice_accel);
+        dice_radio = new Gtk.CheckButton.with_label (dice_label);
+        // var accel_label = new Granite.AccelLabel (dice_label, dice_accel);
+        var accel_label = new Gtk.Label (dice_accel);
 
         var box = new Gtk.Box (HORIZONTAL, 6);
         box.pack_start (dice_radio);

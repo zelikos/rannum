@@ -85,7 +85,8 @@ public class Rollit.Menu : Gtk.MenuButton {
 
         label = max_roll.to_string();
         tooltip_text = _("Dice settings");
-        tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>D"}, tooltip_text);
+        // tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>D"}, tooltip_text);
+        tooltip_markup = ("Ctrl+D");
 
         six_sided.clicked.connect ( () => {
             change_max (6, "d6");

@@ -47,7 +47,9 @@ public class Rollit.RollHistory : Gtk.Grid {
         bottom_row.margin = 6;
 
         clear_button = new Gtk.Button () {
-            tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>L"}, _("Clear history")),
+            tooltip_text = _("Clear history"),
+            tooltip_markup = ("Ctrl+L"),
+            // tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>L"}, _("Clear history")),
             sensitive = false
         };
         clear_button.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);

@@ -44,7 +44,7 @@ public class Rollit.PreviousRoll : Gtk.ListBoxRow {
         var copied_label = new Gtk.Label (_("Copied"));
 
         var stack = new Gtk.Stack () {
-            transition_duration = Granite.TRANSITION_DURATION_OPEN,
+            transition_duration = 200, // Granite.TRANSITION_DURATION_OPEN,
             transition_type = Gtk.StackTransitionType.CROSSFADE
         };
 

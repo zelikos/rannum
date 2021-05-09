@@ -49,7 +49,8 @@ public class Rollit.MainWindow : Adw.ApplicationWindow {
         };
 
         history_button = new Gtk.Button.from_icon_name ("document-open-recent-symbolic", Gtk.IconSize.MENU) {
-            tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>H"}, _("Roll history"))
+            // tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>H"}, _("Roll history"))
+            tooltip_text = ("Ctrl+H")
         };
 
         header.pack_end (history_button);
@@ -57,7 +58,7 @@ public class Rollit.MainWindow : Adw.ApplicationWindow {
         number_display = new Rollit.NumDisplay ();
 
         roll_button = new Gtk.Button.with_label (_("Roll"));
-        roll_button.tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>R"}, roll_button.label);
+        // roll_button.tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>R"}, roll_button.label);
         roll_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
 
         menu_button = new Rollit.Menu ();
