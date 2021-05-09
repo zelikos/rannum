@@ -13,6 +13,8 @@
 
 Simulate the results of rolling a die. Roll a six-sided die by default, or get the results of rolling a custom die with up to one-hundred sides.
 
+This branch is a highly experimental port to GTK4; many features are still non-functional.
+
 ## Installation
 
 Roll-It is designed and developed primarily for [elementary OS]. The latest stable release is available via AppCenter.
