@@ -210,30 +210,30 @@ public class Rollit.MainWindow : Adw.ApplicationWindow {
         history_visible = Application.settings.get_boolean ("show-history");
     }
 
-    public override bool configure_event (Gdk.EventConfigure event) { // TODO: Error in GTK4
-        if (configure_id != 0) {
-            GLib.Source.remove (configure_id);
-        }
+    // public override bool configure_event (Gdk.EventConfigure event) { // TODO: Doesn't work in GTK4
+    //     if (configure_id != 0) {
+    //         GLib.Source.remove (configure_id);
+    //     }
 
-        configure_id = Timeout.add (400, () => {
-            configure_id = 0;
+    //     configure_id = Timeout.add (400, () => {
+    //         configure_id = 0;
 
-            if (is_maximized) {
-                Application.settings.set_boolean ("maximized", true);
-            } else {
-                Application.settings.set_boolean ("maximized", false);
+    //         if (is_maximized) {
+    //             Application.settings.set_boolean ("maximized", true);
+    //         } else {
+    //             Application.settings.set_boolean ("maximized", false);
 
-                var rect = Gdk.Rectangle ();
-                get_size (out rect.width, out rect.height);
-                Application.settings.set ("window-size", "(ii)", rect.width, rect.height);
+    //             var rect = Gdk.Rectangle ();
+    //             get_size (out rect.width, out rect.height);
+    //             Application.settings.set ("window-size", "(ii)", rect.width, rect.height);
 
-                int root_x, root_y;
-                get_position (out root_x, out root_y);
-                Application.settings.set ("window-position", "(ii)", root_x, root_y);
-            }
-            return false;
-        });
+    //             int root_x, root_y;
+    //             get_position (out root_x, out root_y);
+    //             Application.settings.set ("window-position", "(ii)", root_x, root_y);
+    //         }
+    //         return false;
+    //     });
 
-        return base.configure_event (event);
-    }
+    //     return base.configure_event (event);
+    // }
 }
