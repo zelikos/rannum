@@ -20,13 +20,13 @@ public class Rollit.Menu : Gtk.MenuButton {
 
     public signal void close_menu ();
 
-    private SList<Gtk.RadioButton> dice_selection;
+    private SList<Gtk.CheckButton> dice_selection;
 
     private Rollit.MenuItem six_sided;
     private Rollit.MenuItem ten_sided;
     private Rollit.MenuItem twenty_sided;
 
-    private Gtk.RadioButton custom_sided;
+    private Gtk.CheckButton custom_sided;
     private Gtk.SpinButton max_entry;
 
     private Gtk.Popover menu_popover;
@@ -34,7 +34,7 @@ public class Rollit.Menu : Gtk.MenuButton {
     public int max_roll { get; private set; }
 
     construct {
-        dice_selection = new SList<Gtk.RadioButton> ();
+        dice_selection = new SList<Gtk.CheckButton> ();
 
         six_sided = new Rollit.MenuItem ("d6", "<Ctrl>1");
         ten_sided = new Rollit.MenuItem ("d10", "<Ctrl>2");
@@ -53,7 +53,7 @@ public class Rollit.Menu : Gtk.MenuButton {
             sensitive = false
         };
 
-        custom_sided = new Gtk.RadioButton (dice_selection);
+        custom_sided = new Gtk.CheckButton (dice_selection);
         six_sided.dice_radio.join_group (custom_sided);
         ten_sided.dice_radio.join_group (custom_sided);
         twenty_sided.dice_radio.join_group (custom_sided);
