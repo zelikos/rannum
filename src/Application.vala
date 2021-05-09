@@ -31,10 +31,10 @@ public class Rollit.Application : Gtk.Application {
     }
 
     protected override void activate () {
-        var gtk_settings = Gtk.Settings.get_default ();
+        // var gtk_settings = Gtk.Settings.get_default ();
         // var granite_settings = Granite.Settings.get_default ();
 
-        gtk_settings.gtk_application_prefer_dark_theme = settings.get_boolean ("dark-style");
+        // gtk_settings.gtk_application_prefer_dark_theme = settings.get_boolean ("dark-style");
 
         // gtk_settings.gtk_application_prefer_dark_theme = granite_settings.prefers_color_scheme == Granite.Settings.ColorScheme.DARK;
 
@@ -51,6 +51,7 @@ public class Rollit.Application : Gtk.Application {
         // );
 
         var window = new Rollit.MainWindow (this);
+        window.show ();
 
         add_window (window);
     }

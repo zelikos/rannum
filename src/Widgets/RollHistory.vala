@@ -25,26 +25,28 @@ public class Rollit.RollHistory : Gtk.Grid {
     public Gtk.Button clear_button;
 
     construct {
+        previous_rolls_list = new GLib.List<PreviousRoll> ();
+    
         previous_rolls_box = new Gtk.ListBox () {
             activate_on_single_click = true,
             visible = true
         };
 
-        scroll_box = new Gtk.ScrolledWindow (null, null) {
+        scroll_box = new Gtk.ScrolledWindow () {
             hscrollbar_policy = NEVER,
             propagate_natural_height = true,
             hexpand = true,
             vexpand = true
         };
-        scroll_box.add (previous_rolls_box);
+        scroll_box.set_child (previous_rolls_box);
 
         var clear_text = new Gtk.Label (_("Clear"));
-        var clear_icon = new Gtk.Image.from_icon_name ("edit-clear-all-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
+        var clear_icon = new Gtk.Image.from_icon_name ("edit-clear-all-symbolic");
 
         var bottom_row = new Gtk.Box (HORIZONTAL, 12);
-        bottom_row.pack_start (clear_text);
-        bottom_row.pack_end (clear_icon);
-        bottom_row.margin = 6;
+        bottom_row.append (clear_text);
+        bottom_row.append (clear_icon);
+        bottom_row.margin_start = margin_end = margin_top = margin_bottom = 6;
 
         clear_button = new Gtk.Button () {
             tooltip_text = _("Clear history"),
@@ -52,8 +54,8 @@ public class Rollit.RollHistory : Gtk.Grid {
             // tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>L"}, _("Clear history")),
             sensitive = false
         };
-        clear_button.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
-        clear_button.add (bottom_row);
+        // clear_button.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+        clear_button.set_child (bottom_row);
 
         attach (scroll_box, 0, 0);
         attach (clear_button, 0, 1);
@@ -63,12 +65,13 @@ public class Rollit.RollHistory : Gtk.Grid {
             clear_button.sensitive = false;
         });
 
-        show_all ();
+        // show_all ();
     }
 
     private void clear_rolls () {
         foreach (PreviousRoll item in previous_rolls_list) {
-            item.destroy ();
+            previous_rolls_box.remove (item);
+            // previous_rolls_list.remove (item);
         }
     }
 
@@ -77,7 +80,7 @@ public class Rollit.RollHistory : Gtk.Grid {
 
         previous_rolls_list.append (new_roll);
         previous_rolls_box.prepend (new_roll);
-        previous_rolls_box.show_all ();
+        // previous_rolls_box.show_all ();
 
         if (clear_button.sensitive == false) {
             clear_button.sensitive = true;

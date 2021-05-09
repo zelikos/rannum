@@ -28,8 +28,8 @@ public class Rollit.MainWindow : Adw.ApplicationWindow {
     private Gtk.Grid main_view;
     private Gtk.Paned hp;
 
-    private bool history_visible;
-    private uint configure_id;
+    private bool history_visible = true;
+    // private uint configure_id;
 
     public MainWindow (Rollit.Application app) {
         Object (
@@ -41,16 +41,17 @@ public class Rollit.MainWindow : Adw.ApplicationWindow {
     construct {
         Adw.init ();
 
-        restore_state ();
+        // restore_state ();
 
-        header = new Adw.HeaderBar () {
-            title = "Roll-It",
-            show_close_button = true
-        };
+        header = new Adw.HeaderBar (); //{
+        //     title = "Roll-It",
+            // show_title_buttons = true
+        // };
 
-        history_button = new Gtk.Button.from_icon_name ("document-open-recent-symbolic", Gtk.IconSize.MENU) {
+        history_button = new Gtk.Button.from_icon_name ("document-open-recent-symbolic") { //, Gtk.IconSize.MENU) {
+            tooltip_text = (_("Roll history")),
             // tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>H"}, _("Roll history"))
-            tooltip_text = ("Ctrl+H")
+            tooltip_markup = ("Ctrl+H")
         };
 
         header.pack_end (history_button);
@@ -59,38 +60,45 @@ public class Rollit.MainWindow : Adw.ApplicationWindow {
 
         roll_button = new Gtk.Button.with_label (_("Roll"));
         // roll_button.tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>R"}, roll_button.label);
-        roll_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
+        roll_button.tooltip_text = roll_button.label;
+        roll_button.tooltip_markup = ("Ctrl+R"); 
+        // roll_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
 
         menu_button = new Rollit.Menu ();
 
-        action_buttons = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL) {
-            layout_style = Gtk.ButtonBoxStyle.CENTER,
-            spacing = 6
+        action_buttons = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 6) {
+            // layout_style = Gtk.ButtonBoxStyle.CENTER
+            homogeneous = true
         };
 
-        action_buttons.add (roll_button);
-        action_buttons.add (menu_button);
+        action_buttons.append (roll_button);
+        action_buttons.append (menu_button);
 
         main_view = new Gtk.Grid () {
             row_spacing = 12,
-            margin = 12
+            margin_top = margin_bottom = margin_start = margin_end = 12,
+            hexpand = true,
+            vexpand = true
         };
         main_view.attach (number_display, 0, 0);
         main_view.attach (action_buttons, 0, 1);
 
         roll_history = new Rollit.RollHistory ();
 
-        hp = new Gtk.Paned (HORIZONTAL);
-        hp.pack1 (main_view, true, false);
-        hp.pack2 (roll_history, false, false);
+        hp = new Gtk.Paned (HORIZONTAL) {
+            shrink_start_child = false,
+            shrink_end_child = false
+        };
+        hp.set_start_child (main_view); //, true, false);
+        hp.set_end_child (roll_history); //, false, false);
 
         var grid = new Gtk.Grid ();
-        grid.attach (header, 0, 0);
+        grid.attach (header, 0, 0, 2);
         grid.attach (hp, 0, 1);
 
-        add (grid);
+        set_child (grid);
 
-        show_all ();
+        // show_all ();
 
         roll_history.visible = history_visible;
 
@@ -103,113 +111,113 @@ public class Rollit.MainWindow : Adw.ApplicationWindow {
             Application.settings.set_boolean ("show-history", roll_history.visible);
         });
 
-        var accel_group = new Gtk.AccelGroup ();
+        // var accel_group = new Gtk.AccelGroup ();
 
-        accel_group.connect (
-            Gdk.Key.@1,
-            Gdk.ModifierType.CONTROL_MASK,
-            Gtk.AccelFlags.VISIBLE | Gtk.AccelFlags.LOCKED,
-            () => {
-                menu_button.shortcut_pressed (1);
-                return true;
-            }
-        );
+        // accel_group.connect (
+        //     Gdk.Key.@1,
+        //     Gdk.ModifierType.CONTROL_MASK,
+        //     Gtk.AccelFlags.VISIBLE | Gtk.AccelFlags.LOCKED,
+        //     () => {
+        //         menu_button.shortcut_pressed (1);
+        //         return true;
+        //     }
+        // );
 
-        accel_group.connect (
-            Gdk.Key.@2,
-            Gdk.ModifierType.CONTROL_MASK,
-            Gtk.AccelFlags.VISIBLE | Gtk.AccelFlags.LOCKED,
-            () => {
-                menu_button.shortcut_pressed (2);
-                return true;
-            }
-        );
+        // accel_group.connect (
+        //     Gdk.Key.@2,
+        //     Gdk.ModifierType.CONTROL_MASK,
+        //     Gtk.AccelFlags.VISIBLE | Gtk.AccelFlags.LOCKED,
+        //     () => {
+        //         menu_button.shortcut_pressed (2);
+        //         return true;
+        //     }
+        // );
 
-        accel_group.connect (
-            Gdk.Key.@3,
-            Gdk.ModifierType.CONTROL_MASK,
-            Gtk.AccelFlags.VISIBLE | Gtk.AccelFlags.LOCKED,
-            () => {
-                menu_button.shortcut_pressed (3);
-                return true;
-            }
-        );
+        // accel_group.connect (
+        //     Gdk.Key.@3,
+        //     Gdk.ModifierType.CONTROL_MASK,
+        //     Gtk.AccelFlags.VISIBLE | Gtk.AccelFlags.LOCKED,
+        //     () => {
+        //         menu_button.shortcut_pressed (3);
+        //         return true;
+        //     }
+        // );
 
-        accel_group.connect (
-            Gdk.Key.@4,
-            Gdk.ModifierType.CONTROL_MASK,
-            Gtk.AccelFlags.VISIBLE | Gtk.AccelFlags.LOCKED,
-            () => {
-                menu_button.shortcut_pressed (4);
-                return true;
-            }
-        );
+        // accel_group.connect (
+        //     Gdk.Key.@4,
+        //     Gdk.ModifierType.CONTROL_MASK,
+        //     Gtk.AccelFlags.VISIBLE | Gtk.AccelFlags.LOCKED,
+        //     () => {
+        //         menu_button.shortcut_pressed (4);
+        //         return true;
+        //     }
+        // );
 
-        accel_group.connect (
-            Gdk.Key.R,
-            Gdk.ModifierType.CONTROL_MASK,
-            Gtk.AccelFlags.VISIBLE | Gtk.AccelFlags.LOCKED,
-            () => {
-                roll_button.clicked ();
-                menu_button.close_menu ();
-                return true;
-            }
-        );
+        // accel_group.connect (
+        //     Gdk.Key.R,
+        //     Gdk.ModifierType.CONTROL_MASK,
+        //     Gtk.AccelFlags.VISIBLE | Gtk.AccelFlags.LOCKED,
+        //     () => {
+        //         roll_button.clicked ();
+        //         menu_button.close_menu ();
+        //         return true;
+        //     }
+        // );
 
-        accel_group.connect (
-            Gdk.Key.D,
-            Gdk.ModifierType.CONTROL_MASK,
-            Gtk.AccelFlags.VISIBLE | Gtk.AccelFlags.LOCKED,
-            () => {
-                menu_button.clicked ();
-                return true;
-            }
-        );
+        // accel_group.connect (
+        //     Gdk.Key.D,
+        //     Gdk.ModifierType.CONTROL_MASK,
+        //     Gtk.AccelFlags.VISIBLE | Gtk.AccelFlags.LOCKED,
+        //     () => {
+        //         menu_button.clicked ();
+        //         return true;
+        //     }
+        // );
 
-        accel_group.connect (
-            Gdk.Key.H,
-            Gdk.ModifierType.CONTROL_MASK,
-            Gtk.AccelFlags.VISIBLE | Gtk.AccelFlags.LOCKED,
-            () => {
-                history_button.clicked ();
-                return true;
-            }
-        );
+        // accel_group.connect (
+        //     Gdk.Key.H,
+        //     Gdk.ModifierType.CONTROL_MASK,
+        //     Gtk.AccelFlags.VISIBLE | Gtk.AccelFlags.LOCKED,
+        //     () => {
+        //         history_button.clicked ();
+        //         return true;
+        //     }
+        // );
 
-        accel_group.connect (
-            Gdk.Key.L,
-            Gdk.ModifierType.CONTROL_MASK,
-            Gtk.AccelFlags.VISIBLE | Gtk.AccelFlags.LOCKED,
-            () => {
-                roll_history.clear_button.clicked ();
-                return true;
-            }
-        );
+        // accel_group.connect (
+        //     Gdk.Key.L,
+        //     Gdk.ModifierType.CONTROL_MASK,
+        //     Gtk.AccelFlags.VISIBLE | Gtk.AccelFlags.LOCKED,
+        //     () => {
+        //         roll_history.clear_button.clicked ();
+        //         return true;
+        //     }
+        // );
 
-        add_accel_group (accel_group);
+        // add_accel_group (accel_group);
     }
 
-    private void restore_state () {
-        var rect = Gdk.Rectangle ();
-        Application.settings.get ("window-size", "(ii)", out rect.width, out rect.height);
+    // private void restore_state () {
+    //     var rect = Gdk.Rectangle ();
+    //     Application.settings.get ("window-size", "(ii)", out rect.width, out rect.height);
 
-        default_width = rect.width;
-        default_height = rect.height;
+    //     default_width = rect.width;
+    //     default_height = rect.height;
 
-        int window_x, window_y;
-        Application.settings.get ("window-position", "(ii)", out window_x, out window_y);
+    //     int window_x, window_y;
+    //     Application.settings.get ("window-position", "(ii)", out window_x, out window_y);
 
-        if (window_x != -1 || window_y != -1) {
-            move (window_x, window_y);
-        }
+    //     if (window_x != -1 || window_y != -1) {
+    //         move (window_x, window_y);
+    //     }
 
-        var window_maximized = Application.settings.get_boolean ("maximized");
-        if (window_maximized) {
-            maximize ();
-        }
+    //     var window_maximized = Application.settings.get_boolean ("maximized");
+    //     if (window_maximized) {
+    //         maximize ();
+    //     }
 
-        history_visible = Application.settings.get_boolean ("show-history");
-    }
+    //     history_visible = Application.settings.get_boolean ("show-history");
+    // }
 
     // public override bool configure_event (Gdk.EventConfigure event) { // TODO: Doesn't work in GTK4
     //     if (configure_id != 0) {

@@ -16,7 +16,7 @@
  * Authored by Patrick Csikos <zelikos@pm.me>
  */
 
-public class Rollit.Menu : Gtk.MenuButton {
+public class Rollit.Menu : Gtk.Widget {
 
     public signal void close_menu ();
 
@@ -30,15 +30,22 @@ public class Rollit.Menu : Gtk.MenuButton {
     private Gtk.SpinButton max_entry;
 
     private Gtk.Popover menu_popover;
+    
+    private Gtk.MenuButton menu_button;
 
     public int max_roll { get; private set; }
+    
+    static construct {
+        set_layout_manager_type (typeof (Gtk.BinLayout));
+    }
 
     construct {
+        menu_button = new Gtk.MenuButton ();
         dice_selection = new SList<Gtk.CheckButton> ();
 
-        six_sided = new Rollit.MenuItem ("d6", "<Ctrl>1");
-        ten_sided = new Rollit.MenuItem ("d10", "<Ctrl>2");
-        twenty_sided = new Rollit.MenuItem ("d20", "<ctrl>3");
+        six_sided = new Rollit.MenuItem ("d6", "Ctrl+1");
+        ten_sided = new Rollit.MenuItem ("d10", "Ctrl+2");
+        twenty_sided = new Rollit.MenuItem ("d20", "Ctrl+3");
 
         var presets = new Gtk.Box (VERTICAL, 6) {
             margin_start = 6,
@@ -85,12 +92,14 @@ public class Rollit.Menu : Gtk.MenuButton {
 
         menu_popover = new Gtk.Popover ();
         menu_popover.set_child (menu_box);
-        popover = menu_popover;
+        menu_button.popover = menu_popover;
 
-        label = max_roll.to_string();
-        tooltip_text = _("Dice settings");
+        menu_button.label = max_roll.to_string();
+        menu_button.tooltip_text = _("Dice settings");
         // tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>D"}, tooltip_text);
-        tooltip_markup = ("Ctrl+D");
+        menu_button.tooltip_markup = ("Ctrl+D");
+        
+        menu_button.set_parent (this);
 
         six_sided.clicked.connect ( () => {
             change_max (6, "d6");
@@ -113,9 +122,13 @@ public class Rollit.Menu : Gtk.MenuButton {
         });
 
         close_menu.connect ( () => {
-            popover.popdown ();
+            menu_button.popover.popdown ();
         });
     }
+    
+    protected override void dispose () {
+        menu_button.unparent ();
+}
 
     private void load_max () {
         var custom_roll = Application.settings.get_int ("custom-roll");
@@ -152,7 +165,7 @@ public class Rollit.Menu : Gtk.MenuButton {
             Application.settings.set_int ("custom-roll", roll);
             max_entry.sensitive = true;
         }
-        label = max_roll.to_string();
+        menu_button.label = max_roll.to_string();
     }
 
     public void shortcut_pressed (int shortcut) {
