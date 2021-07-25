@@ -38,11 +38,5 @@ Then, to build and install Roll-It:
 flatpak-builder build com.github.zelikos.rannum.yml --user --install --force-clean
 ```
 
-### Distro Packages
-
-Flatpak is now the primary development target, and other build processes are no longer supported.
-
-However, if you would still like to, instructions to do build Roll-It outside of Flatpak remain in the README on the `hera` branch of this repository.
-
 [elementary OS]: https://elementary.io
 [AppCenter link]: https://appcenter.elementary.io/com.github.zelikos.rannum
