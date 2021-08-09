@@ -6,7 +6,7 @@
   <a href="https://appcenter.elementary.io/com.github.zelikos.rannum"><img src="https://appcenter.elementary.io/badge.svg" alt="Get it on AppCenter" /></a>
 </p>
 
-| ![Screenshot](data/screenshot2.png) | ![Screenshot](data/screenshot3.png) |
+| ![Screenshot](data/screenshot1.png) | ![Screenshot](data/screenshot2.png) |
 |------------------------------------------|-----------------------------------------|
 
 ## Roll the dice
@@ -29,50 +29,13 @@ First, install the elementary Flatpak runtime & SDK:
 
 ```shell
 flatpak remote-add --if-not-exists appcenter https://flatpak.elementary.io/repo.flatpakrepo
-flatpak install appcenter io.elementary.Platform io.elementary.Sdk
+flatpak install appcenter io.elementary.Platform//6 io.elementary.Sdk//6
 ```
 
 Then, to build and install Roll-It:
 
 ```shell
 flatpak-builder build com.github.zelikos.rannum.yml --user --install --force-clean
-```
-
-### Distro Packages
-
-You'll need the following dependencies to build Roll-It yourself:
-
-* libgranite-dev
-* libgtk-3-dev
-* libhandy-1-dev
-* meson
-* valac
-
-If running [elementary OS], the simplest way is to install the elementary SDK:
-
-```shell
-sudo apt install elementary-sdk
-```
-
-To install only the required dependencies, or to install them on Ubuntu:
-
-```shell
-sudo apt install libgranite-dev libgtk-3-dev libhandy-1-dev meson valac
-```
-
-To install them on Fedora:
-
-```shell
-sudo dnf install granite-devel gtk3-devel libhandy-devel meson vala
-```
-
-To build and install Roll-It:
-
-```shell
-meson build --prefix=/usr
-cd build
-ninja
-ninja install
 ```
 
 [elementary OS]: https://elementary.io

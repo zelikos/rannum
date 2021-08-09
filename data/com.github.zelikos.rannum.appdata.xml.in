@@ -34,6 +34,17 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release version="2.1.0" date="2021-08-09">
+      <description>
+        <p>elementary OS 6 Update!</p>
+        <ul>
+          <li>Respects new dark style preference</li>
+          <li>Headerbar and 'Roll' button follow the system accent color</li>
+          <li>Dice menu now features keyboard shortcut labels</li>
+          <li>Various refinements to the UI and the backend</li>
+        </ul>
+      </description>
+    </release>">
     <release version="2.0.0" date="2020-11-13">
       <description>
         <p>History and Keyboard Shortcuts</p>
@@ -115,7 +126,7 @@
     <content_attribute id="money-purchasing">none</content_attribute>
     <content_attribute id="money-gambling">none</content_attribute>
   </content_rating>
-  <developer_name>Pat Csikos</developer_name>
+  <developer_name>Patrick Csikos</developer_name>
   <url type="homepage">https://github.com/zelikos/rannum</url>
   <url type="bugtracker">https://github.com/zelikos/rannum/issues</url>
   <url type="donation">https://liberapay.com/zelikos/</url>
