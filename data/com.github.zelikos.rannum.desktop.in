@@ -2,7 +2,7 @@
 Name=Roll-It
 GenericName=Dice Roller App
 Comment=Roll the dice
-Categories=Utility;
+Categories=Amusement;Utility;
 Exec=com.github.zelikos.rannum
 Icon=com.github.zelikos.rannum
 Terminal=false
