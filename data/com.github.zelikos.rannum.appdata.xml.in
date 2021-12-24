@@ -38,7 +38,7 @@
       <description>
         <p>Backend Updates</p>
         <ul>
-          <li>Now under 'Amusement' category to improve discoverability</li>
+          <li>Updated category information for better discoverability</li>
           <li>Stricter sandboxing</li>
           <li>Bump platform to 6.1</li>
         </ul>
