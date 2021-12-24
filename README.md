@@ -29,7 +29,7 @@ First, install the elementary Flatpak runtime & SDK:
 
 ```shell
 flatpak remote-add --if-not-exists appcenter https://flatpak.elementary.io/repo.flatpakrepo
-flatpak install appcenter io.elementary.Platform//6 io.elementary.Sdk//6
+flatpak install appcenter io.elementary.Platform//6.1 io.elementary.Sdk//6.1
 ```
 
 Then, to build and install Roll-It:
