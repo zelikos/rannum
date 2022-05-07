@@ -34,6 +34,27 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release version="2.1.1" date="2021-12-24">
+      <description>
+        <p>Backend Updates</p>
+        <ul>
+          <li>Updated category information for better discoverability</li>
+          <li>Stricter sandboxing</li>
+          <li>Bump platform to 6.1</li>
+        </ul>
+      </description>
+    </release>
+    <release version="2.1.0" date="2021-08-09">
+      <description>
+        <p>elementary OS 6 Update!</p>
+        <ul>
+          <li>Respects new dark style preference</li>
+          <li>Headerbar and 'Roll' button follow the system accent color</li>
+          <li>Dice menu now features keyboard shortcut labels</li>
+          <li>Various refinements to the UI and the backend</li>
+        </ul>
+      </description>
+    </release>">
     <release version="2.0.0" date="2020-11-13">
       <description>
         <p>History and Keyboard Shortcuts</p>
@@ -115,7 +136,7 @@
     <content_attribute id="money-purchasing">none</content_attribute>
     <content_attribute id="money-gambling">none</content_attribute>
   </content_rating>
-  <developer_name>Pat Csikos</developer_name>
+  <developer_name>Patrick Csikos</developer_name>
   <url type="homepage">https://github.com/zelikos/rannum</url>
   <url type="bugtracker">https://github.com/zelikos/rannum/issues</url>
   <url type="donation">https://liberapay.com/zelikos/</url>
@@ -123,5 +144,6 @@
     <value key="x-appcenter-color-primary">#a56de2</value>
     <value key="x-appcenter-color-primary-text">#fff</value>
     <value key="x-appcenter-suggested-price">3</value>
+    <value key="x-appcenter-stripe">pk_live_xYarH6rPB7LZ5NYGw5lZYTPC00rGge5P4K</value>
   </custom>
 </component>
