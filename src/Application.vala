@@ -20,12 +20,12 @@ public class Rollit.Application : Gtk.Application {
 
     public static GLib.Settings settings;
     static construct {
-        settings = new GLib.Settings ("com.github.zelikos.rannum");
+        settings = new GLib.Settings ("com.gitlab.zelikos.rollit");
     }
 
     public Application () {
         Object (
-            application_id: "com.github.zelikos.rannum",
+            application_id: "com.gitlab.zelikos.rollit",
             flags: ApplicationFlags.FLAGS_NONE
         );
     }
