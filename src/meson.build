@@ -1,11 +1,12 @@
 rollit_sources = [
-  'Application.vala',
-  'MainWindow.vala',
-  'Widgets/Menu.vala',
-  'Widgets/NumDisplay.vala',
-  'Widgets/RollHistory.vala',
-  'Widgets/Buttons/MenuItem.vala',
-  'Widgets/Buttons/PreviousRoll.vala',
+  'application.vala',
+  'main.vala',
+  'window.vala',
+  # 'Widgets/Menu.vala',
+  # 'Widgets/NumDisplay.vala',
+  # 'Widgets/RollHistory.vala',
+  # 'Widgets/Buttons/MenuItem.vala',
+  # 'Widgets/Buttons/PreviousRoll.vala',
 ]
 
 rollit_deps = [
@@ -14,12 +15,12 @@ rollit_deps = [
 
 gnome = import('gnome')
 
-# rollit_sources += gnome.compile_resources('rollit-resources',
-#   'rollit.gresource.xml',
-#   c_name: 'rollit'
-# )
+rollit_sources += gnome.compile_resources('rollit-resources',
+  'rollit.gresource.xml',
+  c_name: 'rollit'
+)
 
-executable('rollit', rollit_sources,
+executable('com.gitlab.zelikos.rollit', rollit_sources,
   vala_args: '--target-glib=2.50', dependencies: rollit_deps,
   install: true,
 )
