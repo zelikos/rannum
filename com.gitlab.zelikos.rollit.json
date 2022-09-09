@@ -18,6 +18,7 @@
         "/share/gtk-doc",
         "/share/man",
         "/share/pkgconfig",
+        "/share/vala",
         "*.la",
         "*.a"
     ],
@@ -35,3 +36,4 @@
         }
     ]
 }
+
