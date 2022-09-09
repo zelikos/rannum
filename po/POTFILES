@@ -1,3 +1,6 @@
+data/com.gitlab.zelikos.rollit.desktop.in
+data/com.gitlab.zelikos.rollit.appdata.xml.in
+data/com.gitlab.zelikos.rollit.gschema.xml
 src/Widgets/Menu.vala
 src/Widgets/NumDisplay.vala
 src/Widgets/RollHistory.vala
