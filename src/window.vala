@@ -19,8 +19,7 @@
 namespace Rollit {
     [GtkTemplate (ui = "/com/gitlab/zelikos/rollit/window.ui")]
     public class Window : Gtk.ApplicationWindow {
-        [GtkChild]
-        private unowned Gtk.Label label;
+        [GtkChild] private unowned Gtk.Label label;
 
         public Window (Adw.Application app) {
             Object (application: app);

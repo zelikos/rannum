@@ -2,8 +2,10 @@
 <interface>
   <requires lib="gtk" version="4.0"/>
   <template class="RollitWindow" parent="GtkApplicationWindow">
-    <property name="default-width">600</property>
+    <property name="title" translatable="yes">Roll-It</property>
+    <property name="default-width">300</property>
     <property name="default-height">300</property>
+    <property name="icon-name">com.gitlab.zelikos.rollit</property>
     <child type="titlebar">
       <object class="GtkHeaderBar" id="header_bar">
         <child type="end">
@@ -16,7 +18,7 @@
     </child>
     <child>
       <object class="GtkLabel" id="label">
-        <property name="label">Hello, World!</property>
+        <property name="label" translatable="yes">Ready to roll?</property>
         <attributes>
           <attribute name="weight" value="bold"/>
           <attribute name="scale" value="2"/>
@@ -27,10 +29,10 @@
 
   <menu id="primary_menu">
     <section>
-      <item>
-        <attribute name="label" translatable="yes">_Preferences</attribute>
-        <attribute name="action">app.preferences</attribute>
-      </item>
+      <!-- <item> -->
+      <!--   <attribute name="label" translatable="yes">_Preferences</attribute> -->
+      <!--   <attribute name="action">app.preferences</attribute> -->
+      <!-- </item> -->
       <item>
         <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
         <attribute name="action">win.show-help-overlay</attribute>
