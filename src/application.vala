@@ -31,6 +31,7 @@ namespace Rollit {
                 // { "preferences", this.on_preferences_action },
                 { "quit", this.quit }
             };
+
             this.add_action_entries (action_entries, this);
             this.set_accels_for_action ("app.quit", {"<primary>q"});
         }

@@ -16,20 +16,15 @@
       <summary>Maximized</summary>
       <description>Whether the window is maximized or not</description>
     </key>
-    <key name="show-history" type="b">
-      <default>true</default>
-      <summary>Show History</summary>
-      <description>Show roll history pane</description>
-    </key>
-    <key name="custom-roll" type="i">
+    <!-- <key name="show-history" type="b"> -->
+    <!--   <default>true</default> -->
+    <!--   <summary>Show History</summary> -->
+    <!--   <description>Show roll history pane</description> -->
+    <!-- </key> -->
+    <key name="max-roll" type="i">
       <default>12</default>
       <summary>Number of sides</summary>
       <description>Number of sides of the dice</description>
-    </key>
-    <key name="last-selected" type="s">
-      <default>"d6"</default>
-      <summary>Last-selected dice sides</summary>
-      <description>Last-selected dice side preset</description>
     </key>
   </schema>
 </schemalist>

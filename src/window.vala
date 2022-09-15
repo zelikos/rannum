@@ -20,17 +20,40 @@ namespace Rollit {
     [GtkTemplate (ui = "/com/gitlab/zelikos/rollit/window.ui")]
     public class Window : Gtk.ApplicationWindow {
         [GtkChild] private unowned Gtk.Label result_label;
+        [GtkChild] private unowned Gtk.SpinButton max_roll;
 
         private Settings settings = new Settings ("com.gitlab.zelikos.rollit");
+
+        private ActionEntry[] actions = {
+            { "roll", on_roll_action }
+        };
 
         public Window (Adw.Application app) {
             Object (application: app);
         }
 
         construct {
+            var action_group = new SimpleActionGroup ();
+            action_group.add_action_entries (actions, this);
+
+            insert_action_group ("dice", action_group);
+
             this.settings.bind ("window-width", this, "default-width", SettingsBindFlags.DEFAULT);
             this.settings.bind ("window-height", this, "default-height", SettingsBindFlags.DEFAULT);
             this.settings.bind ("window-maximized", this, "maximized", SettingsBindFlags.DEFAULT);
+
+            this.settings.bind ("max-roll", max_roll, "value", SettingsBindFlags.DEFAULT);
+        }
+
+        private void on_roll_action () {
+            const int MIN_NUM = 1;
+            int rnd_num, max_num;
+
+            max_num = max_roll.get_value_as_int();
+
+            rnd_num = Random.int_range (MIN_NUM, (max_num + 1));
+
+            result_label.label = @"$rnd_num";
         }
     }
 }
