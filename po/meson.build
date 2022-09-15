@@ -1,1 +1,1 @@
-i18n.gettext('rollit', preset: 'glib')
+i18n.gettext('com.gitlab.zelikos.rollit', preset: 'glib')

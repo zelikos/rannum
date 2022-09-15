@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schemalist>
+<schemalist gettext-domain="rollit">
   <schema path="/com/gitlab/zelikos/rollit/" id="com.gitlab.zelikos.rollit">
     <key name="window-position" type="(ii)">
       <default>(-1, -1)</default>

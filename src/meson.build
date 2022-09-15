@@ -21,6 +21,9 @@ rollit_sources += gnome.compile_resources('rollit-resources',
 )
 
 executable('com.gitlab.zelikos.rollit', rollit_sources,
+  c_args: [
+    '-DGETTEXT_PACKAGE="com.gitlab.zelikos.rollit"'
+  ],
   vala_args: '--target-glib=2.50', dependencies: rollit_deps,
   install: true,
 )
