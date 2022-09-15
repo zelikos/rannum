@@ -46,16 +46,15 @@ namespace Rollit {
 
         private void on_about_action () {
             string[] authors = { "Patrick Csikos <zelikos@pm.me>" };
-
-            string translators = "translator-credits";
+            string translators = _("translator-credits");
 
             var about = new Adw.AboutWindow () {
                 application_name = "Roll-It",
                 application_icon = "com.gitlab.zelikos.rollit",
                 version = "3.0.0",
-                comments = "Roll the dice",
+                comments = _("Roll the dice"),
                 copyright = "Copyright © 2020-2022 Patrick Csikos",
-                // license_type = ,
+                license_type = GPL_3_0,
                 developer_name = "Patrick Csikos",
                 developers = authors,
                 translator_credits = translators,
@@ -65,12 +64,6 @@ namespace Rollit {
 
             about.set_transient_for (this.get_active_window());
             about.show();
-
-            // Gtk.show_about_dialog (this.active_window,
-            //                        "program-name", "Roll-It",
-            //                        "authors", authors,
-            //                        "version", "3.0.0",
-            //                        "title", "About Roll-It");
         }
 
         // private void on_preferences_action () {
