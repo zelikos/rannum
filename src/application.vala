@@ -28,7 +28,7 @@ namespace Rollit {
         construct {
             ActionEntry[] action_entries = {
                 { "about", this.on_about_action },
-                { "preferences", this.on_preferences_action },
+                // { "preferences", this.on_preferences_action },
                 { "quit", this.quit }
             };
             this.add_action_entries (action_entries, this);
@@ -45,15 +45,36 @@ namespace Rollit {
         }
 
         private void on_about_action () {
-            string[] authors = { "zelikos" };
-            Gtk.show_about_dialog (this.active_window,
-                                   "program-name", "Roll-It",
-                                   "authors", authors,
-                                   "version", "3.0.0");
+            string[] authors = { "Patrick Csikos <zelikos@pm.me>" };
+
+            string translators = "translator-credits";
+
+            var about = new Adw.AboutWindow () {
+                application_name = "Roll-It",
+                application_icon = "com.gitlab.zelikos.rollit",
+                version = "3.0.0",
+                comments = "Roll the dice",
+                copyright = "Copyright © 2020-2022 Patrick Csikos",
+                // license_type = ,
+                developer_name = "Patrick Csikos",
+                developers = authors,
+                translator_credits = translators,
+                website = "https://gitlab.com/zelikos/rollit",
+                issue_url = "https://gitlab.com/zelikos/rollit/issues"
+            };
+
+            about.set_transient_for (this.get_active_window());
+            about.show();
+
+            // Gtk.show_about_dialog (this.active_window,
+            //                        "program-name", "Roll-It",
+            //                        "authors", authors,
+            //                        "version", "3.0.0",
+            //                        "title", "About Roll-It");
         }
 
-        private void on_preferences_action () {
-            message ("app.preferences action activated");
-        }
+        // private void on_preferences_action () {
+        //     message ("app.preferences action activated");
+        // }
     }
 }
