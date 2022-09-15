@@ -19,14 +19,18 @@
 namespace Rollit {
     [GtkTemplate (ui = "/com/gitlab/zelikos/rollit/window.ui")]
     public class Window : Gtk.ApplicationWindow {
-        [GtkChild] private unowned Gtk.Label label;
+        [GtkChild] private unowned Gtk.Label result_label;
+
+        private Settings settings = new Settings ("com.gitlab.zelikos.rollit");
 
         public Window (Adw.Application app) {
             Object (application: app);
         }
 
-        // construct {
-
-        // }
+        construct {
+            this.settings.bind ("window-width", this, "default-width", SettingsBindFlags.DEFAULT);
+            this.settings.bind ("window-height", this, "default-height", SettingsBindFlags.DEFAULT);
+            this.settings.bind ("window-maximized", this, "maximized", SettingsBindFlags.DEFAULT);
+        }
     }
 }
