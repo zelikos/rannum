@@ -1,7 +1,7 @@
 {
     "app-id" : "com.gitlab.zelikos.rollit",
     "runtime" : "org.gnome.Platform",
-    "runtime-version" : "42",
+    "runtime-version" : "master",
     "sdk" : "org.gnome.Sdk",
     "command" : "com.gitlab.zelikos.rollit",
     "finish-args" : [
