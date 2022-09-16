@@ -16,6 +16,8 @@ Roll-It's latest stable release is available via the [elementary OS] AppCenter.
 
 [![Get it on AppCenter](https://appcenter.elementary.io/badge.svg)][AppCenter link]
 
+There is currently no stable release for the new GTK4/libadwaita version.
+
 Any version distributed elsewhere is not provided nor supported by me.
 
 ## Building
