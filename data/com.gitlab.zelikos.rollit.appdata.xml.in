@@ -22,17 +22,23 @@
       <li>Clear roll history with Ctrl+L</li>
     </ul>
   </description>
-  <!-- <screenshots> -->
-  <!--   <screenshot type="default"> -->
-  <!--     <image>https://raw.githubusercontent.com/zelikos/rannum/main/data/screenshot1.png</image> -->
-  <!--   </screenshot> -->
-  <!--   <screenshot> -->
-  <!--     <image>https://raw.githubusercontent.com/zelikos/rannum/main/data/screenshot2.png</image> -->
-  <!--   </screenshot> -->
-  <!--   <screenshot> -->
-  <!--     <image>https://raw.githubusercontent.com/zelikos/rannum/main/data/screenshot3.png</image> -->
-  <!--   </screenshot> -->
-  <!-- </screenshots> -->
+  <screenshots>
+    <screenshot type="default">
+      <image>https://gitlab.com/zelikos/rollit/-/raw/main/data/screenshots/01_rollit_startup_light.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://gitlab.com/zelikos/rollit/-/raw/main/data/screenshots/02_rollit_startup_dark.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://gitlab.com/zelikos/rollit/-/raw/main/data/screenshots/03_rollit_wide.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://gitlab.com/zelikos/rollit/-/raw/main/data/screenshots/04_rollit_narrow_1.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://gitlab.com/zelikos/rollit/-/raw/main/data/screenshots/05_rollit_narrow_2.png</image>
+    </screenshot>
+  </screenshots>
   <releases>
     <release version="2.1.1" date="2021-12-24">
       <description>
