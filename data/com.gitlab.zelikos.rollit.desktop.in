@@ -2,9 +2,10 @@
 Name=Roll-It
 GenericName=Dice Roller App
 Comment=Roll the dice
-Categories=Amusement;Utility;
-Exec=com.github.zelikos.rannum
-Icon=com.github.zelikos.rannum
+Categories=GTK;Amusement;Utility;
+Exec=com.gitlab.zelikos.rollit
+Icon=com.gitlab.zelikos.rollit
 Terminal=false
 Type=Application
+StartupNotify=true
 Keywords=Die;Dice;Roll;Random;Number;Rnd;Num;

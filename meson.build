@@ -1,39 +1,23 @@
-project('com.github.zelikos.rannum',
-    'vala', 'c',
-    version: '2.1.1')
+project('com.gitlab.zelikos.rollit', ['c', 'vala'],
+          version: '3.0.0',
+    meson_version: '>= 0.59.0',
+  default_options: [ 'warning_level=2',
+                     'werror=false',
+                   ],
+)
 
-gnome = import('gnome')
 i18n = import('i18n')
 
-add_project_arguments(
-    '-DGETTEXT_PACKAGE="@0@"'.format(meson.project_name()),
-    language: 'c'
-)
+gnome = import('gnome')
 
-subdir('src')
 
-asresources = gnome.compile_resources(
-    'as-resources',
-    join_paths('data', meson.project_name()) + '.gresource.xml',
-    source_dir: 'data',
-    c_name: 'as'
-)
-
-dependencies = [
-    dependency('gtk+-3.0'),
-    dependency('granite', version: '>=6.0.0'),
-    dependency('libhandy-1')
-]
-
-executable(
-    meson.project_name(),
-    sources,
-    asresources,
-    dependencies: dependencies,
-    install: true
-)
 
 subdir('data')
+subdir('src')
 subdir('po')
 
-meson.add_install_script('meson/post_install.py')
+gnome.post_install(
+  glib_compile_schemas: true,
+  gtk_update_icon_cache: true,
+  update_desktop_database: true,
+)
