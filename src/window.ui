@@ -15,7 +15,7 @@
         <child>
           <object class="GtkToggleButton" id="roll_history_btn">
             <property name="icon-name">sidebar-show-symbolic</property>
-            <property name="active" bind-source="flap" bind-property="reveal-flap" bind-flags="sync-create|bidirectional"/>
+            <property name="active" bind-source="roll_history_flap" bind-property="reveal-flap" bind-flags="sync-create|bidirectional"/>
           </object>
         </child>
         <child type="end">
@@ -27,16 +27,68 @@
       </object>
     </child>
     <child>
-      <object class="AdwFlap" id="flap">
-        <property name="vexpand">True</property>
+      <object class="AdwFlap" id="roll_history_flap">
+        <property name="vexpand">true</property>
         <property name="flap">
-          <object class="AdwStatusPage">
-            <property name="title">Placeholder</property>
-            <property name="description">Roll history will go here</property>
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <property name="vexpand">true</property>
             <property name="width-request">200</property>
             <style>
               <class name="background"/>
             </style>
+            <child>
+              <object class="GtkScrolledWindow">
+                <property name="vexpand">true</property>
+                <property name="child">
+                  <object class="GtkListBox">
+                    <property name="selection-mode">none</property>
+                    <child>
+                      <object class="AdwActionRow">
+                        <property name="title">Placeholder</property>
+                        <property name="activatable">true</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwActionRow">
+                        <property name="title">Placeholder</property>
+                        <property name="activatable">true</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwActionRow">
+                        <property name="title">Placeholder</property>
+                        <property name="activatable">true</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwActionRow">
+                        <property name="title">Placeholder</property>
+                        <property name="activatable">true</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwActionRow">
+                        <property name="title">Placeholder</property>
+                        <property name="activatable">true</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwActionRow">
+                        <property name="title">Placeholder</property>
+                        <property name="activatable">true</property>
+                      </object>
+                    </child>
+                  </object>
+                </property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton">
+                <property name="label">Clear</property>
+                <property name="action-name">dice.clear</property>
+              </object>
+            </child>
           </object>
         </property>
         <property name="separator">
@@ -50,10 +102,15 @@
             <property name="margin-end">10</property>
             <property name="margin-bottom">10</property>
             <property name="spacing">10</property>
+            <property name="hexpand">true</property>
             <child>
               <object class="GtkLabel" id="result_label">
                 <property name="label" translatable="yes">?</property>
-                <property name="vexpand">1</property>
+                <property name="vexpand">true</property>
+                <style>
+                  <class name="title-1"/>
+                  <class name="numeric"/>
+                </style>
                 <attributes>
                   <attribute name="weight" value="bold"/>
                   <attribute name="scale" value="4"/>
@@ -63,6 +120,7 @@
             <child>
               <object class="GtkBox">
               <property name="halign">center</property>
+              <property name="hexpand">true</property>
               <property name="spacing">10</property>
                 <child>
                   <object class="GtkButton">

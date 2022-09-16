@@ -25,7 +25,8 @@ namespace Rollit {
         private Settings settings = new Settings ("com.gitlab.zelikos.rollit");
 
         private ActionEntry[] actions = {
-            { "roll", on_roll_action }
+            { "roll", on_roll_action },
+            { "clear", on_clear_action }
         };
 
         public Window (Adw.Application app) {
@@ -54,6 +55,10 @@ namespace Rollit {
             rnd_num = Random.int_range (MIN_NUM, (max_num + 1));
 
             result_label.label = @"$rnd_num";
+        }
+
+        private void on_clear_action () {
+            message ("dice.clear action activated");
         }
     }
 }
