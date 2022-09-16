@@ -22,6 +22,7 @@ namespace Rollit {
         [GtkChild] private unowned Gtk.Label result_label;
         [GtkChild] private unowned Gtk.SpinButton max_roll;
         [GtkChild] private unowned Gtk.ListBox history_list;
+        [GtkChild] private unowned Gtk.Stack history_stack;
 
         private Settings settings = new Settings ("com.gitlab.zelikos.rollit");
 
@@ -58,6 +59,10 @@ namespace Rollit {
 
             result_label.label = rnd_num;
             history_list.append(new Rollit.HistoryItem(rnd_num));
+
+            if (history_stack.visible_child_name != "filled") {
+                history_stack.visible_child = history_stack.get_child_by_name ("filled");
+            }
         }
 
         private void on_clear_action () {
@@ -66,6 +71,8 @@ namespace Rollit {
                 history_list.remove (current_item);
                 current_item = history_list.get_row_at_index (0);
             }
+
+            history_stack.visible_child = history_stack.get_child_by_name ("empty");
         }
     }
 }
