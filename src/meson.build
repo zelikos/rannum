@@ -3,11 +3,6 @@ rollit_sources = [
   'main.vala',
   'window.vala',
   'Widgets/history_item.vala',
-  # 'Widgets/Menu.vala',
-  # 'Widgets/NumDisplay.vala',
-  # 'Widgets/RollHistory.vala',
-  # 'Widgets/Buttons/MenuItem.vala',
-  # 'Widgets/Buttons/PreviousRoll.vala',
 ]
 
 rollit_deps = [
