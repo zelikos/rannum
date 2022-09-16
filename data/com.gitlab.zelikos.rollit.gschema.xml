@@ -2,7 +2,7 @@
 <schemalist gettext-domain="rollit">
   <schema path="/com/gitlab/zelikos/rollit/" id="com.gitlab.zelikos.rollit">
     <key name="window-width" type="i">
-      <default>300</default>
+      <default>480</default>
       <summary>Window width</summary>
       <description>The width of the window</description>
     </key>
@@ -16,11 +16,6 @@
       <summary>Maximized</summary>
       <description>Whether the window is maximized or not</description>
     </key>
-    <!-- <key name="show-history" type="b"> -->
-    <!--   <default>true</default> -->
-    <!--   <summary>Show History</summary> -->
-    <!--   <description>Show roll history pane</description> -->
-    <!-- </key> -->
     <key name="max-roll" type="i">
       <default>12</default>
       <summary>Number of sides</summary>
