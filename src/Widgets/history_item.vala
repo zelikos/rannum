@@ -21,10 +21,13 @@ namespace Rollit {
 
         public HistoryItem (string roll_result) {
             title = roll_result;
+            tooltip_text = "Copy to clipboard";
             activatable = true;
         }
 
         construct {
+            add_suffix(new Gtk.Image.from_icon_name ("edit-copy-symbolic"));
+
             this.activated.connect (() => {
                 Gdk.Clipboard clip = get_clipboard();
                 clip.set_text (title);
