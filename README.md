@@ -1,12 +1,6 @@
-<!-- <p align="center">
-  <img src="data/icons/128.svg" alt="Icon" />
-</p> -->
 <h1 align="center">Roll-It</h1>
 
 ![Screenshot](data/screenshots/01_rollit_startup_light.png)
-
-<!-- | ![Screenshot](data/screenshots/01_rollit_startup_light.png) | ![Screenshot](data/screenshots/02_rollit_startup_dark.png) |
-|------------------------------------------|-----------------------------------------| -->
 
 ## Roll the dice
 
