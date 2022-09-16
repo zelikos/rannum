@@ -2,6 +2,7 @@ rollit_sources = [
   'application.vala',
   'main.vala',
   'window.vala',
+  'Widgets/history_item.vala',
   # 'Widgets/Menu.vala',
   # 'Widgets/NumDisplay.vala',
   # 'Widgets/RollHistory.vala',

@@ -41,44 +41,9 @@
               <object class="GtkScrolledWindow">
                 <property name="vexpand">true</property>
                 <property name="child">
-                  <object class="GtkListBox">
+                  <object class="GtkListBox" id="history_list">
                     <property name="selection-mode">none</property>
-                    <child>
-                      <object class="AdwActionRow">
-                        <property name="title">Placeholder</property>
-                        <property name="activatable">true</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="AdwActionRow">
-                        <property name="title">Placeholder</property>
-                        <property name="activatable">true</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="AdwActionRow">
-                        <property name="title">Placeholder</property>
-                        <property name="activatable">true</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="AdwActionRow">
-                        <property name="title">Placeholder</property>
-                        <property name="activatable">true</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="AdwActionRow">
-                        <property name="title">Placeholder</property>
-                        <property name="activatable">true</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="AdwActionRow">
-                        <property name="title">Placeholder</property>
-                        <property name="activatable">true</property>
-                      </object>
-                    </child>
+                    <property name="show-separators">true</property>
                   </object>
                 </property>
               </object>

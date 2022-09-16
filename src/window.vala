@@ -21,6 +21,7 @@ namespace Rollit {
     public class Window : Gtk.ApplicationWindow {
         [GtkChild] private unowned Gtk.Label result_label;
         [GtkChild] private unowned Gtk.SpinButton max_roll;
+        [GtkChild] private unowned Gtk.ListBox history_list;
 
         private Settings settings = new Settings ("com.gitlab.zelikos.rollit");
 
@@ -48,17 +49,23 @@ namespace Rollit {
 
         private void on_roll_action () {
             const int MIN_NUM = 1;
-            int rnd_num, max_num;
+            int max_num;
+            string rnd_num;
 
             max_num = max_roll.get_value_as_int();
 
-            rnd_num = Random.int_range (MIN_NUM, (max_num + 1));
+            rnd_num = (Random.int_range (MIN_NUM, (max_num + 1))).to_string();
 
-            result_label.label = @"$rnd_num";
+            result_label.label = rnd_num;
+            history_list.append(new Rollit.HistoryItem(rnd_num));
         }
 
         private void on_clear_action () {
-            message ("dice.clear action activated");
+            Gtk.ListBoxRow? current_item = history_list.get_row_at_index (0);
+            while (current_item != null) {
+                history_list.remove (current_item);
+                current_item = history_list.get_row_at_index (0);
+            }
         }
     }
 }
