@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <requires lib="gtk" version="4.0"/>
+  <requires lib="libadwaita" version="1.0"/>
   <template class="RollitWindow" parent="GtkApplicationWindow">
     <property name="title" translatable="yes">Roll-It</property>
     <property name="default-width">300</property>
@@ -11,6 +12,12 @@
     </style>
     <child type="titlebar">
       <object class="GtkHeaderBar" id="header_bar">
+        <child>
+          <object class="GtkToggleButton" id="roll_history_btn">
+            <property name="icon-name">sidebar-show-symbolic</property>
+            <property name="active" bind-source="flap" bind-property="reveal-flap" bind-flags="sync-create|bidirectional"/>
+          </object>
+        </child>
         <child type="end">
           <object class="GtkMenuButton">
             <property name="icon-name">open-menu-symbolic</property>
@@ -20,70 +27,77 @@
       </object>
     </child>
     <child>
-      <object class="GtkBox">
-        <property name="orientation">vertical</property>
-        <property name="margin-top">10</property>
-        <property name="margin-start">10</property>
-        <property name="margin-end">10</property>
-        <property name="margin-bottom">10</property>
-        <property name="spacing">10</property>
-        <child>
-          <object class="GtkLabel" id="result_label">
-            <property name="label" translatable="yes">?</property>
-            <property name="vexpand">1</property>
-            <attributes>
-              <attribute name="weight" value="bold"/>
-              <attribute name="scale" value="4"/>
-            </attributes>
+      <object class="AdwFlap" id="flap">
+        <property name="vexpand">True</property>
+        <property name="flap">
+          <object class="AdwStatusPage">
+            <property name="title">Placeholder</property>
+            <property name="description">Roll history will go here</property>
+            <property name="width-request">200</property>
+            <style>
+              <class name="background"/>
+            </style>
           </object>
-        </child>
-        <child>
+        </property>
+        <property name="separator">
+          <object class="GtkSeparator"/>
+        </property>
+        <property name="content">
           <object class="GtkBox">
-          <property name="halign">center</property>
-          <property name="spacing">10</property>
+            <property name="orientation">vertical</property>
+            <property name="margin-top">10</property>
+            <property name="margin-start">10</property>
+            <property name="margin-end">10</property>
+            <property name="margin-bottom">10</property>
+            <property name="spacing">10</property>
             <child>
-              <object class="GtkButton">
-                <property name="label" translatable="yes">Roll</property>
-                <property name="halign">center</property>
-                <property name="action-name">dice.roll</property>
-                <style>
-                  <class name="suggested-action"/>
-                  <class name="pill"/>
-                </style>
+              <object class="GtkLabel" id="result_label">
+                <property name="label" translatable="yes">?</property>
+                <property name="vexpand">1</property>
+                <attributes>
+                  <attribute name="weight" value="bold"/>
+                  <attribute name="scale" value="4"/>
+                </attributes>
               </object>
             </child>
-            <!-- <child> -->
-            <!--   <object class="AdwPreferencesGroup"> -->
-            <!--     <property name="hexpand">false</property> -->
-            <!--     <property name="halign">center</property> -->
-            <!--     <child> -->
-            <!--       <object class="AdwActionRow"> -->
-                    <!-- <property name="title" translatable="yes">Max</property> -->
-                    <child>
-                      <object class="GtkSpinButton" id="max_roll">
-                        <property name="vexpand">false</property>
-                        <property name="hexpand">false</property>
-                        <property name="valign">center</property>
-                        <property name="halign">center</property>
-                        <property name="digits">0</property>
-                        <property name="numeric">true</property>
-                        <property name="adjustment">
-                          <object class="GtkAdjustment">
-                            <property name="page-increment">5</property>
-                            <property name="step-increment">1</property>
-                            <property name="lower">1</property>
-                            <property name="upper">100</property>
-                            <property name="value">20</property>
-                          </object>
-                        </property>
+            <child>
+              <object class="GtkBox">
+              <property name="halign">center</property>
+              <property name="spacing">10</property>
+                <child>
+                  <object class="GtkButton">
+                    <property name="label" translatable="yes">Roll</property>
+                    <property name="halign">center</property>
+                    <property name="action-name">dice.roll</property>
+                    <style>
+                      <class name="suggested-action"/>
+                      <class name="pill"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkSpinButton" id="max_roll">
+                    <property name="vexpand">false</property>
+                    <property name="hexpand">false</property>
+                    <property name="valign">center</property>
+                    <property name="halign">center</property>
+                    <property name="digits">0</property>
+                    <property name="numeric">true</property>
+                    <property name="adjustment">
+                      <object class="GtkAdjustment">
+                        <property name="page-increment">5</property>
+                        <property name="step-increment">1</property>
+                        <property name="lower">1</property>
+                        <property name="upper">100</property>
+                        <property name="value">20</property>
                       </object>
-                    </child>
-            <!--       </object> -->
-            <!--     </child> -->
-            <!--   </object> -->
-            <!-- </child> -->
+                    </property>
+                  </object>
+                </child>
+              </object>
+            </child>
           </object>
-        </child>
+        </property>
       </object>
     </child>
   </template>
