@@ -1,5 +1,9 @@
-src/Widgets/Menu.vala
-src/Widgets/NumDisplay.vala
-src/Widgets/RollHistory.vala
-src/Widgets/Buttons/PreviousRoll.vala
-src/MainWindow.vala
+data/com.gitlab.zelikos.rollit.desktop.in
+data/com.gitlab.zelikos.rollit.appdata.xml.in
+data/com.gitlab.zelikos.rollit.gschema.xml
+src/application.vala
+src/main.vala
+src/window.vala
+src/window.ui
+
+

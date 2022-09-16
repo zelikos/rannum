@@ -1,13 +1,6 @@
-<p align="center">
-  <img src="data/icons/128.svg" alt="Icon" />
-</p>
 <h1 align="center">Roll-It</h1>
-<p align="center">
-  <a href="https://appcenter.elementary.io/com.github.zelikos.rannum"><img src="https://appcenter.elementary.io/badge.svg" alt="Get it on AppCenter" /></a>
-</p>
 
-| ![Screenshot](data/screenshot1.png) | ![Screenshot](data/screenshot2.png) |
-|------------------------------------------|-----------------------------------------|
+![Screenshot](data/screenshots/01_rollit_startup_light.png)
 
 ## Roll the dice
 
@@ -15,28 +8,29 @@ Simulate the results of rolling a die. Roll a six-sided die by default, or get t
 
 ## Installation
 
-Roll-It is designed and developed primarily for [elementary OS]. The latest stable release is available via AppCenter.
+Roll-It's latest stable release is available via the [elementary OS] AppCenter.
 
 [![Get it on AppCenter](https://appcenter.elementary.io/badge.svg)][AppCenter link]
+
+There is currently no stable release for the new GTK4/libadwaita version.
 
 Any version distributed elsewhere is not provided nor supported by me.
 
 ## Building
 
+Roll-It has been rewritten for GTK4 and libadwaita, aligning more with GNOME's HIG. This version is under active development, although there are still plans to build GTK4 Roll-It on the elementary OS platform in the future.
+
 ### Flatpak
 
-First, install the elementary Flatpak runtime & SDK:
+For the current development build, make sure you have the required Flatpak remote enabled:
 
 ```shell
-flatpak remote-add --if-not-exists appcenter https://flatpak.elementary.io/repo.flatpakrepo
-flatpak install appcenter io.elementary.Platform//6.1 io.elementary.Sdk//6.1
+flatpak remote-add --if-not-exists --user gnome-nightly https://nightly.gnome.org/gnome-nightly.flatpakrepo
 ```
 
-Then, to build and install Roll-It:
+From there, it is highly recommended to use [GNOME Builder](https://gitlab.gnome.org/GNOME/gnome-builder/) to build and test Roll-It.
 
-```shell
-flatpak-builder build com.github.zelikos.rannum.yml --user --install --force-clean
-```
+Instructions for building the Flatpak manually will come later.
 
 [elementary OS]: https://elementary.io
 [AppCenter link]: https://appcenter.elementary.io/com.github.zelikos.rannum

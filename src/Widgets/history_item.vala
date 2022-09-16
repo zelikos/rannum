@@ -1,4 +1,4 @@
-/*  Copyright (C) 2020-2021 Patrick Csikos (https://zelikos.github.io)
+/*  Copyright (C) 2020-2022 Patrick Csikos (https://zelikos.github.io)
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -16,9 +16,22 @@
  * Authored by Patrick Csikos <zelikos@pm.me>
  */
 
-@define-color color_primary alpha (shade (@accent_color, 1.0), 0.5);
+namespace Rollit {
+    public class HistoryItem : Adw.ActionRow {
 
-.result-label {
-    font-size: 7em;
-    font-weight: 600;
+        public HistoryItem (string roll_result) {
+            title = roll_result;
+            tooltip_text = "Copy to clipboard";
+            activatable = true;
+        }
+
+        construct {
+            add_suffix(new Gtk.Image.from_icon_name ("edit-copy-symbolic"));
+
+            this.activated.connect (() => {
+                Gdk.Clipboard clip = get_clipboard();
+                clip.set_text (title);
+            });
+        }
+    }
 }

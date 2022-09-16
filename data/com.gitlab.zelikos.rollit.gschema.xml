@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="rollit">
+  <schema path="/com/gitlab/zelikos/rollit/" id="com.gitlab.zelikos.rollit">
+    <key name="window-width" type="i">
+      <default>480</default>
+      <summary>Window width</summary>
+      <description>The width of the window</description>
+    </key>
+    <key name="window-height" type="i">
+      <default>400</default>
+      <summary>Window height</summary>
+      <description>The height of the window</description>
+    </key>
+    <key name="window-maximized" type="b">
+      <default>false</default>
+      <summary>Maximized</summary>
+      <description>Whether the window is maximized or not</description>
+    </key>
+    <key name="max-roll" type="i">
+      <default>12</default>
+      <summary>Number of sides</summary>
+      <description>Number of sides of the dice</description>
+    </key>
+  </schema>
+</schemalist>
