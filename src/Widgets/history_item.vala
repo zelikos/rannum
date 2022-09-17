@@ -21,7 +21,7 @@ namespace Rollit {
 
         public HistoryItem (string roll_result) {
             title = roll_result;
-            tooltip_text = "Copy to clipboard";
+            tooltip_text = (_("Copy result to clipboard"));
             activatable = true;
         }
 

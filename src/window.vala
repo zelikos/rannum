@@ -23,12 +23,15 @@ namespace Rollit {
         [GtkChild] private unowned Gtk.SpinButton max_roll;
         [GtkChild] private unowned Gtk.ListBox history_list;
         [GtkChild] private unowned Gtk.Stack history_stack;
+        [GtkChild] private unowned Adw.ToastOverlay toast_overlay;
+
+        private Adw.Toast result_toast = new Adw.Toast (_("Result copied"));
 
         private Settings settings = new Settings ("com.gitlab.zelikos.rollit");
 
         private ActionEntry[] actions = {
             { "roll", on_roll_action },
-            { "clear", on_clear_action }
+            { "clear", on_clear_action },
         };
 
         public Window (Adw.Application app) {
@@ -58,7 +61,14 @@ namespace Rollit {
             rnd_num = (Random.int_range (MIN_NUM, (max_num + 1))).to_string();
 
             result_label.label = rnd_num;
-            history_list.append(new Rollit.HistoryItem(rnd_num));
+
+            var roll_result = new Rollit.HistoryItem(rnd_num);
+            roll_result.subtitle = (_("Out of ") + max_num.to_string());
+            roll_result.activated.connect (() => {
+                this.add_toast ();
+            });
+
+            history_list.append(roll_result);
 
             if (history_stack.visible_child_name != "filled") {
                 history_stack.visible_child = history_stack.get_child_by_name ("filled");
@@ -73,6 +83,10 @@ namespace Rollit {
             }
 
             history_stack.visible_child = history_stack.get_child_by_name ("empty");
+        }
+
+        private void add_toast () {
+            toast_overlay.add_toast (result_toast);
         }
     }
 }
