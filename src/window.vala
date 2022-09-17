@@ -32,7 +32,6 @@ namespace Rollit {
         private ActionEntry[] actions = {
             { "roll", on_roll_action },
             { "clear", on_clear_action },
-            { "add-toast", add_toast },
         };
 
         public Window (Adw.Application app) {
@@ -65,6 +64,9 @@ namespace Rollit {
 
             var roll_result = new Rollit.HistoryItem(rnd_num);
             roll_result.subtitle = (_("Out of ") + max_num.to_string());
+            roll_result.activated.connect (() => {
+                this.add_toast ();
+            });
 
             history_list.append(roll_result);
 
