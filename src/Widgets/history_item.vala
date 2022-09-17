@@ -23,6 +23,7 @@ namespace Rollit {
             title = roll_result;
             tooltip_text = "Copy result to clipboard";
             activatable = true;
+            action_name = "dice.add-toast";
         }
 
         construct {

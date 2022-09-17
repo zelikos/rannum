@@ -23,12 +23,16 @@ namespace Rollit {
         [GtkChild] private unowned Gtk.SpinButton max_roll;
         [GtkChild] private unowned Gtk.ListBox history_list;
         [GtkChild] private unowned Gtk.Stack history_stack;
+        [GtkChild] private unowned Adw.ToastOverlay toast_overlay;
+
+        private Adw.Toast result_toast = new Adw.Toast (_("Result copied"));
 
         private Settings settings = new Settings ("com.gitlab.zelikos.rollit");
 
         private ActionEntry[] actions = {
             { "roll", on_roll_action },
-            { "clear", on_clear_action }
+            { "clear", on_clear_action },
+            { "add-toast", add_toast },
         };
 
         public Window (Adw.Application app) {
@@ -73,6 +77,10 @@ namespace Rollit {
             }
 
             history_stack.visible_child = history_stack.get_child_by_name ("empty");
+        }
+
+        private void add_toast () {
+            toast_overlay.add_toast (result_toast);
         }
     }
 }
