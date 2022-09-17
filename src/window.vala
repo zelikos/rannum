@@ -62,7 +62,11 @@ namespace Rollit {
             rnd_num = (Random.int_range (MIN_NUM, (max_num + 1))).to_string();
 
             result_label.label = rnd_num;
-            history_list.append(new Rollit.HistoryItem(rnd_num));
+
+            var roll_result = new Rollit.HistoryItem(rnd_num);
+            roll_result.subtitle = (_("Out of ") + max_num.to_string());
+
+            history_list.append(roll_result);
 
             if (history_stack.visible_child_name != "filled") {
                 history_stack.visible_child = history_stack.get_child_by_name ("filled");
