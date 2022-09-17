@@ -18,14 +18,14 @@
 
 namespace Rollit {
     [GtkTemplate (ui = "/com/gitlab/zelikos/rollit/window.ui")]
-    public class Window : Gtk.ApplicationWindow {
+    public class Window : Adw.ApplicationWindow {
         [GtkChild] private unowned Gtk.Label result_label;
         [GtkChild] private unowned Gtk.SpinButton max_roll;
         [GtkChild] private unowned Gtk.ListBox history_list;
         [GtkChild] private unowned Gtk.Stack history_stack;
         [GtkChild] private unowned Adw.ToastOverlay toast_overlay;
 
-        private Adw.Toast result_toast = new Adw.Toast (_("Result copied"));
+        private Adw.Toast result_toast;
 
         private Settings settings = new Settings ("com.gitlab.zelikos.rollit");
 
@@ -43,6 +43,9 @@ namespace Rollit {
             action_group.add_action_entries (actions, this);
 
             insert_action_group ("dice", action_group);
+
+            result_toast = new Adw.Toast (_("Result copied"));
+            result_toast.timeout = 1;
 
             this.settings.bind ("window-width", this, "default-width", SettingsBindFlags.DEFAULT);
             this.settings.bind ("window-height", this, "default-height", SettingsBindFlags.DEFAULT);
