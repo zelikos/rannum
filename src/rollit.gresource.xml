@@ -3,5 +3,6 @@
   <gresource prefix="/com/gitlab/zelikos/rollit">
     <file>window.ui</file>
     <file>gtk/help-overlay.ui</file>
+    <file>icons/scalable/actions/dice3-symbolic.svg</file>
   </gresource>
 </gresources>
