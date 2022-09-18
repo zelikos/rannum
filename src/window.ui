@@ -47,7 +47,7 @@
                         <property name="child">
                           <object class="AdwStatusPage">
                             <property name="title" translatable="yes">No Results</property>
-                            <property name="description" translatable="yes">Click 'Roll' to begin</property>
+                            <property name="description" translatable="yes">Press 'Roll' to begin</property>
                             <style>
                               <class name="compact"/>
                             </style>
