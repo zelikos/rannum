@@ -3,6 +3,7 @@ rollit_sources = files(
   'main.vala',
   'window.vala',
   'Widgets/history_item.vala',
+  'Widgets/history_pane.vala',
   'Widgets/main_view.vala',
 )
 
