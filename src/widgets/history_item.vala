@@ -17,20 +17,21 @@
  */
 
 namespace Rollit {
+    [GtkTemplate (ui = "/com/gitlab/zelikos/rollit/gtk/history-item.ui")]
     public class HistoryItem : Adw.ActionRow {
+        Rollit.Window? toast_target;
 
-        public HistoryItem (string roll_result) {
+        public HistoryItem (Rollit.Window? window, string roll_result, string max_num) {
             title = roll_result;
-            tooltip_text = (_("Copy result to clipboard"));
-            activatable = true;
+            subtitle = (_("Out of ") + max_num.to_string());
+            toast_target = window;
         }
 
         construct {
-            add_suffix(new Gtk.Image.from_icon_name ("edit-copy-symbolic"));
-
             this.activated.connect (() => {
                 Gdk.Clipboard clip = get_clipboard();
                 clip.set_text (title);
+                toast_target.add_toast();
             });
         }
     }
