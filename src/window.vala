@@ -17,12 +17,10 @@
  */
 
 namespace Rollit {
-    [GtkTemplate (ui = "/com/gitlab/zelikos/rollit/window.ui")]
+    [GtkTemplate (ui = "/com/gitlab/zelikos/rollit/gtk/window.ui")]
     public class Window : Adw.ApplicationWindow {
-        [GtkChild] private unowned Gtk.Label result_label;
-        [GtkChild] private unowned Gtk.SpinButton max_roll;
-        [GtkChild] private unowned Gtk.ListBox history_list;
-        [GtkChild] private unowned Gtk.Stack history_stack;
+        [GtkChild] private unowned Rollit.MainView main_view;
+        [GtkChild] private unowned Rollit.HistoryPane history_pane;
         [GtkChild] private unowned Adw.ToastOverlay toast_overlay;
 
         private Adw.Toast result_toast;
@@ -50,8 +48,6 @@ namespace Rollit {
             this.settings.bind ("window-width", this, "default-width", SettingsBindFlags.DEFAULT);
             this.settings.bind ("window-height", this, "default-height", SettingsBindFlags.DEFAULT);
             this.settings.bind ("window-maximized", this, "maximized", SettingsBindFlags.DEFAULT);
-
-            this.settings.bind ("max-roll", max_roll, "value", SettingsBindFlags.DEFAULT);
         }
 
         private void on_roll_action () {
@@ -59,36 +55,21 @@ namespace Rollit {
             int max_num;
             string rnd_num;
 
-            max_num = max_roll.get_value_as_int();
-
+            max_num = main_view.get_max_roll();
             rnd_num = (Random.int_range (MIN_NUM, (max_num + 1))).to_string();
 
-            result_label.label = rnd_num;
+            main_view.set_result_label(rnd_num.to_string());
 
-            var roll_result = new Rollit.HistoryItem(rnd_num);
-            roll_result.subtitle = (_("Out of ") + max_num.to_string());
-            roll_result.activated.connect (() => {
-                this.add_toast ();
-            });
+            var roll_result = new Rollit.HistoryItem(this, rnd_num, max_num.to_string());
 
-            history_list.append(roll_result);
-
-            if (history_stack.visible_child_name != "filled") {
-                history_stack.visible_child = history_stack.get_child_by_name ("filled");
-            }
+            history_pane.add_result(roll_result);
         }
 
         private void on_clear_action () {
-            Gtk.ListBoxRow? current_item = history_list.get_row_at_index (0);
-            while (current_item != null) {
-                history_list.remove (current_item);
-                current_item = history_list.get_row_at_index (0);
-            }
-
-            history_stack.visible_child = history_stack.get_child_by_name ("empty");
+            history_pane.clear_history ();
         }
 
-        private void add_toast () {
+        public void add_toast () {
             toast_overlay.add_toast (result_toast);
         }
     }

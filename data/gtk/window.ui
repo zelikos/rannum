@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0"/>
+  <requires lib="libadwaita" version="1.0"/>
+  <template class="RollitWindow" parent="AdwApplicationWindow">
+    <property name="title" translatable="yes">Roll-It</property>
+    <property name="default-width">300</property>
+    <property name="default-height">300</property>
+    <property name="icon-name">com.gitlab.zelikos.rollit</property>
+    <style>
+      <class name="devel"/>
+    </style>
+    <property name="content">
+      <object class="AdwToastOverlay" id="toast_overlay">
+        <child>
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="AdwHeaderBar" id="header_bar">
+                <child type="start">
+                  <object class="GtkToggleButton" id="roll_history_btn">
+                    <property name="icon-name">sidebar-show-symbolic</property>
+                    <property name="active" bind-source="roll_history_flap" bind-property="reveal-flap" bind-flags="sync-create|bidirectional"/>
+                  </object>
+                </child>
+                <child type="end">
+                  <object class="GtkMenuButton">
+                    <property name="icon-name">open-menu-symbolic</property>
+                    <property name="menu-model">primary_menu</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwFlap" id="roll_history_flap">
+                <property name="vexpand">true</property>
+                <property name="flap">
+                  <object class="RollitHistoryPane" id="history_pane"></object>
+                </property>
+                <property name="separator">
+                  <object class="GtkSeparator"/>
+                </property>
+                <property name="content">
+                  <object class="RollitMainView" id="main_view"></object>
+                </property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </property>
+  </template>
+  <menu id="primary_menu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
+        <attribute name="action">win.show-help-overlay</attribute>
+      </item>
+      <!-- <item> -->
+      <!--   <attribute name="label" translatable="yes">_Preferences</attribute> -->
+      <!--   <attribute name="action">app.preferences</attribute> -->
+      <!-- </item> -->
+      <item>
+        <attribute name="label" translatable="yes">_About Roll-It</attribute>
+        <attribute name="action">app.about</attribute>
+      </item>
+    </section>
+  </menu>
+</interface>
