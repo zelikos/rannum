@@ -20,12 +20,12 @@ namespace Rollit {
     public class HistoryItem : Adw.ActionRow {
         Rollit.Window? toast_target;
 
-        public HistoryItem (Rollit.Window? parent, string roll_result, string max_num) {
+        public HistoryItem (Rollit.Window? window, string roll_result, string max_num) {
             title = roll_result;
             subtitle = (_("Out of ") + max_num.to_string());
             tooltip_text = (_("Copy result to clipboard"));
             activatable = true;
-            toast_target = parent;
+            toast_target = window;
         }
 
         construct {
