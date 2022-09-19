@@ -17,7 +17,7 @@
  */
 
 namespace Rollit {
-    [GtkTemplate (ui = "/com/gitlab/zelikos/rollit/window.ui")]
+    [GtkTemplate (ui = "/com/gitlab/zelikos/rollit/gtk/window.ui")]
     public class Window : Adw.ApplicationWindow {
         [GtkChild] private unowned Gtk.Label result_label;
         [GtkChild] private unowned Gtk.SpinButton max_roll;
