@@ -1,9 +1,11 @@
 data/com.gitlab.zelikos.rollit.desktop.in
 data/com.gitlab.zelikos.rollit.appdata.xml.in
 data/com.gitlab.zelikos.rollit.gschema.xml
+data/gtk/history-pane.ui
+data/gtk/main-view.ui
+data/gtk/window.ui
 src/application.vala
-src/main.vala
 src/window.vala
-src/window.ui
+src/Widgets/history_item.vala
 
 
