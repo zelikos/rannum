@@ -3,6 +3,7 @@
   <gresource prefix="/com/gitlab/zelikos/rollit">
     <file>gtk/main-view.ui</file>
     <file>gtk/help-overlay.ui</file>
+    <file>gtk/history-item.ui</file>
     <file>gtk/history-pane.ui</file>
     <file>gtk/window.ui</file>
   </gresource>
