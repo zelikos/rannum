@@ -19,6 +19,7 @@
 namespace Rollit {
     [GtkTemplate (ui = "/com/gitlab/zelikos/rollit/gtk/main-view.ui")]
     public class MainView : Adw.Bin {
+        [GtkChild] private unowned Gtk.Stack result_stack;
         [GtkChild] private unowned Gtk.Label result_label;
         [GtkChild] private unowned Gtk.SpinButton max_roll;
 
@@ -35,10 +36,13 @@ namespace Rollit {
 
         public void set_result_label (string result) {
             result_label.label = result;
+            if (result_stack.visible_child_name != "result") {
+                result_stack.visible_child = result_stack.get_child_by_name ("result");
+            }
         }
 
         public void reset_label () {
-            result_label.label = "?";
+            result_stack.visible_child = result_stack.get_child_by_name ("empty");
         }
     }
 }

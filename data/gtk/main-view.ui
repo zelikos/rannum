@@ -16,17 +16,46 @@
             <property name="spacing">10</property>
             <property name="valign">fill</property>
             <child>
-              <object class="GtkLabel" id="result_label">
-                <property name="label">?</property>
-                <property name="vexpand">true</property>
-                <style>
-                  <class name="title-1"/>
-                  <class name="numeric"/>
-                </style>
-                <attributes>
-                  <attribute name="weight" value="bold"/>
-                  <attribute name="scale" value="4"/>
-                </attributes>
+              <object class="GtkStack" id="result_stack">
+                <property name="transition-type">over-down-up</property>
+                <child>
+                  <object class="GtkStackPage">
+                    <property name="name">empty</property>
+                    <property name="child">
+                      <object class="GtkLabel">
+                        <property name="label">?</property>
+                        <property name="vexpand">true</property>
+                        <style>
+                          <class name="title-1"/>
+                          <class name="numeric"/>
+                        </style>
+                        <attributes>
+                          <attribute name="weight" value="bold"/>
+                          <attribute name="scale" value="4"/>
+                        </attributes>
+                      </object>
+                    </property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkStackPage">
+                    <property name="name">result</property>
+                    <property name="child">
+                      <object class="GtkLabel" id="result_label">
+                        <property name="vexpand">true</property>
+                        <style>
+                          <class name="background"/>
+                          <class name="title-1"/>
+                          <class name="numeric"/>
+                        </style>
+                        <attributes>
+                          <attribute name="weight" value="bold"/>
+                          <attribute name="scale" value="4"/>
+                        </attributes>
+                      </object>
+                    </property>
+                  </object>
+                </child>
               </object>
             </child>
             <child>
