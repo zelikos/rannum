@@ -47,6 +47,9 @@
                   <property name="label">Clear</property>
                   <property name="tooltip-text">Clear results</property>
                   <property name="action-name">dice.clear</property>
+                  <style>
+                    <class name="destructive-action"/>
+                  </style>
                 </object>
               </child>
             </object>
