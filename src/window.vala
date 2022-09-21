@@ -67,6 +67,7 @@ namespace Rollit {
 
         private void on_clear_action () {
             history_pane.clear_history ();
+            main_view.reset_label();
         }
 
         public void add_toast () {

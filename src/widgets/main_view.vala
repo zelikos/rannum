@@ -36,5 +36,9 @@ namespace Rollit {
         public void set_result_label (string result) {
             result_label.label = result;
         }
+
+        public void reset_label () {
+            result_label.label = "?";
+        }
     }
 }
