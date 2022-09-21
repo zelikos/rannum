@@ -5,7 +5,7 @@
   <template class="RollitHistoryItem" parent="AdwActionRow">
     <property name="title">x</property>
     <property name="subtitle">Out of y</property>
-    <property name="tooltip_text" translatable="yes">Copy result to clipboard</property>
+    <property name="tooltip_text" translatable="yes">Copy result</property>
     <property name="activatable">true</property>
     <child type="suffix">
       <object class="GtkImage">
