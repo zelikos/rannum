@@ -6,5 +6,6 @@
     <file>gtk/history-item.ui</file>
     <file>gtk/history-pane.ui</file>
     <file>gtk/window.ui</file>
+    <file>icons/scalable/actions/dice3-symbolic.svg</file>
   </gresource>
 </gresources>
