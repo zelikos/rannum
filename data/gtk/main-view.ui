@@ -32,6 +32,7 @@
             <child>
               <object class="GtkButton">
                 <property name="label">Roll</property>
+                <property name="tooltip-text">Roll the dice</property>
                 <property name="action-name">dice.roll</property>
                 <style>
                   <class name="suggested-action"/>

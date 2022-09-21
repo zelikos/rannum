@@ -45,6 +45,7 @@
              <child>
                 <object class="GtkButton">
                   <property name="label">Clear</property>
+                  <property name="tooltip-text">Clear results history</property>
                   <property name="action-name">dice.clear</property>
                 </object>
               </child>
