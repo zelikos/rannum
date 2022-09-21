@@ -4,8 +4,6 @@
   <requires lib="libadwaita" version="1.0"/>
   <template class="RollitWindow" parent="AdwApplicationWindow">
     <property name="title" translatable="yes">Roll-It</property>
-    <property name="default-width">300</property>
-    <property name="default-height">300</property>
     <property name="icon-name">com.gitlab.zelikos.rollit</property>
     <style>
       <class name="devel"/>
