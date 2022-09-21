@@ -17,7 +17,7 @@
             <property name="valign">fill</property>
             <child>
               <object class="GtkLabel" id="result_label">
-                <property name="label" translatable="yes">?</property>
+                <property name="label">?</property>
                 <property name="vexpand">true</property>
                 <style>
                   <class name="title-1"/>

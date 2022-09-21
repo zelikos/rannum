@@ -33,13 +33,13 @@
               <object class="AdwFlap" id="roll_history_flap">
                 <property name="vexpand">true</property>
                 <property name="flap">
-                  <object class="RollitHistoryPane" id="history_pane"></object>
+                  <object class="RollitHistoryPane" id="history_pane"/>
                 </property>
                 <property name="separator">
                   <object class="GtkSeparator"/>
                 </property>
                 <property name="content">
-                  <object class="RollitMainView" id="main_view"></object>
+                  <object class="RollitMainView" id="main_view"/>
                 </property>
               </object>
             </child>
