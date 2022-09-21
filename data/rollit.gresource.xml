@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
   <gresource prefix="/com/gitlab/zelikos/rollit">
-    <file>window.ui</file>
+    <file>gtk/main-view.ui</file>
     <file>gtk/help-overlay.ui</file>
+    <file>gtk/history-item.ui</file>
+    <file>gtk/history-pane.ui</file>
+    <file>gtk/window.ui</file>
     <file>icons/scalable/actions/dice3-symbolic.svg</file>
   </gresource>
 </gresources>

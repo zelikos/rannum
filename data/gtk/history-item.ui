@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0"/>
+  <requires lib="libadwaita" version="1.0"/>
+  <template class="RollitHistoryItem" parent="AdwActionRow">
+    <property name="title">x</property>
+    <property name="subtitle">Out of y</property>
+    <property name="tooltip_text" translatable="yes">Copy result to clipboard</property>
+    <property name="activatable">true</property>
+    <child type="suffix">
+      <object class="GtkImage">
+        <property name="icon-name">edit-copy-symbolic</property>
+      </object>
+    </child>
+  </template>
+</interface>
