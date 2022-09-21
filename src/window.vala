@@ -43,7 +43,7 @@ namespace Rollit {
             insert_action_group ("dice", action_group);
 
             result_toast = new Adw.Toast (_("Result copied"));
-            result_toast.timeout = 1;
+            result_toast.timeout = 2;
 
             this.settings.bind ("window-width", this, "default-width", SettingsBindFlags.DEFAULT);
             this.settings.bind ("window-height", this, "default-height", SettingsBindFlags.DEFAULT);
@@ -67,6 +67,7 @@ namespace Rollit {
 
         private void on_clear_action () {
             history_pane.clear_history ();
+            main_view.reset_label();
         }
 
         public void add_toast () {
