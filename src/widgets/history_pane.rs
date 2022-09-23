@@ -76,14 +76,25 @@ impl RollitHistoryPane {
         let result_item = RollitHistoryItem::new();
         result_item.add_result(result, max);
 
-        imp.history_list.append(&result_item);
-
-        if imp.history_stack.visible_child_name().unwrap() != "filled" {
+        if imp.history_stack.visible_child_name().unwrap() == "empty" {
+            self.clear_history();
             imp.history_stack.set_visible_child(&imp.history_stack.child_by_name("filled").unwrap());
         }
+
+        imp.history_list.append(&result_item);
     }
 
-    pub fn clear_history(&self) {
+    pub fn hide_history(&self) {
+        let imp = self.imp();
+        imp.history_stack.set_visible_child(&imp.history_stack.child_by_name("empty").unwrap());
+    }
+
+    pub fn show_history(&self) {
+        let imp = self.imp();
+        imp.history_stack.set_visible_child(&imp.history_stack.child_by_name("filled").unwrap());
+    }
+
+    fn clear_history(&self) {
         let imp = self.imp();
 
         let mut current_item = imp.history_list.row_at_index(0);
@@ -94,8 +105,6 @@ impl RollitHistoryPane {
                 current_item = imp.history_list.row_at_index(0);
             }
         }
-
-        imp.history_stack.set_visible_child(&imp.history_stack.child_by_name("empty").unwrap());
     }
 }
 
