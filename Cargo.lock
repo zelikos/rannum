@@ -830,6 +830,7 @@ dependencies = [
  "gtk-macros",
  "gtk4",
  "libadwaita",
+ "once_cell",
  "pretty_env_logger",
  "random-number",
  "regex",
