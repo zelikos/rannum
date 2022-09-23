@@ -22,7 +22,6 @@ use crate::widgets::RollitHistoryItem;
 use crate::window::RollitWindow;
 
 use adw::subclass::prelude::*;
-use gtk::subclass::prelude::*;
 use gtk::prelude::*;
 use gtk::CompositeTemplate;
 

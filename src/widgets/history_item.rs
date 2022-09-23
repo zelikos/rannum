@@ -24,7 +24,6 @@ use adw::subclass::prelude::*;
 use adw::prelude::PreferencesRowExt;
 use adw::prelude::ActionRowExt;
 use gtk::prelude::*;
-use gtk::subclass::prelude::*;
 use gtk::CompositeTemplate;
 
 mod imp {
