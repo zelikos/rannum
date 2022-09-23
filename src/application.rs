@@ -115,6 +115,8 @@ impl RollitApplication {
         );
 
         self.set_accels_for_action("app.quit", &["<Primary>Q"]);
+        self.set_accels_for_action("win.roll-dice", &["<Primary>R"]);
+        self.set_accels_for_action("win.clear-history", &["<Primary>L"]);
     }
 
     fn show_about(&self) {
