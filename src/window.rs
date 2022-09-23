@@ -17,6 +17,7 @@
  */
 
 use crate::deps::*;
+use crate::i18n::*;
 
 use adw::subclass::prelude::*;
 use gtk::prelude::*;
@@ -64,6 +65,10 @@ mod imp {
                 win.clear_history();
             });
 
+            klass.install_action("win.undo-clear", None, move |win, _, _| {
+                win.undo_clear();
+            });
+
             klass.install_action("win.toggle-history", None, move |win, _, _| {
                 win.toggle_history();
             });
@@ -88,6 +93,7 @@ mod imp {
                 obj.add_css_class("devel");
             }
 
+            obj.setup_actions();
             obj.setup_settings();
 
             // Set help overlay
@@ -115,6 +121,11 @@ impl RollitWindow {
         glib::Object::new(&[("application", app)]).expect("Failed to create RollitWindow")
     }
 
+    fn setup_actions(&self) {
+        self.action_set_enabled("win.clear-history", false);
+        self.action_set_enabled("win.undo-clear", false);
+    }
+
     fn setup_settings(&self) {
         let settings = utils::settings_manager();
         settings.bind ("window-width", self, "default-width").build();
@@ -125,11 +136,30 @@ impl RollitWindow {
     fn roll_dice(&self) {
         let roll_result = self.imp().main_view.get_roll_result();
         self.imp().history_pane.add_result(roll_result);
+
+        self.action_set_enabled("win.clear-history", true);
+        self.action_set_enabled("win.undo-clear", false);
     }
 
     fn clear_history(&self) {
-        self.imp().main_view.reset_label();
-        self.imp().history_pane.clear_history();
+        let imp = self.imp();
+
+        imp.history_pane.hide_history();
+        imp.main_view.hide_label();
+        self.undo_toast();
+
+        self.action_set_enabled("win.clear-history", false);
+        self.action_set_enabled("win.undo-clear", true);
+    }
+
+    fn undo_clear(&self) {
+        let imp = self.imp();
+
+        imp.history_pane.show_history();
+        imp.main_view.show_label();
+
+        self.action_set_enabled("win.clear-history", true);
+        self.action_set_enabled("win.undo-clear", false);
     }
 
     fn toggle_history(&self) {
@@ -149,5 +179,18 @@ impl RollitWindow {
         toast.set_priority(priority);
 
         imp.toast_overlay.add_toast(&toast);
-    }}
+    }
+
+    fn undo_toast(&self) {
+        let imp = self.imp();
+
+        let toast = adw::Toast::new("Results cleared");
+        toast.set_button_label(Some(&i18n("Undo")));
+        toast.set_action_name(Some("win.undo-clear"));
+        toast.set_priority(adw::ToastPriority::High);
+
+        imp.toast_overlay.add_toast(&toast);
+    }
+
+}
 

@@ -91,8 +91,12 @@ impl RollitMainView {
         rnd_num
     }
 
-    pub fn reset_label (&self) {
+    pub fn hide_label (&self) {
         self.imp().result_stack.set_visible_child(&self.imp().result_stack.child_by_name("empty").unwrap());
+    }
+
+    pub fn show_label (&self) {
+        self.imp().result_stack.set_visible_child(&self.imp().result_stack.child_by_name("result").unwrap());
     }
 
     fn get_max_roll (&self) -> u16 {
