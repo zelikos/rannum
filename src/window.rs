@@ -17,6 +17,7 @@
  */
 
 use crate::deps::*;
+use crate::i18n::*;
 
 use adw::subclass::prelude::*;
 use gtk::prelude::*;
@@ -62,6 +63,10 @@ mod imp {
 
             klass.install_action("win.clear-history", None, move |win, _, _| {
                 win.clear_history();
+            });
+
+            klass.install_action("win.undo-clear", None, move |win, _, _| {
+                win.undo_clear();
             });
 
             klass.install_action("win.toggle-history", None, move |win, _, _| {
@@ -128,8 +133,18 @@ impl RollitWindow {
     }
 
     fn clear_history(&self) {
-        self.imp().main_view.reset_label();
-        self.imp().history_pane.clear_history();
+        let imp = self.imp();
+
+        imp.history_pane.hide_history();
+        imp.main_view.hide_label();
+        self.undo_toast();
+    }
+
+    fn undo_clear(&self) {
+        let imp = self.imp();
+
+        imp.history_pane.show_history();
+        imp.main_view.show_label();
     }
 
     fn toggle_history(&self) {
@@ -149,5 +164,18 @@ impl RollitWindow {
         toast.set_priority(priority);
 
         imp.toast_overlay.add_toast(&toast);
-    }}
+    }
+
+    fn undo_toast(&self) {
+        let imp = self.imp();
+
+        let toast = adw::Toast::new("Results cleared");
+        toast.set_button_label(Some(&i18n("Undo")));
+        toast.set_action_name(Some("win.undo-clear"));
+        toast.set_priority(adw::ToastPriority::High);
+
+        imp.toast_overlay.add_toast(&toast);
+    }
+
+}
 
