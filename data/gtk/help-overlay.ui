@@ -17,6 +17,12 @@
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
+                <property name="title" translatable="yes" context="shortcut window">History List</property>
+                <property name="action-name">win.toggle-history</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
                 <property name="title" translatable="yes" context="shortcut window">Clear History</property>
                 <property name="action-name">win.clear-history</property>
               </object>

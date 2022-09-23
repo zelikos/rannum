@@ -34,9 +34,11 @@ mod imp {
     #[template(resource = "/com/gitlab/zelikos/rollit/gtk/window.ui")]
     pub struct RollitWindow {
         #[template_child]
+        pub history_pane: TemplateChild<RollitHistoryPane>,
+        #[template_child]
         pub main_view: TemplateChild<RollitMainView>,
         #[template_child]
-        pub history_pane: TemplateChild<RollitHistoryPane>,
+        pub rollit_flap: TemplateChild<adw::Flap>,
         #[template_child]
         pub toast_overlay: TemplateChild<adw::ToastOverlay>,
     }
@@ -60,6 +62,10 @@ mod imp {
 
             klass.install_action("win.clear-history", None, move |win, _, _| {
                 win.clear_history();
+            });
+
+            klass.install_action("win.toggle-history", None, move |win, _, _| {
+                win.toggle_history();
             });
 
             klass.install_action("win.show-toast", Some("(si)"), move |win, _, var| {
@@ -124,6 +130,16 @@ impl RollitWindow {
     fn clear_history(&self) {
         self.imp().main_view.reset_label();
         self.imp().history_pane.clear_history();
+    }
+
+    fn toggle_history(&self) {
+        let flap = &self.imp().rollit_flap;
+
+        if flap.reveals_flap() {
+            flap.set_reveal_flap(false);
+        } else {
+            flap.set_reveal_flap(true);
+        }
     }
 
     pub fn show_toast(&self, text: impl AsRef<str>, priority: adw::ToastPriority) {
