@@ -17,14 +17,10 @@
  */
 
 use crate::deps::*;
-use crate::i18n::*;
 
 use adw::subclass::prelude::*;
-use glib::clone;
 use gtk::prelude::*;
 use gtk::CompositeTemplate;
-
-use gtk_macros::spawn;
 
 use crate::config;
 use crate::utils;

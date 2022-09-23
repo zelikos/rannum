@@ -22,13 +22,8 @@ use crate::utils;
 use core::ops::Deref;
 
 use adw::subclass::prelude::*;
-use glib::{clone,Continue};
 use gtk::prelude::*;
 use gtk::CompositeTemplate;
-
-use gtk_macros::spawn;
-
-// use once_cell::sync::OnceCell;
 
 use random_number::random;
 use std::time::Duration;
