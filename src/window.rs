@@ -20,14 +20,18 @@ use crate::deps::*;
 use crate::i18n::*;
 
 use adw::subclass::prelude::*;
+use gio::Settings;
 use glib::clone;
 use gtk::prelude::*;
 use gtk::CompositeTemplate;
 
 use gtk_macros::spawn;
 
+use once_cell::sync::OnceCell;
+
 use crate::config;
-// use crate::widgets::{insert widgets here};
+use crate::utils;
+use crate::widgets::{RollitMainView};
 
 
 mod imp {
@@ -36,12 +40,14 @@ mod imp {
     #[derive(Debug, Default, CompositeTemplate)]
     #[template(resource = "/com/gitlab/zelikos/rollit/gtk/window.ui")]
     pub struct RollitWindow {
-        // #[template_child]
-        // pub main_view: TemplateChild<RollitMainView>,
+        #[template_child]
+        pub main_view: TemplateChild<RollitMainView>,
         // #[template_child]
         // pub history_pane: TemplateChild<RollitHistoryPane>,
         #[template_child]
         pub toast_overlay: TemplateChild<adw::ToastOverlay>,
+
+        pub settings: OnceCell<gio::Settings>,
     }
 
     #[glib::object_subclass]
@@ -85,6 +91,8 @@ mod imp {
                 obj.add_css_class("devel");
             }
 
+            obj.setup_settings();
+
             // Set help overlay
             let builder = gtk::Builder::from_resource("/com/gitlab/zelikos/rollit/gtk/help-overlay.ui");
             let help_overlay = builder.object("help_overlay").unwrap();
@@ -110,12 +118,19 @@ impl RollitWindow {
         glib::Object::new(&[("application", app)]).expect("Failed to create RollitWindow")
     }
 
-    fn roll_dice(&self) {
+    fn setup_settings(&self) {
+        let settings = utils::settings_manager();
+        settings.bind ("window-width", self, "default-width").build();
+        settings.bind ("window-height", self, "default-height").build();
+        settings.bind ("window-maximized", self, "maximized").build();
+    }
 
+    fn roll_dice(&self) {
+        self.imp().main_view.get_roll_result();
     }
 
     fn clear_history(&self) {
-
+        self.imp().main_view.reset_label();
     }
 
     fn show_toast(&self, text: impl AsRef<str>, priority: adw::ToastPriority) {
