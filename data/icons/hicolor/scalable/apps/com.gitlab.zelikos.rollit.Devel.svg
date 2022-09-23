@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg height="128px" viewBox="0 0 128 128" width="128px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <filter id="a" height="100%" width="100%" x="0%" y="0%">
+            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0"/>
+        </filter>
+        <mask id="b">
+            <g filter="url(#a)">
+                <rect fill-opacity="0.2" height="128" width="128"/>
+            </g>
+        </mask>
+        <mask id="c">
+            <g filter="url(#a)">
+                <rect fill-opacity="0.4" height="128" width="128"/>
+            </g>
+        </mask>
+        <linearGradient id="d" gradientUnits="userSpaceOnUse" x1="66.996674" x2="66.996674" y1="15.857451" y2="117.809921">
+            <stop offset="0" stop-color="#7239b3"/>
+            <stop offset="1" stop-color="#4d2779"/>
+        </linearGradient>
+        <mask id="e">
+            <g filter="url(#a)">
+                <rect fill-opacity="0.5" height="128" width="128"/>
+            </g>
+        </mask>
+        <mask id="f">
+            <g filter="url(#a)">
+                <rect fill-opacity="0.5" height="128" width="128"/>
+            </g>
+        </mask>
+        <mask id="g">
+            <g filter="url(#a)">
+                <rect fill-opacity="0.07" height="128" width="128"/>
+            </g>
+        </mask>
+        <mask id="h">
+            <g filter="url(#a)">
+                <rect fill-opacity="0.07" height="128" width="128"/>
+            </g>
+        </mask>
+        <mask id="i">
+            <g filter="url(#a)">
+                <rect fill-opacity="0.07" height="128" width="128"/>
+            </g>
+        </mask>
+        <mask id="j">
+            <g filter="url(#a)">
+                <rect fill-opacity="0.149" height="128" width="128"/>
+            </g>
+        </mask>
+        <mask id="k">
+            <g filter="url(#a)">
+                <rect fill-opacity="0.149" height="128" width="128"/>
+            </g>
+        </mask>
+        <mask id="l">
+            <g filter="url(#a)">
+                <rect fill-opacity="0.149" height="128" width="128"/>
+            </g>
+        </mask>
+        <mask id="m">
+            <g filter="url(#a)">
+                <rect fill-opacity="0.2" height="128" width="128"/>
+            </g>
+        </mask>
+        <radialGradient id="n" cx="-4.028777" cy="93.467628" gradientTransform="matrix(1.556392 0 0 0.169788 70.270355 102.131569)" gradientUnits="userSpaceOnUse" r="35.338131">
+            <stop offset="0"/>
+            <stop offset="1" stop-opacity="0"/>
+        </radialGradient>
+        <clipPath id="o">
+            <rect height="128" width="128"/>
+        </clipPath>
+        <g id="p" clip-path="url(#o)">
+            <path d="m 119 118 c -0.007812 3.316406 -24.628906 6 -55 6 s -54.992188 -2.683594 -55 -6 c -0.007812 -3.3125 24.621094 -6 55 -6 s 55.007812 2.6875 55 6 z m 0 0" fill="url(#n)"/>
+        </g>
+        <mask id="q">
+            <g filter="url(#a)">
+                <rect fill-opacity="0.4" height="128" width="128"/>
+            </g>
+        </mask>
+        <linearGradient id="r" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#181818"/>
+            <stop offset="1" stop-color="#181818" stop-opacity="0"/>
+        </linearGradient>
+        <radialGradient id="s" cx="4.992979" cy="43.5" gradientTransform="matrix(5.610595 0 0 1 75.966763 75.000002)" r="2.5" xlink:href="#r"/>
+        <radialGradient id="t" cx="4.992979" cy="43.5" gradientTransform="matrix(-5.610595 0 0 -1 52.033234 161.99999)" r="2.5" xlink:href="#r"/>
+        <linearGradient id="u" gradientTransform="matrix(2.857143 0 0 0.714286 -4.571428 87.428571)" gradientUnits="userSpaceOnUse" x1="25.058096" x2="25.058096" y1="47.027729" y2="39.999443">
+            <stop offset="0" stop-color="#181818" stop-opacity="0"/>
+            <stop offset="0.5" stop-color="#181818"/>
+            <stop offset="1" stop-color="#181818" stop-opacity="0"/>
+        </linearGradient>
+        <clipPath id="v">
+            <rect height="128" width="128"/>
+        </clipPath>
+        <g id="w" clip-path="url(#v)">
+            <path d="m 104 116 h 14 v 5 h -14 z m 0 0" fill="url(#s)"/>
+            <path d="m 24 121 h -14 v -5 h 14 z m 0 0" fill="url(#t)"/>
+            <path d="m 24 116 h 80 v 5 h -80 z m 0 0" fill="url(#u)"/>
+        </g>
+        <mask id="x">
+            <g filter="url(#a)">
+                <rect fill-opacity="0.5" height="128" width="128"/>
+            </g>
+        </mask>
+        <linearGradient id="y" gradientUnits="userSpaceOnUse" x1="63.9999757027" x2="63.9999757027" y1="15.13693897297" y2="118.866709">
+            <stop offset="0" stop-color="#ffffff"/>
+            <stop offset="0.0631645" stop-color="#ffffff" stop-opacity="0.235294"/>
+            <stop offset="0.950563" stop-color="#ffffff" stop-opacity="0.156863"/>
+            <stop offset="1" stop-color="#ffffff" stop-opacity="0.392157"/>
+        </linearGradient>
+        <clipPath id="z">
+            <rect height="128" width="128"/>
+        </clipPath>
+        <g id="A" clip-path="url(#z)">
+            <path d="m 18.5 16.5 h 91 c 2.761719 0 5 2.242188 5 5 v 91 c 0 2.761719 -2.238281 5 -5 5 h -91 c -2.761719 0 -5 -2.238281 -5 -5 v -91 c 0 -2.757812 2.238281 -5 5 -5 z m 0 0" fill="none" stroke="url(#y)" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <mask id="B">
+            <g filter="url(#a)">
+                <rect fill-opacity="0.5" height="128" width="128"/>
+            </g>
+        </mask>
+        <clipPath id="C">
+            <rect height="128" width="128"/>
+        </clipPath>
+        <g id="D" clip-path="url(#C)">
+            <path d="m 18.554688 15.5 h 90.890624 c 3.34375 0 6.054688 2.710938 6.054688 6.054688 v 90.894531 c 0 3.34375 -2.710938 6.050781 -6.054688 6.050781 h -90.890624 c -3.34375 0 -6.054688 -2.707031 -6.054688 -6.050781 v -90.894531 c 0 -3.34375 2.710938 -6.054688 6.054688 -6.054688 z m 0 0" fill="none" stroke="#0e141f" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <mask id="E">
+            <g filter="url(#a)">
+                <rect fill-opacity="0.07" height="128" width="128"/>
+            </g>
+        </mask>
+        <clipPath id="F">
+            <rect height="128" width="128"/>
+        </clipPath>
+        <g id="G" clip-path="url(#F)">
+            <path d="m 76.730469 68.941406 c 0 7.09375 -5.75 12.84375 -12.84375 12.84375 s -12.847657 -5.75 -12.847657 -12.84375 s 5.753907 -12.847656 12.847657 -12.847656 s 12.84375 5.753906 12.84375 12.847656 z m 0 0" fill="#030205" stroke="#000000" stroke-width="1.835051"/>
+        </g>
+        <mask id="H">
+            <g filter="url(#a)">
+                <rect fill-opacity="0.07" height="128" width="128"/>
+            </g>
+        </mask>
+        <clipPath id="I">
+            <rect height="128" width="128"/>
+        </clipPath>
+        <g id="J" clip-path="url(#I)">
+            <path d="m 106.09375 39.578125 c 0 7.097656 -5.753906 12.847656 -12.847656 12.847656 s -12.84375 -5.75 -12.84375 -12.847656 c 0 -7.09375 5.75 -12.84375 12.84375 -12.84375 s 12.847656 5.75 12.847656 12.84375 z m 0 0" fill="#030205" stroke="#000000" stroke-width="1.835051"/>
+        </g>
+        <mask id="K">
+            <g filter="url(#a)">
+                <rect fill-opacity="0.07" height="128" width="128"/>
+            </g>
+        </mask>
+        <clipPath id="L">
+            <rect height="128" width="128"/>
+        </clipPath>
+        <g id="M" clip-path="url(#L)">
+            <path d="m 47.371094 98.300781 c 0 7.09375 -5.75 12.847657 -12.847656 12.847657 c -7.09375 0 -12.84375 -5.753907 -12.84375 -12.847657 s 5.75 -12.84375 12.84375 -12.84375 c 7.097656 0 12.847656 5.75 12.847656 12.84375 z m 0 0" fill="#030205" stroke="#000000" stroke-width="1.835051"/>
+        </g>
+        <mask id="N">
+            <g filter="url(#a)">
+                <rect fill-opacity="0.149" height="128" width="128"/>
+            </g>
+        </mask>
+        <clipPath id="O">
+            <rect height="128" width="128"/>
+        </clipPath>
+        <g id="P" clip-path="url(#O)">
+            <path d="m 76.730469 68.941406 c 0 7.09375 -5.75 12.84375 -12.84375 12.84375 s -12.847657 -5.75 -12.847657 -12.84375 s 5.753907 -12.847656 12.847657 -12.847656 s 12.84375 5.753906 12.84375 12.847656 z m 0 0" fill="#030205"/>
+        </g>
+        <mask id="Q">
+            <g filter="url(#a)">
+                <rect fill-opacity="0.149" height="128" width="128"/>
+            </g>
+        </mask>
+        <clipPath id="R">
+            <rect height="128" width="128"/>
+        </clipPath>
+        <g id="S" clip-path="url(#R)">
+            <path d="m 106.09375 39.578125 c 0 7.097656 -5.753906 12.847656 -12.847656 12.847656 s -12.84375 -5.75 -12.84375 -12.847656 c 0 -7.09375 5.75 -12.84375 12.84375 -12.84375 s 12.847656 5.75 12.847656 12.84375 z m 0 0" fill="#030205"/>
+        </g>
+        <mask id="T">
+            <g filter="url(#a)">
+                <rect fill-opacity="0.149" height="128" width="128"/>
+            </g>
+        </mask>
+        <clipPath id="U">
+            <rect height="128" width="128"/>
+        </clipPath>
+        <g id="V" clip-path="url(#U)">
+            <path d="m 47.371094 98.300781 c 0 7.09375 -5.75 12.847657 -12.847656 12.847657 c -7.09375 0 -12.84375 -5.753907 -12.84375 -12.847657 s 5.75 -12.84375 12.84375 -12.84375 c 7.097656 0 12.847656 5.75 12.847656 12.84375 z m 0 0" fill="#030205"/>
+        </g>
+        <clipPath id="W">
+            <rect height="128" width="128"/>
+        </clipPath>
+        <clipPath id="X">
+            <rect height="128" width="128"/>
+        </clipPath>
+        <mask id="Y">
+            <g clip-path="url(#X)" filter="url(#a)">
+                <g clip-path="url(#W)">
+                    <use mask="url(#m)" xlink:href="#p"/>
+                    <use mask="url(#q)" xlink:href="#w"/>
+                    <path d="m 18.554688 15.5 h 90.890624 c 3.34375 0 6.054688 2.710938 6.054688 6.054688 v 90.894531 c 0 3.34375 -2.710938 6.050781 -6.054688 6.050781 h -90.890624 c -3.34375 0 -6.054688 -2.707031 -6.054688 -6.050781 v -90.894531 c 0 -3.34375 2.710938 -6.054688 6.054688 -6.054688 z m 0 0" fill="url(#d)"/>
+                    <use mask="url(#x)" xlink:href="#A"/>
+                    <use mask="url(#B)" xlink:href="#D"/>
+                    <use mask="url(#E)" xlink:href="#G"/>
+                    <use mask="url(#H)" xlink:href="#J"/>
+                    <use mask="url(#K)" xlink:href="#M"/>
+                    <use mask="url(#N)" xlink:href="#P"/>
+                    <use mask="url(#Q)" xlink:href="#S"/>
+                    <use mask="url(#T)" xlink:href="#V"/>
+                    <path d="m 76.730469 67.269531 c 0 7.09375 -5.75 12.847657 -12.84375 12.847657 s -12.847657 -5.753907 -12.847657 -12.847657 s 5.753907 -12.84375 12.847657 -12.84375 s 12.84375 5.75 12.84375 12.84375 z m 0 0" fill="#fbf9fd"/>
+                    <path d="m 106.09375 37.910156 c 0 7.09375 -5.753906 12.84375 -12.847656 12.84375 s -12.84375 -5.75 -12.84375 -12.84375 s 5.75 -12.847656 12.84375 -12.847656 s 12.847656 5.753906 12.847656 12.847656 z m 0 0" fill="#fbf9fd"/>
+                    <path d="m 47.371094 96.632812 c 0 7.09375 -5.75 12.84375 -12.847656 12.84375 c -7.09375 0 -12.84375 -5.75 -12.84375 -12.84375 c 0 -7.097656 5.75 -12.847656 12.84375 -12.847656 c 7.097656 0 12.847656 5.75 12.847656 12.847656 z m 0 0" fill="#fbf9fd"/>
+                </g>
+            </g>
+        </mask>
+        <mask id="Z">
+            <g filter="url(#a)">
+                <rect fill-opacity="0.8" height="128" width="128"/>
+            </g>
+        </mask>
+        <linearGradient id="aa" gradientTransform="matrix(0 0.37 -0.98462 0 295.38501 -30.360001)" gradientUnits="userSpaceOnUse" x1="300" x2="428" y1="235" y2="235">
+            <stop offset="0" stop-color="#f9f06b"/>
+            <stop offset="1" stop-color="#f5c211"/>
+        </linearGradient>
+        <clipPath id="ab">
+            <rect height="128" width="128"/>
+        </clipPath>
+        <clipPath id="ac">
+            <rect height="128" width="128"/>
+        </clipPath>
+    </defs>
+    <use mask="url(#b)" xlink:href="#p"/>
+    <use mask="url(#c)" xlink:href="#w"/>
+    <path d="m 18.554688 15.5 h 90.890624 c 3.34375 0 6.054688 2.710938 6.054688 6.054688 v 90.894531 c 0 3.34375 -2.710938 6.050781 -6.054688 6.050781 h -90.890624 c -3.34375 0 -6.054688 -2.707031 -6.054688 -6.050781 v -90.894531 c 0 -3.34375 2.710938 -6.054688 6.054688 -6.054688 z m 0 0" fill="url(#d)"/>
+    <use mask="url(#e)" xlink:href="#A"/>
+    <use mask="url(#f)" xlink:href="#D"/>
+    <use mask="url(#g)" xlink:href="#G"/>
+    <use mask="url(#h)" xlink:href="#J"/>
+    <use mask="url(#i)" xlink:href="#M"/>
+    <use mask="url(#j)" xlink:href="#P"/>
+    <use mask="url(#k)" xlink:href="#S"/>
+    <use mask="url(#l)" xlink:href="#V"/>
+    <g fill="#fbf9fd">
+        <path d="m 76.730469 67.269531 c 0 7.09375 -5.75 12.847657 -12.84375 12.847657 s -12.847657 -5.753907 -12.847657 -12.847657 s 5.753907 -12.84375 12.847657 -12.84375 s 12.84375 5.75 12.84375 12.84375 z m 0 0"/>
+        <path d="m 106.09375 37.910156 c 0 7.09375 -5.753906 12.84375 -12.847656 12.84375 s -12.84375 -5.75 -12.84375 -12.84375 s 5.75 -12.847656 12.84375 -12.847656 s 12.847656 5.753906 12.847656 12.847656 z m 0 0"/>
+        <path d="m 47.371094 96.632812 c 0 7.09375 -5.75 12.84375 -12.847656 12.84375 c -7.09375 0 -12.84375 -5.75 -12.84375 -12.84375 c 0 -7.097656 5.75 -12.847656 12.84375 -12.847656 c 7.097656 0 12.847656 5.75 12.847656 12.847656 z m 0 0"/>
+    </g>
+    <g clip-path="url(#ac)" mask="url(#Y)">
+        <g clip-path="url(#ab)" mask="url(#Z)">
+            <path d="m 128 80.640625 v 47.359375 h -128 v -47.359375 z m 0 0" fill="url(#aa)"/>
+            <path d="m 13.308594 80.640625 l 47.355468 47.359375 h 21.214844 l -47.359375 -47.359375 z m 42.421875 0 l 47.363281 47.359375 h 21.214844 l -47.363282 -47.359375 z m 42.429687 0 l 29.839844 29.839844 v -21.210938 l -8.628906 -8.628906 z m -98.160156 7.90625 v 21.214844 l 18.238281 18.238281 h 21.214844 z m 0 0"/>
+        </g>
+    </g>
+</svg>

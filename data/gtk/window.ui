@@ -5,9 +5,6 @@
   <template class="RollitWindow" parent="AdwApplicationWindow">
     <property name="title" translatable="yes">Roll-It</property>
     <property name="icon-name">com.gitlab.zelikos.rollit</property>
-    <style>
-      <class name="devel"/>
-    </style>
     <property name="content">
       <object class="AdwToastOverlay" id="toast_overlay">
         <child>
@@ -16,9 +13,10 @@
             <child>
               <object class="AdwHeaderBar" id="header_bar">
                 <child type="start">
-                  <object class="GtkToggleButton" id="roll_history_btn">
+                  <object class="GtkToggleButton">
                     <property name="icon-name">sidebar-show-symbolic</property>
-                    <property name="active" bind-source="roll_history_flap" bind-property="reveal-flap" bind-flags="sync-create|bidirectional"/>
+                    <property name="tooltip-text" translatable="yes">Toggle History List</property>
+                    <property name="active" bind-source="rollit_flap" bind-property="reveal-flap" bind-flags="sync-create|bidirectional"/>
                   </object>
                 </child>
                 <child type="end">
@@ -30,7 +28,7 @@
               </object>
             </child>
             <child>
-              <object class="AdwFlap" id="roll_history_flap">
+              <object class="AdwFlap" id="rollit_flap">
                 <property name="vexpand">true</property>
                 <property name="flap">
                   <object class="RollitHistoryPane" id="history_pane"/>

@@ -16,7 +16,38 @@
  * Authored by Patrick Csikos <zelikos@pm.me>
  */
 
-int main (string[] args) {
-    var app = new Rollit.Application ();
-    return app.run (args);
+use gettextrs::*;
+use gtk::gio::{self, prelude::*};
+
+mod application;
+mod config;
+mod i18n;
+mod utils;
+mod widgets;
+mod window;
+
+mod deps {
+    pub use gtk::{gdk, gdk_pixbuf, gio, glib, graphene};
+}
+
+use application::RollitApplication;
+
+fn main() {
+    pretty_env_logger::init();
+
+    // Translations
+    setlocale(LocaleCategory::LcAll, "");
+    bindtextdomain("rollit", config::LOCALEDIR).unwrap();
+    textdomain("rollit").unwrap();
+
+    // Load resources
+    let resources = gio::Resource::load(config::PKGDATADIR.to_owned() + "/rollit.gresource")
+        .expect("Could not load resources");
+    gio::resources_register(&resources);
+
+    // Create Application
+    let app = RollitApplication::new();
+
+    // Run application.
+    std::process::exit(app.run());
 }
