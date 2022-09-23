@@ -18,13 +18,13 @@
             <child>
               <object class="GtkStack" id="result_stack">
                 <property name="transition-type">over-down-up</property>
+                <property name="vexpand">true</property>
                 <child>
                   <object class="GtkStackPage">
                     <property name="name">empty</property>
                     <property name="child">
                       <object class="GtkLabel">
                         <property name="label">?</property>
-                        <property name="vexpand">true</property>
                         <style>
                           <class name="title-1"/>
                           <class name="numeric"/>
@@ -43,10 +43,9 @@
                     <property name="child">
                       <object class="GtkRevealer" id="result_revealer">
                         <property name="transition-type">slide-down</property>
-                        <property name="transition-duration">200</property>
+                        <property name="transition-duration">120</property>
                         <property name="child">
                           <object class="GtkLabel" id="result_label">
-                            <property name="vexpand">true</property>
                             <style>
                               <class name="background"/>
                               <class name="title-1"/>
@@ -68,7 +67,7 @@
               <object class="GtkButton">
                 <property name="label">Roll</property>
                 <property name="tooltip-text">Roll the dice</property>
-                <property name="action-name">dice.roll</property>
+                <property name="action-name">win.roll-dice</property>
                 <style>
                   <class name="suggested-action"/>
                 </style>

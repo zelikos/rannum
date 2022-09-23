@@ -1,4 +1,4 @@
-/*  Copyright (C) 2020-2022 Patrick Csikos (https://zelikos.github.io)
+/*  Copyright (C) 2022 Patrick Csikos (https://zelikos.github.io)
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -16,23 +16,11 @@
  * Authored by Patrick Csikos <zelikos@pm.me>
  */
 
-namespace Rollit {
-    [GtkTemplate (ui = "/com/gitlab/zelikos/rollit/gtk/history-item.ui")]
-    public class HistoryItem : Adw.ActionRow {
-        Rollit.Window? toast_target;
+use crate::config::APP_ID;
 
-        public HistoryItem (Rollit.Window? window, string roll_result, string max_num) {
-            title = roll_result;
-            subtitle = (_("Out of ") + max_num.to_string());
-            toast_target = window;
-        }
+use gtk::gio;
 
-        construct {
-            this.activated.connect (() => {
-                Gdk.Clipboard clip = get_clipboard();
-                clip.set_text (title);
-                toast_target.add_toast();
-            });
-        }
-    }
+pub fn settings_manager() -> gio::Settings {
+    let app_id = APP_ID.trim_end_matches(".Devel");
+    gio::Settings::new(app_id)
 }
