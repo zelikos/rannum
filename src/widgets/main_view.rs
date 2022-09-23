@@ -22,6 +22,7 @@ use crate::utils;
 use core::ops::Deref;
 
 use adw::subclass::prelude::*;
+use glib::clone;
 use gtk::prelude::*;
 use gtk::CompositeTemplate;
 
@@ -102,20 +103,20 @@ impl RollitMainView {
         let imp = self.imp();
         let transition_dur = Duration::from_millis(imp.result_revealer.transition_duration().into());
 
-        // if imp.result_stack.visible_child_name().unwrap() != "result" {
+        if imp.result_stack.visible_child_name().unwrap() != "result" {
             imp.result_stack.set_visible_child(&imp.result_stack.child_by_name("result").unwrap());
             imp.result_label.set_label(&result.to_string());
             imp.result_revealer.set_reveal_child(true);
-
-        // TODO: Figure out how to glib::timeout_add in Rust
-        // } else {
-        //     imp.result_revealer.set_reveal_child(false);
-        //     glib::timeout_add_local (transition_dur, move || {
-        //         imp.result_label.set_label(&result.to_string());
-        //         imp.result_revealer.set_reveal_child(true);
-        //         Continue(false)
-        //     });
-        // }
+        } else {
+            imp.result_revealer.set_reveal_child(false);
+            glib::timeout_add_local (transition_dur,
+                clone!(@weak self as this => @default-return Continue(false), move || {
+                    this.imp().result_label.set_label(&result.to_string());
+                    this.imp().result_revealer.set_reveal_child(true);
+                    Continue(false)
+                })
+            );
+        }
     }
 }
 
