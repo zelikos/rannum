@@ -45,6 +45,10 @@ mod imp {
 
         fn class_init(klass: &mut Self::Class) {
             Self::bind_template(klass);
+
+            klass.install_action("history.copy-result", None, move |history, _, _| {
+                history.copy_result();
+            });
         }
 
         fn instance_init(obj: &glib::subclass::InitializingObject<Self>) {
@@ -80,8 +84,12 @@ impl RollitHistoryItem {
         imp.item_row.set_subtitle(&(i18n("Out of ") + &max.to_string()));
     }
 
-    pub fn connect_to (win: RollitWindow) {
-        // TODO: Copy result to clipboard, add toast
+    fn copy_result (&self) {
+        let row = &self.imp().item_row;
+        let clipboard = self.clipboard();
+        clipboard.set_text(&row.title());
+        let win = self.root().unwrap().downcast::<RollitWindow>().unwrap();
+        win.show_toast(i18n("Result copied"), adw::ToastPriority::High);
     }
 }
 

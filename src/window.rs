@@ -100,7 +100,7 @@ mod imp {
 glib::wrapper! {
     pub struct RollitWindow(ObjectSubclass<imp::RollitWindow>)
         @extends gtk::Widget, gtk::Window, gtk::ApplicationWindow, adw::ApplicationWindow,
-        @implements gio::ActionGroup, gio::ActionMap;
+        @implements gio::ActionGroup, gio::ActionMap, gtk::Root;
 }
 
 #[gtk::template_callbacks]
@@ -118,7 +118,7 @@ impl RollitWindow {
 
     fn roll_dice(&self) {
         let roll_result = self.imp().main_view.get_roll_result();
-        self.imp().history_pane.add_result(self, roll_result);
+        self.imp().history_pane.add_result(roll_result);
     }
 
     fn clear_history(&self) {
@@ -126,11 +126,12 @@ impl RollitWindow {
         self.imp().history_pane.clear_history();
     }
 
-    fn show_toast(&self, text: impl AsRef<str>, priority: adw::ToastPriority) {
+    pub fn show_toast(&self, text: impl AsRef<str>, priority: adw::ToastPriority) {
         let imp = self.imp();
 
         let toast = adw::Toast::new(text.as_ref());
         toast.set_priority(priority);
+        toast.set_timeout(2);
 
         imp.toast_overlay.add_toast(&toast);
     }

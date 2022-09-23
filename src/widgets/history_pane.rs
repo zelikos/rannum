@@ -19,7 +19,6 @@
 use crate::deps::*;
 use crate::utils;
 use crate::widgets::RollitHistoryItem;
-use crate::window::RollitWindow;
 
 use adw::subclass::prelude::*;
 use gtk::prelude::*;
@@ -69,14 +68,13 @@ glib::wrapper! {
 }
 
 impl RollitHistoryPane {
-    pub fn add_result (&self, win: &RollitWindow, result: u16) {
+    pub fn add_result (&self, result: u16) {
         let settings = utils::settings_manager();
         let max = settings.int("max-roll") as u16;
         let imp = self.imp();
 
         let result_item = RollitHistoryItem::new();
         result_item.add_result(result, max);
-        // result_item.connect_to (win);
 
         imp.history_list.append(&result_item);
 

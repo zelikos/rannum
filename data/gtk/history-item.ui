@@ -5,13 +5,15 @@
   <template class="RollitHistoryItem" parent="AdwBin">
     <property name="child">
       <object class="AdwActionRow" id="item_row">
-        <property name="title">Result</property>
-        <property name="subtitle">Out of highest</property>
-        <property name="tooltip_text" translatable="yes">Copy result</property>
-        <property name="activatable">true</property>
         <child type="suffix">
-          <object class="GtkImage">
+          <object class="GtkButton" id="copy-button">
             <property name="icon-name">edit-copy-symbolic</property>
+            <property name="tooltip_text" translatable="yes">Copy result</property>
+            <property name="action-name">history.copy-result</property>
+            <property name="valign">center</property>
+            <style>
+              <class name="circular"/>
+            </style>
           </object>
         </child>
       </object>
