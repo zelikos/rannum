@@ -22,7 +22,8 @@ use gtk::gio::{self, prelude::*};
 mod application;
 mod config;
 mod i18n;
-// mod widgets;
+mod utils;
+mod widgets;
 mod window;
 
 mod deps {
