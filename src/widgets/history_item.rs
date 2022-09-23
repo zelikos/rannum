@@ -18,7 +18,6 @@
 
 use crate::deps::*;
 use crate::i18n::*;
-use crate::window::RollitWindow;
 
 use adw::subclass::prelude::*;
 use adw::prelude::PreferencesRowExt;
@@ -88,8 +87,8 @@ impl RollitHistoryItem {
         let row = &self.imp().item_row;
         let clipboard = self.clipboard();
         clipboard.set_text(&row.title());
-        let win = self.root().unwrap().downcast::<RollitWindow>().unwrap();
-        win.show_toast(i18n("Result copied"), adw::ToastPriority::High);
+
+        self.activate_action("win.show-toast", Some(&(i18n("Result copied"), 0).to_variant())).unwrap();
     }
 }
 
