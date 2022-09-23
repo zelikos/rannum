@@ -20,14 +20,11 @@ use crate::deps::*;
 use crate::i18n::*;
 
 use adw::subclass::prelude::*;
-use gio::Settings;
 use glib::clone;
 use gtk::prelude::*;
 use gtk::CompositeTemplate;
 
 use gtk_macros::spawn;
-
-use once_cell::sync::OnceCell;
 
 use crate::config;
 use crate::utils;
@@ -46,8 +43,6 @@ mod imp {
         // pub history_pane: TemplateChild<RollitHistoryPane>,
         #[template_child]
         pub toast_overlay: TemplateChild<adw::ToastOverlay>,
-
-        pub settings: OnceCell<gio::Settings>,
     }
 
     #[glib::object_subclass]
