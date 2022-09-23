@@ -16,6 +16,10 @@
  * Authored by Patrick Csikos <zelikos@pm.me>
  */
 
+mod history_item;
+mod history_pane;
 mod main_view;
 
+pub use history_item::RollitHistoryItem;
+pub use history_pane::RollitHistoryPane;
 pub use main_view::RollitMainView;

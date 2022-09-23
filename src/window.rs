@@ -24,7 +24,7 @@ use gtk::CompositeTemplate;
 
 use crate::config;
 use crate::utils;
-use crate::widgets::{RollitMainView};
+use crate::widgets::{RollitMainView, RollitHistoryPane};
 
 
 mod imp {
@@ -35,8 +35,8 @@ mod imp {
     pub struct RollitWindow {
         #[template_child]
         pub main_view: TemplateChild<RollitMainView>,
-        // #[template_child]
-        // pub history_pane: TemplateChild<RollitHistoryPane>,
+        #[template_child]
+        pub history_pane: TemplateChild<RollitHistoryPane>,
         #[template_child]
         pub toast_overlay: TemplateChild<adw::ToastOverlay>,
     }
@@ -117,11 +117,13 @@ impl RollitWindow {
     }
 
     fn roll_dice(&self) {
-        self.imp().main_view.get_roll_result();
+        let roll_result = self.imp().main_view.get_roll_result();
+        self.imp().history_pane.add_result(self, roll_result);
     }
 
     fn clear_history(&self) {
         self.imp().main_view.reset_label();
+        self.imp().history_pane.clear_history();
     }
 
     fn show_toast(&self, text: impl AsRef<str>, priority: adw::ToastPriority) {

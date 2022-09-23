@@ -30,12 +30,7 @@
               <object class="AdwFlap" id="roll_history_flap">
                 <property name="vexpand">true</property>
                 <property name="flap">
-                  <object class="AdwStatusPage">
-                    <property name="width-request">180</property>
-                    <property name="title">No results</property>
-                    <property name="description">Needs to be ported</property>
-                  </object>
-                  <!-- <object class="RollitHistoryPane" id="history_pane"/> -->
+                  <object class="RollitHistoryPane" id="history_pane"/>
                 </property>
                 <property name="separator">
                   <object class="GtkSeparator"/>
