@@ -122,22 +122,11 @@ impl RollitApplication {
     }
 
     fn show_about(&self) {
-        // Builders are a pattern that allow you to create
-        // an object and set all relevant properties very
-        // easily in a way that's idiomatic to Rust.
-        let about = adw::AboutWindow::builder()
-            .application_name(&i18n("Roll-It"))
-            .application_icon(config::APP_ID)
-            .version(config::VERSION)
-            .developer_name(&i18n("Patrick \"zelikos\" Csikos"))
-            .website("https://gitlab.com/zelikos/rollit")
-            .issue_url("https://gitlab.com/zelikos/rollit/issues")
-            .developers(vec![String::from(
-                "Patrick Csikos <zelikos@pm.me>",
-            )])
-            .copyright(&i18n("Copyright © 2020-2022 Patrick Csikos"))
-            .license_type(gtk::License::Gpl30)
-            .build();
+        let builder = gtk::Builder::from_resource("/com/gitlab/zelikos/rollit/gtk/about.ui");
+
+        let about: adw::AboutWindow = builder.object("about_window").unwrap();
+        about.set_application_icon(config::APP_ID);
+        about.set_version(config::VERSION);
 
         if let Some(window) = self.active_window() {
             about.set_transient_for(Some(&window));
