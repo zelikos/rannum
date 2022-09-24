@@ -17,7 +17,6 @@
  */
 
 use crate::deps::*;
-use crate::i18n::*;
 
 use adw::prelude::*;
 use adw::subclass::prelude::*;
