@@ -78,10 +78,10 @@ impl RollitHistoryItem {
     }
 
     pub fn from_result(result: u16, max: u16) -> Self {
-    	glib::Object::new(&[
-    	    ("title", &result.to_string()),
-    	    ("subtitle", &(i18n("Out of ") + &max.to_string()))])
-    	    .expect("Failed to create RollitHistoryItem")
+        glib::Object::new(&[
+            ("title", &result.to_string()),
+            ("subtitle", &(i18n("Out of ") + &max.to_string()))])
+            .expect("Failed to create RollitHistoryItem")
     }
 
     pub fn add_result (&self, result: u16, max: u16) {
