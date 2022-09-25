@@ -73,8 +73,7 @@ impl RollitHistoryPane {
         let max = settings.int("max-roll") as u16;
         let imp = self.imp();
 
-        let result_item = RollitHistoryItem::new();
-        result_item.add_result(result, max);
+        let result_item = RollitHistoryItem::from_result(result, max);
 
         if imp.history_stack.visible_child_name().unwrap() == "empty" {
             self.clear_history();

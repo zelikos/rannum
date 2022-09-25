@@ -2,21 +2,18 @@
 <interface>
   <requires lib="gtk" version="4.0"/>
   <requires lib="libadwaita" version="1.0"/>
-  <template class="RollitHistoryItem" parent="AdwBin">
-    <property name="child">
-      <object class="AdwActionRow" id="item_row">
-        <child type="suffix">
-          <object class="GtkButton" id="copy-button">
-            <property name="icon-name">edit-copy-symbolic</property>
-            <property name="tooltip_text" translatable="yes">Copy result</property>
-            <property name="action-name">history.copy-result</property>
-            <property name="valign">center</property>
-            <style>
-              <class name="circular"/>
-            </style>
-          </object>
-        </child>
+  <template class="RollitHistoryItem" parent="AdwActionRow">
+    <child type="suffix">
+      <object class="GtkButton" id="copy-button">
+        <property name="icon-name">edit-copy-symbolic</property>
+        <property name="tooltip_text" translatable="yes">Copy result</property>
+        <property name="action-name">history.copy-result</property>
+        <property name="valign">center</property>
+        <style>
+          <class name="circular"/>
+        </style>
       </object>
-    </property>
+    </child>
   </template>
 </interface>
+

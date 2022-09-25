@@ -32,15 +32,13 @@ mod imp {
     #[derive(Debug, Default, CompositeTemplate)]
     #[template(resource = "/com/gitlab/zelikos/rollit/gtk/history-item.ui")]
     pub struct RollitHistoryItem {
-        #[template_child]
-        pub(super) item_row: TemplateChild<adw::ActionRow>,
     }
 
     #[glib::object_subclass]
     impl ObjectSubclass for RollitHistoryItem {
         const NAME: &'static str = "RollitHistoryItem";
         type Type = super::RollitHistoryItem;
-        type ParentType = adw::Bin;
+        type ParentType = adw::ActionRow;
 
         fn class_init(klass: &mut Self::Class) {
             Self::bind_template(klass);
@@ -62,13 +60,15 @@ mod imp {
     }
 
     impl WidgetImpl for RollitHistoryItem {}
-    impl BinImpl for RollitHistoryItem {}
+    impl ListBoxRowImpl for RollitHistoryItem {}
+    impl PreferencesRowImpl for RollitHistoryItem {}
+    impl ActionRowImpl for RollitHistoryItem {}
 }
 
 glib::wrapper! {
     pub struct RollitHistoryItem(ObjectSubclass<imp::RollitHistoryItem>)
-        @extends gtk::Widget, adw::Bin,
-        @implements gtk::Buildable;
+        @extends gtk::Widget, gtk::ListBoxRow, adw::PreferencesRow, adw::ActionRow,
+        @implements gtk::Accessible, gtk::Actionable, gtk::Buildable, gtk::ConstraintTarget;
 }
 
 impl RollitHistoryItem {
@@ -77,16 +77,21 @@ impl RollitHistoryItem {
         glib::Object::new(&[]).expect("Failed to create RollitHistoryItem")
     }
 
+    pub fn from_result(result: u16, max: u16) -> Self {
+    	glib::Object::new(&[
+    	    ("title", &result.to_string()),
+    	    ("subtitle", &(i18n("Out of ") + &max.to_string()))])
+    	    .expect("Failed to create RollitHistoryItem")
+    }
+
     pub fn add_result (&self, result: u16, max: u16) {
-        let imp = self.imp();
-        imp.item_row.set_title(&result.to_string());
-        imp.item_row.set_subtitle(&(i18n("Out of ") + &max.to_string()));
+        self.set_title(&result.to_string());
+        self.set_subtitle(&(i18n("Out of ") + &max.to_string()));
     }
 
     fn copy_result (&self) {
-        let row = &self.imp().item_row;
         let clipboard = self.clipboard();
-        clipboard.set_text(&row.title());
+        clipboard.set_text(&self.title());
 
         self.activate_action("win.show-toast", Some(&(i18n("Result copied"), 0).to_variant())).unwrap();
     }
