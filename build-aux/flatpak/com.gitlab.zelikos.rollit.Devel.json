@@ -53,8 +53,8 @@
             ],
             "sources" : [
                 {
-                    "type" : "dir",
-                    "path" : "../../"
+                    "type" : "git",
+                    "url" : "https://gitlab.com/zelikos/rollit.git"
                 }
             ]
         }
