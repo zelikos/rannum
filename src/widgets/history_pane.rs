@@ -68,9 +68,11 @@ glib::wrapper! {
 }
 
 impl RollitHistoryPane {
-    pub fn add_result (&self, result: u16) {
+    // TODO: Rewrite for ListView
+    pub fn add_result (&self, result: u32) {
+        log::debug!("Result of {} added", result);
         let settings = utils::settings_manager();
-        let max = settings.int("max-roll") as u16;
+        let max = settings.int("max-roll") as u32;
         let imp = self.imp();
 
         let result_item = RollitHistoryItem::from_result(result, max);
@@ -92,7 +94,7 @@ impl RollitHistoryPane {
         let imp = self.imp();
         imp.history_stack.set_visible_child(&imp.history_stack.child_by_name("filled").unwrap());
     }
-
+    // TODO: Rewrite for ListView
     fn clear_history(&self) {
         let imp = self.imp();
 
