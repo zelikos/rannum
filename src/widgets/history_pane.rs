@@ -77,7 +77,6 @@ glib::wrapper! {
 }
 
 impl RollitHistoryPane {
-    // TODO: Rewrite for ListView
     pub fn add_result (&self, result: u32) {
         let settings = utils::settings_manager();
         let max = settings.int("max-roll") as u32;
@@ -91,7 +90,8 @@ impl RollitHistoryPane {
             self.show_history();
         }
 
-        self.results().append(&result_item);
+        // Prepend new result
+        self.results().insert(0, &result_item);
     }
 
     fn results(&self) -> gio::ListStore {
