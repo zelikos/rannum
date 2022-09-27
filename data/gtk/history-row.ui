@@ -2,7 +2,8 @@
 <interface>
   <requires lib="gtk" version="4.0"/>
   <requires lib="libadwaita" version="1.0"/>
-  <template class="RollitHistoryItem" parent="AdwActionRow">
+  <template class="RollitHistoryRow" parent="AdwActionRow">
+    <property name="subtitle" translatable="yes">Out of </property>
     <child type="suffix">
       <object class="GtkButton" id="copy-button">
         <property name="icon-name">edit-copy-symbolic</property>
