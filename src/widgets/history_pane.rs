@@ -18,7 +18,8 @@
 
 use crate::deps::*;
 use crate::utils;
-use crate::widgets::{RollitHistoryItem, RollitHistoryRow};
+use crate::models::RollitHistoryItem;
+use crate::widgets::RollitHistoryRow;
 
 use std::cell::RefCell;
 

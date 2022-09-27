@@ -18,7 +18,7 @@
 
 use crate::deps::*;
 use crate::i18n::*;
-use crate::widgets::RollitHistoryItem;
+use crate::models::RollitHistoryItem;
 
 use std::cell::RefCell;
 
