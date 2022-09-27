@@ -18,32 +18,31 @@
 
 use crate::deps::*;
 use crate::i18n::*;
+use crate::widgets::RollitHistoryItem;
 
-use std::cell::Cell;
+use std::cell::RefCell;
 
 use adw::subclass::prelude::*;
 use adw::prelude::PreferencesRowExt;
 use adw::prelude::ActionRowExt;
-use glib::{BindingFlags, ParamSpec, ParamSpecUInt, Value};
+use glib::{Binding, BindingFlags, ParamSpec, ParamSpecUInt, Value};
 use gtk::prelude::*;
 use gtk::CompositeTemplate;
 use once_cell::sync::Lazy;
 
 mod imp {
-
     use super::*;
 
     #[derive(Debug, Default, CompositeTemplate)]
     #[template(resource = "/com/gitlab/zelikos/rollit/gtk/history-row.ui")]
-    pub struct RollitHistoryItem {
-        pub result: Cell<u32>,
-        pub max_val: Cell<u32>,
+    pub struct RollitHistoryRow {
+        pub bindings: RefCell<Vec<Binding>>,
     }
 
     #[glib::object_subclass]
-    impl ObjectSubclass for RollitHistoryItem {
-        const NAME: &'static str = "RollitHistoryItem";
-        type Type = super::RollitHistoryItem;
+    impl ObjectSubclass for RollitHistoryRow {
+        const NAME: &'static str = "RollitHistoryRow";
+        type Type = super::RollitHistoryRow;
         type ParentType = adw::ActionRow;
 
         fn class_init(klass: &mut Self::Class) {
@@ -59,101 +58,52 @@ mod imp {
         }
     }
 
-    impl ObjectImpl for RollitHistoryItem {
-        fn properties() -> &'static [ParamSpec] {
-            static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-                vec![
-                    ParamSpecUInt::builder("result").build(),
-                    ParamSpecUInt::builder("max-val").build(),
-                ]
-            });
-            PROPERTIES.as_ref()
-        }
-
-        fn set_property(
-            &self,
-            _obj: &Self::Type,
-            _id: usize,
-            value: &Value,
-            pspec: &ParamSpec,
-        ) {
-            match pspec.name() {
-                "result" => {
-                    let input_num = 
-                        value.get().expect("Value must be type 'u32'.");
-                    self.result.replace(input_num);
-                }
-                "max-val" => {
-                    let input_num = 
-                        value.get().expect("Value must be type 'u32'.");
-                    self.max_val.replace(input_num);
-                }
-                _ => unimplemented!(),
-            }
-        }
-
-        fn property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
-            match pspec.name() {
-                "result" => self.result.get().to_value(),
-                "max-val" => self.max_val.get().to_value(),
-                _ => unimplemented!(),
-            }
-        }
-
+    impl ObjectImpl for RollitHistoryRow {
         fn constructed (&self, obj: &Self::Type) {
             self.parent_constructed(obj);
-            obj.bind_property("result", obj, "title")
-                .flags(BindingFlags::SYNC_CREATE)
-                .build();
         }
     }
 
-    impl WidgetImpl for RollitHistoryItem {}
-    impl ListBoxRowImpl for RollitHistoryItem {}
-    impl PreferencesRowImpl for RollitHistoryItem {}
-    impl ActionRowImpl for RollitHistoryItem {}
+    impl WidgetImpl for RollitHistoryRow {}
+    impl ListBoxRowImpl for RollitHistoryRow {}
+    impl PreferencesRowImpl for RollitHistoryRow {}
+    impl ActionRowImpl for RollitHistoryRow {}
 }
 
 glib::wrapper! {
-    pub struct RollitHistoryItem(ObjectSubclass<imp::RollitHistoryItem>)
+    pub struct RollitHistoryRow(ObjectSubclass<imp::RollitHistoryRow>)
         @extends gtk::Widget, gtk::ListBoxRow, adw::PreferencesRow, adw::ActionRow,
         @implements gtk::Accessible, gtk::Actionable, gtk::Buildable, gtk::ConstraintTarget;
 }
 
-impl RollitHistoryItem {
+impl RollitHistoryRow {
     #[allow(clippy::new_without_default)]
     pub fn new() -> Self {
-        glib::Object::new(&[]).expect("Failed to create RollitHistoryItem")
+        glib::Object::new(&[]).expect("Failed to create RollitHistoryRow")
     }
 
-    pub fn from_result(result: u32, max: u32) -> Self {
-        let obj: RollitHistoryItem = glib::Object::new(&[
-            ("result", &result.to_value()),
-            ("max-val", &max.to_value())])
-            .expect("Failed to create RollitHistoryItem");
+    pub fn bind(&self, result_item: &RollitHistoryItem) {
+        let imp = self.imp();
         
-        obj.set_subtitle_label(max);
-        obj
+        let mut bindings = imp.bindings.borrow_mut();
+
+        let title_binding = result_item
+            .bind_property("result", self, "title")
+            .flags(BindingFlags::SYNC_CREATE)
+            .build();
+        bindings.push(title_binding);
+
+        let subtitle_binding = result_item
+            .bind_property("max-val", self, "subtitle")
+            .flags(BindingFlags::SYNC_CREATE)
+            .build();
+        bindings.push(subtitle_binding);
     }
 
-    // pub fn add_result (&self, result: u32, max: u32) {
-    //     self.set_title(&result.to_string());
-    //     self.set_subtitle(&(i18n("Out of ") + &max.to_string()));
-    // }
-
-    fn get_result(&self) -> u32 {
-        self.imp().result.get()
-    }
-
-    fn get_max_val(&self) -> u32 {
-        self.imp().max_val.get()
-    }
-
-    fn set_subtitle_label(&self, max: u32) {
-        // let max_num = self.imp().max_val.get();
-
-        log::debug!("Setting subtitle to {}", max);
-        self.set_subtitle(&(i18n(&format!("Out of {max}"))));
+    pub fn unbind(&self) {
+        for binding in self.imp().bindings.borrow_mut().drain(..) {
+            binding.unbind();
+        }
     }
 
     fn copy_result (&self) {

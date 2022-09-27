@@ -18,11 +18,15 @@
 
 use crate::deps::*;
 use crate::utils;
-use crate::widgets::RollitHistoryItem;
+use crate::widgets::{RollitHistoryItem, RollitHistoryRow};
+
+use std::cell::RefCell;
 
 use adw::subclass::prelude::*;
+use glib::subclass::InitializingObject;
 use gtk::prelude::*;
-use gtk::CompositeTemplate;
+use gtk::subclass::prelude::*;
+use gtk::{CompositeTemplate, NoSelection, SignalListItemFactory};
 
 mod imp {
     use super::*;
@@ -31,9 +35,10 @@ mod imp {
     #[template(resource = "/com/gitlab/zelikos/rollit/gtk/history-pane.ui")]
     pub struct RollitHistoryPane {
         #[template_child]
-        pub(super) history_list: TemplateChild<gtk::ListBox>,
+        pub(super) history_list: TemplateChild<gtk::ListView>,
         #[template_child]
         pub(super) history_stack: TemplateChild<gtk::Stack>,
+        pub(super) results: RefCell<Option<gio::ListStore>>,
     }
 
     #[glib::object_subclass]
@@ -54,6 +59,9 @@ mod imp {
     impl ObjectImpl for RollitHistoryPane {
         fn constructed (&self, obj: &Self::Type) {
             self.parent_constructed(obj);
+
+            obj.setup_results();
+            obj.setup_factory();
         }
     }
 
@@ -70,19 +78,78 @@ glib::wrapper! {
 impl RollitHistoryPane {
     // TODO: Rewrite for ListView
     pub fn add_result (&self, result: u32) {
-        log::debug!("Result of {} added", result);
         let settings = utils::settings_manager();
         let max = settings.int("max-roll") as u32;
+        log::debug!("Result of {} added, out of a possible {}", result, max);
         let imp = self.imp();
 
-        let result_item = RollitHistoryItem::from_result(result, max);
+        let result_item = RollitHistoryItem::new(result, max);
 
         if imp.history_stack.visible_child_name().unwrap() == "empty" {
             self.clear_history();
-            imp.history_stack.set_visible_child(&imp.history_stack.child_by_name("filled").unwrap());
+            self.show_history();
         }
 
-        imp.history_list.append(&result_item);
+        self.results().append(&result_item);
+    }
+
+    fn results(&self) -> gio::ListStore {
+        self.imp()
+            .results
+            .borrow()
+            .clone()
+            .expect("Could not retrieve results.")
+    }
+
+    fn setup_results(&self) {
+        let imp = self.imp();
+        let model = gio::ListStore::new(RollitHistoryItem::static_type());
+
+        imp.results.replace(Some(model));
+
+        let selection_model = NoSelection::new(Some(&self.results()));
+        imp.history_list.set_model(Some(&selection_model));
+    }
+
+    fn setup_factory(&self) {
+        let factory = SignalListItemFactory::new();
+
+        // Connect empty 'RollitHistoryRow' during setup
+        factory.connect_setup(move |_, list_item| {
+            let result_row = RollitHistoryRow::new();
+            list_item.set_child(Some(&result_row));
+        });
+
+        // Tell factory how to bind 'RollitHistoryRow' to 'RollitHistoryItem'
+        factory.connect_bind(move |_, list_item| {
+            let result_item = list_item
+                .item()
+                .expect("The item must exist.")
+                .downcast::<RollitHistoryItem>()
+                .expect("The item must be a 'RollitHistoryItem'.");
+
+            let result_row = list_item
+                .child()
+                .expect("The child must exist.")
+                .downcast::<RollitHistoryRow>()
+                .expect("The child must be a 'RollitHistoryRow'.");
+
+            result_row.bind(&result_item);
+        });
+
+        // Tell factory how to unbind 'RollitHistoryRow' from 'RollitHistoryItem'
+        factory.connect_unbind(move |_, list_item| {
+            // Get 'RollitHistoryRow' from 'ListItem'
+            let result_row = list_item
+                .child()
+                .expect("The child must exist.")
+                .downcast::<RollitHistoryRow>()
+                .expect("The child must be a 'RollitHistoryRow'.");
+
+            result_row.unbind();
+        });
+
+        self.imp().history_list.set_factory(Some(&factory));
     }
 
     pub fn hide_history(&self) {
@@ -96,16 +163,8 @@ impl RollitHistoryPane {
     }
     // TODO: Rewrite for ListView
     fn clear_history(&self) {
-        let imp = self.imp();
-
-        let mut current_item = imp.history_list.row_at_index(0);
-        if current_item != None {
-            while current_item != None {
-                current_item = current_item;
-                imp.history_list.remove (&current_item.unwrap());
-                current_item = imp.history_list.row_at_index(0);
-            }
-        }
+        // self.results().clear();
+        log::debug!("TODO: Clear history list");
     }
 }
 

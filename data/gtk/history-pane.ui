@@ -36,7 +36,9 @@
                   <property name="hscrollbar-policy">never</property>
                   <property name="vexpand">true</property>
                   <property name="child">
-                    <object class="GtkListBox" id="history_list">
+                    <object class="GtkListView" id="history_list">
+                      <property name="show-separators">true</property>
+                      <property name="single-click-activate">true</property>
                     </object>
                   </property>
                 </object>
