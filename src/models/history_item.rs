@@ -20,7 +20,7 @@ use crate::deps::*;
 use std::cell::RefCell;
 use std::rc::Rc;
 
-use glib::{Object, ParamSpec, ParamSpecUInt, Value};
+use glib::{ParamSpec, ParamSpecUInt, Value};
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use once_cell::sync::Lazy;

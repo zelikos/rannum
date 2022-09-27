@@ -24,9 +24,7 @@ use crate::widgets::RollitHistoryRow;
 use std::cell::RefCell;
 
 use adw::subclass::prelude::*;
-use glib::subclass::InitializingObject;
 use gtk::prelude::*;
-use gtk::subclass::prelude::*;
 use gtk::{CompositeTemplate, NoSelection, SignalListItemFactory};
 
 mod imp {
