@@ -16,10 +16,6 @@
  * Authored by Patrick Csikos <zelikos@pm.me>
  */
 
-mod history_row;
-mod history_pane;
-mod main_view;
+mod history_item;
 
-pub use history_row::RollitHistoryRow;
-pub use history_pane::RollitHistoryPane;
-pub use main_view::RollitMainView;
+pub use history_item::RollitHistoryItem;

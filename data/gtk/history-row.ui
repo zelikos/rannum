@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0"/>
+  <requires lib="libadwaita" version="1.0"/>
+  <template class="RollitHistoryRow" parent="AdwBin">
+    <property name="margin-top">6</property>
+    <property name="margin-bottom">6</property>
+    <property name="margin-start">8</property>
+    <property name="margin-end">8</property>
+      <child>
+        <object class="GtkBox">
+          <child>
+            <object class="GtkBox">
+              <property name="orientation">vertical</property>
+              <property name="halign">start</property>
+              <property name="hexpand">true</property>
+              <property name="spacing">4</property>
+              <child>
+                <object class="GtkLabel" id="roll_result">
+                  <property name="halign">start</property>
+                  <style>
+                    <class name="numeric"/>
+                  </style>
+                </object>
+              </child>
+              <child>
+                <object class="GtkBox">
+                  <child>
+                    <object class="GtkLabel" id="max_prefix">
+                      <property name="label" translatable="yes">Out of </property>
+                      <style>
+                        <class name="subtitle"/>
+                      </style>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkLabel" id="max_suffix">
+                      <style>
+                        <class name="subtitle"/>
+                      </style>
+                    </object>
+                  </child>
+                </object>
+              </child>
+            </object>
+          </child>
+          <child>
+            <object class="GtkButton" id="copy_button">
+              <property name="icon-name">edit-copy-symbolic</property>
+              <property name="tooltip_text" translatable="yes">Copy result</property>
+              <property name="action-name">history.copy-result</property>
+              <property name="halign">end</property>
+              <property name="valign">center</property>
+              <style>
+                <class name="circular"/>
+              </style>
+            </object>
+          </child>
+        </object>
+      </child>
+  </template>
+</interface>
+

@@ -18,28 +18,32 @@
 
 use crate::deps::*;
 use crate::i18n::*;
+use crate::models::RollitHistoryItem;
+
+use std::cell::RefCell;
 
 use adw::subclass::prelude::*;
-use adw::prelude::PreferencesRowExt;
-use adw::prelude::ActionRowExt;
+use glib::{Binding, BindingFlags};
 use gtk::prelude::*;
-use gtk::CompositeTemplate;
+use gtk::{CompositeTemplate};
 
 mod imp {
-
     use super::*;
 
     #[derive(Debug, Default, CompositeTemplate)]
-    #[template(resource = "/com/gitlab/zelikos/rollit/gtk/history-item.ui")]
-    pub struct RollitHistoryItem {
+    #[template(resource = "/com/gitlab/zelikos/rollit/gtk/history-row.ui")]
+    pub struct RollitHistoryRow {
         #[template_child]
-        pub(super) item_row: TemplateChild<adw::ActionRow>,
+        pub roll_result: TemplateChild<gtk::Label>,
+        #[template_child]
+        pub max_suffix: TemplateChild<gtk::Label>,
+        pub bindings: RefCell<Vec<Binding>>,
     }
 
     #[glib::object_subclass]
-    impl ObjectSubclass for RollitHistoryItem {
-        const NAME: &'static str = "RollitHistoryItem";
-        type Type = super::RollitHistoryItem;
+    impl ObjectSubclass for RollitHistoryRow {
+        const NAME: &'static str = "RollitHistoryRow";
+        type Type = super::RollitHistoryRow;
         type ParentType = adw::Bin;
 
         fn class_init(klass: &mut Self::Class) {
@@ -55,38 +59,58 @@ mod imp {
         }
     }
 
-    impl ObjectImpl for RollitHistoryItem {
+    impl ObjectImpl for RollitHistoryRow {
         fn constructed (&self, obj: &Self::Type) {
             self.parent_constructed(obj);
         }
     }
 
-    impl WidgetImpl for RollitHistoryItem {}
-    impl BinImpl for RollitHistoryItem {}
+    impl WidgetImpl for RollitHistoryRow {}
+    impl BinImpl for RollitHistoryRow {}
 }
 
 glib::wrapper! {
-    pub struct RollitHistoryItem(ObjectSubclass<imp::RollitHistoryItem>)
+    pub struct RollitHistoryRow(ObjectSubclass<imp::RollitHistoryRow>)
         @extends gtk::Widget, adw::Bin,
-        @implements gtk::Buildable;
+        @implements gtk::Accessible, gtk::Actionable, gtk::Buildable, gtk::ConstraintTarget;
 }
 
-impl RollitHistoryItem {
+impl RollitHistoryRow {
     #[allow(clippy::new_without_default)]
     pub fn new() -> Self {
-        glib::Object::new(&[]).expect("Failed to create RollitHistoryItem")
+        glib::Object::new(&[]).expect("Failed to create RollitHistoryRow")
     }
 
-    pub fn add_result (&self, result: u16, max: u16) {
+    pub fn bind(&self, result_item: &RollitHistoryItem) {
         let imp = self.imp();
-        imp.item_row.set_title(&result.to_string());
-        imp.item_row.set_subtitle(&(i18n("Out of ") + &max.to_string()));
+        
+        let roll_result = imp.roll_result.get();
+        let max_val = imp.max_suffix.get();
+        let mut bindings = imp.bindings.borrow_mut();
+
+        let title_binding = result_item
+            .bind_property("result", &roll_result, "label")
+            .flags(BindingFlags::SYNC_CREATE)
+            .build();
+        bindings.push(title_binding);
+
+        let subtitle_binding = result_item
+            .bind_property("max-val", &max_val, "label")
+            .flags(BindingFlags::SYNC_CREATE)
+            .build();
+        bindings.push(subtitle_binding);
+    }
+
+    pub fn unbind(&self) {
+        for binding in self.imp().bindings.borrow_mut().drain(..) {
+            binding.unbind();
+        }
     }
 
     fn copy_result (&self) {
-        let row = &self.imp().item_row;
+        let result = self.imp().roll_result.label();
         let clipboard = self.clipboard();
-        clipboard.set_text(&row.title());
+        clipboard.set_text(&result);
 
         self.activate_action("win.show-toast", Some(&(i18n("Result copied"), 0).to_variant())).unwrap();
     }
