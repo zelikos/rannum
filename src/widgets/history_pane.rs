@@ -80,7 +80,6 @@ impl RollitHistoryPane {
     pub fn add_result (&self, result: u32) {
         let settings = utils::settings_manager();
         let max = settings.int("max-roll") as u32;
-        log::debug!("Result of {} added, out of a possible {}", result, max);
         let imp = self.imp();
 
         let result_item = RollitHistoryItem::new(result, max);
@@ -92,6 +91,7 @@ impl RollitHistoryPane {
 
         // Prepend new result
         self.results().insert(0, &result_item);
+        log::debug!("Result of {} added, out of a possible {}", result, max);
     }
 
     fn results(&self) -> gio::ListStore {
@@ -162,10 +162,10 @@ impl RollitHistoryPane {
         let imp = self.imp();
         imp.history_stack.set_visible_child(&imp.history_stack.child_by_name("filled").unwrap());
     }
-    // TODO: Rewrite for ListView
+
     fn clear_history(&self) {
-        // self.results().clear();
-        log::debug!("TODO: Clear history list");
+        self.results().remove_all();
+        log::debug!("History list cleared");
     }
 }
 
