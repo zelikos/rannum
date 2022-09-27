@@ -36,6 +36,8 @@ mod imp {
         #[template_child]
         pub(super) history_list: TemplateChild<gtk::ListView>,
         #[template_child]
+        pub(super) history_scroll: TemplateChild<gtk::ScrolledWindow>,
+        #[template_child]
         pub(super) history_stack: TemplateChild<gtk::Stack>,
         pub(super) results: RefCell<Option<gio::ListStore>>,
     }
@@ -87,8 +89,15 @@ impl RollitHistoryPane {
             self.show_history();
         }
 
+        // Append new result
+        self.results().append(&result_item);
+
         // Prepend new result
-        self.results().insert(0, &result_item);
+        // self.results().insert(0, &result_item);
+
+        let vadj = imp.history_scroll.vadjustment();
+        vadj.set_value(vadj.upper());
+
         log::debug!("Result of {} added, out of a possible {}", result, max);
     }
 
