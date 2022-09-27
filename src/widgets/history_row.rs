@@ -23,12 +23,9 @@ use crate::widgets::RollitHistoryItem;
 use std::cell::RefCell;
 
 use adw::subclass::prelude::*;
-use adw::prelude::PreferencesRowExt;
-use adw::prelude::ActionRowExt;
-use glib::{Binding, BindingFlags, ParamSpec, ParamSpecUInt, Value};
+use glib::{Binding, BindingFlags};
 use gtk::prelude::*;
-use gtk::CompositeTemplate;
-use once_cell::sync::Lazy;
+use gtk::{CompositeTemplate};
 
 mod imp {
     use super::*;
@@ -36,6 +33,10 @@ mod imp {
     #[derive(Debug, Default, CompositeTemplate)]
     #[template(resource = "/com/gitlab/zelikos/rollit/gtk/history-row.ui")]
     pub struct RollitHistoryRow {
+        #[template_child]
+        pub roll_result: TemplateChild<gtk::Label>,
+        #[template_child]
+        pub max_suffix: TemplateChild<gtk::Label>,
         pub bindings: RefCell<Vec<Binding>>,
     }
 
@@ -43,7 +44,7 @@ mod imp {
     impl ObjectSubclass for RollitHistoryRow {
         const NAME: &'static str = "RollitHistoryRow";
         type Type = super::RollitHistoryRow;
-        type ParentType = adw::ActionRow;
+        type ParentType = adw::Bin;
 
         fn class_init(klass: &mut Self::Class) {
             Self::bind_template(klass);
@@ -65,14 +66,12 @@ mod imp {
     }
 
     impl WidgetImpl for RollitHistoryRow {}
-    impl ListBoxRowImpl for RollitHistoryRow {}
-    impl PreferencesRowImpl for RollitHistoryRow {}
-    impl ActionRowImpl for RollitHistoryRow {}
+    impl BinImpl for RollitHistoryRow {}
 }
 
 glib::wrapper! {
     pub struct RollitHistoryRow(ObjectSubclass<imp::RollitHistoryRow>)
-        @extends gtk::Widget, gtk::ListBoxRow, adw::PreferencesRow, adw::ActionRow,
+        @extends gtk::Widget, adw::Bin,
         @implements gtk::Accessible, gtk::Actionable, gtk::Buildable, gtk::ConstraintTarget;
 }
 
@@ -85,16 +84,18 @@ impl RollitHistoryRow {
     pub fn bind(&self, result_item: &RollitHistoryItem) {
         let imp = self.imp();
         
+        let roll_result = imp.roll_result.get();
+        let max_val = imp.max_suffix.get();
         let mut bindings = imp.bindings.borrow_mut();
 
         let title_binding = result_item
-            .bind_property("result", self, "title")
+            .bind_property("result", &roll_result, "label")
             .flags(BindingFlags::SYNC_CREATE)
             .build();
         bindings.push(title_binding);
 
         let subtitle_binding = result_item
-            .bind_property("max-val", self, "subtitle")
+            .bind_property("max-val", &max_val, "label")
             .flags(BindingFlags::SYNC_CREATE)
             .build();
         bindings.push(subtitle_binding);
@@ -107,8 +108,9 @@ impl RollitHistoryRow {
     }
 
     fn copy_result (&self) {
+        let result = self.imp().roll_result.label();
         let clipboard = self.clipboard();
-        clipboard.set_text(&self.title());
+        clipboard.set_text(&result);
 
         self.activate_action("win.show-toast", Some(&(i18n("Result copied"), 0).to_variant())).unwrap();
     }
