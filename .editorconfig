@@ -1,0 +1,13 @@
+# EditorConfig: https://editorconfig.org
+
+root = true
+
+# General defaults
+[*]
+insert_final_newline = true
+indent_style = space
+indent_size = 4
+
+# Meson and XML
+[*.{build,ui,xml.*}]
+indent_size = 2

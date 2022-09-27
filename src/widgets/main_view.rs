@@ -81,10 +81,10 @@ glib::wrapper! {
 }
 
 impl RollitMainView {
-    pub fn get_roll_result (&self) -> u16 {
-        const MIN_NUM: u16 = 1;
-        let max_num: u16 = self.get_max_roll();
-        let rnd_num: u16 = random!(MIN_NUM, max_num);
+    pub fn get_roll_result (&self) -> u32 {
+        const MIN_NUM: u32 = 1;
+        let max_num: u32 = self.get_max_roll();
+        let rnd_num: u32 = random!(MIN_NUM, max_num);
 
         self.set_result_label(rnd_num.clone());
 
@@ -99,11 +99,11 @@ impl RollitMainView {
         self.imp().result_stack.set_visible_child(&self.imp().result_stack.child_by_name("result").unwrap());
     }
 
-    fn get_max_roll (&self) -> u16 {
-        self.imp().max_roll.value_as_int() as u16
+    fn get_max_roll (&self) -> u32 {
+        self.imp().max_roll.value_as_int() as u32
     }
 
-    fn set_result_label (&self, result: u16) {
+    fn set_result_label (&self, result: u32) {
         let imp = self.imp();
         let transition_dur = Duration::from_millis(imp.result_revealer.transition_duration().into());
 
