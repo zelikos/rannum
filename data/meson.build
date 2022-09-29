@@ -37,7 +37,7 @@ appstream_file = i18n.merge_file(
 #   )
 # endif
 
-install_data('com.gitlab.zelikos.rollit.gschema.xml.in',
+install_data('com.gitlab.zelikos.rollit.gschema.xml',
   install_dir: iv_datadir / 'glib-2.0' / 'schemas'
 )
 
