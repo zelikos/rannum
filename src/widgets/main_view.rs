@@ -33,7 +33,7 @@ mod imp {
     use super::*;
 
     #[derive(Debug, Default, CompositeTemplate)]
-    #[template(resource = "/com/gitlab/zelikos/rollit/gtk/main-view.ui")]
+    #[template(resource = "/dev/zelikos/rollit/gtk/main-view.ui")]
     pub struct RollitMainView {
         #[template_child]
         pub(super) max_roll: TemplateChild<gtk::SpinButton>,

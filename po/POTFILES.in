@@ -1,6 +1,6 @@
-data/com.gitlab.zelikos.rollit.desktop.in.in
-data/com.gitlab.zelikos.rollit.appdata.xml.in.in
-data/com.gitlab.zelikos.rollit.gschema.xml.in
+data/dev.zelikos.rollit.desktop.in.in
+data/dev.zelikos.rollit.appdata.xml.in.in
+data/dev.zelikos.rollit.gschema.xml.in
 data/gtk/about.ui
 data/gtk/help-overlay.ui
 data/gtk/history-pane.ui

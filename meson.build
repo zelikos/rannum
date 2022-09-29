@@ -32,7 +32,7 @@ if get_option('profile') == 'development'
   endif
 endif
 
-app_id = 'com.gitlab.zelikos.rollit@0@'.format(profile)
+app_id = 'dev.zelikos.rollit@0@'.format(profile)
 iv_version = meson.project_version() + version_suffix
 
 cargo_sources = files(
@@ -57,3 +57,4 @@ gnome.post_install(
   gtk_update_icon_cache: true,
   update_desktop_database: true,
 )
+

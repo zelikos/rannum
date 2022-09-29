@@ -31,7 +31,7 @@ mod imp {
     use super::*;
 
     #[derive(Debug, Default, CompositeTemplate)]
-    #[template(resource = "/com/gitlab/zelikos/rollit/gtk/history-row.ui")]
+    #[template(resource = "/dev/zelikos/rollit/gtk/history-row.ui")]
     pub struct RollitHistoryRow {
         #[template_child]
         pub roll_result: TemplateChild<gtk::Label>,

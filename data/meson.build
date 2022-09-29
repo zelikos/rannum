@@ -1,7 +1,7 @@
 desktop_file = i18n.merge_file(
   input: configure_file(
-    input: 'com.gitlab.zelikos.rollit.desktop.in.in',
-    output: 'com.gitlab.zelikos.rollit.desktop.in',
+    input: 'dev.zelikos.rollit.desktop.in.in',
+    output: 'dev.zelikos.rollit.desktop.in',
     configuration: conf,
   ),
   output: '@0@.desktop'.format(app_id),
@@ -20,8 +20,8 @@ endif
 
 appstream_file = i18n.merge_file(
   input: configure_file(
-    input: 'com.gitlab.zelikos.rollit.appdata.xml.in.in',
-    output: 'com.gitlab.zelikos.rollit.appdata.xml.in',
+    input: 'dev.zelikos.rollit.appdata.xml.in.in',
+    output: 'dev.zelikos.rollit.appdata.xml.in',
     configuration: conf,
   ),
   output: '@0@.appdata.xml'.format(app_id),
@@ -37,7 +37,7 @@ appstream_file = i18n.merge_file(
 #   )
 # endif
 
-install_data('com.gitlab.zelikos.rollit.gschema.xml',
+install_data('dev.zelikos.rollit.gschema.xml',
   install_dir: iv_datadir / 'glib-2.0' / 'schemas'
 )
 

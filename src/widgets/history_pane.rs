@@ -31,7 +31,7 @@ mod imp {
     use super::*;
 
     #[derive(Debug, Default, CompositeTemplate)]
-    #[template(resource = "/com/gitlab/zelikos/rollit/gtk/history-pane.ui")]
+    #[template(resource = "/dev/zelikos/rollit/gtk/history-pane.ui")]
     pub struct RollitHistoryPane {
         #[template_child]
         pub(super) history_list: TemplateChild<gtk::ListView>,
