@@ -18,8 +18,8 @@
     </key>
     <key name="max-roll" type="i">
       <default>6</default>
-      <summary>Number of sides</summary>
-      <description>Number of sides of the dice</description>
+      <summary>Highest possible roll</summary>
+      <description>Highest possible value a roll can result in</description>
     </key>
   </schema>
 </schemalist>
