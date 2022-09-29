@@ -32,7 +32,7 @@ mod imp {
     use super::*;
 
     #[derive(Debug, Default, CompositeTemplate)]
-    #[template(resource = "/com/gitlab/zelikos/rollit/gtk/window.ui")]
+    #[template(resource = "/dev/zelikos/rollit/gtk/window.ui")]
     pub struct RollitWindow {
         #[template_child]
         pub history_pane: TemplateChild<RollitHistoryPane>,
@@ -97,7 +97,7 @@ mod imp {
             obj.setup_settings();
 
             // Set help overlay
-            let builder = gtk::Builder::from_resource("/com/gitlab/zelikos/rollit/gtk/help-overlay.ui");
+            let builder = gtk::Builder::from_resource("/dev/zelikos/rollit/gtk/help-overlay.ui");
             let help_overlay = builder.object("help_overlay").unwrap();
             obj.set_help_overlay(Some(&help_overlay));
 

@@ -81,7 +81,7 @@ impl RollitApplication {
         glib::Object::new(&[
             ("application-id", &config::APP_ID.to_string()),
             ("flags", &gio::ApplicationFlags::FLAGS_NONE),
-            ("resource-base-path", &"/com/gitlab/zelikos/rollit/".to_string()),
+            ("resource-base-path", &"/dev/zelikos/rollit/".to_string()),
         ])
         .expect("Failed to create RollitApplication")
     }
@@ -121,7 +121,7 @@ impl RollitApplication {
     }
 
     fn show_about(&self) {
-        let builder = gtk::Builder::from_resource("/com/gitlab/zelikos/rollit/gtk/about.ui");
+        let builder = gtk::Builder::from_resource("/dev/zelikos/rollit/gtk/about.ui");
 
         let about: adw::AboutWindow = builder.object("about_window").unwrap();
         about.set_application_icon(config::APP_ID);

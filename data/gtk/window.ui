@@ -4,7 +4,7 @@
   <requires lib="libadwaita" version="1.0"/>
   <template class="RollitWindow" parent="AdwApplicationWindow">
     <property name="title" translatable="yes">Roll-It</property>
-    <property name="icon-name">com.gitlab.zelikos.rollit</property>
+    <property name="icon-name">dev.zelikos.rollit</property>
     <property name="content">
       <object class="AdwToastOverlay" id="toast_overlay">
         <child>

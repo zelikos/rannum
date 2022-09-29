@@ -1,5 +1,5 @@
 {
-    "app-id" : "com.gitlab.zelikos.rollit.Devel",
+    "app-id" : "dev.zelikos.rollit.Devel",
     "runtime" : "org.gnome.Platform",
     "runtime-version" : "master",
     "sdk" : "org.gnome.Sdk",
