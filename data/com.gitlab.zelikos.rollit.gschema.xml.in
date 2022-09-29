@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist gettext-domain="rollit">
-  <schema path="/com/gitlab/zelikos/rollit/" id="com.gitlab.zelikos.rollit">
+  <schema path="/com/gitlab/zelikos/rollit/" id="@APP_ID@">
     <key name="window-width" type="i">
       <default>480</default>
       <summary>Window width</summary>
@@ -23,3 +23,4 @@
     </key>
   </schema>
 </schemalist>
+
