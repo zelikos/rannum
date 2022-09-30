@@ -40,6 +40,11 @@
     </screenshot>
   </screenshots>
   <releases>
+      <release version="3.0.1" date="2022-09-29">
+      <description>
+        <p>Hotfix: AppData fixes</p>
+      </description>
+    </release>
     <release version="3.0.0" date="2022-09-29">
       <description>
         <p>Complete Rewrite</p>
