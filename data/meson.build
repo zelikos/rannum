@@ -15,8 +15,7 @@ desktop_file = i18n.merge_file(
   install_dir: datadir / 'applications'
 )
 
-desktop_utils = find_program('desktop-file-validate', required: false)
-if desktop_utils.found()
+if desktop_file_validate.found()
   test(
     'validate-desktop',
     desktop_file_validate,
@@ -42,7 +41,6 @@ appdata_file = i18n.merge_file(
   install_dir: datadir / 'metainfo'
 )
 
-appstream_util = find_program('appstream-util', required: false)
 if appstream_util.found()
   test(
     'validate-appdata', appstream_util,
@@ -64,10 +62,9 @@ configure_file(
   install_dir: datadir / 'glib-2.0' / 'schemas'
 )
 
-compile_schemas = find_program('glib-compile-schemas', required: false)
-if compile_schemas.found()
+if glib_compile_schemas.found()
   test(
-    'validate-gschema', compile_schemas,
+    'validate-gschema', glib_compile_schemas,
     args: [
       '--strict', '--dry-run', meson.current_build_dir()
     ],
@@ -78,7 +75,7 @@ resources = gnome.compile_resources(
   'rollit',
   'rollit.gresource.xml',
   gresource_bundle: true,
-  source_dir = meson.current_build_dir(),
+  source_dir: meson.current_build_dir(),
   install: true,
   install_dir: pkgdatadir,
 )
