@@ -16,12 +16,11 @@
  * Authored by Patrick Csikos <zelikos@pm.me>
  */
 
-use gettextrs::{gettext, LocaleCategory};
+use gettextrs::LocaleCategory;
 use gtk::gio::{self, prelude::*};
 
 mod application;
 mod config;
-// mod i18n;
 mod models;
 mod utils;
 mod widgets;
