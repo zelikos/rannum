@@ -88,7 +88,7 @@ mod imp {
         fn constructed(&self, obj: &Self::Type) {
             self.parent_constructed(obj);
 
-            if config::PROFILE == ".Devel" {
+            if config::PROFILE == "Devel" {
                 obj.add_css_class("devel");
             }
 
