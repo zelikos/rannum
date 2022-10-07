@@ -17,13 +17,13 @@
  */
 
 use crate::deps::*;
-use crate::i18n::*;
 use crate::models::RollitHistoryItem;
 
 use std::cell::RefCell;
 
 use adw::subclass::prelude::*;
 use glib::{Binding, BindingFlags};
+use gettextrs::gettext;
 use gtk::prelude::*;
 use gtk::{CompositeTemplate};
 
@@ -112,7 +112,7 @@ impl RollitHistoryRow {
         let clipboard = self.clipboard();
         clipboard.set_text(&result);
 
-        self.activate_action("win.show-toast", Some(&(i18n("Result copied"), 0).to_variant())).unwrap();
+        self.activate_action("win.show-toast", Some(&(gettext("Result copied"), 0).to_variant())).unwrap();
     }
 }
 

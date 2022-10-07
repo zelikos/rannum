@@ -1,6 +1,8 @@
-pub const APP_ID: &str = "@APP_ID@";
-pub const PROFILE: &str = "@PROFILE@";
-pub const PKGDATADIR: &str = "@pkgdatadir@";
-pub const VERSION: &str = "@VERSION@";
-pub const LOCALEDIR: &str = "@localedir@";
+pub const APP_ID: &str = @APP_ID@;
+pub const GETTEXT_PACKAGE: &str = @GETTEXT_PACKAGE@;
+pub const LOCALEDIR: &str = @LOCALEDIR@;
+pub const PKGDATADIR: &str = @PKGDATADIR@;
+pub const PROFILE: &str = @PROFILE@;
+pub const RESOURCES_FILE: &str = concat!(@PKGDATADIR@, "/rollit.gresource");
+pub const VERSION: &str = @VERSION@;
 

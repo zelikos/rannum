@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schemalist gettext-domain="rollit">
-  <schema path="/dev/zelikos/rollit/" id="dev.zelikos.rollit">
+<schemalist>
+  <schema path="/dev/zelikos/rollit/" id="@app-id@" gettext-domain="@gettext-package@">
     <key name="window-width" type="i">
       <default>480</default>
       <summary>Window width</summary>
