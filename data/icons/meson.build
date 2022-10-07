@@ -1,16 +1,14 @@
 scalable_dir = 'hicolor' / 'scalable' / 'apps'
-install_data(
-  scalable_dir / 'dev.zelikos.rollit.svg',
-  install_dir: iv_datadir / 'icons' / scalable_dir
-)
-
-install_data(
-  scalable_dir / 'dev.zelikos.rollit.Devel.svg',
-  install_dir: iv_datadir / 'icons' / scalable_dir
-)
-
 symbolic_dir = 'hicolor' / 'symbolic' / 'apps'
+
 install_data(
-  symbolic_dir / 'dev.zelikos.rollit-symbolic.svg',
-  install_dir: iv_datadir / 'icons' / symbolic_dir
+  scalable_dir / '@0@.svg'.format(application_id),
+  install_dir: iconsdir / 'hicolor' / 'scalable' / 'apps'
 )
+
+install_data(
+  symbolic_dir / '@0@-symbolic.svg'.format(base_id),
+  install_dir: iconsdir / 'hicolor' / 'symbolic' / 'apps',
+  rename: '@0@-symbolic.svg'.format(application_id)
+)
+

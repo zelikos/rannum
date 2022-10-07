@@ -16,12 +16,11 @@
  * Authored by Patrick Csikos <zelikos@pm.me>
  */
 
-use gettextrs::*;
+use gettextrs::LocaleCategory;
 use gtk::gio::{self, prelude::*};
 
 mod application;
 mod config;
-mod i18n;
 mod models;
 mod utils;
 mod widgets;
@@ -32,18 +31,19 @@ mod deps {
 }
 
 use application::RollitApplication;
+use config::{GETTEXT_PACKAGE, LOCALEDIR, RESOURCES_FILE};
 
 fn main() {
+    // Initialize logger
     pretty_env_logger::init();
 
     // Translations
-    setlocale(LocaleCategory::LcAll, "");
-    bindtextdomain("rollit", config::LOCALEDIR).unwrap();
-    textdomain("rollit").unwrap();
+    gettextrs::setlocale(LocaleCategory::LcAll, "");
+    gettextrs::bindtextdomain(GETTEXT_PACKAGE, LOCALEDIR).expect("Unable to bind the text domain");
+    gettextrs::textdomain(GETTEXT_PACKAGE).expect("Unable to switch to the text domain");
 
     // Load resources
-    let resources = gio::Resource::load(config::PKGDATADIR.to_owned() + "/rollit.gresource")
-        .expect("Could not load resources");
+    let resources = gio::Resource::load(RESOURCES_FILE).expect("Could not load resources");
     gio::resources_register(&resources);
 
     // Create Application

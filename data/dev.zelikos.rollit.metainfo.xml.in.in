@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright 2020-2022 Patrick Csikos <zelikos@pm.me> -->
 <component type="desktop">
-  <id>@APP_ID@</id>
-  <launchable type="desktop-id">@APP_ID@.desktop</launchable>
+  <id>@app-id@</id>
+  <translation type="gettext">@gettext-package@</translation>
+  <launchable type="desktop-id">@app-id@.desktop</launchable>
   <metadata_license>CC0</metadata_license>
   <project_license>GPL-3.0+</project_license>
   <name>Roll-It</name>

@@ -1,7 +1,15 @@
-configure_file(
-    input: 'config.rs.in',
-    output: 'config.rs',
-    configuration: conf
+global_conf = configuration_data()
+global_conf.set_quoted('APP_ID', application_id)
+global_conf.set_quoted('PKGDATADIR', pkgdatadir)
+global_conf.set_quoted('PROFILE', profile)
+global_conf.set_quoted('VERSION', version + version_suffix)
+global_conf.set_quoted('GETTEXT_PACKAGE', gettext_package)
+global_conf.set_quoted('LOCALEDIR', localedir)
+
+config = configure_file(
+  input: 'config.rs.in',
+  output: 'config.rs',
+  configuration: global_conf
 )
 
 build_root = meson.project_build_root()
@@ -29,14 +37,15 @@ endif
 
 cargo_env = [ 'CARGO_HOME=' + build_root / 'cargo-home' ]
 
-cargo_release = custom_target(
+cargo_build = custom_target(
   'cargo-build',
   build_by_default: true,
   build_always_stale: true,
   output: meson.project_name(),
   console: true,
   install: true,
-  install_dir: get_option('bindir'),
+  install_dir: bindir,
+  depends: resources,
   command: [
     'env',
     cargo_env,

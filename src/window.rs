@@ -17,9 +17,9 @@
  */
 
 use crate::deps::*;
-use crate::i18n::*;
 
 use adw::subclass::prelude::*;
+use gettextrs::gettext;
 use gtk::prelude::*;
 use gtk::CompositeTemplate;
 
@@ -185,7 +185,7 @@ impl RollitWindow {
         let imp = self.imp();
 
         let toast = adw::Toast::new("Results cleared");
-        toast.set_button_label(Some(&i18n("Undo")));
+        toast.set_button_label(Some(&gettext("Undo")));
         toast.set_action_name(Some("win.undo-clear"));
         toast.set_priority(adw::ToastPriority::High);
 
