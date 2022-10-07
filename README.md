@@ -4,11 +4,11 @@
 
 # Roll-It
 
-![Screenshot](data/screenshots/01_rollit_startup_light.png)
-
 ## Roll the dice
 
 Roll a six-sided die by default, or roll a custom die of up to one-hundred sides.
+
+![Screenshot](data/screenshots/01_rollit_startup_light.png)
 
 ## Installation
 
