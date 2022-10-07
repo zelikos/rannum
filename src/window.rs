@@ -25,8 +25,7 @@ use gtk::CompositeTemplate;
 
 use crate::config;
 use crate::utils;
-use crate::widgets::{RollitMainView, RollitHistoryPane};
-
+use crate::widgets::{RollitHistoryPane, RollitMainView};
 
 mod imp {
     use super::*;
@@ -100,7 +99,6 @@ mod imp {
             let builder = gtk::Builder::from_resource("/dev/zelikos/rollit/gtk/help-overlay.ui");
             let help_overlay = builder.object("help_overlay").unwrap();
             obj.set_help_overlay(Some(&help_overlay));
-
         }
     }
     impl WidgetImpl for RollitWindow {}
@@ -128,9 +126,11 @@ impl RollitWindow {
 
     fn setup_settings(&self) {
         let settings = utils::settings_manager();
-        settings.bind ("window-width", self, "default-width").build();
-        settings.bind ("window-height", self, "default-height").build();
-        settings.bind ("window-maximized", self, "maximized").build();
+        settings.bind("window-width", self, "default-width").build();
+        settings
+            .bind("window-height", self, "default-height")
+            .build();
+        settings.bind("window-maximized", self, "maximized").build();
     }
 
     fn roll_dice(&self) {
@@ -172,7 +172,7 @@ impl RollitWindow {
         }
     }
 
-     fn show_toast(&self, text: impl AsRef<str>, priority: adw::ToastPriority) {
+    fn show_toast(&self, text: impl AsRef<str>, priority: adw::ToastPriority) {
         let imp = self.imp();
 
         let toast = adw::Toast::new(text.as_ref());
@@ -191,6 +191,4 @@ impl RollitWindow {
 
         imp.toast_overlay.add_toast(&toast);
     }
-
 }
-

@@ -17,8 +17,8 @@
  */
 
 use crate::deps::*;
-use crate::utils;
 use crate::models::RollitHistoryItem;
+use crate::utils;
 use crate::widgets::RollitHistoryRow;
 
 use std::cell::RefCell;
@@ -58,7 +58,7 @@ mod imp {
     }
 
     impl ObjectImpl for RollitHistoryPane {
-        fn constructed (&self, obj: &Self::Type) {
+        fn constructed(&self, obj: &Self::Type) {
             self.parent_constructed(obj);
 
             obj.setup_results();
@@ -77,7 +77,7 @@ glib::wrapper! {
 }
 
 impl RollitHistoryPane {
-    pub fn add_result (&self, result: u32) {
+    pub fn add_result(&self, result: u32) {
         let settings = utils::settings_manager();
         let max = settings.int("max-roll") as u32;
         let imp = self.imp();
@@ -162,12 +162,14 @@ impl RollitHistoryPane {
 
     pub fn hide_history(&self) {
         let imp = self.imp();
-        imp.history_stack.set_visible_child(&imp.history_stack.child_by_name("empty").unwrap());
+        imp.history_stack
+            .set_visible_child(&imp.history_stack.child_by_name("empty").unwrap());
     }
 
     pub fn show_history(&self) {
         let imp = self.imp();
-        imp.history_stack.set_visible_child(&imp.history_stack.child_by_name("filled").unwrap());
+        imp.history_stack
+            .set_visible_child(&imp.history_stack.child_by_name("filled").unwrap());
     }
 
     fn clear_history(&self) {
@@ -175,4 +177,3 @@ impl RollitHistoryPane {
         log::debug!("History list cleared");
     }
 }
-

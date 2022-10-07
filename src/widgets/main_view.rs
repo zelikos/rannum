@@ -61,12 +61,13 @@ mod imp {
     }
 
     impl ObjectImpl for RollitMainView {
-        fn constructed (&self, obj: &Self::Type) {
+        fn constructed(&self, obj: &Self::Type) {
             self.parent_constructed(obj);
 
             let settings = utils::settings_manager();
-            settings.bind("max-roll", self.max_roll.deref(), "value").build();
-
+            settings
+                .bind("max-roll", self.max_roll.deref(), "value")
+                .build();
         }
     }
 
@@ -81,7 +82,7 @@ glib::wrapper! {
 }
 
 impl RollitMainView {
-    pub fn get_roll_result (&self) -> u32 {
+    pub fn get_roll_result(&self) -> u32 {
         const MIN_NUM: u32 = 1;
         let max_num: u32 = self.get_max_roll();
         let rnd_num: u32 = random!(MIN_NUM, max_num);
@@ -91,36 +92,42 @@ impl RollitMainView {
         rnd_num
     }
 
-    pub fn hide_label (&self) {
-        self.imp().result_stack.set_visible_child(&self.imp().result_stack.child_by_name("empty").unwrap());
+    pub fn hide_label(&self) {
+        self.imp()
+            .result_stack
+            .set_visible_child(&self.imp().result_stack.child_by_name("empty").unwrap());
     }
 
-    pub fn show_label (&self) {
-        self.imp().result_stack.set_visible_child(&self.imp().result_stack.child_by_name("result").unwrap());
+    pub fn show_label(&self) {
+        self.imp()
+            .result_stack
+            .set_visible_child(&self.imp().result_stack.child_by_name("result").unwrap());
     }
 
-    fn get_max_roll (&self) -> u32 {
+    fn get_max_roll(&self) -> u32 {
         self.imp().max_roll.value_as_int() as u32
     }
 
-    fn set_result_label (&self, result: u32) {
+    fn set_result_label(&self, result: u32) {
         let imp = self.imp();
-        let transition_dur = Duration::from_millis(imp.result_revealer.transition_duration().into());
+        let transition_dur =
+            Duration::from_millis(imp.result_revealer.transition_duration().into());
 
         if imp.result_stack.visible_child_name().unwrap() != "result" {
-            imp.result_stack.set_visible_child(&imp.result_stack.child_by_name("result").unwrap());
+            imp.result_stack
+                .set_visible_child(&imp.result_stack.child_by_name("result").unwrap());
             imp.result_label.set_label(&result.to_string());
             imp.result_revealer.set_reveal_child(true);
         } else {
             imp.result_revealer.set_reveal_child(false);
-            glib::timeout_add_local (transition_dur,
+            glib::timeout_add_local(
+                transition_dur,
                 clone!(@weak self as this => @default-return Continue(false), move || {
                     this.imp().result_label.set_label(&result.to_string());
                     this.imp().result_revealer.set_reveal_child(true);
                     Continue(false)
-                })
+                }),
             );
         }
     }
 }
-

@@ -50,22 +50,14 @@ mod imp {
             PROPERTIES.as_ref()
         }
 
-        fn set_property(
-            &self,
-            _obj: &Self::Type,
-            _id: usize,
-            value: &Value,
-            pspec: &ParamSpec,
-        ) {
+        fn set_property(&self, _obj: &Self::Type, _id: usize, value: &Value, pspec: &ParamSpec) {
             match pspec.name() {
                 "result" => {
-                    let input_num =
-                        value.get().expect("Value must be type 'u32'.");
+                    let input_num = value.get().expect("Value must be type 'u32'.");
                     self.data.borrow_mut().result = input_num;
                 }
                 "max-val" => {
-                    let input_num =
-                        value.get().expect("Value must be type 'u32'.");
+                    let input_num = value.get().expect("Value must be type 'u32'.");
                     self.data.borrow_mut().max_val = input_num;
                 }
                 _ => unimplemented!(),
@@ -80,7 +72,7 @@ mod imp {
             }
         }
 
-        fn constructed (&self, obj: &Self::Type) {
+        fn constructed(&self, obj: &Self::Type) {
             self.parent_constructed(obj);
         }
     }
@@ -93,9 +85,7 @@ glib::wrapper! {
 impl RollitHistoryItem {
     #[allow(clippy::new_without_default)]
     pub fn new(roll_result: u32, max: u32) -> Self {
-        glib::Object::new(&[
-            ("result", &roll_result),
-            ("max-val", &max)])
+        glib::Object::new(&[("result", &roll_result), ("max-val", &max)])
             .expect("Failed to create RollitHistoryItem")
     }
 }

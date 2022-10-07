@@ -22,10 +22,10 @@ use crate::models::RollitHistoryItem;
 use std::cell::RefCell;
 
 use adw::subclass::prelude::*;
-use glib::{Binding, BindingFlags};
 use gettextrs::gettext;
+use glib::{Binding, BindingFlags};
 use gtk::prelude::*;
-use gtk::{CompositeTemplate};
+use gtk::CompositeTemplate;
 
 mod imp {
     use super::*;
@@ -60,7 +60,7 @@ mod imp {
     }
 
     impl ObjectImpl for RollitHistoryRow {
-        fn constructed (&self, obj: &Self::Type) {
+        fn constructed(&self, obj: &Self::Type) {
             self.parent_constructed(obj);
         }
     }
@@ -83,7 +83,7 @@ impl RollitHistoryRow {
 
     pub fn bind(&self, result_item: &RollitHistoryItem) {
         let imp = self.imp();
-        
+
         let roll_result = imp.roll_result.get();
         let max_val = imp.max_suffix.get();
         let mut bindings = imp.bindings.borrow_mut();
@@ -107,12 +107,15 @@ impl RollitHistoryRow {
         }
     }
 
-    fn copy_result (&self) {
+    fn copy_result(&self) {
         let result = self.imp().roll_result.label();
         let clipboard = self.clipboard();
         clipboard.set_text(&result);
 
-        self.activate_action("win.show-toast", Some(&(gettext("Result copied"), 0).to_variant())).unwrap();
+        self.activate_action(
+            "win.show-toast",
+            Some(&(gettext("Result copied"), 0).to_variant()),
+        )
+        .unwrap();
     }
 }
-

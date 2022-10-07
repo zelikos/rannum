@@ -26,7 +26,6 @@ use gtk_macros::*;
 use crate::config;
 use crate::window::RollitWindow;
 
-
 mod imp {
     use super::*;
 
