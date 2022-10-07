@@ -86,7 +86,7 @@ impl RollitMainView {
         let max_num: u32 = self.get_max_roll();
         let rnd_num: u32 = random!(MIN_NUM, max_num);
 
-        self.set_result_label(rnd_num.clone());
+        self.set_result_label(rnd_num);
 
         rnd_num
     }
