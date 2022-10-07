@@ -25,9 +25,10 @@
               </child>
               <child>
                 <object class="GtkBox">
+                  <property name="spacing">4</property>
                   <child>
                     <object class="GtkLabel" id="max_prefix">
-                      <property name="label" translatable="yes">Out of </property>
+                      <property name="label" translatable="yes">Out of</property>
                       <style>
                         <class name="subtitle"/>
                       </style>
