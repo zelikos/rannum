@@ -9,8 +9,6 @@
   <name>Roll-It</name>
   <summary>Roll the dice</summary>
   <description>
-    <p>Roll some dice.</p>
-
     <p>Roll a six-sided die by default, or roll a custom die of up to one-hundred sides.</p>
 
     <p>Copy roll results to the clipboard from the history pane. Results are remembered until the app is closed or they are manually cleared.</p>
@@ -41,6 +39,17 @@
     </screenshot>
   </screenshots>
   <releases>
+      <release version="3.0.2" date="2022-10-07">
+      <description>
+        <ul>
+          <li>Fixed a spacing issue for RTL languages</li>
+          <li>Backend fixes and improvements</li>
+        </ul>
+      </description>
+      <issues>
+        <issue url="https://gitlab.com/zelikos/rollit/-/issues/18">#18</issue>
+      </issues>
+    </release>
       <release version="3.0.1" date="2022-09-29">
       <description>
         <p>Hotfix: AppData fixes</p>
