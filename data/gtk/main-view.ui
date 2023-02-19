@@ -45,16 +45,23 @@
                         <property name="transition-type">slide-down</property>
                         <property name="transition-duration">120</property>
                         <property name="child">
-                          <object class="GtkLabel" id="result_label">
+                          <object class="GtkButton" id="result_button">
+                            <property name="child">
+                              <object class="GtkLabel" id="result_label">
+                                <style>
+                                  <class name="title-1"/>
+                                  <class name="numeric"/>
+                                </style>
+                                <attributes>
+                                  <attribute name="weight" value="bold"/>
+                                  <attribute name="scale" value="4"/>
+                                </attributes>
+                              </object>
+                            </property>
+                            <property name="action-name">win.copy-result</property>
                             <style>
                               <class name="background"/>
-                              <class name="title-1"/>
-                              <class name="numeric"/>
                             </style>
-                            <attributes>
-                              <attribute name="weight" value="bold"/>
-                              <attribute name="scale" value="4"/>
-                            </attributes>
                           </object>
                         </property>
                       </object>
