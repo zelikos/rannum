@@ -40,6 +40,8 @@ mod imp {
         #[template_child]
         pub(super) result_label: TemplateChild<gtk::Label>,
         #[template_child]
+        pub(super) result_button: TemplateChild<gtk::Button>,
+        #[template_child]
         pub(super) result_revealer: TemplateChild<gtk::Revealer>,
         #[template_child]
         pub(super) result_stack: TemplateChild<gtk::Stack>,
@@ -102,6 +104,10 @@ impl RollitMainView {
         self.imp()
             .result_stack
             .set_visible_child(&self.imp().result_stack.child_by_name("result").unwrap());
+    }
+
+    pub fn get_last_result(&self) -> String {
+        self.imp().result_label.label().to_string()
     }
 
     fn get_max_roll(&self) -> u32 {
