@@ -126,6 +126,7 @@ impl RollitWindow {
     fn setup_actions(&self) {
         self.action_set_enabled("win.clear-history", false);
         self.action_set_enabled("win.undo-clear", false);
+        self.action_set_enabled("win.copy-latest", false);
     }
 
     fn setup_settings(&self) {
@@ -143,6 +144,7 @@ impl RollitWindow {
 
         self.action_set_enabled("win.clear-history", true);
         self.action_set_enabled("win.undo-clear", false);
+        self.action_set_enabled("win.copy-latest", true);
     }
 
     fn clear_history(&self) {
@@ -154,6 +156,7 @@ impl RollitWindow {
 
         self.action_set_enabled("win.clear-history", false);
         self.action_set_enabled("win.undo-clear", true);
+        self.action_set_enabled("win.copy-latest", false);
     }
 
     fn undo_clear(&self) {
@@ -164,6 +167,7 @@ impl RollitWindow {
 
         self.action_set_enabled("win.clear-history", true);
         self.action_set_enabled("win.undo-clear", false);
+        self.action_set_enabled("win.copy-latest", true);
     }
 
     fn toggle_history(&self) {
