@@ -13,18 +13,18 @@ regex = "1.6.0"
 
 [dependencies.gtk]
 package = "gtk4"
-version = "0.4.4"
-features = ["v4_6"]
+version = "0.4.9"
+features = ["v4_8"]
 
 [dependencies.gio]
 package = "gio"
-version = "0.15.2"
-features = ["v2_70"]
+version = "0.17.0"
+features = ["v2_74"]
 
 
 [dependencies.adw]
 package = "libadwaita"
-version = "0.2.0-alpha.2"
+version = "0.2.0-alpha.3"
 features = ["v1_2"]
 
 [dependencies.gettext-rs]
