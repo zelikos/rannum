@@ -5,7 +5,7 @@
     <property name="application-name" translatable="yes">Roll-It</property>
     <property name="modal">True</property>
     <property name="developer-name">Patrick Csikos</property>
-    <property name="website">https://gitlab.com/zelikos/rollit</property>
+    <property name="website">https://zelikos.dev/apps/rollit</property>
     <property name="issue-url">https://gitlab.com/zelikos/rollit/issues</property>
     <property name="copyright" translatable="yes">Copyright © 2020-2022 Patrick Csikos</property>
     <property name="license-type">gpl-3-0</property>
@@ -14,3 +14,4 @@
     <property name="artists"></property>
   </object>
 </interface>
+

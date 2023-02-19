@@ -167,7 +167,7 @@
     <content_attribute id="money-gambling">none</content_attribute>
   </content_rating>
   <developer_name>Patrick Csikos</developer_name>
-  <url type="homepage">https://gitlab.com/zelikos/rollit</url>
+  <url type="homepage">https://zelikos.dev/apps/rollit</url>
   <url type="bugtracker">https://gitlab.com/zelikos/rollit/issues</url>
   <url type="donation">https://ko-fi.com/akzel94</url>
 </component>
