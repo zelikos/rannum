@@ -181,11 +181,9 @@ impl RollitWindow {
         let clipboard = self.clipboard();
         clipboard.set_text(&roll_result.to_string());
 
-        // self.activate_action(
-        //     "win.show-toast",
-        //     Some(&(gettext("Result copied"), 0).to_variant()),
-        // )
-        // .unwrap();
+        let toast = adw::Toast::new("Result copied");
+
+        self.imp().toast_overlay.add_toast(&toast);
     }
 
     fn show_toast(&self, text: impl AsRef<str>, priority: adw::ToastPriority) {
