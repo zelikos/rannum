@@ -72,6 +72,10 @@ mod imp {
                 win.toggle_history();
             });
 
+            klass.install_action("win.copy-result", None, move |win, _, _| {
+                win.copy_result();
+            });
+
             klass.install_action("win.show-toast", Some("(si)"), move |win, _, var| {
                 if let Some((ref toast, i)) = var.and_then(|v| v.get::<(String, i32)>()) {
                     win.show_toast(toast, adw::ToastPriority::__Unknown(i));
@@ -170,6 +174,18 @@ impl RollitWindow {
         } else {
             flap.set_reveal_flap(true);
         }
+    }
+
+    fn copy_result(&self) {
+        let roll_result = self.imp().main_view.get_last_result();
+        let clipboard = self.clipboard();
+        clipboard.set_text(&roll_result.to_string());
+
+        // self.activate_action(
+        //     "win.show-toast",
+        //     Some(&(gettext("Result copied"), 0).to_variant()),
+        // )
+        // .unwrap();
     }
 
     fn show_toast(&self, text: impl AsRef<str>, priority: adw::ToastPriority) {
