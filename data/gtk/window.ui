@@ -49,14 +49,6 @@
   <menu id="primary_menu">
     <section>
       <item>
-        <attribute name="label" translatable="yes">_Clear Results</attribute>
-        <attribute name="action">win.clear-history</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">_Undo Clear</attribute>
-        <attribute name="action">win.undo-clear</attribute>
-      </item>
-      <item>
         <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
         <attribute name="action">win.show-help-overlay</attribute>
       </item>
