@@ -58,7 +58,7 @@
                                 </attributes>
                               </object>
                             </property>
-                            <property name="action-name">win.copy-result</property>
+                            <property name="action-name">win.copy-latest</property>
                             <style>
                               <class name="background"/>
                             </style>

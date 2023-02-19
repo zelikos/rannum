@@ -72,8 +72,8 @@ mod imp {
                 win.toggle_history();
             });
 
-            klass.install_action("win.copy-result", None, move |win, _, _| {
-                win.copy_result();
+            klass.install_action("win.copy-latest", None, move |win, _, _| {
+                win.copy_latest();
             });
 
             klass.install_action("win.show-toast", Some("(si)"), move |win, _, var| {
@@ -176,7 +176,7 @@ impl RollitWindow {
         }
     }
 
-    fn copy_result(&self) {
+    fn copy_latest(&self) {
         let roll_result = self.imp().main_view.get_last_result();
         let clipboard = self.clipboard();
         clipboard.set_text(&roll_result.to_string());
