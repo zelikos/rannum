@@ -1,4 +1,4 @@
-/*  Copyright (C) 2022 Patrick Csikos (https://zelikos.github.io)
+/*  Copyright (C) 2022-2023 Patrick Csikos (https://zelikos.github.io)
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -85,8 +85,6 @@ glib::wrapper! {
 impl RollitHistoryItem {
     #[allow(clippy::new_without_default)]
     pub fn new(roll_result: u32, max: u32) -> Self {
-        // glib::Object::new(&[("result", &roll_result), ("max-val", &max)])
-        //     .expect("Failed to create RollitHistoryItem")
         glib::Object::builder()
             .property("result", roll_result)
             .property("max-val", max)

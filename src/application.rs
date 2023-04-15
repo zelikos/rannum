@@ -1,4 +1,4 @@
-/*  Copyright (C) 2020-2022 Patrick Csikos (https://zelikos.github.io)
+/*  Copyright (C) 2020-2023 Patrick Csikos (https://zelikos.github.io)
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -45,13 +45,6 @@ mod imp {
     }
 
     // Overrides GObject vfuncs
-    // impl ObjectImpl for RollitApplication {
-    //     fn constructed(&self, obj: &Self::Type) {
-    //         self.parent_constructed(obj);
-
-    //         obj.setup_gactions();
-    //     }
-    // }
     impl ObjectImpl for RollitApplication {}
 
     // Overrides GApplication vfuncs
@@ -100,15 +93,6 @@ glib::wrapper! {
 
 #[allow(clippy::new_without_default)]
 impl RollitApplication {
-    // pub fn new() -> Self {
-    //     glib::Object::new(&[
-    //         ("application-id", &config::APP_ID.to_string()),
-    //         ("flags", &gio::ApplicationFlags::FLAGS_NONE),
-    //         ("resource-base-path", &"/dev/zelikos/rollit/".to_string()),
-    //     ])
-    //     .expect("Failed to create RollitApplication")
-    // }
-
     fn main_window(&self) -> RollitWindow {
         self.imp().window.get().unwrap().upgrade().unwrap()
     }

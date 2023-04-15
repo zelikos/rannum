@@ -1,4 +1,4 @@
-/*  Copyright (C) 2022 Patrick Csikos (https://zelikos.github.io)
+/*  Copyright (C) 2022-2023 Patrick Csikos (https://zelikos.github.io)
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -65,7 +65,6 @@ mod imp {
         type ParentType = adw::Bin;
 
         fn class_init(klass: &mut Self::Class) {
-            // Self::bind_template(klass);
             klass.bind_template();
         }
 
