@@ -41,7 +41,7 @@ mod imp {
     impl ObjectSubclass for RollitApplication {
         const NAME: &'static str = "RollitApplication";
         type Type = super::RollitApplication;
-        type ParentType = adw::Application;
+        type ParentType = gtk::Application;
     }
 
     // Overrides GObject vfuncs
