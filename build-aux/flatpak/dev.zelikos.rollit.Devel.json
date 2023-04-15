@@ -1,8 +1,8 @@
 {
     "app-id" : "dev.zelikos.rollit.Devel",
-    "runtime" : "org.gnome.Platform",
-    "runtime-version" : "44",
-    "sdk" : "org.gnome.Sdk",
+    "runtime" : "io.elementary.Platform",
+    "runtime-version" : "7.2",
+    "sdk" : "io.elementary.Sdk",
     "sdk-extensions" : [
         "org.freedesktop.Sdk.Extension.rust-stable",
         "org.freedesktop.Sdk.Extension.llvm14"
