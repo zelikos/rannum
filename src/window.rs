@@ -1,4 +1,4 @@
-/*  Copyright (C) 2020-2022 Patrick Csikos (https://zelikos.github.io)
+/*  Copyright (C) 2020-2023 Patrick Csikos (https://zelikos.github.io)
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
