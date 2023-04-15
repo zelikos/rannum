@@ -16,7 +16,6 @@
  * Authored by Patrick Csikos <zelikos@pm.me>
  */
 
-use crate::deps::*;
 use crate::models::RollitHistoryItem;
 
 use std::cell::RefCell;
@@ -24,13 +23,13 @@ use std::cell::RefCell;
 use adw::subclass::prelude::*;
 use gettextrs::gettext;
 use glib::{Binding, BindingFlags};
+use gtk::glib;
 use gtk::prelude::*;
-use gtk::CompositeTemplate;
 
 mod imp {
     use super::*;
 
-    #[derive(Debug, Default, CompositeTemplate)]
+    #[derive(Debug, Default, gtk::CompositeTemplate)]
     #[template(resource = "/dev/zelikos/rollit/gtk/history-row.ui")]
     pub struct RollitHistoryRow {
         #[template_child]
@@ -47,7 +46,7 @@ mod imp {
         type ParentType = adw::Bin;
 
         fn class_init(klass: &mut Self::Class) {
-            Self::bind_template(klass);
+            klass.bind_template();
 
             klass.install_action("history.copy-result", None, move |history, _, _| {
                 history.copy_result();
@@ -60,8 +59,8 @@ mod imp {
     }
 
     impl ObjectImpl for RollitHistoryRow {
-        fn constructed(&self, obj: &Self::Type) {
-            self.parent_constructed(obj);
+        fn constructed(&self) {
+            self.parent_constructed();
         }
     }
 
@@ -78,7 +77,7 @@ glib::wrapper! {
 impl RollitHistoryRow {
     #[allow(clippy::new_without_default)]
     pub fn new() -> Self {
-        glib::Object::new(&[]).expect("Failed to create RollitHistoryRow")
+        glib::Object::new() //.expect("Failed to create RollitHistoryRow")
     }
 
     pub fn bind(&self, result_item: &RollitHistoryItem) {

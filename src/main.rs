@@ -16,9 +16,6 @@
  * Authored by Patrick Csikos <zelikos@pm.me>
  */
 
-use gettextrs::LocaleCategory;
-use gtk::gio::{self, prelude::*};
-
 mod application;
 mod config;
 mod models;
@@ -26,14 +23,13 @@ mod utils;
 mod widgets;
 mod window;
 
-mod deps {
-    pub use gtk::{gdk, gdk_pixbuf, gio, glib, graphene};
-}
+use gettextrs::{gettext, LocaleCategory};
+use gtk::{gio, glib};
 
-use application::RollitApplication;
-use config::{GETTEXT_PACKAGE, LOCALEDIR, RESOURCES_FILE};
+use self::application::RollitApplication;
+use self::config::{GETTEXT_PACKAGE, LOCALEDIR, RESOURCES_FILE};
 
-fn main() {
+fn main() -> glib::ExitCode {
     // Initialize logger
     pretty_env_logger::init();
 
@@ -42,13 +38,13 @@ fn main() {
     gettextrs::bindtextdomain(GETTEXT_PACKAGE, LOCALEDIR).expect("Unable to bind the text domain");
     gettextrs::textdomain(GETTEXT_PACKAGE).expect("Unable to switch to the text domain");
 
+    glib::set_application_name(&gettext("Roll-It"));
+
     // Load resources
     let resources = gio::Resource::load(RESOURCES_FILE).expect("Could not load resources");
     gio::resources_register(&resources);
 
-    // Create Application
-    let app = RollitApplication::new();
-
-    // Run application.
-    std::process::exit(app.run());
+    // Create and run Application
+    let app = RollitApplication::default();
+    app.run()
 }

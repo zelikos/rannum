@@ -16,11 +16,11 @@
  * Authored by Patrick Csikos <zelikos@pm.me>
  */
 
-use crate::deps::*;
 use std::cell::RefCell;
 use std::rc::Rc;
 
 use glib::{ParamSpec, ParamSpecUInt, Value};
+use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use once_cell::sync::Lazy;
@@ -50,7 +50,7 @@ mod imp {
             PROPERTIES.as_ref()
         }
 
-        fn set_property(&self, _obj: &Self::Type, _id: usize, value: &Value, pspec: &ParamSpec) {
+        fn set_property(&self, _id: usize, value: &Value, pspec: &ParamSpec) {
             match pspec.name() {
                 "result" => {
                     let input_num = value.get().expect("Value must be type 'u32'.");
@@ -64,7 +64,7 @@ mod imp {
             }
         }
 
-        fn property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
+        fn property(&self, _id: usize, pspec: &ParamSpec) -> Value {
             match pspec.name() {
                 "result" => self.data.borrow().result.to_value(),
                 "max-val" => self.data.borrow().max_val.to_value(),
@@ -72,8 +72,8 @@ mod imp {
             }
         }
 
-        fn constructed(&self, obj: &Self::Type) {
-            self.parent_constructed(obj);
+        fn constructed(&self) {
+            self.parent_constructed();
         }
     }
 }
@@ -85,8 +85,12 @@ glib::wrapper! {
 impl RollitHistoryItem {
     #[allow(clippy::new_without_default)]
     pub fn new(roll_result: u32, max: u32) -> Self {
-        glib::Object::new(&[("result", &roll_result), ("max-val", &max)])
-            .expect("Failed to create RollitHistoryItem")
+        // glib::Object::new(&[("result", &roll_result), ("max-val", &max)])
+        //     .expect("Failed to create RollitHistoryItem")
+        glib::Object::builder()
+            .property("result", roll_result)
+            .property("max-val", max)
+            .build()
     }
 }
 
