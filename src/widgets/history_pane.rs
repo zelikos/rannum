@@ -16,7 +16,6 @@
  * Authored by Patrick Csikos <zelikos@pm.me>
  */
 
-use crate::deps::*;
 use crate::models::RollitHistoryItem;
 use crate::utils;
 use crate::widgets::RollitHistoryRow;
@@ -25,12 +24,13 @@ use std::cell::RefCell;
 
 use adw::subclass::prelude::*;
 use gtk::prelude::*;
-use gtk::{CompositeTemplate, NoSelection, SignalListItemFactory};
+use gtk::{gio, glib, ListItem};
+use gtk::{NoSelection, SignalListItemFactory};
 
 mod imp {
     use super::*;
 
-    #[derive(Debug, Default, CompositeTemplate)]
+    #[derive(Debug, Default, gtk::CompositeTemplate)]
     #[template(resource = "/dev/zelikos/rollit/gtk/history-pane.ui")]
     pub struct RollitHistoryPane {
         #[template_child]
@@ -49,7 +49,8 @@ mod imp {
         type ParentType = adw::Bin;
 
         fn class_init(klass: &mut Self::Class) {
-            Self::bind_template(klass);
+            // Self::bind_template(klass);
+            klass.bind_template();
         }
 
         fn instance_init(obj: &glib::subclass::InitializingObject<Self>) {
@@ -58,8 +59,9 @@ mod imp {
     }
 
     impl ObjectImpl for RollitHistoryPane {
-        fn constructed(&self, obj: &Self::Type) {
-            self.parent_constructed(obj);
+        fn constructed(&self) {
+            self.parent_constructed();
+            let obj = self.obj();
 
             obj.setup_results();
             obj.setup_factory();
@@ -109,13 +111,14 @@ impl RollitHistoryPane {
             .expect("Could not retrieve results.")
     }
 
+    // TODO: Figure out ListModel stuff again
     fn setup_results(&self) {
         let imp = self.imp();
         let model = gio::ListStore::new(RollitHistoryItem::static_type());
 
         imp.results.replace(Some(model));
 
-        let selection_model = NoSelection::new(Some(&self.results()));
+        let selection_model = NoSelection::new(Some(self.results()));
         imp.history_list.set_model(Some(&selection_model));
     }
 
@@ -125,21 +128,26 @@ impl RollitHistoryPane {
         // Connect empty 'RollitHistoryRow' during setup
         factory.connect_setup(move |_, list_item| {
             let result_row = RollitHistoryRow::new();
-            list_item.set_child(Some(&result_row));
+            list_item
+                .downcast_ref::<ListItem>()
+                .expect("Needs to be ListItem")
+                .set_child(Some(&result_row));
         });
 
         // Tell factory how to bind 'RollitHistoryRow' to 'RollitHistoryItem'
         factory.connect_bind(move |_, list_item| {
             let result_item = list_item
+                .downcast_ref::<ListItem>()
+                .expect("Needs to be ListItem")
                 .item()
-                .expect("The item must exist.")
-                .downcast::<RollitHistoryItem>()
+                .and_downcast::<RollitHistoryItem>()
                 .expect("The item must be a 'RollitHistoryItem'.");
 
             let result_row = list_item
+                .downcast_ref::<ListItem>()
+                .expect("Needs to be ListItem")
                 .child()
-                .expect("The child must exist.")
-                .downcast::<RollitHistoryRow>()
+                .and_downcast::<RollitHistoryRow>()
                 .expect("The child must be a 'RollitHistoryRow'.");
 
             result_row.bind(&result_item);
@@ -149,9 +157,10 @@ impl RollitHistoryPane {
         factory.connect_unbind(move |_, list_item| {
             // Get 'RollitHistoryRow' from 'ListItem'
             let result_row = list_item
+                .downcast_ref::<ListItem>()
+                .expect("Needs to be ListItem")
                 .child()
-                .expect("The child must exist.")
-                .downcast::<RollitHistoryRow>()
+                .and_downcast::<RollitHistoryRow>()
                 .expect("The child must be a 'RollitHistoryRow'.");
 
             result_row.unbind();

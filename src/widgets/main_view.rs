@@ -16,15 +16,14 @@
  * Authored by Patrick Csikos <zelikos@pm.me>
  */
 
-use crate::deps::*;
 use crate::utils;
 
 use core::ops::Deref;
 
 use adw::subclass::prelude::*;
 use glib::clone;
+use gtk::glib;
 use gtk::prelude::*;
-use gtk::CompositeTemplate;
 
 use random_number::random;
 use std::time::Duration;
@@ -32,7 +31,7 @@ use std::time::Duration;
 mod imp {
     use super::*;
 
-    #[derive(Debug, Default, CompositeTemplate)]
+    #[derive(Debug, gtk::CompositeTemplate)]
     #[template(resource = "/dev/zelikos/rollit/gtk/main-view.ui")]
     pub struct RollitMainView {
         #[template_child]
@@ -47,6 +46,18 @@ mod imp {
         pub(super) result_stack: TemplateChild<gtk::Stack>,
     }
 
+    impl Default for RollitMainView {
+        fn default() -> Self {
+            Self {
+                max_roll: TemplateChild::default(),
+                result_label: TemplateChild::default(),
+                result_button: TemplateChild::default(),
+                result_revealer: TemplateChild::default(),
+                result_stack: TemplateChild::default(),
+            }
+        }
+    }
+
     #[glib::object_subclass]
     impl ObjectSubclass for RollitMainView {
         const NAME: &'static str = "RollitMainView";
@@ -54,7 +65,8 @@ mod imp {
         type ParentType = adw::Bin;
 
         fn class_init(klass: &mut Self::Class) {
-            Self::bind_template(klass);
+            // Self::bind_template(klass);
+            klass.bind_template();
         }
 
         fn instance_init(obj: &glib::subclass::InitializingObject<Self>) {
@@ -63,9 +75,10 @@ mod imp {
     }
 
     impl ObjectImpl for RollitMainView {
-        fn constructed(&self, obj: &Self::Type) {
-            self.parent_constructed(obj);
+        fn constructed(&self) {
+            self.parent_constructed();
 
+            // TODO: Move to separate method
             let settings = utils::settings_manager();
             settings
                 .bind("max-roll", self.max_roll.deref(), "value")

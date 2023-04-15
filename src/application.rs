@@ -16,22 +16,25 @@
  * Authored by Patrick Csikos <zelikos@pm.me>
  */
 
-use crate::deps::*;
+use log::{debug, info};
 
 use adw::prelude::*;
 use adw::subclass::prelude::*;
-use glib::clone;
-use gtk_macros::*;
+use gtk::{gio, glib};
 
-use crate::config;
+use crate::config::{APP_ID, PKGDATADIR, PROFILE, VERSION};
 use crate::window::RollitWindow;
 
 mod imp {
     use super::*;
+    use glib::WeakRef;
+    use once_cell::sync::OnceCell;
 
     // Holds state and widgets
     #[derive(Debug, Default)]
-    pub struct RollitApplication {}
+    pub struct RollitApplication {
+        pub window: OnceCell<WeakRef<RollitWindow>>,
+    }
 
     // Basics for GObject
     #[glib::object_subclass]
@@ -42,25 +45,46 @@ mod imp {
     }
 
     // Overrides GObject vfuncs
-    impl ObjectImpl for RollitApplication {
-        fn constructed(&self, obj: &Self::Type) {
-            self.parent_constructed(obj);
+    // impl ObjectImpl for RollitApplication {
+    //     fn constructed(&self, obj: &Self::Type) {
+    //         self.parent_constructed(obj);
 
-            obj.setup_gactions();
-        }
-    }
+    //         obj.setup_gactions();
+    //     }
+    // }
+    impl ObjectImpl for RollitApplication {}
 
     // Overrides GApplication vfuncs
     impl ApplicationImpl for RollitApplication {
-        fn activate(&self, application: &Self::Type) {
-            let window = if let Some(window) = application.active_window() {
-                window
-            } else {
-                let window = RollitWindow::new(application);
-                window.upcast()
-            };
+        fn activate(&self) {
+            debug!("GtkApplication<RollitApplication>::activate");
+            self.parent_activate();
+            let app = self.obj();
 
-            window.present();
+            if let Some(window) = self.window.get() {
+                let window = window.upgrade().unwrap();
+                window.present();
+                return;
+            }
+
+            let window = RollitWindow::new(&app);
+            self.window
+                .set(window.downgrade())
+                .expect("Window already set.");
+
+            app.main_window().present();
+        }
+
+        fn startup(&self) {
+            debug!("GtkApplication<RollitApplication>::startup");
+            self.parent_startup();
+            let app = self.obj();
+
+            // Set icons for shell
+            gtk::Window::set_default_icon_name(APP_ID);
+
+            app.setup_gactions();
+            app.setup_accels();
         }
     }
 
@@ -76,42 +100,39 @@ glib::wrapper! {
 
 #[allow(clippy::new_without_default)]
 impl RollitApplication {
-    pub fn new() -> Self {
-        glib::Object::new(&[
-            ("application-id", &config::APP_ID.to_string()),
-            ("flags", &gio::ApplicationFlags::FLAGS_NONE),
-            ("resource-base-path", &"/dev/zelikos/rollit/".to_string()),
-        ])
-        .expect("Failed to create RollitApplication")
+    // pub fn new() -> Self {
+    //     glib::Object::new(&[
+    //         ("application-id", &config::APP_ID.to_string()),
+    //         ("flags", &gio::ApplicationFlags::FLAGS_NONE),
+    //         ("resource-base-path", &"/dev/zelikos/rollit/".to_string()),
+    //     ])
+    //     .expect("Failed to create RollitApplication")
+    // }
+
+    fn main_window(&self) -> RollitWindow {
+        self.imp().window.get().unwrap().upgrade().unwrap()
     }
 
     fn setup_gactions(&self) {
-        // action! is a macro from gtk_macros
-        // that creates a GSimpleAction with a callback.
-        // clone! is a macro from glib-rs that allows
-        // you to easily handle references in callbacks
-        // without refcycles or leaks.
-        //
-        // When you don't want the callback to keep the
-        // Object alive, pass as @weak. Otherwise, pass
-        // as @strong. Most of the time you will want
-        // to use @weak.
-        action!(
-            self,
-            "about",
-            clone!(@weak self as app => move |_, _| {
-                app.show_about();
-            })
-        );
-
-        action!(
-            self,
-            "quit",
-            clone!(@weak self as app => move |_, _| {
+        // Quit
+        let action_quit = gio::ActionEntry::builder("quit")
+            .activate(move |app: &Self, _, _| {
+                // This is needed to trigger the delete event and saving the window state
+                app.main_window().close();
                 app.quit();
             })
-        );
+            .build();
 
+        // About
+        let action_about = gio::ActionEntry::builder("about")
+            .activate(|app: &Self, _, _| {
+                app.show_about();
+            })
+            .build();
+        self.add_action_entries([action_quit, action_about]);
+    }
+
+    fn setup_accels(&self) {
         self.set_accels_for_action("app.quit", &["<Primary>Q"]);
         self.set_accels_for_action("win.roll-dice", &["<Primary>R"]);
         self.set_accels_for_action("win.clear-history", &["<Primary>L"]);
@@ -124,13 +145,30 @@ impl RollitApplication {
         let builder = gtk::Builder::from_resource("/dev/zelikos/rollit/gtk/about.ui");
 
         let about: adw::AboutWindow = builder.object("about_window").unwrap();
-        about.set_application_icon(config::APP_ID);
-        about.set_version(config::VERSION);
+        about.set_application_icon(APP_ID);
+        about.set_version(VERSION);
 
         if let Some(window) = self.active_window() {
             about.set_transient_for(Some(&window));
         }
 
-        about.show();
+        about.present();
+    }
+
+    pub fn run(&self) -> glib::ExitCode {
+        info!("Roll-It ({})", APP_ID);
+        info!("Version: {} ({})", VERSION, PROFILE);
+        info!("Datadir: {}", PKGDATADIR);
+
+        ApplicationExtManual::run(self)
+    }
+}
+
+impl Default for RollitApplication {
+    fn default() -> Self {
+        glib::Object::builder()
+            .property("application-id", APP_ID)
+            .property("resource-base-path", "/dev/zelikos/rollit/")
+            .build()
     }
 }
