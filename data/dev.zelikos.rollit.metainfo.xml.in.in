@@ -40,6 +40,16 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release version="3.1.1" date="2023-04-21" type="development">
+      <description>
+        <ul>
+          <li>Fix copyright year in About dialog</li>
+        </ul>
+      </description>
+      <issues>
+        <issue url="https://gitlab.com/zelikos/rollit/-/issues/23">#23</issue>
+      </issues>
+    </release>
     <release version="3.1.0" date="2023-04-15">
       <description>
         <ul>
