@@ -35,7 +35,7 @@ mod imp {
     #[template(resource = "/dev/zelikos/rollit/gtk/main-view.ui")]
     pub struct RollitMainView {
         #[template_child]
-        pub(super) max_roll: TemplateChild<gtk::SpinButton>,
+        pub(super) max_roll: TemplateChild<adw::SpinRow>,
         #[template_child]
         pub(super) result_label: TemplateChild<gtk::Label>,
         #[template_child]
