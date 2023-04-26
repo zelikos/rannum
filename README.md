@@ -14,7 +14,7 @@ Roll a six-sided die by default, or roll a custom die of up to one-hundred sides
 
 The latest stable release of Roll-It is available via Flathub.
 
-<a href='https://flathub.org/apps/details/dev.zelikos.rollit'><img width='240' alt='Download on Flathub' src='https://flathub.org/assets/badges/flathub-badge-en.png'/></a>
+<a href='https://flathub.org/apps/details/dev.zelikos.rollit'><img width='240' alt='Download on Flathub' src='https://dl.flathub.org/assets/badges/flathub-badge-en.png'/></a>
 
 Any version distributed elsewhere is not provided nor supported by me.
 
