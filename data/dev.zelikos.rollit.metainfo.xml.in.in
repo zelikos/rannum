@@ -43,7 +43,7 @@
     <release version="3.1.2" date="2023-04-29">
       <description>
         <ul>
-          <li>A few backend fixes</li>
+          <li>Fixed a few issues with metadata</li>
         </ul>
       </description>
       <issues>
