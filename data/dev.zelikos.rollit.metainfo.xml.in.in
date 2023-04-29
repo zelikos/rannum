@@ -40,7 +40,19 @@
     </screenshot>
   </screenshots>
   <releases>
-    <release version="3.1.1" date="2023-04-21" type="development">
+    <release version="3.1.2" date="2023-04-29">
+      <description>
+        <ul>
+          <li>Updates and fixes for metadata</li>
+        </ul>
+      </description>
+      <issues>
+        <issue url="https://gitlab.com/zelikos/rollit/-/issues/27">#27</issue>
+        <issue url="https://gitlab.com/zelikos/rollit/-/issues/30">#30</issue>
+        <issue url="https://gitlab.com/zelikos/rollit/-/issues/31">#31</issue>
+      </issues>
+    </release>
+    <release version="3.1.1" date="2023-04-21">
       <description>
         <ul>
           <li>Fix copyright year in About dialog</li>
@@ -194,6 +206,14 @@
     <content_attribute id="money-purchasing">none</content_attribute>
     <content_attribute id="money-gambling">none</content_attribute>
   </content_rating>
+  <requires>
+    <display_length compare="ge">360</display_length>
+  </requires>
+  <recommends>
+    <control>keyboard</control>
+    <control>pointing</control>
+    <control>touch</control>
+  </recommends>
   <developer_name>Patrick Csikos</developer_name>
   <url type="homepage">https://zelikos.dev/apps/rollit</url>
   <url type="bugtracker">https://gitlab.com/zelikos/rollit/issues</url>
