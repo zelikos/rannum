@@ -127,6 +127,9 @@
                       <property name="value">20</property>
                     </object>
                   </property>
+                  <style>
+                    <class name="card"/>
+                  </style>
                 </object>
               </child>
           </object>
