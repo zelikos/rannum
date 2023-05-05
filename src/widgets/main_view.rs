@@ -34,8 +34,9 @@ mod imp {
     #[derive(Debug, gtk::CompositeTemplate)]
     #[template(resource = "/dev/zelikos/rollit/gtk/main-view.ui")]
     pub struct RollitMainView {
-        #[template_child]
-        pub(super) max_roll: TemplateChild<adw::SpinRow>,
+        // TODO: Re-enable when libadwaita crate is updated
+        // #[template_child]
+        // pub(super) max_roll: TemplateChild<adw::SpinRow>,
         #[template_child]
         pub(super) result_label: TemplateChild<gtk::Label>,
         #[template_child]
@@ -49,7 +50,8 @@ mod imp {
     impl Default for RollitMainView {
         fn default() -> Self {
             Self {
-                max_roll: TemplateChild::default(),
+                // TODO: Re-enable when libadwaita crate is updated
+                // max_roll: TemplateChild::default(),
                 result_label: TemplateChild::default(),
                 result_button: TemplateChild::default(),
                 result_revealer: TemplateChild::default(),
@@ -78,10 +80,10 @@ mod imp {
             self.parent_constructed();
 
             // TODO: Move to separate method
-            let settings = utils::settings_manager();
-            settings
-                .bind("max-roll", self.max_roll.deref(), "value")
-                .build();
+            // let settings = utils::settings_manager();
+            // settings
+            //     .bind("max-roll", self.max_roll.deref(), "value")
+            //     .build();
         }
     }
 
@@ -98,7 +100,9 @@ glib::wrapper! {
 impl RollitMainView {
     pub fn get_roll_result(&self) -> u32 {
         const MIN_NUM: u32 = 1;
-        let max_num: u32 = self.get_max_roll();
+        // TODO: Re-enable when libadwaita crate is updated
+        // let max_num: u32 = self.get_max_roll();
+        let max_num: u32 = 6;
         let rnd_num: u32 = random!(MIN_NUM, max_num);
 
         self.set_result_label(rnd_num);
@@ -122,9 +126,10 @@ impl RollitMainView {
         self.imp().result_label.label().to_string()
     }
 
-    fn get_max_roll(&self) -> u32 {
-        self.imp().max_roll.value_as_int() as u32
-    }
+    // TODO: Re-enable when libadwaita crate is updated
+    // fn get_max_roll(&self) -> u32 {
+    //     self.imp().max_roll.value_as_int() as u32
+    // }
 
     fn set_result_label(&self, result: u32) {
         let imp = self.imp();
