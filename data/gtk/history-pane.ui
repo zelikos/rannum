@@ -45,7 +45,8 @@
              </child>
              <child>
                 <object class="GtkButton">
-                  <property name="label" translatable="yes">Clear</property>
+                  <property name="label" translatable="yes">_Clear</property>
+                  <property name="use-underline">True</property>
                   <property name="tooltip-text" translatable="yes">Clear results</property>
                   <property name="action-name">win.clear-history</property>
                   <style>
