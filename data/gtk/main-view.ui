@@ -78,8 +78,9 @@
             </child>
             <child>
               <object class="GtkButton">
-                <property name="label">Roll</property>
-                <property name="tooltip-text">Roll the dice</property>
+                <property name="label" translatable="yes">_Roll</property>
+                <property name="use-underline">True</property>
+                <property name="tooltip-text" translatable="yes">Roll the dice</property>
                 <property name="action-name">win.roll-dice</property>
                 <style>
                   <class name="suggested-action"/>
