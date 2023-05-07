@@ -21,6 +21,7 @@ use crate::utils;
 use core::ops::Deref;
 
 use adw::subclass::prelude::*;
+use gettextrs::gettext;
 use glib::clone;
 use gtk::glib;
 use gtk::prelude::*;
@@ -66,6 +67,10 @@ mod imp {
 
         fn class_init(klass: &mut Self::Class) {
             klass.bind_template();
+
+            klass.install_action("mainview.copy-latest", None, move |main_view, _, _| {
+                main_view.copy_latest();
+            });
         }
 
         fn instance_init(obj: &glib::subclass::InitializingObject<Self>) {
@@ -120,6 +125,18 @@ impl RollitMainView {
 
     pub fn get_last_result(&self) -> String {
         self.imp().result_label.label().to_string()
+    }
+
+    fn copy_latest(&self) {
+        let result = self.imp().result_label.label();
+        let clipboard = self.clipboard();
+        clipboard.set_text(&result);
+
+        self.activate_action(
+            "win.show-toast",
+            Some(&(gettext("Result copied"), 0).to_variant()),
+        )
+        .unwrap();
     }
 
     fn get_max_roll(&self) -> u32 {
