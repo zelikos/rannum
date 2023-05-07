@@ -94,8 +94,7 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="dice_settings_button">
-                    <!-- <property name="icon-name">dice3-symbolic</property> -->
-                    <property name="label">?</property>
+                    <property name="icon-name">dice3-symbolic</property>
                     <property name="tooltip-text" translatable="yes">Set highest roll</property>
                     <!-- TODO: Implement dice-settings action -->
                     <!-- <property name="action-name">win.dice-settings</property> -->
