@@ -1,4 +1,4 @@
-/*  Copyright (C) 2020-2023 Patrick Csikos (https://zelikos.github.io)
+/*  Copyright (C) 2020-2023 Patrick Csikos (https://zelikos.dev)
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -13,7 +13,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
- * Authored by Patrick Csikos <zelikos@pm.me>
+ * Authored by Patrick Csikos <pcsikos@zelikos.dev>
  */
 
 use adw::subclass::prelude::*;
@@ -77,10 +77,6 @@ mod imp {
 
             klass.install_action("win.toggle-history", None, move |win, _, _| {
                 win.toggle_history();
-            });
-
-            klass.install_action("win.copy-latest", None, move |win, _, _| {
-                win.copy_latest();
             });
 
             klass.install_action("win.show-toast", Some("(si)"), move |win, _, var| {
@@ -182,16 +178,6 @@ impl RollitWindow {
         } else {
             flap.set_reveal_flap(true);
         }
-    }
-
-    fn copy_latest(&self) {
-        let roll_result = self.imp().main_view.get_last_result();
-        let clipboard = self.clipboard();
-        clipboard.set_text(&roll_result.to_string());
-
-        let toast = adw::Toast::new("Result copied");
-
-        self.imp().toast_overlay.add_toast(toast);
     }
 
     fn show_toast(&self, text: impl AsRef<str>, priority: adw::ToastPriority) {

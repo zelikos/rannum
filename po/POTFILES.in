@@ -8,4 +8,5 @@ data/gtk/history-row.ui
 data/gtk/main-view.ui
 data/gtk/window.ui
 src/widgets/history_row.rs
+src/widgets/main_view.rs
 
