@@ -35,8 +35,6 @@ mod imp {
     #[template(resource = "/dev/zelikos/rollit/gtk/main-view.ui")]
     pub struct RollitMainView {
         #[template_child]
-        pub(super) dice_settings_button: TemplateChild<gtk::Button>,
-        #[template_child]
         pub(super) result_label: TemplateChild<gtk::Label>,
         #[template_child]
         pub(super) result_button: TemplateChild<gtk::Button>,
@@ -49,7 +47,6 @@ mod imp {
     impl Default for RollitMainView {
         fn default() -> Self {
             Self {
-                dice_settings_button: TemplateChild::default(),
                 result_label: TemplateChild::default(),
                 result_button: TemplateChild::default(),
                 result_revealer: TemplateChild::default(),
