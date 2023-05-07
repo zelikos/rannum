@@ -95,6 +95,7 @@
                 <child>
                   <object class="GtkButton">
                     <property name="icon-name">dice3-symbolic</property>
+                    <property name="label">?</property>
                     <property name="tooltip-text" translatable="yes">Set highest roll</property>
                     <style>
                       <class name="pill" />
