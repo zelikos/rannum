@@ -93,7 +93,7 @@
                   </object>
                 </child>
                 <child>
-                  <object class="GtkButton">
+                  <object class="GtkButton" id="dice_settings_button">
                     <!-- <property name="icon-name">dice3-symbolic</property> -->
                     <property name="label">?</property>
                     <property name="tooltip-text" translatable="yes">Set highest roll</property>
