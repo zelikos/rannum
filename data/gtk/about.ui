@@ -9,7 +9,7 @@
     <property name="issue-url">https://gitlab.com/zelikos/rollit/issues</property>
     <property name="copyright" translatable="yes">Copyright © 2020-2023 Patrick Csikos</property>
     <property name="license-type">gpl-3-0</property>
-    <property name="developers">Patrick Csikos &lt;zelikos@pm.me&gt;</property>
+    <property name="developers">Patrick Csikos &lt;pcsikos@zelikos.dev&gt;</property>
     <property name="translator-credits"></property>
     <property name="artists"></property>
   </object>
