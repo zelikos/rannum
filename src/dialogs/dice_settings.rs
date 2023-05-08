@@ -31,6 +31,7 @@ mod imp {
         const NAME: &'static str = "RollitDiceSettings";
         type Type = super::RollitDiceSettings;
         type ParentType = adw::Window;
+        // type ParentType = adw::PreferencesWindow;
 
         fn class_init(klass: &mut Self::Class) {
             klass.bind_template();
@@ -50,11 +51,12 @@ mod imp {
     impl WidgetImpl for RollitDiceSettings {}
     impl WindowImpl for RollitDiceSettings {}
     impl AdwWindowImpl for RollitDiceSettings {}
+    impl PreferencesWindowImpl for RollitDiceSettings {}
 }
 
 glib::wrapper! {
     pub struct RollitDiceSettings(ObjectSubclass<imp::RollitDiceSettings>)
-        @extends gtk::Widget, gtk::Window, adw::Window,
+        @extends gtk::Widget, gtk::Window, adw::Window,// adw::PreferencesWindow,
         @implements gtk::Accessible, gtk::Actionable;
 }
 

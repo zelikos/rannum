@@ -3,6 +3,7 @@
   <requires lib="gtk" version="4.0"/>
   <requires lib="libadwaita" version="1.0"/>
   <template class="RollitDiceSettings" parent="AdwWindow">
+  <!-- <template class="RollitDiceSettings" parent="AdwPreferencesWindow"> -->
     <property name="title">Dice Settings</property>
     <property name="modal">True</property>
     <property name="destroy_with_parent">True</property>
@@ -21,6 +22,56 @@
         <property name="orientation">vertical</property>
         <child>
           <object class="AdwHeaderBar" />
+        </child>
+        <child>
+          <object class="AdwPreferencesPage">
+            <child>
+              <object class="AdwPreferencesGroup">
+                <property name="title" translatable="yes">Dice Presets</property>
+                <!-- <property name="description" translatable="yes">Highest number a roll can result in.</property> -->
+              </object>
+            </child>
+            <child>
+              <object class="AdwPreferencesGroup">
+                <property name="title" translatable="yes">Custom Roll</property>
+                <child>
+                  <!-- TODO: Replace with AdwSpinRow -->
+                  <object class="AdwActionRow">
+                    <property name="title" translatable="yes">Max</property>
+                    <property name="tooltip-text" translatable="yes">Set highest roll</property>
+                    <child type="suffix">
+                      <object class="GtkSpinButton" id="max_roll">
+                        <property name="valign">center</property>
+                        <property name="digits">0</property>
+                        <property name="numeric">true</property>
+                        <property name="adjustment">
+                          <object class="GtkAdjustment">
+                            <property name="page-increment">5</property>
+                            <property name="step-increment">1</property>
+                            <property name="lower">1</property>
+                            <property name="upper">999</property>
+                            <property name="value">20</property>
+                          </object>
+                        </property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwActionRow">
+                    <property name="title" translatable="yes">Add as Preset</property>
+                    <!-- <property name="subtitle" translatable="yes">Add above number as a new preset.</property> -->
+                    <property name="action-name">dice.add-preset</property>
+                    <child type="suffix">
+                      <object class="GtkImage">
+                        <property name="icon-name">list-add-symbolic</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
         </child>
       </object>
     </property>
