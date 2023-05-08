@@ -35,6 +35,8 @@ mod imp {
         pub dice_presets: TemplateChild<adw::PreferencesGroup>,
         #[template_child]
         pub max_roll: TemplateChild<gtk::SpinButton>,
+        #[template_child]
+        pub toast_overlay: TemplateChild<adw::ToastOverlay>,
     }
 
     #[glib::object_subclass]
@@ -46,6 +48,16 @@ mod imp {
 
         fn class_init(klass: &mut Self::Class) {
             klass.bind_template();
+
+            klass.install_action("dice.show-toast", Some("(si)"), move |dice, _, var| {
+                if let Some((ref toast, i)) = var.and_then(|v| v.get::<(String, i32)>()) {
+                    dice.show_toast(toast, adw::ToastPriority::__Unknown(i));
+                }
+            });
+
+            klass.install_action("dice.add-preset", None, move |dice, _, _| {
+                dice.add_preset();
+            });
 
             // TODO: Move to dice_row.rs
             klass.install_action("dice.set-dice", None, move |dice, _, _| {
@@ -84,6 +96,23 @@ impl RollitDiceSettings {
         glib::Object::new()
     }
 
+    fn add_preset(&self) {
+        // TODO: Actually add presets
+        let settings = utils::settings_manager();
+        let max = settings.int("max-roll");
+        log::debug!("{} added as a preset", max);
+        self.activate_action(
+            "dice.show-toast",
+            Some(&(gettext("Preset added"), 1).to_variant()),
+        )
+        .unwrap();
+    }
+
+    // TODO: Delete specified preset
+    // fn del_preset(&self) {
+
+    // }
+
     fn bind_spinner(&self) {
         let settings = utils::settings_manager();
         settings
@@ -91,11 +120,21 @@ impl RollitDiceSettings {
             .build();
     }
 
+    fn show_toast(&self, text: impl AsRef<str>, priority: adw::ToastPriority) {
+        let imp = self.imp();
+
+        let toast = adw::Toast::new(text.as_ref());
+        toast.set_priority(priority);
+        toast.set_timeout(1);
+
+        imp.toast_overlay.add_toast(toast);
+    }
+
     // TODO: Move to dice_row.rs; add toast overlay for dice settings window
     fn set_dice(&self) {
         self.activate_action(
-            "win.show-toast",
-            Some(&(gettext("Dice set"), 0).to_variant()),
+            "dice.show-toast",
+            Some(&(gettext("Dice value changed"), 1).to_variant()),
         )
         .unwrap();
     }
