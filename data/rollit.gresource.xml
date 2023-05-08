@@ -2,6 +2,7 @@
 <gresources>
   <gresource prefix="/dev/zelikos/rollit">
     <file>gtk/about.ui</file>
+    <file>gtk/dice-settings.ui</file>
     <file>gtk/help-overlay.ui</file>
     <file>gtk/history-row.ui</file>
     <file>gtk/history-pane.ui</file>

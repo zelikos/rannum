@@ -18,6 +18,7 @@
 
 mod application;
 mod config;
+mod dialogs;
 mod models;
 mod utils;
 mod widgets;
