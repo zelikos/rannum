@@ -198,6 +198,7 @@ impl RollitWindow {
 
         let toast = adw::Toast::new(text.as_ref());
         toast.set_priority(priority);
+        toast.set_timeout(1);
 
         imp.toast_overlay.add_toast(toast);
     }
