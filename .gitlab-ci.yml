@@ -9,10 +9,11 @@ flatpak:
 #  tags:
 #    - flatpak
   variables:
-    BUNDLE: "rollit-nightly.flatpak"
-    MANIFEST_PATH: "build-aux/flatpak/dev.zelikos.rollit.Devel.json"
-    FLATPAK_MODULE: "rollit"
     APP_ID: "dev.zelikos.rollit.Devel"
+    BUNDLE: "${APP_ID}.flatpak"
+    MANIFEST_PATH: "build-aux/flatpak/${APP_ID}.json"
+    FLATPAK_MODULE: "rollit"
+    RUNTIME_REPO: "https://nightly.gnome.org/gnome-nightly.flatpakrepo"
   script:
     - >
       xvfb-run -a -s "-screen 0 1024x768x24"
