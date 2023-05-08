@@ -6,8 +6,8 @@ flatpak:
   image: 'quay.io/gnome_infrastructure/gnome-runtime-images:gnome-44'
   stage: test
   when: manual
-  tags:
-    - flatpak
+#  tags:
+#    - flatpak
   variables:
     BUNDLE: "rollit-nightly.flatpak"
     MANIFEST_PATH: "build-aux/flatpak/dev.zelikos.rollit.Devel.json"
