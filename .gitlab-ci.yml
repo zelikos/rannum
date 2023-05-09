@@ -5,13 +5,14 @@ stages:
 flatpak:
   image: 'quay.io/gnome_infrastructure/gnome-runtime-images:gnome-44'
   stage: test
-  tags:
-    - flatpak
+  when: manual
+#  tags:
+#    - flatpak
   variables:
-    BUNDLE: "gtk-rust-template-nightly.flatpak"
-    MANIFEST_PATH: "build-aux/flatpak/dev.zelikos.rollit.Devel.json"
-    FLATPAK_MODULE: "rollit"
     APP_ID: "dev.zelikos.rollit.Devel"
+    BUNDLE: "${APP_ID}.flatpak"
+    MANIFEST_PATH: "build-aux/flatpak/${APP_ID}.json"
+    FLATPAK_MODULE: "rollit"
     RUNTIME_REPO: "https://nightly.gnome.org/gnome-nightly.flatpakrepo"
   script:
     - >
@@ -21,7 +22,6 @@ flatpak:
   artifacts:
     name: 'Flatpak artifacts'
     expose_as: 'Get Flatpak bundle here'
-    when: 'always'
     paths:
       - "${BUNDLE}"
       - '.flatpak-builder/build/${FLATPAK_MODULE}/_flatpak_build/meson-logs/meson-log.txt'
