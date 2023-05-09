@@ -26,3 +26,11 @@ If you would like to build and hack on Roll-It, it is highly recommended to use 
 
 Manual build instructions to come later.
 
+## Credits
+
+Other GTK Rust projects used for reference:
+
+- [GTK Rust Template](https://gitlab.gnome.org/World/Rust/gtk-rust-template)
+- [Loupe](https://gitlab.gnome.org/Incubator/loupe)
+- [PikaBackup](https://gitlab.gnome.org/World/pika-backup)
+
