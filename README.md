@@ -1,10 +1,9 @@
 ![Flathub](https://img.shields.io/flathub/v/dev.zelikos.rollit?style=for-the-badge)
+![Installs](https://img.shields.io/flathub/downloads/dev.zelikos.rollit?style=for-the-badge)
 
 ![Icon](data/icons/hicolor/scalable/apps/dev.zelikos.rollit.svg)
 
 # Roll-It
-
-## Roll the dice
 
 Roll a six-sided die by default, or roll a custom die of up to one-hundred sides.
 
@@ -20,9 +19,9 @@ Any version distributed elsewhere is not provided nor supported by me.
 
 ## Building
 
-Roll-It is built using GTK4 and libadwaita with the GNOME HIG in mind.
+Roll-It is built using GTK4 and libadwaita with the [GNOME HIG](https://developer.gnome.org/hig/) in mind.
 
-If you would like to build and hack on Roll-It, it is highly recommended to use [GNOME Builder](https://gitlab.gnome.org/GNOME/gnome-builder/).
+If you would like to build and hack on Roll-It, it is highly recommended to use [GNOME Builder](https://flathub.org/apps/org.gnome.Builder).
 
 Manual build instructions to come later.
 
