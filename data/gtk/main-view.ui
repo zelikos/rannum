@@ -96,7 +96,7 @@
                 <child>
                   <object class="GtkButton" id="dice_settings_button">
                     <property name="icon-name">dice3-symbolic</property>
-                    <property name="tooltip-text" translatable="yes">Set highest roll</property>
+                    <property name="tooltip-text" translatable="yes">Dice settings</property>
                     <property name="action-name">win.dice-settings</property>
                     <style>
                       <class name="pill" />
