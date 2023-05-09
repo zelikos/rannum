@@ -42,6 +42,7 @@
   <releases>
     <release version="3.1.2" date="2023-04-29">
       <description>
+        <p>Changes</p>
         <ul>
           <li>Updates and fixes for metadata</li>
         </ul>
@@ -54,8 +55,9 @@
     </release>
     <release version="3.1.1" date="2023-04-21">
       <description>
+        <p>Changes</p>
         <ul>
-          <li>Fix copyright year in About dialog</li>
+          <li>Fixed copyright year in About dialog</li>
         </ul>
       </description>
       <issues>
@@ -64,6 +66,7 @@
     </release>
     <release version="3.1.0" date="2023-04-15">
       <description>
+        <p>Changes</p>
         <ul>
           <li>Added button and shortcut to copy most-recent roll result</li>
           <li>Cleaned up app menu of redundant entries</li>
@@ -81,6 +84,7 @@
     </release>
     <release version="3.0.2" date="2022-10-07">
       <description>
+        <p>Changes</p>
         <ul>
           <li>Fixed a spacing issue for RTL languages</li>
           <li>Backend fixes and improvements</li>
@@ -159,6 +163,7 @@
     </release>
     <release version="1.0.2" date="2020-02-13">
       <description>
+        <p>Changes</p>
         <ul>
           <li>Added release info to AppData</li>
           <li>Rewrote app description to be more concise</li>
