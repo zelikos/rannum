@@ -4,22 +4,27 @@
     <key name="window-width" type="i">
       <default>480</default>
       <summary>Window width</summary>
-      <description>The width of the window</description>
+      <description>The width of the window.</description>
     </key>
     <key name="window-height" type="i">
       <default>400</default>
       <summary>Window height</summary>
-      <description>The height of the window</description>
+      <description>The height of the window.</description>
     </key>
     <key name="window-maximized" type="b">
       <default>false</default>
       <summary>Maximized</summary>
-      <description>Whether the window is maximized or not</description>
+      <description>Whether the window is maximized or not.</description>
     </key>
     <key name="max-roll" type="i">
       <default>6</default>
       <summary>Highest possible roll</summary>
-      <description>Highest possible value a roll can result in</description>
+      <description>Highest possible value a roll can result in.</description>
+    </key>
+    <key name="dice-presets" type="ai">
+      <default>[6, 12, 20]</default>
+      <summary>Dice presets</summary>
+      <description>Quickly change the number of sides the dice has.</description>
     </key>
   </schema>
 </schemalist>
