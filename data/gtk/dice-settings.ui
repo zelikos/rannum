@@ -31,7 +31,7 @@
                 <child>
                   <object class="AdwPreferencesGroup" id="dice_presets">
                     <property name="title" translatable="yes">Dice Presets</property>
-                    <!-- TODO: Build in code from GSettings array instead -->
+                    <!-- TODO: Build these in code instead, from presets setting -->
                     <child>
                       <object class="AdwActionRow" id="d6">
                         <property name="title">6</property>
@@ -40,10 +40,6 @@
                         <child type="suffix">
                           <object class="GtkImage">
                             <property name="icon-name">dice3-symbolic</property>
-                            <!-- <style> -->
-                            <!--   <class name="flat"/> -->
-                            <!--   <class name="circular"/> -->
-                            <!-- </style> -->
                           </object>
                         </child>
                       </object>
@@ -56,10 +52,6 @@
                         <child type="suffix">
                           <object class="GtkImage">
                             <property name="icon-name">dice3-symbolic</property>
-                            <!-- <style> -->
-                            <!--   <class name="flat" /> -->
-                            <!--   <class name="circular"/> -->
-                            <!-- </style> -->
                           </object>
                         </child>
                       </object>
@@ -72,10 +64,6 @@
                         <child type="suffix">
                           <object class="GtkImage">
                             <property name="icon-name">dice3-symbolic</property>
-                            <!-- <style> -->
-                            <!--   <class name="flat"/> -->
-                            <!--   <class name="circular"/> -->
-                            <!-- </style> -->
                           </object>
                         </child>
                       </object>
