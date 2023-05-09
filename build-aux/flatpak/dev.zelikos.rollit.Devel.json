@@ -35,7 +35,6 @@
     "modules" : [
         {
             "name" : "rollit",
-            "builddir" : true,
             "buildsystem" : "meson",
             "config-opts": [
             	"-Dprofile=development"
