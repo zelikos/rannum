@@ -1,4 +1,4 @@
-/*  Copyright (C) 2022-2023 Patrick Csikos (https://zelikos.dev)
+/*  Copyright (C) 2023 Patrick Csikos (https://zelikos.dev)
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -16,10 +16,6 @@
  * Authored by Patrick Csikos <pcsikos@zelikos.dev>
  */
 
-mod history_pane;
-mod history_row;
-mod main_view;
+mod dice_settings;
 
-pub use history_pane::RollitHistoryPane;
-pub use history_row::RollitHistoryRow;
-pub use main_view::RollitMainView;
+pub use dice_settings::RollitDiceSettings;

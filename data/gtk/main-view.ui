@@ -62,8 +62,9 @@
                                     </attributes>
                                   </object>
                                 </property>
-                                <property name="action-name">win.copy-latest</property>
+                                <property name="action-name">mainview.copy-latest</property>
                                 <style>
+                                  <class name="circular"/>
                                   <class name="background"/>
                                 </style>
                               </object>
@@ -77,35 +78,31 @@
               </object>
             </child>
             <child>
-              <object class="GtkButton">
-                <property name="label" translatable="yes">_Roll</property>
-                <property name="use-underline">True</property>
-                <property name="tooltip-text" translatable="yes">Roll the dice</property>
-                <property name="action-name">win.roll-dice</property>
-                <style>
-                  <class name="suggested-action"/>
-                </style>
-              </object>
-            </child>
-            <child>
-              <object class="AdwSpinRow" id="max_roll">
-                <property name="title" translatable="yes">Out of</property>
-                <property name="tooltip-text" translatable="yes">Set highest roll</property>
-                <!-- <property name="width-request">210</property> -->
-                <property name="digits">0</property>
-                <property name="numeric">true</property>
-                <property name="adjustment">
-                  <object class="GtkAdjustment">
-                    <property name="page-increment">5</property>
-                    <property name="step-increment">1</property>
-                    <property name="lower">1</property>
-                    <property name="upper">100</property>
-                    <property name="value">20</property>
+              <object class="GtkBox">
+                <property name="spacing">10</property>
+                <property name="halign">center</property>
+                <child>
+                  <object class="GtkButton">
+                    <property name="label" translatable="yes">_Roll</property>
+                    <property name="use-underline">True</property>
+                    <property name="tooltip-text" translatable="yes">Roll the dice</property>
+                    <property name="action-name">win.roll-dice</property>
+                    <style>
+                      <class name="suggested-action"/>
+                      <class name="pill"/>
+                    </style>
                   </object>
-                </property>
-                <style>
-                  <class name="card"/>
-                </style>
+                </child>
+                <child>
+                  <object class="GtkButton" id="dice_settings_button">
+                    <property name="icon-name">dice3-symbolic</property>
+                    <property name="tooltip-text" translatable="yes">Dice settings</property>
+                    <property name="action-name">win.dice-settings</property>
+                    <style>
+                      <class name="pill" />
+                    </style>
+                  </object>
+                </child>
               </object>
             </child>
           </object>

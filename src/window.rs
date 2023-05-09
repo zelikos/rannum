@@ -1,4 +1,4 @@
-/*  Copyright (C) 2020-2023 Patrick Csikos (https://zelikos.github.io)
+/*  Copyright (C) 2020-2023 Patrick Csikos (https://zelikos.dev)
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -13,7 +13,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
- * Authored by Patrick Csikos <zelikos@pm.me>
+ * Authored by Patrick Csikos <pcsikos@zelikos.dev>
  */
 
 use adw::subclass::prelude::*;
@@ -23,6 +23,7 @@ use gtk::{gio, glib};
 
 use crate::application::RollitApplication;
 use crate::config::PROFILE;
+use crate::dialogs::RollitDiceSettings;
 use crate::utils;
 use crate::widgets::{RollitHistoryPane, RollitMainView};
 
@@ -79,8 +80,8 @@ mod imp {
                 win.toggle_history();
             });
 
-            klass.install_action("win.copy-latest", None, move |win, _, _| {
-                win.copy_latest();
+            klass.install_action("win.dice-settings", None, move |win, _, _| {
+                win.show_dice_settings();
             });
 
             klass.install_action("win.show-toast", Some("(si)"), move |win, _, var| {
@@ -184,14 +185,12 @@ impl RollitWindow {
         }
     }
 
-    fn copy_latest(&self) {
-        let roll_result = self.imp().main_view.get_last_result();
-        let clipboard = self.clipboard();
-        clipboard.set_text(&roll_result.to_string());
+    fn show_dice_settings(&self) {
+        let dice_settings = RollitDiceSettings::new();
 
-        let toast = adw::Toast::new("Result copied");
+        dice_settings.set_transient_for(Some(self));
 
-        self.imp().toast_overlay.add_toast(toast);
+        dice_settings.present();
     }
 
     fn show_toast(&self, text: impl AsRef<str>, priority: adw::ToastPriority) {
@@ -199,6 +198,7 @@ impl RollitWindow {
 
         let toast = adw::Toast::new(text.as_ref());
         toast.set_priority(priority);
+        toast.set_timeout(1);
 
         imp.toast_overlay.add_toast(toast);
     }

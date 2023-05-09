@@ -1,4 +1,4 @@
-/*  Copyright (C) 2022-2023 Patrick Csikos (https://zelikos.github.io)
+/*  Copyright (C) 2022-2023 Patrick Csikos (https://zelikos.dev)
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -13,7 +13,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
- * Authored by Patrick Csikos <zelikos@pm.me>
+ * Authored by Patrick Csikos <pcsikos@zelikos.dev>
  */
 
 use crate::utils;
@@ -21,6 +21,7 @@ use crate::utils;
 use core::ops::Deref;
 
 use adw::subclass::prelude::*;
+use gettextrs::gettext;
 use glib::clone;
 use gtk::glib;
 use gtk::prelude::*;
@@ -34,9 +35,6 @@ mod imp {
     #[derive(Debug, gtk::CompositeTemplate)]
     #[template(resource = "/dev/zelikos/rollit/gtk/main-view.ui")]
     pub struct RollitMainView {
-        // TODO: Re-enable when libadwaita crate is updated
-        // #[template_child]
-        // pub(super) max_roll: TemplateChild<adw::SpinRow>,
         #[template_child]
         pub(super) result_label: TemplateChild<gtk::Label>,
         #[template_child]
@@ -50,8 +48,6 @@ mod imp {
     impl Default for RollitMainView {
         fn default() -> Self {
             Self {
-                // TODO: Re-enable when libadwaita crate is updated
-                // max_roll: TemplateChild::default(),
                 result_label: TemplateChild::default(),
                 result_button: TemplateChild::default(),
                 result_revealer: TemplateChild::default(),
@@ -68,6 +64,10 @@ mod imp {
 
         fn class_init(klass: &mut Self::Class) {
             klass.bind_template();
+
+            klass.install_action("mainview.copy-latest", None, move |main_view, _, _| {
+                main_view.copy_latest();
+            });
         }
 
         fn instance_init(obj: &glib::subclass::InitializingObject<Self>) {
@@ -78,12 +78,6 @@ mod imp {
     impl ObjectImpl for RollitMainView {
         fn constructed(&self) {
             self.parent_constructed();
-
-            // TODO: Move to separate method
-            // let settings = utils::settings_manager();
-            // settings
-            //     .bind("max-roll", self.max_roll.deref(), "value")
-            //     .build();
         }
     }
 
@@ -100,9 +94,7 @@ glib::wrapper! {
 impl RollitMainView {
     pub fn get_roll_result(&self) -> u32 {
         const MIN_NUM: u32 = 1;
-        // TODO: Re-enable when libadwaita crate is updated
-        // let max_num: u32 = self.get_max_roll();
-        let max_num: u32 = 6;
+        let max_num: u32 = self.get_max_roll();
         let rnd_num: u32 = random!(MIN_NUM, max_num);
 
         self.set_result_label(rnd_num);
@@ -126,10 +118,23 @@ impl RollitMainView {
         self.imp().result_label.label().to_string()
     }
 
-    // TODO: Re-enable when libadwaita crate is updated
-    // fn get_max_roll(&self) -> u32 {
-    //     self.imp().max_roll.value_as_int() as u32
-    // }
+    fn copy_latest(&self) {
+        let result = self.imp().result_label.label();
+        let clipboard = self.clipboard();
+        clipboard.set_text(&result);
+
+        self.activate_action(
+            "win.show-toast",
+            Some(&(gettext("Result copied"), 0).to_variant()),
+        )
+        .unwrap();
+    }
+
+    fn get_max_roll(&self) -> u32 {
+        let settings = utils::settings_manager();
+        let max: u32 = settings.int("max-roll") as u32;
+        max
+    }
 
     fn set_result_label(&self, result: u32) {
         let imp = self.imp();
