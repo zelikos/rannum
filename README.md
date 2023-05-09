@@ -1,4 +1,5 @@
 ![Flathub](https://img.shields.io/flathub/v/dev.zelikos.rollit?style=for-the-badge)
+![Installs](https://img.shields.io/flathub/downloads/dev.zelikos.rollit?style=for-the-badge)
 
 ![Icon](data/icons/hicolor/scalable/apps/dev.zelikos.rollit.svg)
 
