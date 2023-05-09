@@ -23,6 +23,7 @@ use gtk::{gio, glib};
 
 use crate::application::RollitApplication;
 use crate::config::PROFILE;
+use crate::dialogs::RollitDiceSettings;
 use crate::utils;
 use crate::widgets::{RollitHistoryPane, RollitMainView};
 
@@ -77,6 +78,10 @@ mod imp {
 
             klass.install_action("win.toggle-history", None, move |win, _, _| {
                 win.toggle_history();
+            });
+
+            klass.install_action("win.dice-settings", None, move |win, _, _| {
+                win.show_dice_settings();
             });
 
             klass.install_action("win.show-toast", Some("(si)"), move |win, _, var| {
@@ -180,11 +185,20 @@ impl RollitWindow {
         }
     }
 
+    fn show_dice_settings(&self) {
+        let dice_settings = RollitDiceSettings::new();
+
+        dice_settings.set_transient_for(Some(self));
+
+        dice_settings.present();
+    }
+
     fn show_toast(&self, text: impl AsRef<str>, priority: adw::ToastPriority) {
         let imp = self.imp();
 
         let toast = adw::Toast::new(text.as_ref());
         toast.set_priority(priority);
+        toast.set_timeout(1);
 
         imp.toast_overlay.add_toast(toast);
     }

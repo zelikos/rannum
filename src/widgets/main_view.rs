@@ -36,8 +36,6 @@ mod imp {
     #[template(resource = "/dev/zelikos/rollit/gtk/main-view.ui")]
     pub struct RollitMainView {
         #[template_child]
-        pub(super) max_roll: TemplateChild<gtk::SpinButton>,
-        #[template_child]
         pub(super) result_label: TemplateChild<gtk::Label>,
         #[template_child]
         pub(super) result_button: TemplateChild<gtk::Button>,
@@ -50,7 +48,6 @@ mod imp {
     impl Default for RollitMainView {
         fn default() -> Self {
             Self {
-                max_roll: TemplateChild::default(),
                 result_label: TemplateChild::default(),
                 result_button: TemplateChild::default(),
                 result_revealer: TemplateChild::default(),
@@ -81,12 +78,6 @@ mod imp {
     impl ObjectImpl for RollitMainView {
         fn constructed(&self) {
             self.parent_constructed();
-
-            // TODO: Move to separate method
-            let settings = utils::settings_manager();
-            settings
-                .bind("max-roll", self.max_roll.deref(), "value")
-                .build();
         }
     }
 
@@ -140,7 +131,9 @@ impl RollitMainView {
     }
 
     fn get_max_roll(&self) -> u32 {
-        self.imp().max_roll.value_as_int() as u32
+        let settings = utils::settings_manager();
+        let max: u32 = settings.int("max-roll") as u32;
+        max
     }
 
     fn set_result_label(&self, result: u32) {
