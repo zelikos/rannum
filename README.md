@@ -21,7 +21,7 @@ Any version distributed elsewhere is not provided nor supported by me.
 
 Roll-It is built using GTK4 and libadwaita with the [GNOME HIG](https://developer.gnome.org/hig/) in mind.
 
-If you would like to build and hack on Roll-It, it is highly recommended to use [GNOME Builder](https://gitlab.gnome.org/GNOME/gnome-builder/).
+If you would like to build and hack on Roll-It, it is highly recommended to use [GNOME Builder](https://flathub.org/apps/org.gnome.Builder).
 
 Manual build instructions to come later.
 
