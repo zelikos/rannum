@@ -55,14 +55,26 @@ mod imp {
                 }
             });
 
-            klass.install_action("dice.add-preset", None, move |dice, _, _| {
-                dice.add_preset();
+            // klass.install_action("dice.add-preset", None, move |dice, _, _| {
+            //     dice.add_preset();
+            // });
+
+            klass.install_action("dice.set-dice6", None, move |dice, _, _| {
+                dice.set_dice(6);
+            });
+
+            klass.install_action("dice.set-dice12", None, move |dice, _, _| {
+                dice.set_dice(12);
+            });
+
+            klass.install_action("dice.set-dice20", None, move |dice, _, _| {
+                dice.set_dice(20);
             });
 
             // TODO: Move to dice_row.rs
-            klass.install_action("dice.set-dice", None, move |dice, _, _| {
-                dice.set_dice();
-            });
+            // klass.install_action("dice.set-dice", None, move |dice, _, _| {
+            //     dice.set_dice();
+            // });
         }
 
         fn instance_init(obj: &glib::subclass::InitializingObject<Self>) {
@@ -96,17 +108,17 @@ impl RollitDiceSettings {
         glib::Object::new()
     }
 
-    fn add_preset(&self) {
-        // TODO: Actually add presets
-        let settings = utils::settings_manager();
-        let max = settings.int("max-roll");
-        log::debug!("{} added as a preset", max);
-        self.activate_action(
-            "dice.show-toast",
-            Some(&(gettext("Preset added"), 1).to_variant()),
-        )
-        .unwrap();
-    }
+    // fn add_preset(&self) {
+    //     TODO: Actually add presets
+    //     let settings = utils::settings_manager();
+    //     let max = settings.int("max-roll");
+    //     log::debug!("{} added as a preset", max);
+    //     self.activate_action(
+    //         "dice.show-toast",
+    //         Some(&(gettext("Preset added"), 1).to_variant()),
+    //     )
+    //     .unwrap();
+    // }
 
     // TODO: Delete specified preset
     // fn del_preset(&self) {
@@ -130,8 +142,11 @@ impl RollitDiceSettings {
         imp.toast_overlay.add_toast(toast);
     }
 
-    // TODO: Move to dice_row.rs; add toast overlay for dice settings window
-    fn set_dice(&self) {
+    // TODO: Move to dice_row.rs
+    fn set_dice(&self, sides: i32) {
+        let settings = utils::settings_manager();
+        settings.set_int("max-roll", sides).unwrap();
+
         self.activate_action(
             "dice.show-toast",
             Some(&(gettext("Dice value changed"), 1).to_variant()),
