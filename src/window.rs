@@ -72,6 +72,10 @@ mod imp {
                 win.clear_history();
             });
 
+            klass.install_action("win.copy-latest", None, move |win, _, _| {
+                win.imp().main_view.copy_latest();
+            });
+
             klass.install_action("win.undo-clear", None, move |win, _, _| {
                 win.undo_clear();
             });
