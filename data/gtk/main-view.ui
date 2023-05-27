@@ -62,7 +62,7 @@
                                     </attributes>
                                   </object>
                                 </property>
-                                <property name="action-name">mainview.copy-latest</property>
+                                <property name="action-name">win.copy-latest</property>
                                 <style>
                                   <class name="circular"/>
                                   <class name="background"/>
