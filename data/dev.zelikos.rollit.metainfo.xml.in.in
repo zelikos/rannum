@@ -40,6 +40,24 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release version="3.2.0" date="2023-06-02">
+      <description>
+        <p>New</p>
+        <ul>
+          <li>Added new preferences window for dice settings</li>
+          <li>Added access key support for Roll and Clear actions</li>
+          <li>New app icon, courtesy of Brage Fuglseth</li>
+        </ul>
+        <p>Fixes</p>
+        <ul>
+          <li>Ensured that all strings are translatable</li>
+          <li>Other backend improvements and fixes</li>
+        </ul>
+      </description>
+      <issues>
+        <issue url="https://gitlab.com/zelikos/rollit/-/issues/2">#2</issue>
+      </issues>
+    </release>
     <release version="3.1.2" date="2023-04-29">
       <description>
         <p>Changes</p>
@@ -224,4 +242,3 @@
   <url type="bugtracker">https://gitlab.com/zelikos/rollit/issues</url>
   <url type="donation">https://ko-fi.com/akzel94</url>
 </component>
-
