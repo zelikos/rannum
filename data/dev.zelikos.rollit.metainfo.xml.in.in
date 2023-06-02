@@ -39,6 +39,9 @@
     <screenshot>
       <image>https://gitlab.com/zelikos/rollit/-/raw/main/data/screenshots/05_rollit_narrow_2.png</image>
     </screenshot>
+    <screenshot>
+      <image>https://gitlab.com/zelikos/rollit/-/raw/main/data/screenshots/06_rollit_dice_settings.png</image>
+    </screenshot>
   </screenshots>
   <releases>
     <release version="3.2.0" date="2023-06-02">
