@@ -47,6 +47,7 @@
           <li>Added new preferences window for dice settings</li>
           <li>Added access key support for Roll and Clear actions</li>
           <li>New app icon, courtesy of Brage Fuglseth</li>
+          <li>Max roll limit has been increased from 100 up to 999</li>
         </ul>
         <p>Fixes</p>
         <ul>
@@ -56,6 +57,7 @@
       </description>
       <issues>
         <issue url="https://gitlab.com/zelikos/rollit/-/issues/2">#2</issue>
+        <issue url="https://gitlab.com/zelikos/rollit/-/issues/2">#25</issue>
       </issues>
     </release>
     <release version="3.1.2" date="2023-04-29">
