@@ -51,6 +51,7 @@
         </ul>
         <p>Changes</p>
         <ul>
+          <li>UI updates to accomodate the new dice settings</li>
           <li>Max roll limit has been increased from 100 up to 999</li>
           <li>Toggle History keyboard shortcut is now F9, as per the GNOME HIG for side panes</li>
         </ul>
