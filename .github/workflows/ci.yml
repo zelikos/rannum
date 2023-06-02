@@ -23,14 +23,14 @@ jobs:
         run: cargo fmt --all -- --check
 
   flatpak:
-    name: Flatpak
-    runs-on: ubuntu-20.04
+    name: "Flatpak"
+    runs-on: ubuntu-latest
     container:
       image: bilelmoussaoui/flatpak-github-actions:gnome-44
       options: --privileged
     steps:
-    - uses: actions/checkout@v2
-    - uses: bilelmoussaoui/flatpak-github-actions/flatpak-builder@v4
+    - uses: actions/checkout@v3
+    - uses: flatpak/flatpak-github-actions/flatpak-builder@v6.1
       with:
         bundle: rollit.flatpak
         manifest-path: build-aux/flatpak/dev.zelikos.rollit.Devel.json

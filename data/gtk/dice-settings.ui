@@ -30,7 +30,7 @@
               <object class="AdwPreferencesPage">
                 <child>
                   <object class="AdwPreferencesGroup" id="dice_presets">
-                    <property name="title" translatable="yes">Dice Presets</property>
+                    <property name="title" translatable="yes">Presets</property>
                     <!-- TODO: Build these in code instead, from presets setting -->
                     <child>
                       <object class="AdwActionRow" id="d6">
