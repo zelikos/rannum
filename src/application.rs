@@ -120,9 +120,9 @@ impl RollitApplication {
         self.set_accels_for_action("app.quit", &["<Primary>Q"]);
         self.set_accels_for_action("win.clear-history", &["<Primary>L"]);
         self.set_accels_for_action("win.copy-latest", &["<Primary>C"]);
-        self.set_accels_for_action("win.dice-settings", &["<Primary>D"]);
+        self.set_accels_for_action("win.dice-settings", &["<Primary>comma"]);
         self.set_accels_for_action("win.roll-dice", &["<Primary>R"]);
-        self.set_accels_for_action("win.toggle-history", &["<Primary>H"]);
+        self.set_accels_for_action("win.toggle-history", &["F9"]);
         self.set_accels_for_action("win.undo-clear", &["<Primary>Z"]);
     }
 
