@@ -11,7 +11,7 @@
     <property name="license-type">gpl-3-0</property>
     <property name="developers">Patrick Csikos &lt;pcsikos@zelikos.dev&gt;</property>
     <property name="translator-credits"></property>
-    <property name="artists"></property>
+    <property name="artists">Brage Fuglseth</property>
   </object>
 </interface>
 
