@@ -33,8 +33,8 @@ mod imp {
     pub struct RollitDiceSettings {
         #[template_child]
         pub dice_presets: TemplateChild<adw::PreferencesGroup>,
-        // #[template_child]
-        // pub max_roll: TemplateChild<adw::SpinRow>,
+        #[template_child]
+        pub max_roll: TemplateChild<adw::SpinRow>,
         #[template_child]
         pub toast_overlay: TemplateChild<adw::ToastOverlay>,
     }
@@ -127,10 +127,9 @@ impl RollitDiceSettings {
 
     fn bind_spinner(&self) {
         let settings = utils::settings_manager();
-        settings.set_int("max-roll", 20).unwrap();
-        // settings
-        //     .bind("max-roll", self.imp().max_roll.deref(), "value")
-        //     .build();
+        settings
+            .bind("max-roll", self.imp().max_roll.deref(), "value")
+            .build();
     }
 
     fn show_toast(&self, text: impl AsRef<str>, priority: adw::ToastPriority) {
