@@ -38,7 +38,7 @@ mod imp {
         #[template_child]
         pub main_view: TemplateChild<RollitMainView>,
         #[template_child]
-        pub rollit_flap: TemplateChild<adw::Flap>,
+        pub rollit_overlay_view: TemplateChild<adw::OverlaySplitView>,
         #[template_child]
         pub toast_overlay: TemplateChild<adw::ToastOverlay>,
     }
@@ -48,7 +48,7 @@ mod imp {
             Self {
                 history_pane: TemplateChild::default(),
                 main_view: TemplateChild::default(),
-                rollit_flap: TemplateChild::default(),
+                rollit_overlay_view: TemplateChild::default(),
                 toast_overlay: TemplateChild::default(),
             }
         }
@@ -180,12 +180,12 @@ impl RollitWindow {
     }
 
     fn toggle_history(&self) {
-        let flap = &self.imp().rollit_flap;
+        let overlay_view = &self.imp().rollit_overlay_view;
 
-        if flap.reveals_flap() {
-            flap.set_reveal_flap(false);
+        if overlay_view.shows_sidebar() {
+            overlay_view.set_show_sidebar(false);
         } else {
-            flap.set_reveal_flap(true);
+            overlay_view.set_show_sidebar(true);
         }
     }
 

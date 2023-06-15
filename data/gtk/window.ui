@@ -13,7 +13,7 @@
             <child type="top">
               <object class="AdwHeaderBar" id="header_bar">
                 <child type="start">
-                  <object class="GtkToggleButton">
+                  <object class="GtkToggleButton" id="show_sidebar_button">
                     <property name="icon-name">sidebar-show-symbolic</property>
                     <property name="tooltip-text" translatable="yes">Toggle History List</property>
                     <property name="active">true</property>
@@ -30,13 +30,13 @@
               </object>
             </child>
             <property name="content">
-              <object class="AdwFlap" id="rollit_flap">
-                <property name="vexpand">true</property>
-                <property name="flap">
+              <object class="AdwOverlaySplitView" id="rollit_overlay_view">
+                <property name="show-sidebar"
+                          bind-source="show_sidebar_button"
+                          bind-property="active"
+                          bind-flags="sync-create|bidirectional"/>
+                <property name="sidebar">
                   <object class="RollitHistoryPane" id="history_pane"/>
-                </property>
-                <property name="separator">
-                  <object class="GtkSeparator"/>
                 </property>
                 <property name="content">
                   <object class="RollitMainView" id="main_view"/>
