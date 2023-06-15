@@ -8,15 +8,15 @@
     <property name="content">
       <object class="AdwToastOverlay" id="toast_overlay">
         <child>
-          <object class="GtkBox">
-            <property name="orientation">vertical</property>
-            <child>
+          <object class="AdwToolbarView">
+            <property name="top-bar-style">raised</property>
+            <child type="top">
               <object class="AdwHeaderBar" id="header_bar">
                 <child type="start">
                   <object class="GtkToggleButton">
                     <property name="icon-name">sidebar-show-symbolic</property>
                     <property name="tooltip-text" translatable="yes">Toggle History List</property>
-                    <property name="active" bind-source="rollit_flap" bind-property="reveal-flap" bind-flags="sync-create|bidirectional"/>
+                    <property name="active">true</property>
                   </object>
                 </child>
                 <child type="end">
@@ -29,7 +29,7 @@
                 </child>
               </object>
             </child>
-            <child>
+            <property name="content">
               <object class="AdwFlap" id="rollit_flap">
                 <property name="vexpand">true</property>
                 <property name="flap">
@@ -42,7 +42,7 @@
                   <object class="RollitMainView" id="main_view"/>
                 </property>
               </object>
-            </child>
+            </property>
           </object>
         </child>
       </object>
