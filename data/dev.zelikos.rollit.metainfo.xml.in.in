@@ -16,8 +16,9 @@
     <p>Keyboard shortcuts:</p>
     <ul>
       <li>Roll the dice with Ctrl+R</li>
+      <li>Open dice settings with Ctrl+,</li>
       <li>Copy the last result with Ctrl+C</li>
-      <li>Toggle the roll history pane with Ctrl+H</li>
+      <li>Toggle the roll history pane with F9</li>
       <li>Clear roll history with Ctrl+L</li>
       <li>Undo the clear with Ctrl+Z</li>
     </ul>
@@ -38,8 +39,36 @@
     <screenshot>
       <image>https://gitlab.com/zelikos/rollit/-/raw/main/data/screenshots/05_rollit_narrow_2.png</image>
     </screenshot>
+    <screenshot>
+      <image>https://gitlab.com/zelikos/rollit/-/raw/main/data/screenshots/06_rollit_dice_settings.png</image>
+    </screenshot>
   </screenshots>
   <releases>
+    <release version="3.2.0" date="2023-06-02">
+      <description>
+        <p>New</p>
+        <ul>
+          <li>Added new preferences window for dice settings</li>
+          <li>Added access key support for Roll and Clear actions</li>
+          <li>New app icon, courtesy of Brage Fuglseth</li>
+        </ul>
+        <p>Changes</p>
+        <ul>
+          <li>UI updates to accomodate the new dice settings</li>
+          <li>Max roll limit has been increased from 100 up to 999</li>
+          <li>Toggle History keyboard shortcut is now F9, as per the GNOME HIG for side panes</li>
+        </ul>
+        <p>Fixes</p>
+        <ul>
+          <li>Ensured that all strings are translatable</li>
+          <li>Other backend improvements and fixes</li>
+        </ul>
+      </description>
+      <issues>
+        <issue url="https://gitlab.com/zelikos/rollit/-/issues/2">#2</issue>
+        <issue url="https://gitlab.com/zelikos/rollit/-/issues/2">#25</issue>
+      </issues>
+    </release>
     <release version="3.1.2" date="2023-04-29">
       <description>
         <p>Changes</p>
@@ -224,4 +253,3 @@
   <url type="bugtracker">https://gitlab.com/zelikos/rollit/issues</url>
   <url type="donation">https://ko-fi.com/akzel94</url>
 </component>
-
