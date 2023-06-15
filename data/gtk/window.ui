@@ -30,7 +30,7 @@
               </object>
             </child>
             <property name="content">
-              <object class="AdwOverlaySplitView" id="rollit_overlay_view">
+              <object class="AdwOverlaySplitView" id="rollit_split_view">
                 <property name="show-sidebar"
                           bind-source="show_sidebar_button"
                           bind-property="active"
