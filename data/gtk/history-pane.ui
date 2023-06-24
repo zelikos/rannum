@@ -15,6 +15,7 @@
             <property name="name">empty</property>
             <property name="child">
               <object class="AdwStatusPage">
+                <property name="icon-name">dice3-symbolic</property>
                 <property name="title" translatable="yes">No Results</property>
                 <property name="description" translatable="yes">Press 'Roll' to begin</property>
                 <style>
