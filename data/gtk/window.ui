@@ -14,30 +14,30 @@
       </object>
     </child>
     <property name="content">
-      <object class="AdwToastOverlay" id="toast_overlay">
-        <child>
-          <object class="AdwToolbarView">
-            <property name="top-bar-style">raised</property>
-            <child type="top">
-              <object class="AdwHeaderBar" id="header_bar">
-                <child type="start">
-                  <object class="GtkToggleButton" id="show_sidebar_button">
-                    <property name="icon-name">sidebar-show-symbolic</property>
-                    <property name="tooltip-text" translatable="yes">Toggle History List</property>
-                    <property name="active">true</property>
-                  </object>
-                </child>
-                <child type="end">
-                  <object class="GtkMenuButton">
-                    <property name="icon-name">open-menu-symbolic</property>
-                    <property name="menu-model">primary_menu</property>
-                    <property name="primary">True</property>
-                    <property name="tooltip-text">Main Menu</property>
-                  </object>
-                </child>
+      <object class="AdwToolbarView">
+        <property name="top-bar-style">raised</property>
+        <child type="top">
+          <object class="AdwHeaderBar" id="header_bar">
+            <child type="start">
+              <object class="GtkToggleButton" id="show_sidebar_button">
+                <property name="icon-name">sidebar-show-symbolic</property>
+                <property name="tooltip-text" translatable="yes">Toggle History List</property>
+                <property name="active">true</property>
               </object>
             </child>
-            <property name="content">
+            <child type="end">
+              <object class="GtkMenuButton">
+                <property name="icon-name">open-menu-symbolic</property>
+                <property name="menu-model">primary_menu</property>
+                <property name="primary">True</property>
+                <property name="tooltip-text">Main Menu</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <property name="content">
+          <object class="AdwToastOverlay" id="toast_overlay">
+            <property name="child">
               <object class="AdwOverlaySplitView" id="rollit_split_view">
                 <property name="show-sidebar"
                           bind-source="show_sidebar_button"
@@ -52,7 +52,7 @@
               </object>
             </property>
           </object>
-        </child>
+        </property>
       </object>
     </property>
   </template>
