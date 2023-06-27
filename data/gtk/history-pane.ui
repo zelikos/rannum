@@ -6,7 +6,7 @@
     <child>
       <object class="GtkStack" id="history_stack">
         <property name="width-request">180</property>
-        <property name="transition-type">over-down-up</property>
+        <!-- <property name="transition-type">over-down-up</property> -->
         <child>
           <object class="GtkStackPage">
             <property name="name">empty</property>

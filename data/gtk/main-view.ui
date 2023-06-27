@@ -12,7 +12,7 @@
         <property name="maximum-size">240</property>
         <property name="child">
           <object class="GtkStack" id="result_stack">
-            <property name="transition-type">over-down-up</property>
+            <!-- <property name="transition-type">over-down-up</property> -->
             <child>
               <object class="GtkStackPage">
                 <property name="name">empty</property>
