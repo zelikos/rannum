@@ -26,6 +26,16 @@
                 <child type="top">
                   <object class="AdwHeaderBar">
                     <property name="show-title">false</property>
+                    <child type="start">
+                      <object class="GtkButton">
+                        <property name="action-name">win.toggle-history</property>
+                        <property name="icon-name">go-previous-symbolic</property>
+                        <property name="visible"
+                                  bind-source="rollit_split_view"
+                                  bind-property="collapsed"
+                                  bind-flags="sync-create" />
+                      </object>
+                    </child>
                   </object>
                 </child>
                 <property name="content">
