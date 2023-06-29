@@ -21,12 +21,11 @@
     <property name="content">
       <object class="AdwToastOverlay" id="toast_overlay">
         <child>
-          <object class="GtkBox">
-            <property name="orientation">vertical</property>
-            <child>
+          <object class="AdwToolbarView">
+            <child type="top">
               <object class="AdwHeaderBar" />
             </child>
-            <child>
+            <property name="content">
               <object class="AdwPreferencesPage">
                 <child>
                   <object class="AdwPreferencesGroup" id="dice_presets">
@@ -106,7 +105,7 @@
                   </object>
                 </child>
               </object>
-            </child>
+            </property>
           </object>
         </child>
       </object>
