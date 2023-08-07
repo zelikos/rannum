@@ -37,6 +37,12 @@ mod imp {
         pub max_roll: TemplateChild<adw::SpinRow>,
         #[template_child]
         pub toast_overlay: TemplateChild<adw::ToastOverlay>,
+        #[template_child]
+        pub radio_button_6: TemplateChild<gtk::CheckButton>,
+        #[template_child]
+        pub radio_button_12: TemplateChild<gtk::CheckButton>,
+        #[template_child]
+        pub radio_button_20: TemplateChild<gtk::CheckButton>,
     }
 
     #[glib::object_subclass]
@@ -59,17 +65,17 @@ mod imp {
             //     dice.add_preset();
             // });
 
-            klass.install_action("dice.set-dice6", None, move |dice, _, _| {
-                dice.set_dice(6);
-            });
+            // klass.install_action("dice.set-dice6", None, move |dice, _, _| {
+            //     dice.set_dice(6);
+            // });
 
-            klass.install_action("dice.set-dice12", None, move |dice, _, _| {
-                dice.set_dice(12);
-            });
+            // klass.install_action("dice.set-dice12", None, move |dice, _, _| {
+            //     dice.set_dice(12);
+            // });
 
-            klass.install_action("dice.set-dice20", None, move |dice, _, _| {
-                dice.set_dice(20);
-            });
+            // klass.install_action("dice.set-dice20", None, move |dice, _, _| {
+            //     dice.set_dice(20);
+            // });
 
             // TODO: Move to dice_row.rs
             // klass.install_action("dice.set-dice", None, move |dice, _, _| {
@@ -87,6 +93,7 @@ mod imp {
             self.parent_constructed();
 
             self.obj().bind_spinner();
+            self.obj().bind_presets();
         }
     }
 
@@ -130,6 +137,28 @@ impl RollitDiceSettings {
         settings
             .bind("max-roll", self.imp().max_roll.deref(), "value")
             .build();
+    }
+
+    // TODO: Refactor
+    fn bind_presets(&self) {
+        self.imp().radio_button_6.connect_toggled(|radio_button_6| {
+            let settings = utils::settings_manager();
+            settings.set_int("max-roll", 6).unwrap();
+        });
+
+        self.imp()
+            .radio_button_12
+            .connect_toggled(|radio_button_12| {
+                let settings = utils::settings_manager();
+                settings.set_int("max-roll", 12).unwrap();
+            });
+
+        self.imp()
+            .radio_button_20
+            .connect_toggled(|radio_button_20| {
+                let settings = utils::settings_manager();
+                settings.set_int("max-roll", 20).unwrap();
+            });
     }
 
     fn show_toast(&self, text: impl AsRef<str>, priority: adw::ToastPriority) {
