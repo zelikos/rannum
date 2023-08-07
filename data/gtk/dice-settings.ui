@@ -34,14 +34,7 @@
                     <child>
                       <object class="AdwActionRow" id="d6">
                         <property name="title">6</property>
-                        <!-- <property name="action-name">dice.set-dice6</property> -->
                         <property name="activatable_widget">radio_button_6</property>
-                        <!-- <property name="activatable">True</property> -->
-                        <!-- <child type="suffix"> -->
-                        <!--   <object class="GtkImage"> -->
-                        <!--     <property name="icon-name">dice3-symbolic</property> -->
-                        <!--   </object> -->
-                        <!-- </child> -->
                         <child type="prefix">
                           <object class="GtkCheckButton" id="radio_button_6">
                             <property name="valign">center</property>
@@ -52,14 +45,7 @@
                     <child>
                       <object class="AdwActionRow" id="d12">
                         <property name="title">12</property>
-                        <!-- <property name="action-name">dice.set-dice12</property> -->
                         <property name="activatable_widget">radio_button_12</property>
-                        <!-- <property name="activatable">True</property> -->
-                        <!-- <child type="suffix"> -->
-                        <!--   <object class="GtkImage"> -->
-                        <!--     <property name="icon-name">dice3-symbolic</property> -->
-                        <!--   </object> -->
-                        <!-- </child> -->
                         <child type="prefix">
                           <object class="GtkCheckButton" id="radio_button_12">
                             <property name="group">radio_button_6</property>
@@ -71,14 +57,7 @@
                     <child>
                       <object class="AdwActionRow" id="d20">
                         <property name="title">20</property>
-                        <!-- <property name="action-name">dice.set-dice20</property> -->
                         <property name="activatable_widget">radio_button_20</property>
-                        <!-- <property name="activatable">True</property> -->
-                        <!-- <child type="suffix"> -->
-                        <!--   <object class="GtkImage"> -->
-                        <!--     <property name="icon-name">dice3-symbolic</property> -->
-                        <!--   </object> -->
-                        <!-- </child> -->
                         <child type="prefix">
                           <object class="GtkCheckButton" id="radio_button_20">
                             <property name="group">radio_button_6</property>
