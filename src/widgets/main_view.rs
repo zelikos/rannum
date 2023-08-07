@@ -18,8 +18,6 @@
 
 use crate::utils;
 
-use core::ops::Deref;
-
 use adw::subclass::prelude::*;
 use gettextrs::gettext;
 use glib::clone;
