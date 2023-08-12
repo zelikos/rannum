@@ -21,7 +21,7 @@ use crate::utils;
 use core::ops::Deref;
 
 use adw::subclass::prelude::*;
-// use gettextrs::gettext;
+use gettextrs::gettext;
 use gtk::glib;
 use gtk::prelude::*;
 
@@ -147,10 +147,10 @@ impl RollitDiceSettings {
         let settings = utils::settings_manager();
         settings.set_int("max-roll", sides).unwrap();
 
-        // self.activate_action(
-        //     "dice.show-toast",
-        //     Some(&(gettext("Dice value changed"), 1).to_variant()),
-        // )
-        // .unwrap();
+        self.activate_action(
+            "dice.show-toast",
+            Some(&(gettext("Dice value changed"), 1).to_variant()),
+        )
+        .unwrap();
     }
 }
