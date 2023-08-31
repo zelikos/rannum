@@ -71,6 +71,17 @@ if glib_compile_schemas.found()
   )
 endif
 
+blueprints = custom_target('blueprints',
+  input: files(
+    'gtk/help-overlay.blp',
+    'gtk/history-row.blp',
+    'gtk/dice-settings.blp',
+    'gtk/history-pane.blp',
+  ),
+  output: '.',
+  command: [find_program('blueprint-compiler'), 'batch-compile', '@OUTPUT@', '@CURRENT_SOURCE_DIR@', '@INPUT@'],
+)
+
 resources = gnome.compile_resources(
   'rollit',
   'rollit.gresource.xml',
@@ -78,5 +89,6 @@ resources = gnome.compile_resources(
   source_dir: meson.current_build_dir(),
   install: true,
   install_dir: pkgdatadir,
+  dependencies: blueprints,
 )
 

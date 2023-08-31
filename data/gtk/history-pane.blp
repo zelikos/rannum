@@ -1,0 +1,51 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $RollitHistoryPane : Adw.Bin {
+  Stack history_stack {
+    width-request: 180;
+
+    StackPage {
+      name: "empty";
+      child: 
+      Adw.StatusPage {
+        icon-name: "dice3-symbolic";
+        title: _("No Results");
+        description: _("Press \'Roll\' to begin");
+
+        styles [
+          "compact",
+        ]
+      }
+
+      ;
+    }
+
+    StackPage {
+      name: "filled";
+      child: 
+      Box {
+        orientation: vertical;
+        vexpand: true;
+
+        ScrolledWindow history_scroll {
+          hscrollbar-policy: never;
+          vexpand: true;
+          child: 
+          ListView history_list {
+            show-separators: true;
+            single-click-activate: true;
+
+            styles [
+              "navigation-sidebar",
+            ]
+          }
+
+          ;
+        }
+      }
+
+      ;
+    }
+  }
+}

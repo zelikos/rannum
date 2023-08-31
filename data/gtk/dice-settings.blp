@@ -1,0 +1,86 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $RollitDiceSettings : Adw.Window {
+  title: "Dice Settings";
+  modal: true;
+  destroy-with-parent: true;
+  width-request: 300;
+
+  ShortcutController {
+    Shortcut {
+      trigger: "Escape";
+      action: "action(window.close)";
+    }
+  }
+  content:
+  Adw.ToastOverlay toast_overlay {
+    Adw.ToolbarView {
+      [top]
+      Adw.HeaderBar {
+      }
+      content:
+      Adw.PreferencesPage {
+        Adw.PreferencesGroup {
+          $AdwSpinRow max_roll {
+            title: _("Dice sides");
+            valign: "center";
+            digits: "0";
+            numeric: "true";
+            adjustment:
+            Adjustment {
+              page-increment: 5;
+              step-increment: 1;
+              lower: 1;
+              upper: 999;
+              value: 20;
+            }
+
+            ;
+          }
+        }
+
+        Adw.PreferencesGroup dice_presets {
+          title: _("Presets");
+
+          Adw.ActionRow d6 {
+            title: "6";
+            action-name: "dice.set-dice6";
+            activatable: true;
+
+            [suffix]
+            Image {
+              icon-name: "dice3-symbolic";
+            }
+          }
+
+          Adw.ActionRow d12 {
+            title: "12";
+            action-name: "dice.set-dice12";
+            activatable: true;
+
+            [suffix]
+            Image {
+              icon-name: "dice3-symbolic";
+            }
+          }
+
+          Adw.ActionRow d20 {
+            title: "20";
+            action-name: "dice.set-dice20";
+            activatable: true;
+
+            [suffix]
+            Image {
+              icon-name: "dice3-symbolic";
+            }
+          }
+        }
+      }
+
+      ;
+    }
+  }
+
+  ;
+}
