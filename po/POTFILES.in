@@ -1,7 +1,7 @@
 data/dev.zelikos.rollit.desktop.in.in
 data/dev.zelikos.rollit.appdata.xml.in.in
 data/dev.zelikos.rollit.gschema.xml.in
-data/gtk/about.ui
+data/gtk/about.blp
 data/gtk/dice-settings.blp
 data/gtk/help-overlay.blp
 data/gtk/history-pane.blp
