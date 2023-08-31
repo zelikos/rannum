@@ -5,46 +5,115 @@
   <template class="RollitWindow" parent="AdwApplicationWindow">
     <property name="title" translatable="yes">Roll-It</property>
     <property name="icon-name">dev.zelikos.rollit</property>
+    <property name="width-request">240</property>
+    <property name="height-request">300</property>
+    <child>
+      <object class="AdwBreakpoint">
+        <condition>max-width: 400sp</condition>
+        <setter object="rollit_split_view" property="collapsed">True</setter>
+      </object>
+    </child>
     <property name="content">
       <object class="AdwToastOverlay" id="toast_overlay">
-        <child>
-          <object class="GtkBox">
-            <property name="orientation">vertical</property>
-            <child>
-              <object class="AdwHeaderBar" id="header_bar">
-                <child type="start">
-                  <object class="GtkToggleButton">
-                    <property name="icon-name">sidebar-show-symbolic</property>
-                    <property name="tooltip-text" translatable="yes">Toggle History List</property>
-                    <property name="active" bind-source="rollit_flap" bind-property="reveal-flap" bind-flags="sync-create|bidirectional"/>
+        <property name="child">
+          <object class="AdwOverlaySplitView" id="rollit_split_view">
+            <property name="show-sidebar"
+                      bind-source="show_sidebar_button"
+                      bind-property="active"
+                      bind-flags="sync-create|bidirectional"/>
+            <property name="sidebar">
+              <object class="AdwToolbarView">
+                <child type="top">
+                  <object class="AdwHeaderBar">
+                    <property name="show-title">false</property>
+                    <child type="start">
+                      <object class="GtkButton">
+                        <property name="action-name">win.toggle-history</property>
+                        <property name="icon-name">go-previous-symbolic</property>
+                        <property name="visible"
+                                  bind-source="rollit_split_view"
+                                  bind-property="collapsed"
+                                  bind-flags="sync-create" />
+                      </object>
+                    </child>
                   </object>
                 </child>
-                <child type="end">
-                  <object class="GtkMenuButton">
-                    <property name="icon-name">open-menu-symbolic</property>
-                    <property name="menu-model">primary_menu</property>
-                    <property name="primary">True</property>
-                    <property name="tooltip-text">Main Menu</property>
+                <property name="content">
+                  <object class="RollitHistoryPane" id="history_pane"/>
+                </property>
+                <child type="bottom">
+                  <object class="GtkActionBar">
+                    <child type="start">
+                      <object class="GtkButton">
+                        <property name="icon-name">edit-clear-all-symbolic</property>
+                        <property name="tooltip-text" translatable="yes">Clear results</property>
+                        <property name="action-name">win.clear-history</property>
+                        <style>
+                          <class name="destructive-action"/>
+                        </style>
+                      </object>
+                    </child>
                   </object>
                 </child>
               </object>
-            </child>
-            <child>
-              <object class="AdwFlap" id="rollit_flap">
-                <property name="vexpand">true</property>
-                <property name="flap">
-                  <object class="RollitHistoryPane" id="history_pane"/>
-                </property>
-                <property name="separator">
-                  <object class="GtkSeparator"/>
-                </property>
+            </property>
+            <property name="content">
+              <object class="AdwToolbarView">
+                <child type="top">
+                  <object class="AdwHeaderBar">
+                    <child type="start">
+                      <object class="GtkToggleButton" id="show_sidebar_button">
+                        <property name="icon-name">sidebar-show-symbolic</property>
+                        <property name="tooltip-text" translatable="yes">Toggle History List</property>
+                        <property name="active">true</property>
+                      </object>
+                    </child>
+                    <child type="end">
+                      <object class="GtkMenuButton">
+                        <property name="icon-name">open-menu-symbolic</property>
+                        <property name="menu-model">primary_menu</property>
+                        <property name="primary">True</property>
+                        <property name="tooltip-text">Main Menu</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
                 <property name="content">
                   <object class="RollitMainView" id="main_view"/>
                 </property>
+                <child type="bottom">
+                  <object class="GtkBox">
+                    <property name="spacing">6</property>
+                    <property name="halign">center</property>
+                    <property name="margin-bottom">6</property>
+                    <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">_Roll</property>
+                        <property name="use-underline">True</property>
+                        <property name="tooltip-text" translatable="yes">Roll the dice</property>
+                        <property name="action-name">win.roll-dice</property>
+                        <style>
+                          <class name="suggested-action"/>
+                          <class name="pill"/>
+                        </style>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="dice_settings_button">
+                        <property name="icon-name">dice3-symbolic</property>
+                        <property name="tooltip-text" translatable="yes">Dice settings</property>
+                        <property name="action-name">win.dice-settings</property>
+                        <style>
+                          <class name="pill" />
+                        </style>
+                      </object>
+                    </child>
+                  </object>
+                </child>
               </object>
-            </child>
+            </property>
           </object>
-        </child>
+        </property>
       </object>
     </property>
   </template>

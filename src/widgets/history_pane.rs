@@ -20,12 +20,11 @@ use crate::models::RollitHistoryItem;
 use crate::utils;
 use crate::widgets::RollitHistoryRow;
 
-use std::cell::RefCell;
-
 use adw::subclass::prelude::*;
 use gtk::prelude::*;
 use gtk::{gio, glib, ListItem};
 use gtk::{NoSelection, SignalListItemFactory};
+use std::cell::RefCell;
 
 mod imp {
     use super::*;

@@ -1,11 +1,11 @@
 {
     "id" : "dev.zelikos.rollit.Devel",
     "runtime" : "org.gnome.Platform",
-    "runtime-version" : "44",
+    "runtime-version" : "master",
     "sdk" : "org.gnome.Sdk",
     "sdk-extensions" : [
         "org.freedesktop.Sdk.Extension.rust-stable",
-        "org.freedesktop.Sdk.Extension.llvm14"
+        "org.freedesktop.Sdk.Extension.llvm16"
     ],
     "command" : "rollit",
     "finish-args" : [
@@ -17,7 +17,7 @@
         "--env=RUST_LOG=rollit=debug"
     ],
     "build-options" : {
-        "append-path" : "/usr/lib/sdk/rust-stable/bin:/usr/lib/sdk/llvm14/bin",
+        "append-path" : "/usr/lib/sdk/rust-stable/bin:/usr/lib/sdk/llvm16/bin",
         "build-args" : [
             "--share=network"
         ],
