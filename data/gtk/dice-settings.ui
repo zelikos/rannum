@@ -21,13 +21,47 @@
     <property name="content">
       <object class="AdwToastOverlay" id="toast_overlay">
         <child>
-          <object class="GtkBox">
-            <property name="orientation">vertical</property>
-            <child>
+          <object class="AdwToolbarView">
+            <child type="top">
               <object class="AdwHeaderBar" />
             </child>
-            <child>
+            <property name="content">
               <object class="AdwPreferencesPage">
+                <child>
+                  <object class="AdwPreferencesGroup">
+                    <!-- <property name="title" translatable="yes">Custom</property> -->
+                    <child>
+                      <object class="AdwSpinRow" id="max_roll">
+                        <property name="title" translatable="yes">Dice sides</property>
+                        <property name="valign">center</property>
+                        <property name="digits">0</property>
+                        <property name="numeric">true</property>
+                        <property name="adjustment">
+                          <object class="GtkAdjustment">
+                            <property name="page-increment">5</property>
+                            <property name="step-increment">1</property>
+                            <property name="lower">1</property>
+                            <property name="upper">999</property>
+                            <property name="value">20</property>
+                          </object>
+                        </property>
+                      </object>
+                    </child>
+                    <!-- <child> -->
+                    <!--   <object class="AdwActionRow"> -->
+                    <!--     <property name="title" translatable="yes">Add as Preset</property> -->
+                        <!-- <property name="subtitle" translatable="yes">Add above number as a new preset.</property> -->
+                    <!--     <property name="action-name">dice.add-preset</property> -->
+                    <!--     <property name="activatable">True</property> -->
+                    <!--     <child type="suffix"> -->
+                    <!--       <object class="GtkImage"> -->
+                    <!--         <property name="icon-name">list-add-symbolic</property> -->
+                    <!--       </object> -->
+                    <!--     </child> -->
+                    <!--   </object> -->
+                    <!-- </child> -->
+                  </object>
+                </child>
                 <child>
                   <object class="AdwPreferencesGroup" id="dice_presets">
                     <property name="title" translatable="yes">Presets</property>
@@ -70,48 +104,8 @@
                     </child>
                   </object>
                 </child>
-                <child>
-                  <object class="AdwPreferencesGroup">
-                    <property name="title" translatable="yes">Custom</property>
-                    <child>
-                      <!-- TODO: Replace with AdwSpinRow -->
-                      <object class="AdwActionRow">
-                        <property name="title" translatable="yes">Dice sides</property>
-                        <child type="suffix">
-                          <object class="GtkSpinButton" id="max_roll">
-                            <property name="valign">center</property>
-                            <property name="digits">0</property>
-                            <property name="numeric">true</property>
-                            <property name="adjustment">
-                              <object class="GtkAdjustment">
-                                <property name="page-increment">5</property>
-                                <property name="step-increment">1</property>
-                                <property name="lower">1</property>
-                                <property name="upper">999</property>
-                                <property name="value">20</property>
-                              </object>
-                            </property>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                    <!-- <child> -->
-                    <!--   <object class="AdwActionRow"> -->
-                    <!--     <property name="title" translatable="yes">Add as Preset</property> -->
-                        <!-- <property name="subtitle" translatable="yes">Add above number as a new preset.</property> -->
-                    <!--     <property name="action-name">dice.add-preset</property> -->
-                    <!--     <property name="activatable">True</property> -->
-                    <!--     <child type="suffix"> -->
-                    <!--       <object class="GtkImage"> -->
-                    <!--         <property name="icon-name">list-add-symbolic</property> -->
-                    <!--       </object> -->
-                    <!--     </child> -->
-                    <!--   </object> -->
-                    <!-- </child> -->
-                  </object>
-                </child>
               </object>
-            </child>
+            </property>
           </object>
         </child>
       </object>

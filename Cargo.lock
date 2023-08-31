@@ -281,9 +281,9 @@ dependencies = [
 
 [[package]]
 name = "gio"
-version = "0.17.4"
+version = "0.17.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2261a3b4e922ec676d1c27ac466218c38cf5dcb49a759129e54bb5046e442125"
+checksum = "a6973e92937cf98689b6a054a9e56c657ed4ff76de925e36fc331a15f0c5d30a"
 dependencies = [
  "bitflags",
  "futures-channel",
@@ -537,12 +537,11 @@ checksum = "e2abad23fbc42b3700f2f279844dc832adb2b2eb069b2df918f455c4e18cc646"
 
 [[package]]
 name = "libadwaita"
-version = "0.4.1"
+version = "0.4.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e82776542b73ac5691b2bddf3e2aaf0157d34f35193fb522de2fc258006c1785"
+checksum = "1ab9c0843f9f23ff25634df2743690c3a1faffe0a190e60c490878517eb81abf"
 dependencies = [
  "bitflags",
- "futures-channel",
  "gdk-pixbuf",
  "gdk4",
  "gio",
@@ -550,15 +549,14 @@ dependencies = [
  "gtk4",
  "libadwaita-sys",
  "libc",
- "once_cell",
  "pango",
 ]
 
 [[package]]
 name = "libadwaita-sys"
-version = "0.4.1"
+version = "0.4.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "91be74a61f26efa6946c02dad76eb4cd3021addb0ff85dde445c1cd41d2eca2d"
+checksum = "4231cb2499a9f0c4cdfa4885414b33e39901ddcac61150bc0bb4ff8a57ede404"
 dependencies = [
  "gdk4-sys",
  "gio-sys",
@@ -870,6 +868,7 @@ dependencies = [
  "gtk-macros",
  "gtk4",
  "libadwaita",
+ "libadwaita-sys",
  "log",
  "once_cell",
  "pretty_env_logger",

@@ -34,7 +34,7 @@ mod imp {
         #[template_child]
         pub dice_presets: TemplateChild<adw::PreferencesGroup>,
         #[template_child]
-        pub max_roll: TemplateChild<gtk::SpinButton>,
+        pub max_roll: TemplateChild<adw::SpinRow>,
         #[template_child]
         pub toast_overlay: TemplateChild<adw::ToastOverlay>,
     }
