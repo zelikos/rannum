@@ -9,6 +9,7 @@
     <file>gtk/main-view.ui</file>
     <file>gtk/window.ui</file>
     <file>icons/scalable/actions/dice3-symbolic.svg</file>
+    <file>style.css</file>
   </gresource>
 </gresources>
 
