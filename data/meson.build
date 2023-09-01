@@ -74,10 +74,11 @@ endif
 blueprints = custom_target('blueprints',
   input: files(
     'gtk/about.blp',
+    'gtk/dice-settings.blp',
     'gtk/help-overlay.blp',
     'gtk/history-row.blp',
-    'gtk/dice-settings.blp',
     'gtk/history-pane.blp',
+    'gtk/main-view.blp',
   ),
   output: '.',
   command: [find_program('blueprint-compiler'), 'batch-compile', '@OUTPUT@', '@CURRENT_SOURCE_DIR@', '@INPUT@'],

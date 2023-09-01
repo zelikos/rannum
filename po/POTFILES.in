@@ -6,7 +6,7 @@ data/gtk/dice-settings.blp
 data/gtk/help-overlay.blp
 data/gtk/history-pane.blp
 data/gtk/history-row.blp
-data/gtk/main-view.ui
+data/gtk/main-view.blp
 data/gtk/window.ui
 src/widgets/history_row.rs
 src/widgets/main_view.rs

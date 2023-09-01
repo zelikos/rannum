@@ -1,0 +1,64 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $RollitMainView : Adw.Bin {
+    margin-top: 6;
+    margin-start: 6;
+    margin-end: 6;
+    margin-bottom: 6;
+
+    Adw.Clamp {
+        maximum-size: 240;
+        child:
+            Stack result_stack {
+                StackPage {
+                    name: "empty";
+                    child:
+                        Label {
+                            label: "?";
+
+                            styles [
+                                "roll_result",
+                            ]
+                        }
+                    ;
+                }
+
+                StackPage {
+                    name: "result";
+                    child:
+                        Revealer result_revealer {
+                            transition-type: slide_down;
+                            transition-duration: 120;
+                            child:
+                                Adw.Clamp {
+                                    orientation: vertical;
+                                    maximum-size: 240;
+                                    child:
+                                        Button result_button {
+                                            action-name: "win.copy-latest";
+
+                                            styles [
+                                                "circular",
+                                                "background",
+                                            ]
+
+                                            child:
+                                                Label result_label {
+                                                    styles [
+                                                        "roll_result",
+                                                    ]
+                                                }
+                                            ;
+                                        }
+                                    ;
+                                }
+                            ;
+                        }
+                    ;
+                }
+            }
+
+        ;
+    }
+}
