@@ -10,6 +10,8 @@ log = "0.4.20"
 pretty_env_logger = "0.5.0"
 random-number = "0.1.8"
 regex = "1.10.2"
+relm4 = "0.6.0"
+relm4-components = "0.6.0"
 
 [dependencies.gtk]
 package = "gtk4"
