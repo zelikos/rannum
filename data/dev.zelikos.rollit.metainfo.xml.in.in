@@ -9,7 +9,7 @@
   <name>Roll-It</name>
   <summary>Roll the dice</summary>
   <description>
-    <p>Roll a six-sided die by default, or roll a custom die of up to one-hundred sides.</p>
+    <p>Roll a six-sided die by default, or roll a custom die of up to 999 sides.</p>
 
     <p>Copy roll results to the clipboard from the history pane. Results are remembered until the app is closed or they are manually cleared.</p>
 
@@ -44,6 +44,15 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release version="3.3.0" date="2023-09-21">
+      <description>
+        <p>Changes</p>
+        <ul>
+          <li>Refreshed UI using new widgets from the GNOME platform</li>
+          <li>Custom dice selector is now listed above presets</li>
+        </ul>
+      </description>
+    </release>
     <release version="3.2.0" date="2023-06-02">
       <description>
         <p>New</p>
