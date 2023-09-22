@@ -111,7 +111,7 @@ impl RollitHistoryPane {
 
     fn setup_results(&self) {
         let imp = self.imp();
-        let model = gio::ListStore::new(RollitHistoryItem::static_type());
+        let model = gio::ListStore::new::<RollitHistoryItem>();
 
         imp.results.replace(Some(model));
 
