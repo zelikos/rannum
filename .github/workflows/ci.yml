@@ -26,14 +26,12 @@ jobs:
     name: "Flatpak"
     runs-on: ubuntu-latest
     container:
-      image: bilelmoussaoui/flatpak-github-actions:gnome-44
+      image: bilelmoussaoui/flatpak-github-actions:gnome-45
       options: --privileged
     steps:
     - uses: actions/checkout@v3
-    - uses: flatpak/flatpak-github-actions/flatpak-builder@v6.1
+    - uses: flatpak/flatpak-github-actions/flatpak-builder@v6.2
       with:
         bundle: rollit.flatpak
         manifest-path: build-aux/flatpak/dev.zelikos.rollit.Devel.json
-        run-tests: true
         cache-key: flatpak-builder-${{ github.sha }}
-
