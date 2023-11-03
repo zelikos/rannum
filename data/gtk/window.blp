@@ -7,10 +7,12 @@ template $RollitWindow : Adw.ApplicationWindow {
     width-request: 240;
     height-request: 300;
 
-    // TODO: Adw.Breakpoint stuff
-    // Adw.Breakpoint {
-
-    // }
+    Adw.Breakpoint {
+        condition ("max-width: 400sp")
+        setters {
+            rollit_split_view.collapsed: true;
+        }
+    }
 
     content:
         Adw.ToastOverlay toast_overlay {
