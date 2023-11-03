@@ -16,7 +16,7 @@ template $RollitWindow : Adw.ApplicationWindow {
         Adw.ToastOverlay toast_overlay {
             child:
                 Adw.OverlaySplitView rollit_split_view {
-                    // TODO: Bind show-sidebar property
+                    show-sidebar: bind show_sidebar_button.active bidirectional;
                     sidebar:
                         Adw.ToolbarView {
                             [top]
@@ -27,7 +27,7 @@ template $RollitWindow : Adw.ApplicationWindow {
                                 Button {
                                     action-name: "win.toggle-history";
                                     icon-name: "go-previous-symbolic";
-                                    // TODO: Bind visible property
+                                    visible: bind rollit_split_view.collapsed;
                                 }
                             }
 
