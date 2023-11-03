@@ -1,0 +1,128 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $RollitWindow : Adw.ApplicationWindow {
+    title: _("Roll-It");
+    icon-name: "dev.zelikos.rollit";
+    width-request: 240;
+    height-request: 300;
+
+    Adw.Breakpoint {
+        condition ("max-width: 400sp")
+        setters {
+            rollit_split_view.collapsed: true;
+        }
+    }
+
+    content:
+        Adw.ToastOverlay toast_overlay {
+            child:
+                Adw.OverlaySplitView rollit_split_view {
+                    show-sidebar: bind show_sidebar_button.active bidirectional;
+                    sidebar:
+                        Adw.ToolbarView {
+                            [top]
+                            Adw.HeaderBar {
+                                show-title: false;
+
+                                [start]
+                                Button {
+                                    action-name: "win.toggle-history";
+                                    icon-name: "go-previous-symbolic";
+                                    visible: bind rollit_split_view.collapsed;
+                                }
+                            }
+
+                            content:
+                                $RollitHistoryPane history_pane {}
+                            ;
+
+                            [bottom]
+                            ActionBar {
+                                [start]
+                                Button {
+                                    action-name: "win.clear-history";
+                                    icon-name: "edit-clear-all-symbolic";
+                                    tooltip-text: _("Clear results");
+
+                                    styles [
+                                        "destructive-action",
+                                    ]
+                                }
+                            }
+                        }
+                    ;
+
+                    content:
+                        Adw.ToolbarView {
+                            [top]
+                            Adw.HeaderBar {
+                                [start]
+                                ToggleButton show_sidebar_button {
+                                    active: true;
+                                    icon-name: "sidebar-show-symbolic";
+                                    tooltip-text: _("Toggle History List");
+                                }
+
+                                [end]
+                                MenuButton {
+                                    icon-name: "open-menu-symbolic";
+                                    menu-model: primary_menu;
+                                    primary: true;
+                                    tooltip-text: _("Main Menu");
+                                }
+                            }
+
+                            content:
+                                $RollitMainView main_view {}
+                            ;
+
+                            [bottom]
+                            Box {
+                                halign: center;
+                                margin-bottom: 6;
+                                spacing: 6;
+
+                                Button {
+                                    action-name: "win.roll-dice";
+                                    label: _("_Roll");
+                                    use-underline: true;
+                                    tooltip-text: _("Roll the dice");
+
+                                    styles [
+                                        "suggested-action",
+                                        "pill",
+                                    ]
+                                }
+
+                                Button dice_settings_button {
+                                    action-name: "win.dice-settings";
+                                    icon-name: "dice3-symbolic";
+                                    tooltip-text: _("Dice settings");
+
+                                    styles [
+                                        "pill",
+                                    ]
+                                }
+                            }
+                        }
+                    ;
+
+                }
+            ;
+        }
+    ;
+}
+
+menu primary_menu {
+    section {
+        item {
+            label: _("_Keyboard Shortcuts");
+            action: "win.show-help-overlay";
+        }
+        item {
+            label: _("_About Roll-It");
+            action: "app.about";
+        }
+    }
+}

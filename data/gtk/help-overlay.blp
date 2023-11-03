@@ -1,0 +1,54 @@
+using Gtk 4.0;
+
+ShortcutsWindow help_overlay {
+  modal: true;
+
+  ShortcutsSection {
+    section-name: "shortcuts";
+    max-height: 10;
+
+    ShortcutsGroup {
+      title: C_("shortcut window", "General");
+
+      ShortcutsShortcut {
+        title: C_("shortcut window", "Roll Dice");
+        action-name: "win.roll-dice";
+      }
+
+      ShortcutsShortcut {
+        title: C_("shortcut window", "Show Dice Settings");
+        action-name: "win.dice-settings";
+      }
+
+      ShortcutsShortcut {
+        title: C_("shortcut window", "Copy Last Result");
+        action-name: "win.copy-latest";
+      }
+
+      ShortcutsShortcut {
+        title: C_("shortcut window", "History List");
+        action-name: "win.toggle-history";
+      }
+
+      ShortcutsShortcut {
+        title: C_("shortcut window", "Clear History");
+        action-name: "win.clear-history";
+      }
+
+      ShortcutsShortcut {
+        title: C_("shortcut window", "Undo Clear");
+        action-name: "win.undo-clear";
+      }
+
+      ShortcutsShortcut {
+        title: C_("shortcut window", "Show Shortcuts");
+        action-name: "win.show-help-overlay";
+      }
+
+      ShortcutsShortcut {
+        title: C_("shortcut window", "Quit");
+        action-name: "app.quit";
+      }
+    }
+  }
+}
