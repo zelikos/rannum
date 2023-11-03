@@ -1,0 +1,56 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $RollitHistoryRow : Adw.Bin {
+  margin-top: 6;
+  margin-bottom: 6;
+  margin-start: 8;
+  margin-end: 8;
+
+  Box {
+    Box {
+      orientation: vertical;
+      halign: start;
+      hexpand: true;
+      spacing: 4;
+
+      Label roll_result {
+        halign: start;
+
+        styles [
+          "numeric",
+        ]
+      }
+
+      Box {
+        spacing: 4;
+
+        Label max_prefix {
+          label: _("Out of");
+
+          styles [
+            "subtitle",
+          ]
+        }
+
+        Label max_suffix {
+          styles [
+            "subtitle",
+          ]
+        }
+      }
+    }
+
+    Button copy_button {
+      icon-name: "edit-copy-symbolic";
+      tooltip-text: _("Copy result");
+      action-name: "history.copy-result";
+      halign: end;
+      valign: center;
+
+      styles [
+        "circular",
+      ]
+    }
+  }
+}
