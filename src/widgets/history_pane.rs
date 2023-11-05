@@ -95,10 +95,9 @@ impl RollitHistoryPane {
         // Prepend new result
         // self.results().insert(0, &result_item);
 
-        let vadj = imp.history_scroll.vadjustment();
-        vadj.set_value(vadj.upper());
-
         log::debug!("Result of {} added, out of a possible {}", result, max);
+
+        self.scroll_view("down");
     }
 
     fn results(&self) -> gio::ListStore {
@@ -107,6 +106,19 @@ impl RollitHistoryPane {
             .borrow()
             .clone()
             .expect("Could not retrieve results.")
+    }
+
+    fn scroll_view(&self, direction: &str) {
+        let vadj = self.imp().history_scroll.vadjustment();
+
+        if direction == "down" {
+            vadj.set_value(vadj.upper());
+            // imp.history_list.scroll_to(self.results().n_items()-1, gtk::ListScrollFlags::NONE, None);
+            // imp.history_scroll
+            //     .emit_scroll_child(gtk::ScrollType::End, false);
+        } else if direction == "up" {
+            vadj.set_value(vadj.lower());
+        }
     }
 
     fn setup_results(&self) {
