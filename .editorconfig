@@ -10,6 +10,7 @@ indent_style = space
 indent_size = 4
 trim_trailing_whitespace = true
 
-# Meson and XML
-[*.{build,ui,xml,xml.in,xml.in.in}]
+# Meson, XML, Blueprint
+[*.{build,ui,xml,xml.in,xml.in.in,blp}]
 indent_size = 2
+
