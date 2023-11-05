@@ -95,7 +95,12 @@ impl RollitHistoryPane {
         log::debug!("Result of {} added, out of a possible {}", result, max);
         log::debug!("Number of results: {}", self.results().n_items());
 
-        self.scroll_view();
+        let vadj = imp.history_scroll.vadjustment();
+
+        // Only autoscroll if the view is already at the top.
+        if vadj.value() == vadj.lower() {
+            self.scroll_view();
+        }
     }
 
     fn results(&self) -> gio::ListStore {
