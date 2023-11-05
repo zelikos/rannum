@@ -89,16 +89,18 @@ impl RollitHistoryPane {
             self.show_history();
         }
 
-        // Append new result
-        self.results().append(&result_item);
-
         // Prepend new result
-        // self.results().insert(0, &result_item);
-
-        let vadj = imp.history_scroll.vadjustment();
-        vadj.set_value(vadj.upper());
+        self.results().insert(0, &result_item);
 
         log::debug!("Result of {} added, out of a possible {}", result, max);
+        log::debug!("Number of results: {}", self.results().n_items());
+
+        let vadj = imp.history_scroll.vadjustment();
+
+        // Only autoscroll if the view is already at the top.
+        if vadj.value() == vadj.lower() {
+            self.scroll_view();
+        }
     }
 
     fn results(&self) -> gio::ListStore {
@@ -107,6 +109,12 @@ impl RollitHistoryPane {
             .borrow()
             .clone()
             .expect("Could not retrieve results.")
+    }
+
+    fn scroll_view(&self) {
+        let history = &self.imp().history_list;
+
+        history.scroll_to(0, gtk::ListScrollFlags::NONE, None);
     }
 
     fn setup_results(&self) {

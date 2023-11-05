@@ -7,7 +7,7 @@ template $RollitHistoryPane : Adw.Bin {
 
     StackPage {
       name: "empty";
-      child: 
+      child:
       Adw.StatusPage {
         icon-name: "dice3-symbolic";
         title: _("No Results");
@@ -23,28 +23,21 @@ template $RollitHistoryPane : Adw.Bin {
 
     StackPage {
       name: "filled";
-      child: 
-      Box {
-        orientation: vertical;
+      child:
+      ScrolledWindow history_scroll {
+        hscrollbar-policy: never;
         vexpand: true;
+        child:
+        ListView history_list {
+          show-separators: true;
+          single-click-activate: true;
 
-        ScrolledWindow history_scroll {
-          hscrollbar-policy: never;
-          vexpand: true;
-          child: 
-          ListView history_list {
-            show-separators: true;
-            single-click-activate: true;
-
-            styles [
-              "navigation-sidebar",
-            ]
-          }
-
-          ;
+          styles [
+            "navigation-sidebar",
+          ]
         }
+        ;
       }
-
       ;
     }
   }
