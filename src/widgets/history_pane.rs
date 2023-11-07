@@ -95,13 +95,6 @@ impl RollitHistoryPane {
 
         log::debug!("Result of {} added, out of a possible {}", result, max);
         log::debug!("Number of results: {}", self.results().n_items());
-
-        let vadj = imp.history_scroll.vadjustment();
-
-        // Only autoscroll if the view is already at the top.
-        if vadj.value() == vadj.lower() {
-            self.scroll_view();
-        }
     }
 
     fn results(&self) -> gio::ListStore {
@@ -113,9 +106,13 @@ impl RollitHistoryPane {
     }
 
     fn scroll_view(&self) {
+        let vadj = self.imp().history_scroll.vadjustment();
         let history = &self.imp().history_list;
 
-        history.scroll_to(0, gtk::ListScrollFlags::NONE, None);
+        // Only autoscroll if the view is already at the top.
+        if vadj.value() == vadj.lower() {
+            history.scroll_to(0, gtk::ListScrollFlags::NONE, None);
+        }
     }
 
     fn setup_results(&self) {
@@ -148,6 +145,10 @@ impl RollitHistoryPane {
                 .unwrap();
             }),
         );
+
+        selection_model.connect_items_changed(glib::clone!(@weak self as pane => move |_,_,_,_| {
+            pane.scroll_view();
+        }));
     }
 
     fn setup_factory(&self) {
