@@ -1,7 +1,7 @@
 project(
   'rollit',
   'rust',
-  version: '3.3.0',
+  version: '3.4.0',
   meson_version: '>= 0.59.0',
   default_options: [
     'warning_level=2',

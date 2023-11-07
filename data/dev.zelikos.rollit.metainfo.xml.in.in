@@ -33,7 +33,7 @@
       <image>https://gitlab.com/zelikos/rollit/-/raw/main/data/screenshots/02_rollit_startup_dark.png</image>
     </screenshot>
     <screenshot>
-      <caption>See the most recent roll result and the full roll history</caption>
+      <caption>See every roll result</caption>
       <image>https://gitlab.com/zelikos/rollit/-/raw/main/data/screenshots/03_rollit_wide.png</image>
     </screenshot>
     <screenshot>
@@ -50,6 +50,26 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release version="3.4.0" date="2023-11-07">
+      <description>
+        <p>Changes</p>
+        <ul>
+          <li>Roll results are now listed in reverse chronological order</li>
+          <li>Auto-scrolling behavior of the results list has been improved</li>
+          <li>The entire row is now clickable to copy its roll result, rather than needing to click the smaller copy button</li>
+          <li>Dice settings presets now use radio buttons to give a clearer indicator of the currently-selected preset</li>
+          <li>The label for the dice settings button now represents the current dice setting</li>
+        </ul>
+        <p>Plus some improvements on the backend.</p>
+      </description>
+      <issues>
+        <issue url="https://gitlab.com/zelikos/rollit/-/issues/7">#7</issue>
+        <issue url="https://gitlab.com/zelikos/rollit/-/issues/26">#26</issue>
+        <issue url="https://gitlab.com/zelikos/rollit/-/issues/32">#32</issue>
+        <issue url="https://gitlab.com/zelikos/rollit/-/issues/34">#34</issue>
+        <issue url="https://gitlab.com/zelikos/rollit/-/issues/35">#35</issue>
+      </issues>
+    </release>
     <release version="3.3.0" date="2023-09-21">
       <description>
         <p>Changes</p>
