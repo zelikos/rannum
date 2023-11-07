@@ -8,7 +8,7 @@ name: CI
 jobs:
   rustfmt:
     name: Rustfmt
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions-rs/toolchain@v1
@@ -31,5 +31,6 @@ jobs:
     - uses: flatpak/flatpak-github-actions/flatpak-builder@v6.2
       with:
         bundle: rollit.flatpak
-        manifest-path: build-aux/flatpak/dev.zelikos.rollit.json
+        manifest-path: build-aux/flatpak/dev.zelikos.rollit.Devel.json
+        repository-name: gnome-nightly
         cache-key: flatpak-builder-${{ github.sha }}
