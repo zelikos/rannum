@@ -166,11 +166,5 @@ impl RollitDiceSettings {
     fn set_dice(&self, sides: i32) {
         let settings = utils::settings_manager();
         settings.set_int("max-roll", sides).unwrap();
-
-        self.activate_action(
-            "dice.show-toast",
-            Some(&(gettext("Dice value changed"), 1).to_variant()),
-        )
-        .unwrap();
     }
 }
