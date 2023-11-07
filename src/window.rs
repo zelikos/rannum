@@ -24,7 +24,7 @@ use gtk::{gio, glib};
 use crate::application::RollitApplication;
 use crate::config::PROFILE;
 use crate::dialogs::RollitDiceSettings;
-use crate::utils;
+use crate::utils::{self, settings_manager};
 use crate::widgets::{RollitHistoryPane, RollitMainView};
 
 mod imp {
@@ -33,6 +33,8 @@ mod imp {
     #[derive(Debug, gtk::CompositeTemplate)]
     #[template(resource = "/dev/zelikos/rollit/gtk/window.ui")]
     pub struct RollitWindow {
+        #[template_child]
+        pub dice_settings_button: TemplateChild<gtk::Button>,
         #[template_child]
         pub history_pane: TemplateChild<RollitHistoryPane>,
         #[template_child]
@@ -46,6 +48,7 @@ mod imp {
     impl Default for RollitWindow {
         fn default() -> Self {
             Self {
+                dice_settings_button: TemplateChild::default(),
                 history_pane: TemplateChild::default(),
                 main_view: TemplateChild::default(),
                 rollit_split_view: TemplateChild::default(),
@@ -145,6 +148,9 @@ impl RollitWindow {
             .bind("window-height", self, "default-height")
             .build();
         settings.bind("window-maximized", self, "maximized").build();
+
+        let val = settings.int("max-roll");
+        self.imp().dice_settings_button.set_label(&val.to_string());
     }
 
     fn roll_dice(&self) {
@@ -193,6 +199,12 @@ impl RollitWindow {
         let dice_settings = RollitDiceSettings::new();
 
         dice_settings.set_transient_for(Some(self));
+
+        dice_settings.connect_destroy(glib::clone!(@weak self as win => move |_| {
+            let settings = utils::settings_manager();
+            let val = settings.int("max-roll");
+            win.imp().dice_settings_button.set_label(&val.to_string());
+        }));
 
         dice_settings.present();
     }
