@@ -21,7 +21,6 @@ use crate::utils;
 use core::ops::Deref;
 
 use adw::subclass::prelude::*;
-use gettextrs::gettext;
 use gtk::glib;
 use gtk::prelude::*;
 
