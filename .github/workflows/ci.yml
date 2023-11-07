@@ -32,5 +32,4 @@ jobs:
       with:
         bundle: rollit.flatpak
         manifest-path: build-aux/flatpak/dev.zelikos.rollit.Devel.json
-        repository-name: gnome-nightly
         cache-key: flatpak-builder-${{ github.sha }}
