@@ -1,10 +1,8 @@
 *~
-src/config.rs
 build
 _build/
 target
 .flatpak-builder
 .flatpak/
 .vscode
-subprojects/blueprint-compiler
 
