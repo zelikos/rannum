@@ -33,5 +33,5 @@ jobs:
     - uses: flatpak/flatpak-github-actions/flatpak-builder@v6.2
       with:
         bundle: rollit.flatpak
-        manifest-path: build-aux/flatpak/dev.zelikos.rollit.Devel.json
+        manifest-path: build-aux/flatpak/dev.zelikos.rollit.json
         cache-key: flatpak-builder-${{ github.sha }}
