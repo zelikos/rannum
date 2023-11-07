@@ -29,16 +29,6 @@
     ],
     "modules" : [
         {
-            "name" : "rollit",
-            "buildsystem" : "meson",
-            "sources" : [
-                {
-                    "type" : "dir",
-                    "path" : "../../"
-                }
-            ]
-        },
-        {
             "name": "blueprint-compiler",
             "buildsystem": "meson",
             "cleanup": ["*"],
@@ -47,6 +37,16 @@
                     "type": "git",
                     "url": "https://gitlab.gnome.org/jwestman/blueprint-compiler",
                     "tag": "v0.10.0"
+                }
+            ]
+        },
+        {
+            "name" : "rollit",
+            "buildsystem" : "meson",
+            "sources" : [
+                {
+                    "type" : "dir",
+                    "path" : "../../"
                 }
             ]
         }
