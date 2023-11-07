@@ -95,8 +95,6 @@ impl RollitHistoryPane {
 
         log::debug!("Result of {} added, out of a possible {}", result, max);
         log::debug!("Number of results: {}", self.results().n_items());
-
-        self.scroll_view();
     }
 
     fn results(&self) -> gio::ListStore {
@@ -147,6 +145,10 @@ impl RollitHistoryPane {
                 .unwrap();
             }),
         );
+
+        selection_model.connect_items_changed(glib::clone!(@weak self as pane => move |_,_,_,_| {
+            pane.scroll_view();
+        }));
     }
 
     fn setup_factory(&self) {
