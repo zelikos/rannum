@@ -21,7 +21,6 @@ use crate::models::RollitHistoryItem;
 use std::cell::RefCell;
 
 use adw::subclass::prelude::*;
-use gettextrs::gettext;
 use glib::{Binding, BindingFlags};
 use gtk::glib;
 use gtk::prelude::*;
