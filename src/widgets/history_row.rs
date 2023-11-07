@@ -48,9 +48,9 @@ mod imp {
         fn class_init(klass: &mut Self::Class) {
             klass.bind_template();
 
-            klass.install_action("history.copy-result", None, move |history, _, _| {
-                history.copy_result();
-            });
+            // klass.install_action("history.copy-result", None, move |history, _, _| {
+            //     history.copy_result();
+            // });
         }
 
         fn instance_init(obj: &glib::subclass::InitializingObject<Self>) {
@@ -106,15 +106,15 @@ impl RollitHistoryRow {
         }
     }
 
-    fn copy_result(&self) {
-        let result = self.imp().roll_result.label();
-        let clipboard = self.clipboard();
-        clipboard.set_text(&result);
+    // fn copy_result(&self) {
+    //     let result = self.imp().roll_result.label();
+    //     let clipboard = self.clipboard();
+    //     clipboard.set_text(&result);
 
-        self.activate_action(
-            "win.show-toast",
-            Some(&(gettext("Result copied"), 0).to_variant()),
-        )
-        .unwrap();
-    }
+    //     self.activate_action(
+    //         "win.show-toast",
+    //         Some(&(gettext("Result copied"), 0).to_variant()),
+    //     )
+    //     .unwrap();
+    // }
 }
