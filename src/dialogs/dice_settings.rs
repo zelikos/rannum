@@ -65,18 +65,6 @@ mod imp {
             //     dice.add_preset();
             // });
 
-            // klass.install_action("dice.set-dice6", None, move |dice, _, _| {
-            //     dice.set_dice(6);
-            // });
-
-            // klass.install_action("dice.set-dice12", None, move |dice, _, _| {
-            //     dice.set_dice(12);
-            // });
-
-            // klass.install_action("dice.set-dice20", None, move |dice, _, _| {
-            //     dice.set_dice(20);
-            // });
-
             // TODO: Move to dice_row.rs
             // klass.install_action("dice.set-dice", None, move |dice, _, _| {
             //     dice.set_dice();
@@ -138,6 +126,15 @@ impl RollitDiceSettings {
         settings
             .bind("max-roll", imp.max_roll.deref(), "value")
             .build();
+
+        let current_val: i32 = imp.max_roll.value() as i32;
+
+        match current_val {
+            6 => imp.d6.set_active(true),
+            12 => imp.d12.set_active(true),
+            20 => imp.d20.set_active(true),
+            _ => log::debug!("No presets match current value"),
+        }
 
         imp.d6
             .connect_activate(glib::clone!(@weak self as pref => move |_| {
