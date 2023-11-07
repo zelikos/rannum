@@ -43,36 +43,28 @@ template $RollitDiceSettings : Adw.Window {
         Adw.PreferencesGroup dice_presets {
           title: _("Presets");
 
-          Adw.ActionRow d6 {
+          Adw.ActionRow {
             title: "6";
-            action-name: "dice.set-dice6";
-            activatable: true;
-
-            [suffix]
-            Image {
-              icon-name: "dice3-symbolic";
-            }
+            activatable-widget: d6;
+            [prefix]
+            CheckButton d6 {}
           }
 
-          Adw.ActionRow d12 {
+          Adw.ActionRow {
             title: "12";
-            action-name: "dice.set-dice12";
-            activatable: true;
-
-            [suffix]
-            Image {
-              icon-name: "dice3-symbolic";
+            activatable-widget: d12;
+            [prefix]
+            CheckButton d12 {
+              group: d6;
             }
           }
 
-          Adw.ActionRow d20 {
+          Adw.ActionRow {
             title: "20";
-            action-name: "dice.set-dice20";
-            activatable: true;
-
-            [suffix]
-            Image {
-              icon-name: "dice3-symbolic";
+            activatable-widget: d20;
+            [prefix]
+            CheckButton d20 {
+              group: d6;
             }
           }
         }

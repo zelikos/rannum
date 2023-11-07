@@ -34,6 +34,12 @@ mod imp {
         #[template_child]
         pub dice_presets: TemplateChild<adw::PreferencesGroup>,
         #[template_child]
+        pub d6: TemplateChild<gtk::CheckButton>,
+        #[template_child]
+        pub d12: TemplateChild<gtk::CheckButton>,
+        #[template_child]
+        pub d20: TemplateChild<gtk::CheckButton>,
+        #[template_child]
         pub max_roll: TemplateChild<adw::SpinRow>,
         #[template_child]
         pub toast_overlay: TemplateChild<adw::ToastOverlay>,
@@ -59,17 +65,17 @@ mod imp {
             //     dice.add_preset();
             // });
 
-            klass.install_action("dice.set-dice6", None, move |dice, _, _| {
-                dice.set_dice(6);
-            });
+            // klass.install_action("dice.set-dice6", None, move |dice, _, _| {
+            //     dice.set_dice(6);
+            // });
 
-            klass.install_action("dice.set-dice12", None, move |dice, _, _| {
-                dice.set_dice(12);
-            });
+            // klass.install_action("dice.set-dice12", None, move |dice, _, _| {
+            //     dice.set_dice(12);
+            // });
 
-            klass.install_action("dice.set-dice20", None, move |dice, _, _| {
-                dice.set_dice(20);
-            });
+            // klass.install_action("dice.set-dice20", None, move |dice, _, _| {
+            //     dice.set_dice(20);
+            // });
 
             // TODO: Move to dice_row.rs
             // klass.install_action("dice.set-dice", None, move |dice, _, _| {
@@ -86,7 +92,7 @@ mod imp {
         fn constructed(&self) {
             self.parent_constructed();
 
-            self.obj().bind_spinner();
+            self.obj().bind_prefs();
         }
     }
 
@@ -125,11 +131,28 @@ impl RollitDiceSettings {
 
     // }
 
-    fn bind_spinner(&self) {
+    fn bind_prefs(&self) {
+        let imp = self.imp();
         let settings = utils::settings_manager();
+
         settings
-            .bind("max-roll", self.imp().max_roll.deref(), "value")
+            .bind("max-roll", imp.max_roll.deref(), "value")
             .build();
+
+        imp.d6
+            .connect_activate(glib::clone!(@weak self as pref => move |_| {
+                pref.set_dice(6);
+            }));
+
+        imp.d12
+            .connect_activate(glib::clone!(@weak self as pref => move |_| {
+                pref.set_dice(12);
+            }));
+
+        imp.d20
+            .connect_activate(glib::clone!(@weak self as pref => move |_| {
+                pref.set_dice(20);
+            }));
     }
 
     fn show_toast(&self, text: impl AsRef<str>, priority: adw::ToastPriority) {
