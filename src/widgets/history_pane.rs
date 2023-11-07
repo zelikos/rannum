@@ -21,6 +21,7 @@ use crate::utils;
 use crate::widgets::RollitHistoryRow;
 
 use adw::subclass::prelude::*;
+use gettextrs::gettext;
 use gtk::prelude::*;
 use gtk::{gio, glib, ListItem};
 use gtk::{NoSelection, SignalListItemFactory};
@@ -125,6 +126,28 @@ impl RollitHistoryPane {
 
         let selection_model = NoSelection::new(Some(self.results()));
         imp.history_list.set_model(Some(&selection_model));
+
+        imp.history_list.connect_activate(
+            glib::clone!(@weak self as pane, @weak selection_model => move |_, pos| {
+                let result = selection_model
+                    .upcast::<gio::ListModel>()
+                    .item(pos)
+                    .unwrap()
+                    .downcast::<RollitHistoryItem>()
+                    .unwrap();
+
+                let result: u32 = result.property("result");
+
+                let clipboard = pane.clipboard();
+                clipboard.set_text(&result.to_string());
+
+                pane.activate_action(
+                    "win.show-toast",
+                    Some(&(gettext("Result copied"), 0).to_variant()),
+                )
+                .unwrap();
+            }),
+        );
     }
 
     fn setup_factory(&self) {

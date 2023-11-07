@@ -41,16 +41,10 @@ template $RollitHistoryRow : Adw.Bin {
       }
     }
 
-    Button copy_button {
+    Image copy_icon {
       icon-name: "edit-copy-symbolic";
-      tooltip-text: _("Copy result");
-      action-name: "history.copy-result";
       halign: end;
       valign: center;
-
-      styles [
-        "circular",
-      ]
     }
   }
 }
