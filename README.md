@@ -32,4 +32,5 @@ Other GTK Rust projects used for reference:
 - [GTK Rust Template](https://gitlab.gnome.org/World/Rust/gtk-rust-template)
 - [Loupe](https://gitlab.gnome.org/Incubator/loupe)
 - [PikaBackup](https://gitlab.gnome.org/World/pika-backup)
+- [Amberol](https://gitlab.gnome.org/World/amberol)
 
