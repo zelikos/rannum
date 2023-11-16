@@ -24,7 +24,6 @@ use glib::clone;
 use gtk::glib;
 use gtk::prelude::*;
 
-use random_number::random;
 use std::time::Duration;
 
 mod imp {
@@ -89,7 +88,7 @@ impl RollitMainView {
     pub fn get_roll_result(&self) -> u32 {
         const MIN_NUM: u32 = 1;
         let max_num: u32 = self.get_max_roll();
-        let rnd_num: u32 = random!(MIN_NUM, max_num);
+        let rnd_num: u32 = fastrand::u32(MIN_NUM..=max_num);
 
         self.set_result_label(rnd_num);
 

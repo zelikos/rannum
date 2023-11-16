@@ -24,7 +24,7 @@ use gtk::{gio, glib};
 use crate::application::RollitApplication;
 use crate::config::PROFILE;
 use crate::dialogs::RollitDiceSettings;
-use crate::utils::{self, settings_manager};
+use crate::utils;
 use crate::widgets::{RollitHistoryPane, RollitMainView};
 
 mod imp {
