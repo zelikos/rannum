@@ -35,7 +35,7 @@ appdata_file = i18n.merge_file(
     output: '@BASENAME@',
     configuration: appdata_conf
   ),
-  output: '@0@.metainfo.xml'.format(application_id),
+  output: '@0@.metainfo.xml'.format(base_id),
   po_dir: podir,
   install: true,
   install_dir: datadir / 'metainfo'
@@ -73,7 +73,6 @@ endif
 
 blueprints = custom_target('blueprints',
   input: files(
-    'gtk/about.blp',
     'gtk/dice-settings.blp',
     'gtk/help-overlay.blp',
     'gtk/history-row.blp',

@@ -127,14 +127,28 @@ impl RollitApplication {
     }
 
     fn show_about(&self) {
-        let builder = gtk::Builder::from_resource("/dev/zelikos/rollit/gtk/about.ui");
+        const DEVELOPERS: [&str; 1] = ["Patrick Csikos <pcsikos@zelikos.dev>"];
 
-        let about: adw::AboutWindow = builder.object("about_window").unwrap();
-        about.set_application_icon(APP_ID);
-        about.set_version(VERSION);
+        const ARTISTS: [&str; 1] = ["Brage Fuglseth"];
+
+        const COPYRIGHT: &str = "Copyright © 2020-2023 Patrick Csikos";
+
+        let about = adw::AboutWindow::from_appdata(
+            "/dev/zelikos/rollit/dev.zelikos.rollit.metainfo.xml",
+            Some("3.4.0"),
+        );
 
         if let Some(window) = self.active_window() {
             about.set_transient_for(Some(&window));
+        }
+
+        about.set_copyright(COPYRIGHT);
+        about.set_developers(&DEVELOPERS);
+        about.set_artists(&ARTISTS);
+
+        // So we still get the specific commit in devel builds.
+        if PROFILE == "Devel" {
+            about.set_version(VERSION);
         }
 
         about.present();
