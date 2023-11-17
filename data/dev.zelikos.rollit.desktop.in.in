@@ -8,4 +8,4 @@ Icon=@icon@
 Terminal=false
 Type=Application
 StartupNotify=true
-Keywords=Die;Dice;Roll;Random;Number;Rnd;Num;
+Keywords=Die;Dice;Roll;Random;Number;Rnd;Num;rng;
