@@ -127,6 +127,10 @@ impl RollitApplication {
     }
 
     fn show_about(&self) {
+        const DEVELOPERS: [&str; 1] = ["Patrick Csikos <pcsikos@zelikos.dev>"];
+
+        const ARTISTS: [&str; 1] = ["Brage Fuglseth"];
+
         let about = adw::AboutWindow::from_appdata(
             "/dev/zelikos/rollit/dev.zelikos.rollit.metainfo.xml",
             Some("3.4.0"),
@@ -137,8 +141,8 @@ impl RollitApplication {
         }
 
         about.set_copyright(&"Copyright © 2020-2023 Patrick Csikos");
-        about.set_developers(&["Patrick Csikos <pcsikos@zelikos.dev>"]);
-        about.set_artists(&["Brage Fuglseth"]);
+        about.set_developers(&DEVELOPERS);
+        about.set_artists(&ARTISTS);
 
         // So we still get the specific commit in devel builds.
         if PROFILE == "Devel" {
