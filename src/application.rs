@@ -131,6 +131,8 @@ impl RollitApplication {
 
         const ARTISTS: [&str; 1] = ["Brage Fuglseth"];
 
+        const COPYRIGHT: &str = "Copyright © 2020-2023 Patrick Csikos";
+
         let about = adw::AboutWindow::from_appdata(
             "/dev/zelikos/rollit/dev.zelikos.rollit.metainfo.xml",
             Some("3.4.0"),
@@ -140,7 +142,7 @@ impl RollitApplication {
             about.set_transient_for(Some(&window));
         }
 
-        about.set_copyright(&"Copyright © 2020-2023 Patrick Csikos");
+        about.set_copyright(COPYRIGHT);
         about.set_developers(&DEVELOPERS);
         about.set_artists(&ARTISTS);
 
