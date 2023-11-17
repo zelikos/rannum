@@ -249,6 +249,7 @@
   <content_rating type="oars-1.1" />
   <requires>
     <display_length compare="ge">360</display_length>
+    <internet>offline-only</internet>
   </requires>
   <recommends>
     <control>keyboard</control>
