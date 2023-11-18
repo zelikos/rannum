@@ -20,6 +20,7 @@ use log::{debug, info};
 
 use adw::prelude::*;
 use adw::subclass::prelude::*;
+use gettextrs::gettext;
 use gtk::{gio, glib};
 
 use crate::config::{APP_ID, PKGDATADIR, PROFILE, VERSION};
@@ -145,6 +146,9 @@ impl RollitApplication {
         about.set_copyright(COPYRIGHT);
         about.set_developers(&DEVELOPERS);
         about.set_artists(&ARTISTS);
+
+        // Translators: Replace "translator-credits" with your names, one per line
+        about.set_translator_credits(&gettext("translator-credits"));
 
         // So we still get the specific commit in devel builds.
         if PROFILE == "Devel" {
