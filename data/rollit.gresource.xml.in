@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
   <gresource prefix="/dev/zelikos/rollit">
-    <file alias="dev.zelikos.rollit.metainfo.xml" preprocess="xml-stripblanks">dev.zelikos.rollit.metainfo.xml</file>
+    <file alias="@app-id@.metainfo.xml" preprocess="xml-stripblanks">@app-id@.metainfo.xml</file>
     <file>gtk/dice-settings.ui</file>
     <file>gtk/help-overlay.ui</file>
     <file>gtk/history-row.ui</file>
