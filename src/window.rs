@@ -31,7 +31,7 @@ mod imp {
     use super::*;
 
     #[derive(Debug, gtk::CompositeTemplate)]
-    #[template(resource = "/dev/zelikos/rollit/gtk/window.ui")]
+    #[template(resource = "/dev/zelikos/rollit/ui/window.ui")]
     pub struct RollitWindow {
         #[template_child]
         pub dice_settings_button: TemplateChild<gtk::Button>,
