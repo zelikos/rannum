@@ -135,7 +135,7 @@ impl RollitApplication {
         let copyright = "Copyright © 2020-2023 Patrick Csikos";
 
         let about = adw::AboutWindow::from_appdata(
-            "/dev/zelikos/rollit/dev.zelikos.rollit.metainfo.xml",
+            &format!("/dev/zelikos/rollit/{}.metainfo.xml", APP_ID),
             Some(VERSION),
         );
 
