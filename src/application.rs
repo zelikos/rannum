@@ -136,7 +136,11 @@ impl RollitApplication {
 
         let about = adw::AboutWindow::from_appdata(
             &format!("/dev/zelikos/rollit/{}.metainfo.xml", APP_ID),
-            Some(VERSION),
+            if PROFILE != "Devel" {
+                Some(VERSION)
+            } else {
+                None
+            },
         );
 
         if let Some(window) = self.active_window() {
