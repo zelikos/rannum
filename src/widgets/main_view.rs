@@ -30,7 +30,7 @@ mod imp {
     use super::*;
 
     #[derive(Debug, gtk::CompositeTemplate)]
-    #[template(resource = "/dev/zelikos/rollit/gtk/main-view.ui")]
+    #[template(resource = "/dev/zelikos/rollit/ui/main-view.ui")]
     pub struct RollitMainView {
         #[template_child]
         pub(super) result_label: TemplateChild<gtk::Label>,
