@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright 2020-2023 Patrick Csikos <pcsikos@zelikos.dev> -->
-<component type="desktop">
+<component type="desktop-application">
   <id>@app-id@</id>
   <translation type="gettext">@gettext-package@</translation>
   <launchable type="desktop-id">@app-id@.desktop</launchable>
