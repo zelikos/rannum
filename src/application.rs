@@ -128,11 +128,11 @@ impl RollitApplication {
     }
 
     fn show_about(&self) {
-        const DEVELOPERS: [&str; 1] = ["Patrick Csikos <pcsikos@zelikos.dev>"];
+        let developers = ["Patrick Csikos <pcsikos@zelikos.dev>"];
 
-        const ARTISTS: [&str; 1] = ["Brage Fuglseth"];
+        let artists = ["Brage Fuglseth"];
 
-        const COPYRIGHT: &str = "Copyright © 2020-2023 Patrick Csikos";
+        let copyright = "Copyright © 2020-2023 Patrick Csikos";
 
         let about = adw::AboutWindow::from_appdata(
             "/dev/zelikos/rollit/dev.zelikos.rollit.metainfo.xml",
@@ -143,9 +143,9 @@ impl RollitApplication {
             about.set_transient_for(Some(&window));
         }
 
-        about.set_copyright(COPYRIGHT);
-        about.set_developers(&DEVELOPERS);
-        about.set_artists(&ARTISTS);
+        about.set_copyright(copyright);
+        about.set_developers(&developers);
+        about.set_artists(&artists);
 
         // Translators: Replace "translator-credits" with your names, one per line
         about.set_translator_credits(&gettext("translator-credits"));
