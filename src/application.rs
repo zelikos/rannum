@@ -132,6 +132,9 @@ impl RollitApplication {
 
         let artists = ["Brage Fuglseth"];
 
+        // Translators: Replace "translator-credits" with your names, one per line
+        let translators = &gettext("translator-credits");
+
         let copyright = "Copyright © 2020-2023 Patrick Csikos";
 
         let about = adw::AboutWindow::from_appdata(
@@ -151,8 +154,7 @@ impl RollitApplication {
         about.set_developers(&developers);
         about.set_artists(&artists);
 
-        // Translators: Replace "translator-credits" with your names, one per line
-        about.set_translator_credits(&gettext("translator-credits"));
+        about.set_translator_credits(translators);
 
         // So we still get the specific commit in devel builds.
         if PROFILE == "Devel" {
