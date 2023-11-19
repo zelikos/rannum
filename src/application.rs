@@ -136,7 +136,7 @@ impl RollitApplication {
 
         let about = adw::AboutWindow::from_appdata(
             "/dev/zelikos/rollit/dev.zelikos.rollit.metainfo.xml",
-            Some("3.4.0"),
+            Some(VERSION),
         );
 
         if let Some(window) = self.active_window() {
