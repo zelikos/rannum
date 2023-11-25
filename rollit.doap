@@ -5,7 +5,7 @@
          xmlns:gnome="http://api.gnome.org/doap-extensions#"
          xmlns="http://usefulinc.com/ns/doap#">
 
-  <name>Roll-It</name>
+  <name>Chance</name>
   <shortdesc xml:lang="en">Roll the dice</shortdesc>
   <description xml:lang="en">
     Roll a six-sided die by default, or roll a custom die of up to 999 sides.
