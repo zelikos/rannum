@@ -11,6 +11,6 @@ indent_size = 4
 trim_trailing_whitespace = true
 
 # Meson, XML, Blueprint
-[*.{build,ui,xml,xml.in,xml.in.in,blp}]
+[*.{build,ui,xml,xml.in,xml.in.in,blp,doap}]
 indent_size = 2
 
