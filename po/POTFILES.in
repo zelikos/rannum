@@ -1,11 +1,11 @@
 data/dev.zelikos.rollit.desktop.in.in
 data/dev.zelikos.rollit.appdata.xml.in.in
 data/dev.zelikos.rollit.gschema.xml.in
-data/ui/dice-chooser.blp
-data/ui/help-overlay.blp
-data/ui/history-pane.blp
-data/ui/history-row.blp
-data/ui/main-view.blp
+data/ui/dialogs/dice-chooser.blp
+data/ui/dialogs/help-overlay.blp
+data/ui/widgets/history-pane.blp
+data/ui/widgets/history-row.blp
+data/ui/widgets/main-view.blp
 data/ui/window.blp
 src/application.rs
 src/main.rs

@@ -28,7 +28,7 @@ mod imp {
     use super::*;
 
     #[derive(Debug, Default, gtk::CompositeTemplate)]
-    #[template(resource = "/dev/zelikos/rollit/ui/dice-chooser.ui")]
+    #[template(resource = "/dev/zelikos/rollit/ui/dialogs/dice-chooser.ui")]
     pub struct RollitDiceChooser {
         #[template_child]
         pub dice_tray: TemplateChild<adw::PreferencesGroup>,

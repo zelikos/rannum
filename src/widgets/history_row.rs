@@ -29,7 +29,7 @@ mod imp {
     use super::*;
 
     #[derive(Debug, Default, gtk::CompositeTemplate)]
-    #[template(resource = "/dev/zelikos/rollit/ui/history-row.ui")]
+    #[template(resource = "/dev/zelikos/rollit/ui/widgets/history-row.ui")]
     pub struct RollitHistoryRow {
         #[template_child]
         pub roll_result: TemplateChild<gtk::Label>,
