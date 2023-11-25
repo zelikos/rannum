@@ -5,7 +5,7 @@
 
 # Chance
 
-Roll a six-sided die by default, or roll a custom die of up to one-hundred sides.
+Roll six-sided dice by default, or roll custom dice of up to 999 sides.
 
 ![Screenshot](data/screenshots/01_rollit_startup_light.png)
 
