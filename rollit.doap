@@ -7,7 +7,9 @@
 
   <name>Roll-It</name>
   <shortdesc xml:lang="en">Roll the dice</shortdesc>
-  <description xml:lang="en">Roll the dice</description>
+  <description xml:lang="en">
+    Roll a six-sided die by default, or roll a custom die of up to 999 sides.
+  </description>
 
   <homepage rdf:resource="https://zelikos.dev/apps/rollit" />
   <download-page rdf:resource="https://gitlab.com/zelikos/rollit" />
