@@ -31,7 +31,7 @@ mod imp {
     #[template(resource = "/dev/zelikos/rollit/ui/dice-chooser.ui")]
     pub struct RollitDiceChooser {
         #[template_child]
-        pub dice_presets: TemplateChild<adw::PreferencesGroup>,
+        pub dice_tray: TemplateChild<adw::PreferencesGroup>,
         #[template_child]
         pub d6: TemplateChild<gtk::CheckButton>,
         #[template_child]
