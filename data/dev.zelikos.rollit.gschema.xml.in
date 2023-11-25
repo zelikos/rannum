@@ -21,10 +21,10 @@
       <summary>Highest possible roll</summary>
       <description>Highest possible value a roll can result in.</description>
     </key>
-    <key name="dice-presets" type="ai">
+    <key name="dice-tray" type="ai">
       <default>[6, 12, 20]</default>
-      <summary>Dice presets</summary>
-      <description>Quickly change the number of sides the dice has.</description>
+      <summary>Dice tray</summary>
+      <description>An array of dice that can be selected from the tray.</description>
     </key>
   </schema>
 </schemalist>
