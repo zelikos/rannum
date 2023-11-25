@@ -28,10 +28,10 @@ mod imp {
     use super::*;
 
     #[derive(Debug, Default, gtk::CompositeTemplate)]
-    #[template(resource = "/dev/zelikos/rollit/ui/dice-settings.ui")]
-    pub struct RollitDiceSettings {
+    #[template(resource = "/dev/zelikos/rollit/ui/dice-chooser.ui")]
+    pub struct RollitDiceChooser {
         #[template_child]
-        pub dice_presets: TemplateChild<adw::PreferencesGroup>,
+        pub dice_tray: TemplateChild<adw::PreferencesGroup>,
         #[template_child]
         pub d6: TemplateChild<gtk::CheckButton>,
         #[template_child]
@@ -45,9 +45,9 @@ mod imp {
     }
 
     #[glib::object_subclass]
-    impl ObjectSubclass for RollitDiceSettings {
-        const NAME: &'static str = "RollitDiceSettings";
-        type Type = super::RollitDiceSettings;
+    impl ObjectSubclass for RollitDiceChooser {
+        const NAME: &'static str = "RollitDiceChooser";
+        type Type = super::RollitDiceChooser;
         type ParentType = adw::Window;
         // type ParentType = adw::PreferencesWindow;
 
@@ -75,7 +75,7 @@ mod imp {
         }
     }
 
-    impl ObjectImpl for RollitDiceSettings {
+    impl ObjectImpl for RollitDiceChooser {
         fn constructed(&self) {
             self.parent_constructed();
 
@@ -83,19 +83,19 @@ mod imp {
         }
     }
 
-    impl WidgetImpl for RollitDiceSettings {}
-    impl WindowImpl for RollitDiceSettings {}
-    impl AdwWindowImpl for RollitDiceSettings {}
-    impl PreferencesWindowImpl for RollitDiceSettings {}
+    impl WidgetImpl for RollitDiceChooser {}
+    impl WindowImpl for RollitDiceChooser {}
+    impl AdwWindowImpl for RollitDiceChooser {}
+    impl PreferencesWindowImpl for RollitDiceChooser {}
 }
 
 glib::wrapper! {
-    pub struct RollitDiceSettings(ObjectSubclass<imp::RollitDiceSettings>)
+    pub struct RollitDiceChooser(ObjectSubclass<imp::RollitDiceChooser>)
         @extends gtk::Widget, gtk::Window, adw::Window,// adw::PreferencesWindow,
         @implements gtk::Accessible, gtk::Actionable;
 }
 
-impl RollitDiceSettings {
+impl RollitDiceChooser {
     #[allow(clippy::new_without_default)]
     pub fn new() -> Self {
         glib::Object::new()

@@ -70,7 +70,7 @@ endif
 
 blueprints = custom_target('blueprints',
   input: files(
-    'ui/dice-settings.blp',
+    'ui/dice-chooser.blp',
     'ui/help-overlay.blp',
     'ui/history-row.blp',
     'ui/history-pane.blp',

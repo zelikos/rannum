@@ -1,8 +1,8 @@
 using Gtk 4.0;
 using Adw 1;
 
-template $RollitDiceSettings : Adw.Window {
-  title: _("Dice Settings");
+template $RollitDiceChooser : Adw.Window {
+  title: _("Dice Chooser");
   modal: true;
   destroy-with-parent: true;
   width-request: 300;
@@ -23,7 +23,7 @@ template $RollitDiceSettings : Adw.Window {
       Adw.PreferencesPage {
         Adw.PreferencesGroup {
           $AdwSpinRow max_roll {
-            title: _("Dice sides");
+            title: _("Current dice");
             valign: "center";
             digits: "0";
             numeric: "true";
@@ -40,8 +40,8 @@ template $RollitDiceSettings : Adw.Window {
           }
         }
 
-        Adw.PreferencesGroup dice_presets {
-          title: _("Presets");
+        Adw.PreferencesGroup dice_tray {
+          title: _("Dice tray");
 
           Adw.ActionRow {
             title: "6";

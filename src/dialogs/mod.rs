@@ -16,6 +16,6 @@
  * Authored by Patrick Csikos <pcsikos@zelikos.dev>
  */
 
-mod dice_settings;
+mod dice_chooser;
 
-pub use dice_settings::RollitDiceSettings;
+pub use dice_chooser::RollitDiceChooser;

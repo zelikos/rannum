@@ -9,14 +9,14 @@
   <name>Chance</name>
   <summary>Roll the dice</summary>
   <description>
-    <p>Roll a six-sided die by default, or roll a custom die of up to 999 sides.</p>
+    <p>Roll six-sided dice by default, or roll custom dice of up to 999 sides.</p>
 
     <p>Copy roll results to the clipboard from the history pane. Results are remembered until the app is closed or they are manually cleared.</p>
 
     <p>Keyboard shortcuts:</p>
     <ul>
       <li>Roll the dice with Ctrl+R</li>
-      <li>Open dice settings with Ctrl+,</li>
+      <li>Select dice with Ctrl+,</li>
       <li>Copy the last result with Ctrl+C</li>
       <li>Toggle the roll history pane with F9</li>
       <li>Clear roll history with Ctrl+L</li>
