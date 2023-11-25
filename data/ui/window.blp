@@ -95,13 +95,17 @@ template $RollitWindow : Adw.ApplicationWindow {
                   ]
                 }
 
-                Button dice_chooser_button {
+                Button {
                   action-name: "win.dice-chooser";
                   tooltip-text: _("Select dice");
 
                   styles [
                     "pill",
                   ]
+
+                  Adw.ButtonContent dice_chooser_label {
+                    icon-name: "dice3-symbolic";
+                  }
                 }
               }
             }
