@@ -222,7 +222,7 @@ impl RollitWindow {
     fn undo_toast(&self) {
         let imp = self.imp();
 
-        let toast = adw::Toast::new("Results cleared");
+        let toast = adw::Toast::new(&gettext("Results cleared"));
         toast.set_button_label(Some(&gettext("Undo")));
         toast.set_action_name(Some("win.undo-clear"));
         toast.set_priority(adw::ToastPriority::High);
