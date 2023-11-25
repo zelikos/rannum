@@ -165,7 +165,7 @@ impl RollitApplication {
     }
 
     pub fn run(&self) -> glib::ExitCode {
-        info!("Roll-It ({})", APP_ID);
+        info!("Chance ({})", APP_ID);
         info!("Version: {} ({})", VERSION, PROFILE);
         info!("Datadir: {}", PKGDATADIR);
 

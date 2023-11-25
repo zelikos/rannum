@@ -3,7 +3,7 @@
 
 ![Icon](data/icons/hicolor/scalable/apps/dev.zelikos.rollit.svg)
 
-# Roll-It
+# Chance
 
 Roll a six-sided die by default, or roll a custom die of up to one-hundred sides.
 
@@ -11,7 +11,7 @@ Roll a six-sided die by default, or roll a custom die of up to one-hundred sides
 
 ## Installation
 
-The latest stable release of Roll-It is available via Flathub.
+The latest stable release of Chance is available via Flathub.
 
 <a href='https://flathub.org/apps/details/dev.zelikos.rollit'><img width='240' alt='Download on Flathub' src='https://dl.flathub.org/assets/badges/flathub-badge-en.png'/></a>
 
@@ -19,9 +19,9 @@ Any version distributed elsewhere is not provided nor supported by me.
 
 ## Building
 
-Roll-It is built using GTK4 and libadwaita with the [GNOME HIG](https://developer.gnome.org/hig/) in mind.
+Chance is built using GTK4 and libadwaita with the [GNOME HIG](https://developer.gnome.org/hig/) in mind.
 
-If you would like to build and hack on Roll-It, it is highly recommended to use [GNOME Builder](https://flathub.org/apps/org.gnome.Builder).
+If you would like to build and hack on Chance, it is highly recommended to use [GNOME Builder](https://flathub.org/apps/org.gnome.Builder).
 
 Manual build instructions to come later.
 
