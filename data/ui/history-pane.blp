@@ -8,36 +8,35 @@ template $RollitHistoryPane : Adw.Bin {
     StackPage {
       name: "empty";
       child:
-      Adw.StatusPage {
-        icon-name: "dice3-symbolic";
-        title: _("No Results");
-        description: _("Press \'Roll\' to begin");
+        Adw.StatusPage {
+          icon-name: "dice3-symbolic";
+          title: _("No Results");
+          description: _("Press \'Roll\' to begin");
 
-        styles [
-          "compact",
-        ]
-      }
-
+          styles [
+            "compact",
+          ]
+        }
       ;
     }
 
     StackPage {
       name: "filled";
       child:
-      ScrolledWindow history_scroll {
-        hscrollbar-policy: never;
-        vexpand: true;
-        child:
-        ListView history_list {
-          show-separators: true;
-          single-click-activate: true;
+        ScrolledWindow history_scroll {
+          hscrollbar-policy: never;
+          vexpand: true;
+          child:
+            ListView history_list {
+              show-separators: true;
+              single-click-activate: true;
 
-          styles [
-            "navigation-sidebar",
-          ]
+              styles [
+                "navigation-sidebar",
+              ]
+            }
+          ;
         }
-        ;
-      }
       ;
     }
   }

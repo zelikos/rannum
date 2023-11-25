@@ -16,103 +16,101 @@ template $RollitWindow : Adw.ApplicationWindow {
 
   content:
     Adw.ToastOverlay toast_overlay {
-      child:
-        Adw.OverlaySplitView rollit_split_view {
-          show-sidebar: bind show_sidebar_button.active bidirectional;
-          sidebar:
-            Adw.ToolbarView {
-              [top]
-              Adw.HeaderBar {
-                show-title: false;
+      Adw.OverlaySplitView rollit_split_view {
+        show-sidebar: bind show_sidebar_button.active bidirectional;
+        sidebar:
+          Adw.ToolbarView {
+            [top]
+            Adw.HeaderBar {
+              show-title: false;
 
-                [start]
-                Button {
-                  action-name: "win.toggle-history";
-                  icon-name: "go-previous-symbolic";
-                  visible: bind rollit_split_view.collapsed;
-                }
+              [start]
+              Button {
+                action-name: "win.toggle-history";
+                icon-name: "go-previous-symbolic";
+                visible: bind rollit_split_view.collapsed;
+              }
+            }
+
+            content:
+              $RollitHistoryPane history_pane {}
+            ;
+
+            [bottom]
+            ActionBar {
+              [start]
+              Button {
+                action-name: "win.clear-history";
+                icon-name: "edit-clear-all-symbolic";
+                tooltip-text: _("Clear results");
+
+                styles [
+                  "destructive-action",
+                ]
+              }
+            }
+          }
+        ;
+
+        content:
+          Adw.ToolbarView {
+            [top]
+            Adw.HeaderBar {
+              [start]
+              ToggleButton show_sidebar_button {
+                active: true;
+                icon-name: "sidebar-show-symbolic";
+                tooltip-text: _("Toggle History List");
               }
 
-              content:
-                $RollitHistoryPane history_pane {}
-              ;
+              [end]
+              MenuButton {
+                icon-name: "open-menu-symbolic";
+                menu-model: primary_menu;
+                primary: true;
+                tooltip-text: _("Main Menu");
+              }
+            }
 
-              [bottom]
-              ActionBar {
-                [start]
-                Button {
-                  action-name: "win.clear-history";
-                  icon-name: "edit-clear-all-symbolic";
-                  tooltip-text: _("Clear results");
+            content:
+              $RollitMainView main_view {}
+            ;
 
-                  styles [
-                    "destructive-action",
-                  ]
+            [bottom]
+            Box {
+              halign: center;
+              margin-bottom: 6;
+              spacing: 6;
+
+              Button {
+                action-name: "win.roll-dice";
+                label: _("_Roll");
+                use-underline: true;
+                tooltip-text: _("Roll the dice");
+
+                styles [
+                  "suggested-action",
+                  "pill",
+                ]
+              }
+
+              Button {
+                action-name: "win.dice-chooser";
+                tooltip-text: _("Select dice");
+
+                styles [
+                  "pill",
+                ]
+
+                Adw.ButtonContent dice_chooser_label {
+                  icon-name: "dice3-symbolic";
                 }
               }
             }
-          ;
+          }
+        ;
 
-          content:
-            Adw.ToolbarView {
-              [top]
-              Adw.HeaderBar {
-                [start]
-                ToggleButton show_sidebar_button {
-                  active: true;
-                  icon-name: "sidebar-show-symbolic";
-                  tooltip-text: _("Toggle History List");
-                }
-
-                [end]
-                MenuButton {
-                  icon-name: "open-menu-symbolic";
-                  menu-model: primary_menu;
-                  primary: true;
-                  tooltip-text: _("Main Menu");
-                }
-              }
-
-              content:
-                $RollitMainView main_view {}
-              ;
-
-              [bottom]
-              Box {
-                halign: center;
-                margin-bottom: 6;
-                spacing: 6;
-
-                Button {
-                  action-name: "win.roll-dice";
-                  label: _("_Roll");
-                  use-underline: true;
-                  tooltip-text: _("Roll the dice");
-
-                  styles [
-                    "suggested-action",
-                    "pill",
-                  ]
-                }
-
-                Button {
-                  action-name: "win.dice-chooser";
-                  tooltip-text: _("Select dice");
-
-                  styles [
-                    "pill",
-                  ]
-
-                  Adw.ButtonContent dice_chooser_label {
-                    icon-name: "dice3-symbolic";
-                  }
-                }
-              }
-            }
-          ;
-
-        }
-      ;
+      }
     }
   ;
 }
