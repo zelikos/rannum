@@ -3,7 +3,7 @@
   <gresource prefix="/dev/zelikos/rollit">
     <file alias="@app-id@.metainfo.xml" preprocess="xml-stripblanks">@app-id@.metainfo.xml</file>
     <file alias="gtk/help-overlay.ui">ui/help-overlay.ui</file>
-    <file>ui/dice-settings.ui</file>
+    <file>ui/dice-chooser.ui</file>
     <file>ui/history-row.ui</file>
     <file>ui/history-pane.ui</file>
     <file>ui/main-view.ui</file>

@@ -23,7 +23,7 @@ use gtk::{gio, glib};
 
 use crate::application::RollitApplication;
 use crate::config::PROFILE;
-use crate::dialogs::RollitDiceSettings;
+use crate::dialogs::RollitDiceChooser;
 use crate::utils;
 use crate::widgets::{RollitHistoryPane, RollitMainView};
 
@@ -34,7 +34,7 @@ mod imp {
     #[template(resource = "/dev/zelikos/rollit/ui/window.ui")]
     pub struct RollitWindow {
         #[template_child]
-        pub dice_settings_button: TemplateChild<gtk::Button>,
+        pub dice_chooser_button: TemplateChild<gtk::Button>,
         #[template_child]
         pub history_pane: TemplateChild<RollitHistoryPane>,
         #[template_child]
@@ -48,7 +48,7 @@ mod imp {
     impl Default for RollitWindow {
         fn default() -> Self {
             Self {
-                dice_settings_button: TemplateChild::default(),
+                dice_chooser_button: TemplateChild::default(),
                 history_pane: TemplateChild::default(),
                 main_view: TemplateChild::default(),
                 rollit_split_view: TemplateChild::default(),
@@ -87,8 +87,8 @@ mod imp {
                 win.toggle_history();
             });
 
-            klass.install_action("win.dice-settings", None, move |win, _, _| {
-                win.show_dice_settings();
+            klass.install_action("win.dice-chooser", None, move |win, _, _| {
+                win.show_dice_chooser();
             });
 
             klass.install_action("win.show-toast", Some("(si)"), move |win, _, var| {
@@ -150,7 +150,7 @@ impl RollitWindow {
         settings.bind("window-maximized", self, "maximized").build();
 
         let val = settings.int("max-roll");
-        self.imp().dice_settings_button.set_label(&val.to_string());
+        self.imp().dice_chooser_button.set_label(&val.to_string());
     }
 
     fn roll_dice(&self) {
@@ -195,18 +195,18 @@ impl RollitWindow {
         }
     }
 
-    fn show_dice_settings(&self) {
-        let dice_settings = RollitDiceSettings::new();
+    fn show_dice_chooser(&self) {
+        let dice_chooser = RollitDiceChooser::new();
 
-        dice_settings.set_transient_for(Some(self));
+        dice_chooser.set_transient_for(Some(self));
 
-        dice_settings.connect_destroy(glib::clone!(@weak self as win => move |_| {
+        dice_chooser.connect_destroy(glib::clone!(@weak self as win => move |_| {
             let settings = utils::settings_manager();
             let val = settings.int("max-roll");
-            win.imp().dice_settings_button.set_label(&val.to_string());
+            win.imp().dice_chooser_button.set_label(&val.to_string());
         }));
 
-        dice_settings.present();
+        dice_chooser.present();
     }
 
     fn show_toast(&self, text: impl AsRef<str>, priority: adw::ToastPriority) {
