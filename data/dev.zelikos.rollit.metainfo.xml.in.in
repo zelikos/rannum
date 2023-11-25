@@ -16,7 +16,7 @@
     <p>Keyboard shortcuts:</p>
     <ul>
       <li>Roll the dice with Ctrl+R</li>
-      <li>Open dice settings with Ctrl+,</li>
+      <li>Select dice with Ctrl+,</li>
       <li>Copy the last result with Ctrl+C</li>
       <li>Toggle the roll history pane with F9</li>
       <li>Clear roll history with Ctrl+L</li>
