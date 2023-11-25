@@ -7,6 +7,9 @@ data/ui/history-pane.blp
 data/ui/history-row.blp
 data/ui/main-view.blp
 data/ui/window.blp
-src/widgets/history_row.rs
+src/application.rs
+src/main.rs
+src/window.rs
+src/widgets/history_pane.rs
 src/widgets/main_view.rs
 
