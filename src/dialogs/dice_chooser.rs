@@ -39,7 +39,7 @@ mod imp {
         #[template_child]
         pub d20: TemplateChild<gtk::CheckButton>,
         #[template_child]
-        pub max_roll: TemplateChild<adw::SpinRow>,
+        pub current_dice: TemplateChild<adw::SpinRow>,
         #[template_child]
         pub toast_overlay: TemplateChild<adw::ToastOverlay>,
     }
