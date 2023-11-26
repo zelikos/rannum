@@ -33,12 +33,6 @@ mod imp {
         #[template_child]
         pub dice_tray: TemplateChild<adw::PreferencesGroup>,
         #[template_child]
-        pub d6: TemplateChild<gtk::CheckButton>,
-        #[template_child]
-        pub d12: TemplateChild<gtk::CheckButton>,
-        #[template_child]
-        pub d20: TemplateChild<gtk::CheckButton>,
-        #[template_child]
         pub current_dice: TemplateChild<adw::SpinRow>,
         #[template_child]
         pub toast_overlay: TemplateChild<adw::ToastOverlay>,
@@ -62,11 +56,6 @@ mod imp {
 
             // klass.install_action("dice.add-preset", None, move |dice, _, _| {
             //     dice.add_preset();
-            // });
-
-            // TODO: Move to dice_row.rs
-            // klass.install_action("dice.set-dice", None, move |dice, _, _| {
-            //     dice.set_dice();
             // });
         }
 
@@ -123,32 +112,10 @@ impl RollitDiceChooser {
         let settings = utils::settings_manager();
 
         settings
-            .bind("max-roll", imp.max_roll.deref(), "value")
+            .bind("max-roll", imp.current_dice.deref(), "value")
             .build();
 
-        let current_val: i32 = imp.max_roll.value() as i32;
-
-        match current_val {
-            6 => imp.d6.set_active(true),
-            12 => imp.d12.set_active(true),
-            20 => imp.d20.set_active(true),
-            _ => log::debug!("No presets match current value"),
-        }
-
-        imp.d6
-            .connect_activate(glib::clone!(@weak self as pref => move |_| {
-                pref.set_dice(6);
-            }));
-
-        imp.d12
-            .connect_activate(glib::clone!(@weak self as pref => move |_| {
-                pref.set_dice(12);
-            }));
-
-        imp.d20
-            .connect_activate(glib::clone!(@weak self as pref => move |_| {
-                pref.set_dice(20);
-            }));
+        let current_val: i32 = imp.current_dice.value() as i32;
     }
 
     fn show_toast(&self, text: impl AsRef<str>, priority: adw::ToastPriority) {
@@ -162,8 +129,8 @@ impl RollitDiceChooser {
     }
 
     // TODO: Move to dice_row.rs
-    fn set_dice(&self, sides: i32) {
-        let settings = utils::settings_manager();
-        settings.set_int("max-roll", sides).unwrap();
-    }
+    // fn set_dice(&self, sides: i32) {
+    //     let settings = utils::settings_manager();
+    //     settings.set_int("max-roll", sides).unwrap();
+    // }
 }
