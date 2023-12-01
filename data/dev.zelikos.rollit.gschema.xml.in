@@ -21,6 +21,11 @@
       <summary>Highest possible roll</summary>
       <description>Highest possible value a roll can result in.</description>
     </key>
+    <key name="dice-tray" type="as">
+      <default>["6", "12", "20"]</default>
+      <summary>Dice tray</summary>
+      <description>Dice stored in the tray for quick access.</description>
+    </key>
   </schema>
 </schemalist>
 
