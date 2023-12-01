@@ -21,7 +21,6 @@ use crate::utils;
 
 use core::ops::Deref;
 
-use adw::prelude::PreferencesGroupExt;
 use adw::subclass::prelude::*;
 use gtk::glib;
 use gtk::prelude::*;
@@ -33,7 +32,7 @@ mod imp {
     #[template(resource = "/dev/zelikos/rollit/ui/dialogs/dice-chooser.ui")]
     pub struct RollitDiceChooser {
         #[template_child]
-        pub dice_tray: TemplateChild<adw::PreferencesGroup>,
+        pub dice_tray: TemplateChild<gtk::ListBox>,
         #[template_child]
         pub current_dice: TemplateChild<adw::SpinRow>,
         #[template_child]
@@ -112,9 +111,7 @@ impl RollitDiceChooser {
 
     fn load_tray(&self) {
         let settings = utils::settings_manager();
-
         let dice_vec: glib::StrV = settings.strv("dice-tray");
-
         for dice in &dice_vec {
             let dice_val = match dice.parse::<u32>() {
                 Ok(val) => val,
@@ -126,9 +123,16 @@ impl RollitDiceChooser {
 
             let row = RollitTrayRow::from_int(dice_val);
 
-            self.imp().dice_tray.add(&row);
+            self.imp().dice_tray.append(&row);
         }
     }
+
+    // fn add_to_tray(&self, val: i32) {}
+
+    // fn save_tray(&self) {
+    //     let settings = utils::settings_manager();
+    //     let dice_vec: glib::StrV = glib::StrV::new();
+    // }
 
     fn bind_prefs(&self) {
         let imp = self.imp();

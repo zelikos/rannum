@@ -40,8 +40,14 @@ template $RollitDiceChooser : Adw.Window {
               }
             }
 
-            Adw.PreferencesGroup dice_tray {
+            Adw.PreferencesGroup {
               title: _("Dice tray");
+
+              Gtk.ListBox dice_tray {
+                styles [
+                  "boxed-list",
+                ]
+              }
             }
           }
 
