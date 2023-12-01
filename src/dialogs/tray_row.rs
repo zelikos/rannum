@@ -18,8 +18,6 @@
 
 use crate::utils;
 
-use core::ops::Deref;
-
 use adw::subclass::prelude::*;
 use gtk::glib;
 use gtk::prelude::*;
@@ -88,6 +86,8 @@ impl RollitTrayRow {
 
     pub fn set_max_roll(&self) {
         let settings = utils::settings_manager();
-        settings.set_int("max-roll", self.imp().dice_value.get() as i32);
+        let val = self.imp().dice_value.get() as i32;
+        let _ = settings.set_int("max-roll", val);
+        log::debug!("Dice value set to {}", val);
     }
 }
