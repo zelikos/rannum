@@ -29,7 +29,8 @@ use std::cell::Cell;
 mod imp {
     use super::*;
 
-    #[derive(Default, Debug)]
+    #[derive(Default, Debug, gtk::CompositeTemplate)]
+    #[template(resource = "/dev/zelikos/rollit/ui/dialogs/tray-row.ui")]
     pub struct RollitTrayRow {
         pub dice_value: Cell<u32>,
     }
@@ -41,11 +42,15 @@ mod imp {
         type ParentType = adw::ActionRow;
 
         fn class_init(klass: &mut Self::Class) {
-            // klass.bind_template();
+            klass.bind_template();
+
+            klass.install_action("row.set-dice", None, move |row, _, _| {
+                row.set_max_roll();
+            });
         }
 
         fn instance_init(obj: &glib::subclass::InitializingObject<Self>) {
-            // obj.init_template();
+            obj.init_template();
         }
     }
 
@@ -58,20 +63,13 @@ mod imp {
     impl WidgetImpl for RollitTrayRow {}
     impl ListBoxRowImpl for RollitTrayRow {}
     impl PreferencesRowImpl for RollitTrayRow {}
-    impl ActionRowImpl for RollitTrayRow {
-        fn activate(&self) {
-            let settings = utils::settings_manager();
-            let roll = self.dice_value.get() as i32;
-
-            settings.set_int("max-roll", roll).unwrap();
-        }
-    }
+    impl ActionRowImpl for RollitTrayRow {}
 }
 
 glib::wrapper! {
     pub struct RollitTrayRow(ObjectSubclass<imp::RollitTrayRow>)
-        @extends gtk::Widget, adw::ActionRow,
-        @implements gtk::Accessible, gtk::Actionable;
+        @extends gtk::Widget, gtk::ListBoxRow, adw::PreferencesRow, adw::ActionRow,
+        @implements gtk::Accessible, gtk::Actionable, gtk::Buildable;
 }
 
 impl RollitTrayRow {
@@ -89,6 +87,7 @@ impl RollitTrayRow {
     }
 
     pub fn set_max_roll(&self) {
-        // TODO
+        let settings = utils::settings_manager();
+        settings.set_int("max-roll", self.imp().dice_value.get() as i32);
     }
 }

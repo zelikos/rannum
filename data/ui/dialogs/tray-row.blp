@@ -1,0 +1,12 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $RollitTrayRow : Adw.ActionRow {
+  action-name: "row.set-dice";
+  activatable: true;
+
+  [prefix]
+  Gtk.Image {
+    icon-name: "dice3-symbolic";
+  }
+}

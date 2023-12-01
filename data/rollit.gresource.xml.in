@@ -4,6 +4,7 @@
     <file alias="@app-id@.metainfo.xml" preprocess="xml-stripblanks">@app-id@.metainfo.xml</file>
     <file alias="gtk/help-overlay.ui">ui/dialogs/help-overlay.ui</file>
     <file>ui/dialogs/dice-chooser.ui</file>
+    <file>ui/dialogs/tray-row.ui</file>
     <file>ui/widgets/history-row.ui</file>
     <file>ui/widgets/history-pane.ui</file>
     <file>ui/widgets/main-view.ui</file>
