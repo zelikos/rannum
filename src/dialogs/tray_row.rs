@@ -76,6 +76,13 @@ impl RollitTrayRow {
         glib::Object::new()
     }
 
+    pub fn from_int(val: u32) -> Self {
+        let this: RollitTrayRow = glib::Object::new();
+        this.set_dice_value(val);
+        this.set_property("title", format!("{}-sided", val.to_string()));
+        this
+    }
+
     pub fn dice_value(&self) -> u32 {
         self.imp().dice_value.get()
     }

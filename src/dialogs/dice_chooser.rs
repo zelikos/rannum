@@ -116,7 +116,6 @@ impl RollitDiceChooser {
         let dice_vec: glib::StrV = settings.strv("dice-tray");
 
         for dice in &dice_vec {
-            let row = RollitTrayRow::new();
             let dice_val = match dice.parse::<u32>() {
                 Ok(val) => val,
                 Err(e) => {
@@ -124,10 +123,8 @@ impl RollitDiceChooser {
                     0
                 }
             };
-            row.set_dice_value(dice_val);
 
-            let title = format!("{}-sided", dice);
-            row.set_property("title", title);
+            let row = RollitTrayRow::from_int(dice_val);
 
             self.imp().dice_tray.add(&row);
         }
