@@ -16,13 +16,19 @@
  * Authored by Patrick Csikos <pcsikos@zelikos.dev>
  */
 
+use crate::dialogs::RollitTrayRow;
 use crate::utils;
 
 use core::ops::Deref;
 
+use adw::prelude::PreferencesGroupExt;
 use adw::subclass::prelude::*;
 use gtk::glib;
 use gtk::prelude::*;
+
+use std::io::Read;
+
+const DEFAULT_TRAY: [&str; 3] = ["6", "12", "20"];
 
 mod imp {
     use super::*;
@@ -69,6 +75,7 @@ mod imp {
             self.parent_constructed();
 
             self.obj().bind_prefs();
+            self.obj().load_tray();
         }
     }
 
@@ -107,6 +114,58 @@ impl RollitDiceChooser {
 
     // }
 
+    fn load_tray(&self) {
+        let dice_vec = match self.load_file() {
+            Ok(vec) => vec,
+            Err(e) => {
+                log::debug!("Tray not found: {}", e);
+                let mut vec: Vec<String> = Vec::new();
+                for entry in &DEFAULT_TRAY {
+                    vec.push(entry.to_string());
+                }
+                vec
+            }
+        };
+
+        for dice in &dice_vec {
+            let row = RollitTrayRow::new();
+            let dice_val = match dice.parse::<u32>() {
+                Ok(val) => val,
+                Err(e) => {
+                    log::debug!("{}", e);
+                    0
+                }
+            };
+            row.set_dice_value(dice_val);
+
+            let title = format!("{}-sided", dice);
+            row.set_property("title", title);
+
+            self.imp().dice_tray.add(&row);
+        }
+    }
+
+    fn load_file(&self) -> Result<Vec<String>, std::io::Error> {
+        let mut f = std::fs::OpenOptions::new()
+            .write(true)
+            .create(true)
+            .read(true)
+            .open("$XDG_DATA_DIR/rollit/dice_tray.txt")?;
+        let mut file_contents = String::new();
+        f.read_to_string(&mut file_contents)?;
+
+        let mut dice_vec = Vec::new();
+        for dice in file_contents.lines() {
+            dice_vec.push(dice.to_string());
+        }
+
+        log::debug!("Tray file loaded:");
+        for dice in &dice_vec {
+            log::debug!("{}", dice);
+        }
+        Ok(dice_vec)
+    }
+
     fn bind_prefs(&self) {
         let imp = self.imp();
         let settings = utils::settings_manager();
@@ -114,8 +173,6 @@ impl RollitDiceChooser {
         settings
             .bind("max-roll", imp.current_dice.deref(), "value")
             .build();
-
-        let current_val: i32 = imp.current_dice.value() as i32;
     }
 
     fn show_toast(&self, text: impl AsRef<str>, priority: adw::ToastPriority) {
@@ -127,10 +184,4 @@ impl RollitDiceChooser {
 
         imp.toast_overlay.add_toast(toast);
     }
-
-    // TODO: Move to dice_row.rs
-    // fn set_dice(&self, sides: i32) {
-    //     let settings = utils::settings_manager();
-    //     settings.set_int("max-roll", sides).unwrap();
-    // }
 }
