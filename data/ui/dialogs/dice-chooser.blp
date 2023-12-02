@@ -14,65 +14,65 @@ template $RollitDiceChooser : Adw.Window {
     }
   }
   content:
-  Adw.ToastOverlay toast_overlay {
-    Adw.ToolbarView {
-      [top]
-      Adw.HeaderBar {
-      }
-      content:
-      Adw.PreferencesPage {
-        Adw.PreferencesGroup {
-          $AdwSpinRow max_roll {
-            title: _("Current dice");
-            valign: "center";
-            digits: "0";
-            numeric: "true";
-            adjustment:
-            Adjustment {
-              page-increment: 5;
-              step-increment: 1;
-              lower: 1;
-              upper: 999;
-              value: 20;
-            }
-
-            ;
-          }
+    Adw.ToastOverlay toast_overlay {
+      Adw.ToolbarView {
+        [top]
+        Adw.HeaderBar {
         }
+        content:
+          Adw.PreferencesPage {
+            Adw.PreferencesGroup {
+              Adw.SpinRow current_dice {
+                title: _("Current dice");
+                valign: center;
+                digits: 0;
+                numeric: true;
+                adjustment:
+                Adjustment {
+                  page-increment: 5;
+                  step-increment: 1;
+                  lower: 1;
+                  upper: 999;
+                }
 
-        Adw.PreferencesGroup dice_tray {
-          title: _("Dice tray");
+                ;
+              }
+              Adw.ActionRow add_button {
+                action-name: "dice.add-to-tray";
+                activatable: true;
+                title: _("Add to tray");
 
-          Adw.ActionRow {
-            title: "6";
-            activatable-widget: d6;
-            [prefix]
-            CheckButton d6 {}
-          }
+                [suffix]
+                Image {
+                  icon-name: "list-add-symbolic";
+                }
+              }
+            }
 
-          Adw.ActionRow {
-            title: "12";
-            activatable-widget: d12;
-            [prefix]
-            CheckButton d12 {
-              group: d6;
+            Adw.PreferencesGroup {
+              title: _("Dice tray");
+
+              [header-suffix]
+              Button remove_button {
+                action-name: "dice.remove-from-tray";
+                icon-name: "list-remove-symbolic";
+
+                styles [
+                  "destructive-action",
+                ]
+              }
+
+              Gtk.ListBox dice_tray {
+                styles [
+                  "boxed-list",
+                ]
+              }
             }
           }
 
-          Adw.ActionRow {
-            title: "20";
-            activatable-widget: d20;
-            [prefix]
-            CheckButton d20 {
-              group: d6;
-            }
-          }
-        }
+        ;
       }
-
-      ;
     }
-  }
 
   ;
 }

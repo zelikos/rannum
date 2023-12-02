@@ -17,5 +17,7 @@
  */
 
 mod dice_chooser;
+mod tray_row;
 
 pub use dice_chooser::RollitDiceChooser;
+pub use tray_row::RollitTrayRow;

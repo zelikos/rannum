@@ -72,6 +72,7 @@ blueprints = custom_target('blueprints',
   input: files(
     'ui/dialogs/dice-chooser.blp',
     'ui/dialogs/help-overlay.blp',
+    'ui/dialogs/tray-row.blp',
     'ui/widgets/history-row.blp',
     'ui/widgets/history-pane.blp',
     'ui/widgets/main-view.blp',

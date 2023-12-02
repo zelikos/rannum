@@ -16,6 +16,7 @@
  * Authored by Patrick Csikos <pcsikos@zelikos.dev>
  */
 
+use crate::dialogs::RollitTrayRow;
 use crate::utils;
 
 use core::ops::Deref;
@@ -31,15 +32,9 @@ mod imp {
     #[template(resource = "/dev/zelikos/rollit/ui/dialogs/dice-chooser.ui")]
     pub struct RollitDiceChooser {
         #[template_child]
-        pub dice_tray: TemplateChild<adw::PreferencesGroup>,
+        pub dice_tray: TemplateChild<gtk::ListBox>,
         #[template_child]
-        pub d6: TemplateChild<gtk::CheckButton>,
-        #[template_child]
-        pub d12: TemplateChild<gtk::CheckButton>,
-        #[template_child]
-        pub d20: TemplateChild<gtk::CheckButton>,
-        #[template_child]
-        pub max_roll: TemplateChild<adw::SpinRow>,
+        pub current_dice: TemplateChild<adw::SpinRow>,
         #[template_child]
         pub toast_overlay: TemplateChild<adw::ToastOverlay>,
     }
@@ -60,14 +55,13 @@ mod imp {
                 }
             });
 
-            // klass.install_action("dice.add-preset", None, move |dice, _, _| {
-            //     dice.add_preset();
-            // });
+            klass.install_action("dice.add-to-tray", None, move |dice, _, _| {
+                dice.add_to_tray();
+            });
 
-            // TODO: Move to dice_row.rs
-            // klass.install_action("dice.set-dice", None, move |dice, _, _| {
-            //     dice.set_dice();
-            // });
+            klass.install_action("dice.remove-from-tray", None, move |dice, _, _| {
+                dice.remove_from_tray();
+            });
         }
 
         fn instance_init(obj: &glib::subclass::InitializingObject<Self>) {
@@ -80,6 +74,7 @@ mod imp {
             self.parent_constructed();
 
             self.obj().bind_prefs();
+            self.obj().load_tray();
         }
     }
 
@@ -101,54 +96,77 @@ impl RollitDiceChooser {
         glib::Object::new()
     }
 
-    // fn add_preset(&self) {
-    //     TODO: Actually add presets
-    //     let settings = utils::settings_manager();
-    //     let max = settings.int("max-roll");
-    //     log::debug!("{} added as a preset", max);
-    //     self.activate_action(
-    //         "dice.show-toast",
-    //         Some(&(gettext("Preset added"), 1).to_variant()),
-    //     )
-    //     .unwrap();
-    // }
+    fn add_to_tray(&self) {
+        let settings = utils::settings_manager();
+        let mut tray_items = settings.strv("dice-tray");
+        let current = self.imp().current_dice.value() as u32;
 
-    // TODO: Delete specified preset
-    // fn del_preset(&self) {
+        if tray_items.contains(current.to_string()) {
+            log::debug!("{} already in tray", current);
+        } else {
+            tray_items.push(current.to_string().into());
+            settings.set_strv("dice-tray", tray_items);
+            self.imp()
+                .dice_tray
+                .append(&RollitTrayRow::from_int(current));
+            log::debug!("{} added to tray", current);
+        }
+    }
 
-    // }
+    fn remove_from_tray(&self) {
+        let settings = utils::settings_manager();
+        let mut tray_items = settings.strv("dice-tray");
+        let current = self.imp().dice_tray.selected_row().unwrap();
+        let val = current
+            .clone()
+            .downcast::<RollitTrayRow>()
+            .unwrap()
+            .dice_value();
+
+        let mut i: usize = 0;
+        for dice in &tray_items {
+            if dice.to_string() == val.to_string() {
+                break;
+            } else {
+                i += 1;
+            }
+        }
+
+        tray_items.remove(i);
+        self.imp().dice_tray.remove(&current);
+        log::debug!("{} removed from tray", val);
+
+        settings.set_strv("dice-tray", tray_items);
+    }
+
+    fn load_tray(&self) {
+        let settings = utils::settings_manager();
+        let tray_items: glib::StrV = settings.strv("dice-tray");
+
+        log::debug!("Tray contents:");
+        for dice in &tray_items {
+            let dice_val = match dice.parse::<u32>() {
+                Ok(val) => val,
+                Err(e) => {
+                    log::debug!("{}", e);
+                    0
+                }
+            };
+
+            let row = RollitTrayRow::from_int(dice_val);
+
+            self.imp().dice_tray.append(&row);
+            log::debug!("{}-sided dice", dice_val);
+        }
+    }
 
     fn bind_prefs(&self) {
         let imp = self.imp();
         let settings = utils::settings_manager();
 
         settings
-            .bind("max-roll", imp.max_roll.deref(), "value")
+            .bind("max-roll", imp.current_dice.deref(), "value")
             .build();
-
-        let current_val: i32 = imp.max_roll.value() as i32;
-
-        match current_val {
-            6 => imp.d6.set_active(true),
-            12 => imp.d12.set_active(true),
-            20 => imp.d20.set_active(true),
-            _ => log::debug!("No presets match current value"),
-        }
-
-        imp.d6
-            .connect_activate(glib::clone!(@weak self as pref => move |_| {
-                pref.set_dice(6);
-            }));
-
-        imp.d12
-            .connect_activate(glib::clone!(@weak self as pref => move |_| {
-                pref.set_dice(12);
-            }));
-
-        imp.d20
-            .connect_activate(glib::clone!(@weak self as pref => move |_| {
-                pref.set_dice(20);
-            }));
     }
 
     fn show_toast(&self, text: impl AsRef<str>, priority: adw::ToastPriority) {
@@ -159,11 +177,5 @@ impl RollitDiceChooser {
         toast.set_timeout(1);
 
         imp.toast_overlay.add_toast(toast);
-    }
-
-    // TODO: Move to dice_row.rs
-    fn set_dice(&self, sides: i32) {
-        let settings = utils::settings_manager();
-        settings.set_int("max-roll", sides).unwrap();
     }
 }
