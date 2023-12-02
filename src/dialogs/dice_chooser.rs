@@ -44,7 +44,6 @@ mod imp {
         const NAME: &'static str = "RollitDiceChooser";
         type Type = super::RollitDiceChooser;
         type ParentType = adw::Window;
-        // type ParentType = adw::PreferencesWindow;
 
         fn class_init(klass: &mut Self::Class) {
             klass.bind_template();
@@ -81,12 +80,11 @@ mod imp {
     impl WidgetImpl for RollitDiceChooser {}
     impl WindowImpl for RollitDiceChooser {}
     impl AdwWindowImpl for RollitDiceChooser {}
-    impl PreferencesWindowImpl for RollitDiceChooser {}
 }
 
 glib::wrapper! {
     pub struct RollitDiceChooser(ObjectSubclass<imp::RollitDiceChooser>)
-        @extends gtk::Widget, gtk::Window, adw::Window,// adw::PreferencesWindow,
+        @extends gtk::Widget, gtk::Window, adw::Window,
         @implements gtk::Accessible, gtk::Actionable;
 }
 
