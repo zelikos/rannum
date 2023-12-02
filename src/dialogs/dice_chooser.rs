@@ -58,6 +58,10 @@ mod imp {
             klass.install_action("dice.add-to-tray", None, move |dice, _, _| {
                 dice.add_to_tray();
             });
+
+            klass.install_action("dice.remove-from-tray", None, move |dice, _, _| {
+                dice.remove_from_tray();
+            });
         }
 
         fn instance_init(obj: &glib::subclass::InitializingObject<Self>) {
@@ -109,14 +113,37 @@ impl RollitDiceChooser {
         }
     }
 
-    // TODO: Delete specified preset
-    // fn del_preset(&self) {
+    fn remove_from_tray(&self) {
+        let settings = utils::settings_manager();
+        let mut tray_items = settings.strv("dice-tray");
+        let current = self.imp().dice_tray.selected_row().unwrap();
+        let val = current
+            .clone()
+            .downcast::<RollitTrayRow>()
+            .unwrap()
+            .dice_value();
 
-    // }
+        let mut i: usize = 0;
+        for dice in &tray_items {
+            if dice.to_string() == val.to_string() {
+                break;
+            } else {
+                i += 1;
+            }
+        }
+
+        tray_items.remove(i);
+        self.imp().dice_tray.remove(&current);
+        log::debug!("{} removed from tray", val);
+
+        settings.set_strv("dice-tray", tray_items);
+    }
 
     fn load_tray(&self) {
         let settings = utils::settings_manager();
         let tray_items: glib::StrV = settings.strv("dice-tray");
+
+        log::debug!("Tray contents:");
         for dice in &tray_items {
             let dice_val = match dice.parse::<u32>() {
                 Ok(val) => val,
@@ -129,10 +156,8 @@ impl RollitDiceChooser {
             let row = RollitTrayRow::from_int(dice_val);
 
             self.imp().dice_tray.append(&row);
-            log::debug!("{}-sided dice added to tray", dice_val);
+            log::debug!("{}-sided dice", dice_val);
         }
-
-
     }
 
     fn bind_prefs(&self) {

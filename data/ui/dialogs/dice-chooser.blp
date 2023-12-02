@@ -52,6 +52,16 @@ template $RollitDiceChooser : Adw.Window {
             Adw.PreferencesGroup {
               title: _("Dice tray");
 
+              [header-suffix]
+              Button remove_button {
+                action-name: "dice.remove-from-tray";
+                icon-name: "list-remove-symbolic";
+
+                styles [
+                  "destructive-action",
+                ]
+              }
+
               Gtk.ListBox dice_tray {
                 styles [
                   "boxed-list",
