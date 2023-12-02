@@ -55,9 +55,9 @@ mod imp {
                 }
             });
 
-            // klass.install_action("dice.add-preset", None, move |dice, _, _| {
-            //     dice.add_preset();
-            // });
+            klass.install_action("dice.add-to-tray", None, move |dice, _, _| {
+                dice.add_to_tray();
+            });
         }
 
         fn instance_init(obj: &glib::subclass::InitializingObject<Self>) {
@@ -92,17 +92,22 @@ impl RollitDiceChooser {
         glib::Object::new()
     }
 
-    // fn add_preset(&self) {
-    //     TODO: Actually add presets
-    //     let settings = utils::settings_manager();
-    //     let max = settings.int("max-roll");
-    //     log::debug!("{} added as a preset", max);
-    //     self.activate_action(
-    //         "dice.show-toast",
-    //         Some(&(gettext("Preset added"), 1).to_variant()),
-    //     )
-    //     .unwrap();
-    // }
+    fn add_to_tray(&self) {
+        let settings = utils::settings_manager();
+        let mut tray_items = settings.strv("dice-tray");
+        let current = self.imp().current_dice.value() as u32;
+
+        if tray_items.contains(current.to_string()) {
+            log::debug!("{} already in tray", current);
+        } else {
+            tray_items.push(current.to_string().into());
+            settings.set_strv("dice-tray", tray_items);
+            self.imp()
+                .dice_tray
+                .append(&RollitTrayRow::from_int(current));
+            log::debug!("{} added to tray", current);
+        }
+    }
 
     // TODO: Delete specified preset
     // fn del_preset(&self) {
@@ -111,8 +116,8 @@ impl RollitDiceChooser {
 
     fn load_tray(&self) {
         let settings = utils::settings_manager();
-        let dice_vec: glib::StrV = settings.strv("dice-tray");
-        for dice in &dice_vec {
+        let tray_items: glib::StrV = settings.strv("dice-tray");
+        for dice in &tray_items {
             let dice_val = match dice.parse::<u32>() {
                 Ok(val) => val,
                 Err(e) => {
@@ -124,15 +129,11 @@ impl RollitDiceChooser {
             let row = RollitTrayRow::from_int(dice_val);
 
             self.imp().dice_tray.append(&row);
+            log::debug!("{}-sided dice added to tray", dice_val);
         }
+
+
     }
-
-    // fn add_to_tray(&self, val: i32) {}
-
-    // fn save_tray(&self) {
-    //     let settings = utils::settings_manager();
-    //     let dice_vec: glib::StrV = glib::StrV::new();
-    // }
 
     fn bind_prefs(&self) {
         let imp = self.imp();

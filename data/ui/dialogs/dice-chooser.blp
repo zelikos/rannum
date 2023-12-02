@@ -22,21 +22,30 @@ template $RollitDiceChooser : Adw.Window {
         content:
           Adw.PreferencesPage {
             Adw.PreferencesGroup {
-              $AdwSpinRow current_dice {
+              Adw.SpinRow current_dice {
                 title: _("Current dice");
-                valign: "center";
-                digits: "0";
-                numeric: "true";
+                valign: center;
+                digits: 0;
+                numeric: true;
                 adjustment:
                 Adjustment {
                   page-increment: 5;
                   step-increment: 1;
                   lower: 1;
                   upper: 999;
-                  value: 20;
                 }
 
                 ;
+              }
+              Adw.ActionRow add_button {
+                action-name: "dice.add-to-tray";
+                activatable: true;
+                title: _("Add to tray");
+
+                [suffix]
+                Image {
+                  icon-name: "list-add-symbolic";
+                }
               }
             }
 
