@@ -26,7 +26,11 @@
   <screenshots>
     <screenshot type="default">
       <caption>See every roll result</caption>
-      <image>https://gitlab.com/zelikos/rollit/-/raw/main/data/screenshots/01_rollit_wide.png</image>
+      <image>https://gitlab.com/zelikos/rollit/-/raw/main/data/screenshots/01_rollit_wide_1.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>See every roll result, in dark</caption>
+      <image>https://gitlab.com/zelikos/rollit/-/raw/main/data/screenshots/02_rollit_wide_2.png</image>
     </screenshot>
     <screenshot>
       <caption>Focus on one result at a time</caption>
