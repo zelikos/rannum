@@ -7,7 +7,7 @@
 
 Roll six-sided dice by default, or roll custom dice of up to 999 sides.
 
-![Screenshot](data/screenshots/01_rollit_startup_light.png)
+![Screenshot](data/screenshots/01_rollit_wide_1.png)
 
 ## Installation
 
