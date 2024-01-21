@@ -103,7 +103,7 @@ impl RollitDiceChooser {
             log::debug!("{} already in tray", current);
         } else {
             tray_items.push(current.to_string().into());
-            settings.set_strv("dice-tray", tray_items);
+            let _ = settings.set_strv("dice-tray", tray_items);
             self.imp()
                 .dice_tray
                 .append(&RollitTrayRow::from_int(current));
@@ -114,27 +114,28 @@ impl RollitDiceChooser {
     fn remove_from_tray(&self) {
         let settings = utils::settings_manager();
         let mut tray_items = settings.strv("dice-tray");
-        let current = self.imp().dice_tray.selected_row().unwrap();
-        let val = current
-            .clone()
-            .downcast::<RollitTrayRow>()
-            .unwrap()
-            .dice_value();
+        if let Some(current) = self.imp().dice_tray.selected_row() {
+            let val = current
+                .clone()
+                .downcast::<RollitTrayRow>()
+                .unwrap()
+                .dice_value();
 
-        let mut i: usize = 0;
-        for dice in &tray_items {
-            if dice.to_string() == val.to_string() {
-                break;
-            } else {
-                i += 1;
+            let mut i: usize = 0;
+            for dice in &tray_items {
+                if dice.to_string() == val.to_string() {
+                    break;
+                } else {
+                    i += 1;
+                }
             }
+
+            tray_items.remove(i);
+            self.imp().dice_tray.remove(&current);
+            log::debug!("{} removed from tray", val);
+
+            let _ = settings.set_strv("dice-tray", tray_items);
         }
-
-        tray_items.remove(i);
-        self.imp().dice_tray.remove(&current);
-        log::debug!("{} removed from tray", val);
-
-        settings.set_strv("dice-tray", tray_items);
     }
 
     fn load_tray(&self) {
