@@ -103,7 +103,7 @@ impl RollitDiceChooser {
             log::debug!("{} already in tray", current);
         } else {
             tray_items.push(current.to_string().into());
-            settings.set_strv("dice-tray", tray_items);
+            let _ = settings.set_strv("dice-tray", tray_items);
             self.imp()
                 .dice_tray
                 .append(&RollitTrayRow::from_int(current));
@@ -134,7 +134,7 @@ impl RollitDiceChooser {
         self.imp().dice_tray.remove(&current);
         log::debug!("{} removed from tray", val);
 
-        settings.set_strv("dice-tray", tray_items);
+        let _ = settings.set_strv("dice-tray", tray_items);
     }
 
     fn load_tray(&self) {
