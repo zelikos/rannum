@@ -44,7 +44,7 @@ mod imp {
     impl ObjectSubclass for RollitDiceChooser {
         const NAME: &'static str = "RollitDiceChooser";
         type Type = super::RollitDiceChooser;
-        type ParentType = adw::Window;
+        type ParentType = adw::Dialog;
 
         fn class_init(klass: &mut Self::Class) {
             klass.bind_template();
@@ -83,13 +83,12 @@ mod imp {
     }
 
     impl WidgetImpl for RollitDiceChooser {}
-    impl WindowImpl for RollitDiceChooser {}
-    impl AdwWindowImpl for RollitDiceChooser {}
+    impl AdwDialogImpl for RollitDiceChooser {}
 }
 
 glib::wrapper! {
     pub struct RollitDiceChooser(ObjectSubclass<imp::RollitDiceChooser>)
-        @extends gtk::Widget, gtk::Window, adw::Window,
+        @extends gtk::Widget, adw::Dialog,
         @implements gtk::Accessible, gtk::Actionable;
 }
 
