@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright 2020-2023 Patrick Csikos <pcsikos@zelikos.dev> -->
+<!-- Copyright 2020-2024 Patrick Csikos <pcsikos@zelikos.dev> -->
 <component type="desktop-application">
   <id>@app-id@</id>
   <translation type="gettext">@gettext-package@</translation>
@@ -252,7 +252,11 @@
     <control>pointing</control>
     <control>touch</control>
   </recommends>
+  <!-- developer_name tag deprecated with Appstream 1.0 -->
   <developer_name>Patrick Csikos</developer_name>
+  <developer id="https://zelikos.dev">
+    <name>Patrick Csikos</name>
+  </developer>
   <url type="homepage">https://zelikos.dev/apps/rollit</url>
   <url type="contact">https://mastodon.online/@Akzel</url>
   <url type="bugtracker">https://gitlab.com/zelikos/rollit/issues</url>
