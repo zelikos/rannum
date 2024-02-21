@@ -66,6 +66,10 @@ mod imp {
             klass.install_action("dice.remove-from-tray", None, move |dice, _, _| {
                 dice.remove_from_tray();
             });
+
+            klass.install_action("dice.reset-tray", None, move |dice, _, _| {
+                dice.reset_tray();
+            });
         }
 
         fn instance_init(obj: &glib::subclass::InitializingObject<Self>) {
@@ -161,6 +165,14 @@ impl RollitDiceChooser {
             self.imp().dice_tray.append(&row);
             log::debug!("{}-sided dice", dice_val);
         }
+    }
+
+    fn reset_tray(&self) {
+        let settings = utils::settings_manager();
+        settings.reset("dice-tray");
+
+        self.imp().dice_tray.remove_all();
+        self.load_tray();
     }
 
     fn bind_prefs(&self) {
