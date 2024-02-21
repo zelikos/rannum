@@ -54,15 +54,26 @@ template $RollitDiceChooser : Adw.Dialog {
               Button remove_button {
                 action-name: "dice.remove-from-tray";
                 icon-name: "list-remove-symbolic";
+                tooltip-text: "Remove selected dice";
 
-                styles [
-                  "destructive-action",
-                ]
+                // styles [
+                //   "destructive-action",
+                // ]
               }
 
               Gtk.ListBox dice_tray {
                 styles [
                   "boxed-list",
+                ]
+              }
+
+              Button reset_button {
+                action-name: "dice.reset-tray";
+                label: _("Reset tray");
+                margin-top: 12;
+
+                styles [
+                  "destructive-action",
                 ]
               }
             }
