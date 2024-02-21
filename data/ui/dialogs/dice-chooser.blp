@@ -1,13 +1,9 @@
 using Gtk 4.0;
 using Adw 1;
 
-template $RollitDiceChooser : Adw.Window {
+template $RollitDiceChooser : Adw.Dialog {
   title: _("Dice Chooser");
-  modal: true;
-  destroy-with-parent: true;
-  width-request: 280;
-  default-width: 360;
-  default-height: 440;
+  width-request: 360;
 
   ShortcutController {
     Shortcut {
@@ -15,7 +11,7 @@ template $RollitDiceChooser : Adw.Window {
       action: "action(window.close)";
     }
   }
-  content:
+  child:
     Adw.ToastOverlay toast_overlay {
       Adw.ToolbarView {
         [top]

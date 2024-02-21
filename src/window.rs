@@ -16,8 +16,10 @@
  * Authored by Patrick Csikos <pcsikos@zelikos.dev>
  */
 
+use adw::prelude::AdwDialogExt;
 use adw::subclass::prelude::*;
 use gettextrs::gettext;
+use gio::glib::VariantTy;
 use gtk::prelude::*;
 use gtk::{gio, glib};
 
@@ -91,11 +93,15 @@ mod imp {
                 win.show_dice_chooser();
             });
 
-            klass.install_action("win.show-toast", Some("(si)"), move |win, _, var| {
-                if let Some((ref toast, i)) = var.and_then(|v| v.get::<(String, i32)>()) {
-                    win.show_toast(toast, adw::ToastPriority::__Unknown(i));
-                }
-            });
+            klass.install_action(
+                "win.show-toast",
+                Some(VariantTy::new("(si)").unwrap()),
+                move |win, _, var| {
+                    if let Some((ref toast, i)) = var.and_then(|v| v.get::<(String, i32)>()) {
+                        win.show_toast(toast, adw::ToastPriority::__Unknown(i));
+                    }
+                },
+            );
         }
         // You must call `Widget`'s `init_template()` within `instance_init()`
         fn instance_init(obj: &glib::subclass::InitializingObject<Self>) {
@@ -198,15 +204,13 @@ impl RollitWindow {
     fn show_dice_chooser(&self) {
         let dice_chooser = RollitDiceChooser::new();
 
-        dice_chooser.set_transient_for(Some(self));
-
         dice_chooser.connect_destroy(glib::clone!(@weak self as win => move |_| {
             let settings = utils::settings_manager();
             let val = settings.int("max-roll");
             win.imp().dice_chooser_label.set_label(&val.to_string());
         }));
 
-        dice_chooser.present();
+        dice_chooser.present(self);
     }
 
     fn show_toast(&self, text: impl AsRef<str>, priority: adw::ToastPriority) {

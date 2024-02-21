@@ -137,7 +137,7 @@ impl RollitApplication {
 
         let copyright = "Copyright © 2020-2023 Patrick Csikos";
 
-        let about = adw::AboutWindow::from_appdata(
+        let about = adw::AboutDialog::from_appdata(
             &format!("/dev/zelikos/rollit/{}.metainfo.xml", APP_ID),
             if PROFILE != "Devel" {
                 Some(VERSION)
@@ -145,10 +145,6 @@ impl RollitApplication {
                 None
             },
         );
-
-        if let Some(window) = self.active_window() {
-            about.set_transient_for(Some(&window));
-        }
 
         about.set_copyright(copyright);
         about.set_developers(&developers);
@@ -161,7 +157,9 @@ impl RollitApplication {
             about.set_version(VERSION);
         }
 
-        about.present();
+        if let Some(window) = self.active_window() {
+            about.present(&window);
+        }
     }
 
     pub fn run(&self) -> glib::ExitCode {

@@ -13,10 +13,10 @@ gnome = import('gnome')
 
 base_id = 'dev.zelikos.rollit'
 
-dependency('gtk4', version: '>=4.0.0')
-dependency('libadwaita-1', version: '>= 1.3')
+dependency('gtk4', version: '>=4.12.0')
+dependency('libadwaita-1', version: '>= 1.5')
 
-appstream_util = find_program('appstream-util', required: false)
+appstreamcli = find_program('appstreamcli', required: false)
 desktop_file_validate = find_program('desktop-file-validate', required: false)
 cargo = find_program('cargo', required: true)
 glib_compile_resources = find_program('glib-compile-resources', required: true)
