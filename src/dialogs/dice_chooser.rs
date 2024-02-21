@@ -22,6 +22,7 @@ use crate::utils;
 use core::ops::Deref;
 
 use adw::subclass::prelude::*;
+use gio::glib::VariantTy;
 use gtk::glib;
 use gtk::prelude::*;
 
@@ -48,11 +49,15 @@ mod imp {
         fn class_init(klass: &mut Self::Class) {
             klass.bind_template();
 
-            klass.install_action("dice.show-toast", Some("(si)"), move |dice, _, var| {
-                if let Some((ref toast, i)) = var.and_then(|v| v.get::<(String, i32)>()) {
-                    dice.show_toast(toast, adw::ToastPriority::__Unknown(i));
-                }
-            });
+            klass.install_action(
+                "dice.show-toast",
+                Some(VariantTy::new("(si)").unwrap()),
+                move |dice, _, var| {
+                    if let Some((ref toast, i)) = var.and_then(|v| v.get::<(String, i32)>()) {
+                        dice.show_toast(toast, adw::ToastPriority::__Unknown(i));
+                    }
+                },
+            );
 
             klass.install_action("dice.add-to-tray", None, move |dice, _, _| {
                 dice.add_to_tray();

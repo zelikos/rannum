@@ -18,6 +18,7 @@
 
 use adw::subclass::prelude::*;
 use gettextrs::gettext;
+use gio::glib::VariantTy;
 use gtk::prelude::*;
 use gtk::{gio, glib};
 
@@ -91,11 +92,15 @@ mod imp {
                 win.show_dice_chooser();
             });
 
-            klass.install_action("win.show-toast", Some("(si)"), move |win, _, var| {
-                if let Some((ref toast, i)) = var.and_then(|v| v.get::<(String, i32)>()) {
-                    win.show_toast(toast, adw::ToastPriority::__Unknown(i));
-                }
-            });
+            klass.install_action(
+                "win.show-toast",
+                Some(VariantTy::new("(si)").unwrap()),
+                move |win, _, var| {
+                    if let Some((ref toast, i)) = var.and_then(|v| v.get::<(String, i32)>()) {
+                        win.show_toast(toast, adw::ToastPriority::__Unknown(i));
+                    }
+                },
+            );
         }
         // You must call `Widget`'s `init_template()` within `instance_init()`
         fn instance_init(obj: &glib::subclass::InitializingObject<Self>) {
