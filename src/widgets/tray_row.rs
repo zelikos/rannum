@@ -73,7 +73,7 @@ impl RollitTrayRow {
         glib::Object::new()
     }
 
-    pub fn find(&self, tray_item: &RollitTrayItem) {
+    pub fn bind(&self, tray_item: &RollitTrayItem) {
         let imp = self.imp();
 
         let dice_value = imp.dice_value.get();
