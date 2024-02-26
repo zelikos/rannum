@@ -16,8 +16,8 @@
  * Authored by Patrick Csikos <pcsikos@zelikos.dev>
  */
 
-use crate::dialogs::RollitTrayRow;
 use crate::utils;
+use crate::widgets::RollitTrayRow;
 
 use core::ops::Deref;
 

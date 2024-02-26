@@ -19,7 +19,9 @@
 mod history_pane;
 mod history_row;
 mod main_view;
+mod tray_row;
 
 pub use history_pane::RollitHistoryPane;
 pub use history_row::RollitHistoryRow;
 pub use main_view::RollitMainView;
+pub use tray_row::RollitTrayRow;
