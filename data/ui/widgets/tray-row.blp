@@ -1,12 +1,21 @@
 using Gtk 4.0;
 using Adw 1;
 
-template $RollitTrayRow : Adw.ActionRow {
-  action-name: "row.set-dice";
-  activatable: true;
+template $RollitTrayRow : Adw.Bin {
+  margin-top: 6;
+  margin-bottom: 6;
+  margin-start: 8;
+  margin-end: 8;
 
-  [suffix]
-  Gtk.Image {
-    icon-name: "dice3-symbolic";
+  Box {
+    Label dice_value {
+      halign: start;
+    }
+
+    Image {
+      icon-name: "dice3-symbolic";
+      halign: end;
+      valign: center;
+    }
   }
 }

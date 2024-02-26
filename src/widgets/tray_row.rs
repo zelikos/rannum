@@ -1,4 +1,4 @@
-/*  Copyright (C) 2023 Patrick Csikos (https://zelikos.dev)
+/*  Copyright (C) 2023-2024 Patrick Csikos (https://zelikos.dev)
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -16,13 +16,14 @@
  * Authored by Patrick Csikos <pcsikos@zelikos.dev>
  */
 
-use crate::utils;
+use crate::models::RollitTrayItem;
+
+use std::cell::RefCell;
 
 use adw::subclass::prelude::*;
+use glib::{Binding, BindingFlags};
 use gtk::glib;
 use gtk::prelude::*;
-
-use std::cell::Cell;
 
 mod imp {
     use super::*;
@@ -30,21 +31,19 @@ mod imp {
     #[derive(Default, Debug, gtk::CompositeTemplate)]
     #[template(resource = "/dev/zelikos/rollit/ui/dialogs/tray-row.ui")]
     pub struct RollitTrayRow {
-        pub dice_value: Cell<u32>,
+        #[template_child]
+        pub dice_value: TemplateChild<gtk::Label>,
+        pub bindings: RefCell<Vec<Binding>>,
     }
 
     #[glib::object_subclass]
     impl ObjectSubclass for RollitTrayRow {
         const NAME: &'static str = "RollitTrayRow";
         type Type = super::RollitTrayRow;
-        type ParentType = adw::ActionRow;
+        type ParentType = adw::Bin;
 
         fn class_init(klass: &mut Self::Class) {
             klass.bind_template();
-
-            klass.install_action("row.set-dice", None, move |row, _, _| {
-                row.set_max_roll();
-            });
         }
 
         fn instance_init(obj: &glib::subclass::InitializingObject<Self>) {
@@ -59,15 +58,13 @@ mod imp {
     }
 
     impl WidgetImpl for RollitTrayRow {}
-    impl ListBoxRowImpl for RollitTrayRow {}
-    impl PreferencesRowImpl for RollitTrayRow {}
-    impl ActionRowImpl for RollitTrayRow {}
+    impl BinImpl for RollitTrayRow {}
 }
 
 glib::wrapper! {
     pub struct RollitTrayRow(ObjectSubclass<imp::RollitTrayRow>)
-        @extends gtk::Widget, gtk::ListBoxRow, adw::PreferencesRow, adw::ActionRow,
-        @implements gtk::Accessible, gtk::Actionable, gtk::Buildable;
+        @extends gtk::Widget, adw::Bin,
+        @implements gtk::Accessible, gtk::Actionable, gtk::Buildable, gtk::ConstraintTarget;
 }
 
 impl RollitTrayRow {
@@ -76,25 +73,22 @@ impl RollitTrayRow {
         glib::Object::new()
     }
 
-    pub fn from_int(val: u32) -> Self {
-        let this: RollitTrayRow = glib::Object::new();
-        this.set_dice_value(val);
-        this.set_property("title", format!("{}-sided", val.to_string()));
-        this
+    pub fn find(&self, tray_item: &RollitTrayItem) {
+        let imp = self.imp();
+
+        let dice_value = imp.dice_value.get();
+        let mut bindings = imp.bindings.borrow_mut();
+
+        let title_binding = tray_item
+            .bind_property("dice-value", &dice_value, "label")
+            .flags(BindingFlags::SYNC_CREATE)
+            .build();
+        bindings.push(title_binding);
     }
 
-    pub fn dice_value(&self) -> u32 {
-        self.imp().dice_value.get()
-    }
-
-    pub fn set_dice_value(&self, val: u32) {
-        self.imp().dice_value.set(val);
-    }
-
-    pub fn set_max_roll(&self) {
-        let settings = utils::settings_manager();
-        let val = self.imp().dice_value.get() as i32;
-        let _ = settings.set_int("max-roll", val);
-        log::debug!("Dice value set to {}", val);
+    pub fn unbind(&self) {
+        for binding in self.imp().bindings.borrow_mut().drain(..) {
+            binding.unbind();
+        }
     }
 }
