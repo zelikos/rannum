@@ -17,5 +17,7 @@
  */
 
 mod history_item;
+mod tray_item;
 
 pub use history_item::RollitHistoryItem;
+pub use tray_item::RollitTrayItem;
