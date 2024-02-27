@@ -9,7 +9,7 @@
   <name>Chance</name>
   <summary>Roll the dice</summary>
   <description>
-    <p>Roll six-sided dice by default, or roll custom dice of up to 999 sides.</p>
+    <p>Roll six-sided dice by default, or roll custom dice of up to 999 sides. Save frequently-used dice to the tray.</p>
 
     <p>Copy roll results to the clipboard from the history pane. Results are remembered until the app is closed or they are manually cleared.</p>
 
