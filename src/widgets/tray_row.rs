@@ -29,7 +29,7 @@ mod imp {
     use super::*;
 
     #[derive(Default, Debug, gtk::CompositeTemplate)]
-    #[template(resource = "/dev/zelikos/rollit/ui/dialogs/tray-row.ui")]
+    #[template(resource = "/dev/zelikos/rollit/ui/widgets/tray-row.ui")]
     pub struct RollitTrayRow {
         #[template_child]
         pub dice_value: TemplateChild<gtk::Label>,
