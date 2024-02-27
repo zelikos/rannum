@@ -1,4 +1,4 @@
-/*  Copyright (C) 2023 Patrick Csikos (https://zelikos.dev)
+/*  Copyright (C) 2023-2024 Patrick Csikos (https://zelikos.dev)
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@ mod imp {
     use super::*;
 
     #[derive(Default, Debug, gtk::CompositeTemplate)]
-    #[template(resource = "/dev/zelikos/rollit/ui/dialogs/tray-row.ui")]
+    #[template(resource = "/dev/zelikos/rollit/ui/widgets/tray-row.ui")]
     pub struct RollitTrayRow {
         pub dice_value: Cell<u32>,
     }

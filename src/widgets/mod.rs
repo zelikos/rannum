@@ -1,4 +1,4 @@
-/*  Copyright (C) 2022-2023 Patrick Csikos (https://zelikos.dev)
+/*  Copyright (C) 2022-2024 Patrick Csikos (https://zelikos.dev)
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -19,7 +19,9 @@
 mod history_pane;
 mod history_row;
 mod main_view;
+mod tray_row;
 
 pub use history_pane::RollitHistoryPane;
 pub use history_row::RollitHistoryRow;
 pub use main_view::RollitMainView;
+pub use tray_row::RollitTrayRow;
