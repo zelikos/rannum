@@ -10,6 +10,7 @@ data/ui/window.blp
 src/application.rs
 src/main.rs
 src/window.rs
+src/dialogs/dice_chooser.rs
 src/widgets/history_pane.rs
 src/widgets/main_view.rs
 

@@ -21,7 +21,9 @@ use crate::widgets::RollitTrayRow;
 
 use core::ops::Deref;
 
+use adw::prelude::*;
 use adw::subclass::prelude::*;
+use gettextrs::gettext;
 use gio::glib::VariantTy;
 use gtk::glib;
 use gtk::prelude::*;
@@ -38,6 +40,8 @@ mod imp {
         pub current_dice: TemplateChild<adw::SpinRow>,
         #[template_child]
         pub toast_overlay: TemplateChild<adw::ToastOverlay>,
+        #[template_child]
+        pub reset_button: TemplateChild<gtk::Button>,
     }
 
     #[glib::object_subclass]
@@ -68,7 +72,7 @@ mod imp {
             });
 
             klass.install_action("dice.reset-tray", None, move |dice, _, _| {
-                dice.reset_tray();
+                dice.show_reset_dialog();
             });
         }
 
@@ -167,10 +171,32 @@ impl RollitDiceChooser {
         }
     }
 
+    fn show_reset_dialog(&self) {
+        let dialog = adw::AlertDialog::new(
+            Some(&gettext("Reset Dice Tray?")),
+            Some(&gettext(
+                "This will remove all added dice, and restore any original dice that were removed.",
+            )),
+        );
+
+        dialog.add_response("cancel", &gettext("_Cancel"));
+        dialog.add_response("reset", &gettext("_Reset"));
+        dialog.set_response_appearance("reset", adw::ResponseAppearance::Destructive);
+        dialog.set_default_response(Some("cancel"));
+
+        dialog.connect_response(
+            Some("reset"),
+            glib::clone!(@weak self as chooser => move |_,_| {
+                chooser.reset_tray();
+            }),
+        );
+
+        dialog.present(self);
+    }
+
     fn reset_tray(&self) {
         let settings = utils::settings_manager();
         settings.reset("dice-tray");
-
         self.imp().dice_tray.remove_all();
         self.load_tray();
     }
