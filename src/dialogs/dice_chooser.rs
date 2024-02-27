@@ -67,9 +67,9 @@ mod imp {
                 dice.add_to_tray();
             });
 
-            klass.install_action("dice.remove-from-tray", None, move |dice, _, _| {
-                dice.remove_from_tray();
-            });
+            // klass.install_action("dice.remove-from-tray", None, move |dice, _, _| {
+            //     dice.remove_from_tray();
+            // });
 
             klass.install_action("dice.reset-tray", None, move |dice, _, _| {
                 dice.show_reset_dialog();
@@ -107,48 +107,53 @@ impl RollitDiceChooser {
     }
 
     fn add_to_tray(&self) {
-        let settings = utils::settings_manager();
-        let mut tray_items = settings.strv("dice-tray");
+        let tray_items = self.tray_items();
         let current = self.imp().current_dice.value() as u32;
+        let mut found: bool = false;
 
-        if tray_items.contains(current.to_string()) {
+        for item in tray_items {
+            if item.downcast::<RollitTrayRow>().unwrap().dice_value() == current {
+                found = true;
+                break;
+            }
+        }
+
+        if found {
             log::debug!("{} already in tray", current);
         } else {
-            tray_items.push(current.to_string().into());
-            let _ = settings.set_strv("dice-tray", tray_items);
+            log::debug!("{} added to tray", current);
             self.imp()
                 .dice_tray
                 .append(&RollitTrayRow::from_int(current));
-            log::debug!("{} added to tray", current);
         }
     }
 
-    fn remove_from_tray(&self) {
-        let settings = utils::settings_manager();
-        let mut tray_items = settings.strv("dice-tray");
-        if let Some(current) = self.imp().dice_tray.selected_row() {
-            let val = current
-                .clone()
-                .downcast::<RollitTrayRow>()
-                .unwrap()
-                .dice_value();
+    // fn remove_from_tray(&self) {
+    //     let settings = utils::settings_manager();
+    //     let mut tray_items = settings.strv("dice-tray");
+    //     if let Some(current) = self.imp().dice_tray.selected_row() {
+    //         let val = current
+    //             .clone()
+    //             .downcast::<RollitTrayRow>()
+    //             .unwrap()
+    //             .dice_value();
 
-            let mut i: usize = 0;
-            for dice in &tray_items {
-                if dice.to_string() == val.to_string() {
-                    break;
-                } else {
-                    i += 1;
-                }
-            }
+    //         let mut i: usize = 0;
+    //         for dice in &tray_items {
+    //             if dice.to_string() == val.to_string() {
+    //                 break;
+    //             } else {
+    //                 i += 1;
+    //             }
+    //         }
 
-            tray_items.remove(i);
-            self.imp().dice_tray.remove(&current);
-            log::debug!("{} removed from tray", val);
+    //         tray_items.remove(i);
+    //         self.imp().dice_tray.remove(&current);
+    //         log::debug!("{} removed from tray", val);
 
-            let _ = settings.set_strv("dice-tray", tray_items);
-        }
-    }
+    //         let _ = settings.set_strv("dice-tray", tray_items);
+    //     }
+    // }
 
     fn load_tray(&self) {
         let settings = utils::settings_manager();
@@ -169,6 +174,21 @@ impl RollitDiceChooser {
             self.imp().dice_tray.append(&row);
             log::debug!("{}-sided dice", dice_val);
         }
+    }
+
+    fn tray_items(&self) -> Vec<gtk::ListBoxRow> {
+        let imp = self.imp();
+
+        imp.dice_tray
+            .set_selection_mode(gtk::SelectionMode::Multiple);
+        imp.dice_tray.select_all();
+
+        let tray_items = imp.dice_tray.selected_rows();
+
+        imp.dice_tray.unselect_all();
+        imp.dice_tray.set_selection_mode(gtk::SelectionMode::Single);
+
+        tray_items
     }
 
     fn show_reset_dialog(&self) {

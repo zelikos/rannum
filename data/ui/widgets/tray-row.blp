@@ -6,7 +6,10 @@ template $RollitTrayRow : Adw.ActionRow {
   activatable: true;
 
   [suffix]
-  Gtk.Image {
-    icon-name: "dice3-symbolic";
+  Button {
+    action-name: "row.delete";
+    icon-name: "list-remove-symbolic";
+    halign: center;
+    valign: center;
   }
 }

@@ -45,6 +45,10 @@ mod imp {
             klass.install_action("row.set-dice", None, move |row, _, _| {
                 row.set_max_roll();
             });
+
+            klass.install_action("row.delete", None, move |row, _, _| {
+                row.delete();
+            });
         }
 
         fn instance_init(obj: &glib::subclass::InitializingObject<Self>) {
@@ -96,5 +100,14 @@ impl RollitTrayRow {
         let val = self.imp().dice_value.get() as i32;
         let _ = settings.set_int("max-roll", val);
         log::debug!("Dice value set to {}", val);
+    }
+
+    pub fn delete(&self) {
+        self.parent()
+            .unwrap()
+            .downcast::<gtk::ListBox>()
+            .unwrap()
+            .remove(self);
+        log::debug!("{} removed from tray", self.dice_value());
     }
 }
