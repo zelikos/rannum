@@ -63,9 +63,9 @@ mod imp {
                 },
             );
 
-            // klass.install_action("dice.add-to-tray", None, move |dice, _, _| {
-            //     dice.add_to_tray();
-            // });
+            klass.install_action("dice.add-to-tray", None, move |dice, _, _| {
+                dice.add_to_tray();
+            });
 
             // klass.install_action("dice.remove-from-tray", None, move |dice, _, _| {
             //     dice.remove_from_tray();
@@ -86,7 +86,7 @@ mod imp {
             obj.setup_factory();
 
             obj.bind_prefs();
-            // obj.load_tray();
+            obj.load_tray();
         }
     }
 
@@ -106,22 +106,22 @@ impl RollitDiceChooser {
         glib::Object::new()
     }
 
-    // fn add_to_tray(&self) {
-    //     let settings = utils::settings_manager();
-    //     let mut tray_items = settings.strv("dice-tray");
-    //     let current = self.imp().current_dice.value() as u32;
+    fn add_to_tray(&self) {
+        let settings = utils::settings_manager();
+        let current = self.imp().current_dice.value() as u32;
 
-    //     if tray_items.contains(current.to_string()) {
-    //         log::debug!("{} already in tray", current);
-    //     } else {
-    //         tray_items.push(current.to_string().into());
-    //         let _ = settings.set_strv("dice-tray", tray_items);
-    //         self.imp()
-    //             .dice_tray
-    //             .append(&RollitTrayRow::from_int(current));
-    //         log::debug!("{} added to tray", current);
-    //     }
-    // }
+        if self.check_duplicate(&current) {
+            log::debug!("{} already in tray", current);
+        } else {
+            let tray_item = RollitTrayItem::new(current);
+            self.tray_items().append(&tray_item);
+            log::debug!("{} added to tray", current);
+        }
+    }
+
+    fn check_duplicate(&self, current: &u32) -> bool {
+        true
+    }
 
     // fn remove_from_tray(&self) {
     //     let settings = utils::settings_manager();
@@ -231,27 +231,26 @@ impl RollitDiceChooser {
             .expect("Could not retrieve tray items.")
     }
 
-    // fn load_tray(&self) {
-    //     let settings = utils::settings_manager();
-    //     let tray_items: glib::StrV = settings.strv("dice-tray");
+    fn load_tray(&self) {
+        let settings = utils::settings_manager();
+        let saved_items: glib::StrV = settings.strv("dice-tray");
 
-    //     log::debug!("Tray contents:");
-    //     for dice in &tray_items {
-    //         let dice_val = match dice.parse::<u32>() {
-    //             Ok(val) => val,
-    //             Err(e) => {
-    //                 log::debug!("{}", e);
-    //                 0
-    //             }
-    //         };
+        log::debug!("Tray contents:");
+        for dice in &saved_items {
+            let dice_val = match dice.parse::<u32>() {
+                Ok(val) => val,
+                Err(e) => {
+                    log::debug!("{}", e);
+                    0
+                }
+            };
 
-    //         let row = RollitTrayRow::new();
-    //         row.set_title(&dice_val.to_string());
+            let row = RollitTrayItem::new(dice_val);
 
-    //         self.imp().dice_tray.append(&row);
-    //         log::debug!("{}-sided dice", dice_val);
-    //     }
-    // }
+            self.tray_items().append(&row);
+            log::debug!("{}-sided dice", dice_val);
+        }
+    }
 
     fn bind_prefs(&self) {
         let imp = self.imp();
