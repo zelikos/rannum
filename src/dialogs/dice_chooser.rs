@@ -1,4 +1,4 @@
-/*  Copyright (C) 2023 Patrick Csikos (https://zelikos.dev)
+/*  Copyright (C) 2023-2024 Patrick Csikos (https://zelikos.dev)
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -16,8 +16,8 @@
  * Authored by Patrick Csikos <pcsikos@zelikos.dev>
  */
 
-use crate::dialogs::RollitTrayRow;
 use crate::utils;
+use crate::widgets::RollitTrayRow;
 
 use core::ops::Deref;
 

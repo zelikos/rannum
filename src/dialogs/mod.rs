@@ -1,4 +1,4 @@
-/*  Copyright (C) 2023 Patrick Csikos (https://zelikos.dev)
+/*  Copyright (C) 2023-2024 Patrick Csikos (https://zelikos.dev)
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -17,7 +17,5 @@
  */
 
 mod dice_chooser;
-mod tray_row;
 
 pub use dice_chooser::RollitDiceChooser;
-pub use tray_row::RollitTrayRow;
