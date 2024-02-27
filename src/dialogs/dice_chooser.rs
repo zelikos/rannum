@@ -88,6 +88,10 @@ mod imp {
             self.obj().bind_prefs();
             self.obj().load_tray();
         }
+
+        fn dispose(&self) {
+            self.obj().save_tray();
+        }
     }
 
     impl WidgetImpl for RollitDiceChooser {}
@@ -174,6 +178,19 @@ impl RollitDiceChooser {
             self.imp().dice_tray.append(&row);
             log::debug!("{}-sided dice", dice_val);
         }
+    }
+
+    fn save_tray(&self) {
+        let tray_items = self.tray_items();
+        let mut saved_tray: glib::StrV = glib::StrV::new();
+
+        for item in tray_items {
+            let val = item.downcast::<RollitTrayRow>().unwrap().dice_value();
+            saved_tray.push(val.to_string().into());
+        }
+
+        let _ = utils::settings_manager().set_strv("dice-tray", saved_tray);
+        log::debug!("Tray items saved");
     }
 
     fn tray_items(&self) -> Vec<gtk::ListBoxRow> {
