@@ -5,12 +5,6 @@ template $RollitDiceChooser : Adw.Dialog {
   title: _("Dice Chooser");
   width-request: 360;
 
-  ShortcutController {
-    Shortcut {
-      trigger: "Escape";
-      action: "action(window.close)";
-    }
-  }
   child:
     Adw.ToastOverlay toast_overlay {
       Adw.ToolbarView {
