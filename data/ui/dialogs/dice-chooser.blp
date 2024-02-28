@@ -47,12 +47,16 @@ template $RollitDiceChooser : Adw.Dialog {
               [header-suffix]
               Button reset_button {
                 action-name: "dice.reset-tray";
-                icon-name: "edit-clear-all-symbolic";
                 tooltip-text: _("Reset dice tray");
 
                 styles [
                   "flat",
                 ]
+
+                Adw.ButtonContent {
+                  icon-name: "edit-clear-all-symbolic";
+                  label: _("Reset");
+                }
               }
 
               Gtk.ListBox dice_tray {
