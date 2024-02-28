@@ -6,6 +6,7 @@ data/ui/dialogs/help-overlay.blp
 data/ui/widgets/history-pane.blp
 data/ui/widgets/history-row.blp
 data/ui/widgets/main-view.blp
+data/ui/widgets/tray-row.blp
 data/ui/window.blp
 src/application.rs
 src/main.rs

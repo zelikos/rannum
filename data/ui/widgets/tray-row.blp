@@ -6,7 +6,15 @@ template $RollitTrayRow : Adw.ActionRow {
   activatable: true;
 
   [suffix]
-  Gtk.Image {
-    icon-name: "dice3-symbolic";
+  Button {
+    action-name: "row.delete";
+    icon-name: "list-remove-symbolic";
+    tooltip-text: _("Remove dice");
+    halign: center;
+    valign: center;
+
+    styles [
+      "circular",
+    ]
   }
 }
