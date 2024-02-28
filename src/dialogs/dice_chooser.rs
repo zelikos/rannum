@@ -26,7 +26,6 @@ use adw::subclass::prelude::*;
 use gettextrs::gettext;
 use gio::glib::VariantTy;
 use gtk::glib;
-use gtk::prelude::*;
 
 mod imp {
     use super::*;
