@@ -29,6 +29,11 @@
     </ul>
   </description>
 
+  <branding>
+    <color type="primary" scheme_preference="light">#f7b1ff</color>
+    <color type="primary" scheme_preference="dark">#4a354d</color>
+  </branding>
+
   <content_rating type="oars-1.1" />
 
   <requires>
