@@ -6,12 +6,17 @@
   <launchable type="desktop-id">@app-id@.desktop</launchable>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
+
+  <!-- developer_name tag deprecated with Appstream 1.0 -->
+  <!-- <developer_name>Patrick Csikos</developer_name> -->
+  <developer id="https://zelikos.dev">
+    <name>Patrick Csikos</name>
+  </developer>
+
   <name>Chance</name>
   <summary>Roll the dice</summary>
   <description>
-    <p>Roll six-sided dice by default, or roll custom dice of up to 999 sides. Save frequently-used dice to the tray.</p>
-
-    <p>Copy roll results to the clipboard from the history pane. Results are remembered until the app is closed or they are manually cleared.</p>
+    <p>Roll six-sided dice by default, or roll custom dice of up to 999 sides. Save frequently-used dice to the tray. Copy roll results to the clipboard from the history pane. Results are remembered until the app is closed or they are manually cleared.</p>
 
     <p>Keyboard shortcuts:</p>
     <ul>
@@ -23,6 +28,31 @@
       <li>Undo the clear with Ctrl+Z</li>
     </ul>
   </description>
+
+  <branding>
+    <color type="primary" scheme_preference="light">#faccff</color>
+    <color type="primary" scheme_preference="dark">#4a354d</color>
+  </branding>
+
+  <content_rating type="oars-1.1" />
+
+  <requires>
+    <display_length compare="ge">360</display_length>
+    <internet>offline-only</internet>
+  </requires>
+
+  <recommends>
+    <control>keyboard</control>
+    <control>pointing</control>
+    <control>touch</control>
+  </recommends>
+
+  <url type="homepage">https://zelikos.dev/apps/rollit</url>
+  <url type="contact">https://mastodon.online/@Akzel</url>
+  <url type="bugtracker">https://gitlab.com/zelikos/rollit/issues</url>
+  <url type="donation">https://ko-fi.com/akzel94</url>
+  <url type="vcs-browser">https://gitlab.com/zelikos/rollit</url>
+
   <screenshots>
     <screenshot type="default">
       <caption>See every roll result</caption>
@@ -45,6 +75,7 @@
       <image>https://gitlab.com/zelikos/rollit/-/raw/main/data/screenshots/05_rollit_dice_chooser.png</image>
     </screenshot>
   </screenshots>
+
   <releases>
     <release version="3.4.0" date="2023-11-07">
       <description>
@@ -242,24 +273,4 @@
       </description>
     </release>
   </releases>
-  <content_rating type="oars-1.1" />
-  <requires>
-    <display_length compare="ge">360</display_length>
-    <internet>offline-only</internet>
-  </requires>
-  <recommends>
-    <control>keyboard</control>
-    <control>pointing</control>
-    <control>touch</control>
-  </recommends>
-  <!-- developer_name tag deprecated with Appstream 1.0 -->
-  <developer_name>Patrick Csikos</developer_name>
-  <developer id="https://zelikos.dev">
-    <name>Patrick Csikos</name>
-  </developer>
-  <url type="homepage">https://zelikos.dev/apps/rollit</url>
-  <url type="contact">https://mastodon.online/@Akzel</url>
-  <url type="bugtracker">https://gitlab.com/zelikos/rollit/issues</url>
-  <url type="donation">https://ko-fi.com/akzel94</url>
-  <url type="vcs-browser">https://gitlab.com/zelikos/rollit</url>
 </component>

@@ -26,7 +26,6 @@ use adw::subclass::prelude::*;
 use gettextrs::gettext;
 use gio::glib::VariantTy;
 use gtk::glib;
-use gtk::prelude::*;
 
 mod imp {
     use super::*;
@@ -203,7 +202,7 @@ impl RollitDiceChooser {
         let tray_items = imp.dice_tray.selected_rows();
 
         imp.dice_tray.unselect_all();
-        imp.dice_tray.set_selection_mode(gtk::SelectionMode::Single);
+        imp.dice_tray.set_selection_mode(gtk::SelectionMode::None);
 
         tray_items
     }

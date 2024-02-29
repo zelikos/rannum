@@ -1,4 +1,4 @@
-/*  Copyright (C) 2020-2023 Patrick Csikos (https://zelikos.dev)
+/*  Copyright (C) 2020-2024 Patrick Csikos (https://zelikos.dev)
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -204,10 +204,13 @@ impl RollitWindow {
     fn show_dice_chooser(&self) {
         let dice_chooser = RollitDiceChooser::new();
 
+        self.action_set_enabled("win.dice-chooser", false);
+
         dice_chooser.connect_destroy(glib::clone!(@weak self as win => move |_| {
             let settings = utils::settings_manager();
             let val = settings.int("max-roll");
             win.imp().dice_chooser_label.set_label(&val.to_string());
+            win.action_set_enabled("win.dice-chooser", true);
         }));
 
         dice_chooser.present(self);

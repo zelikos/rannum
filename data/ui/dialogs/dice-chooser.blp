@@ -5,12 +5,6 @@ template $RollitDiceChooser : Adw.Dialog {
   title: _("Dice Chooser");
   width-request: 360;
 
-  ShortcutController {
-    Shortcut {
-      trigger: "Escape";
-      action: "action(window.close)";
-    }
-  }
   child:
     Adw.ToastOverlay toast_overlay {
       Adw.ToolbarView {
@@ -48,20 +42,25 @@ template $RollitDiceChooser : Adw.Dialog {
             }
 
             Adw.PreferencesGroup {
-              title: _("Dice tray");
+              title: _("Dice Tray");
 
               [header-suffix]
               Button reset_button {
                 action-name: "dice.reset-tray";
-                icon-name: "edit-clear-all-symbolic";
                 tooltip-text: _("Reset dice tray");
 
                 styles [
                   "flat",
                 ]
+
+                Adw.ButtonContent {
+                  icon-name: "edit-clear-all-symbolic";
+                  label: _("Reset");
+                }
               }
 
               Gtk.ListBox dice_tray {
+                selection-mode: none;
                 styles [
                   "boxed-list",
                 ]
