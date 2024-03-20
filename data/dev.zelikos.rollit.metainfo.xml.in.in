@@ -77,6 +77,20 @@
   </screenshots>
 
   <releases>
+    <release version="4.0.0" date="2024-03-20">
+      <description>
+        <p>Let Chance Decide</p>
+        <p>With this release, "Roll-It" has been renamed to "Chance." Thanks to Brage Fuglseth and Cassidy James for help with the new name!</p>
+        <p>Additionally, the "Dice presets" section of the dice chooser has been renamed to "dice tray," and dice can now be freely added and removed from the tray.</p>
+        <p>Chance has also been ported to the latest adaptive widgets from the GNOME platform, improving the experience on mobile devices.</p>
+      </description>
+      <issues>
+        <issue url="https://gitlab.com/zelikos/rollit/-/issues/16">#16</issue>
+        <issue url="https://gitlab.com/zelikos/rollit/-/issues/29">#29</issue>
+        <issue url="https://gitlab.com/zelikos/rollit/-/issues/43">#43</issue>
+        <issue url="https://gitlab.com/zelikos/rollit/-/issues/50">#50</issue>
+      </issues>
+    </release>
     <release version="3.4.0" date="2023-11-07">
       <description>
         <p>Changes</p>
