@@ -13,7 +13,7 @@ Roll six-sided dice by default, or roll custom dice of up to 999 sides.
 
 The latest stable release of Chance is available via Flathub.
 
-<a href='https://flathub.org/apps/details/dev.zelikos.rollit'><img width='240' alt='Download on Flathub' src='https://dl.flathub.org/assets/badges/flathub-badge-en.png'/></a>
+<a href='https://flathub.org/apps/details/dev.zelikos.rollit'><img width='240' alt='Get it on Flathub' src='https://flathub.org/api/badge?locale=en'/></a>
 
 Any version distributed elsewhere is not provided nor supported by me.
 
@@ -33,4 +33,3 @@ Other GTK Rust projects used for reference:
 - [Loupe](https://gitlab.gnome.org/Incubator/loupe)
 - [PikaBackup](https://gitlab.gnome.org/World/pika-backup)
 - [Amberol](https://gitlab.gnome.org/World/amberol)
-
