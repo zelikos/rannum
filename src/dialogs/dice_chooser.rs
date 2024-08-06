@@ -222,9 +222,13 @@ impl RollitDiceChooser {
 
         dialog.connect_response(
             Some("reset"),
-            glib::clone!(@weak self as chooser => move |_,_| {
-                chooser.reset_tray();
-            }),
+            glib::clone!(
+                #[weak(rename_to = chooser)]
+                self,
+                move |_, _| {
+                    chooser.reset_tray();
+                },
+            ),
         );
 
         dialog.present(Some(self));

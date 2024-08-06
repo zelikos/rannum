@@ -206,12 +206,16 @@ impl RollitWindow {
 
         self.action_set_enabled("win.dice-chooser", false);
 
-        dice_chooser.connect_destroy(glib::clone!(@weak self as win => move |_| {
-            let settings = utils::settings_manager();
-            let val = settings.int("max-roll");
-            win.imp().dice_chooser_label.set_label(&val.to_string());
-            win.action_set_enabled("win.dice-chooser", true);
-        }));
+        dice_chooser.connect_destroy(glib::clone!(
+            #[weak(rename_to = win)]
+            self,
+            move |_| {
+                let settings = utils::settings_manager();
+                let val = settings.int("max-roll");
+                win.imp().dice_chooser_label.set_label(&val.to_string());
+                win.action_set_enabled("win.dice-chooser", true);
+            }
+        ));
 
         dice_chooser.present(Some(self));
     }

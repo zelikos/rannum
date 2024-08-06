@@ -143,11 +143,17 @@ impl RollitMainView {
             imp.result_revealer.set_reveal_child(false);
             glib::timeout_add_local(
                 transition_dur,
-                clone!(@weak self as this => @default-return glib::ControlFlow::Break, move || {
-                    this.imp().result_label.set_label(&result.to_string());
-                    this.imp().result_revealer.set_reveal_child(true);
-                    glib::ControlFlow::Break
-                }),
+                clone!(
+                    #[weak(rename_to = this)]
+                    self,
+                    #[upgrade_or]
+                    glib::ControlFlow::Break,
+                    move || {
+                        this.imp().result_label.set_label(&result.to_string());
+                        this.imp().result_revealer.set_reveal_child(true);
+                        glib::ControlFlow::Break
+                    }
+                ),
             );
         }
     }

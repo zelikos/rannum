@@ -124,8 +124,12 @@ impl RollitHistoryPane {
         let selection_model = NoSelection::new(Some(self.results()));
         imp.history_list.set_model(Some(&selection_model));
 
-        imp.history_list.connect_activate(
-            glib::clone!(@weak self as pane, @weak selection_model => move |_, pos| {
+        imp.history_list.connect_activate(glib::clone!(
+            #[weak(rename_to = pane)]
+            self,
+            #[weak]
+            selection_model,
+            move |_, pos| {
                 let result = selection_model
                     .upcast::<gio::ListModel>()
                     .item(pos)
@@ -143,12 +147,16 @@ impl RollitHistoryPane {
                     Some(&(gettext("Result copied"), 0).to_variant()),
                 )
                 .unwrap();
-            }),
-        );
+            }
+        ));
 
-        selection_model.connect_items_changed(glib::clone!(@weak self as pane => move |_,_,_,_| {
-            pane.scroll_view();
-        }));
+        selection_model.connect_items_changed(glib::clone!(
+            #[weak(rename_to = pane)]
+            self,
+            move |_, _, _, _| {
+                pane.scroll_view();
+            }
+        ));
     }
 
     fn setup_factory(&self) {
