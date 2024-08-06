@@ -227,7 +227,7 @@ impl RollitDiceChooser {
             }),
         );
 
-        dialog.present(self);
+        dialog.present(Some(self));
     }
 
     fn reset_tray(&self) {

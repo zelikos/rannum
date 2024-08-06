@@ -158,7 +158,7 @@ impl RollitApplication {
         }
 
         if let Some(window) = self.active_window() {
-            about.present(&window);
+            about.present(Some(&window));
         }
     }
 

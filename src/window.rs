@@ -213,7 +213,7 @@ impl RollitWindow {
             win.action_set_enabled("win.dice-chooser", true);
         }));
 
-        dice_chooser.present(self);
+        dice_chooser.present(Some(self));
     }
 
     fn show_toast(&self, text: impl AsRef<str>, priority: adw::ToastPriority) {
