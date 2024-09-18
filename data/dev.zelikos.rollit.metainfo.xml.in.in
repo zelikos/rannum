@@ -77,6 +77,11 @@
   </screenshots>
 
   <releases>
+    <release version="4.0.1" date="2024-08-18">
+      <description>
+        <p>This release updates Chance to use the latest GNOME 47 platform. Development has also moved from GitLab back over to GitHub.</p>
+      </description>
+    </release>
     <release version="4.0.0" date="2024-03-20">
       <description>
         <p>Let Chance Decide</p>
