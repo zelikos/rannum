@@ -13,8 +13,8 @@ gnome = import('gnome')
 
 base_id = 'dev.zelikos.rollit'
 
-dependency('gtk4', version: '>=4.12.0')
-dependency('libadwaita-1', version: '>= 1.5')
+dependency('gtk4', version: '>=4.16.0')
+dependency('libadwaita-1', version: '>= 1.6')
 
 appstreamcli = find_program('appstreamcli', required: false)
 desktop_file_validate = find_program('desktop-file-validate', required: false)
@@ -51,8 +51,10 @@ endif
 
 meson.add_dist_script(
   'build-aux/dist-vendor.sh',
-  meson.project_build_root() / 'meson-dist' / meson.project_name() + '-' + version,
-  meson.project_source_root()
+  meson.project_build_root() / 'meson-dist' / meson.project_name()
+  + '-'
+  + version,
+  meson.project_source_root(),
 )
 if get_option('profile') == 'development'
   # Setup pre-commit hook for ensuring coding style is always consistent
