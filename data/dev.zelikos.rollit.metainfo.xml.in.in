@@ -49,9 +49,9 @@
 
   <url type="homepage">https://zelikos.dev/apps/rollit</url>
   <url type="contact">https://mastodon.online/@Akzel</url>
-  <url type="bugtracker">https://gitlab.com/zelikos/rollit/issues</url>
+  <url type="bugtracker">https://github.com/zelikos/rannum/issues</url>
   <url type="donation">https://ko-fi.com/akzel94</url>
-  <url type="vcs-browser">https://gitlab.com/zelikos/rollit</url>
+  <url type="vcs-browser">https://github.com/zelikos/rannum</url>
 
   <screenshots>
     <screenshot type="default">
