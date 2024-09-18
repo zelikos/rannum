@@ -1,7 +1,7 @@
 project(
   'rollit',
   'rust',
-  version: '4.0.0',
+  version: '4.0.1',
   meson_version: '>= 0.59.0',
   default_options: [
     'warning_level=2',
@@ -74,4 +74,3 @@ gnome.post_install(
   gtk_update_icon_cache: true,
   update_desktop_database: true,
 )
-
