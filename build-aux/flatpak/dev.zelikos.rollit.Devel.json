@@ -14,7 +14,7 @@
     "--env=RUST_LOG=rollit=debug"
   ],
   "build-options": {
-    "append-path": "/usr/lib/sdk/rust-stable/bin:/usr/lib/sdk/llvm16/bin",
+    "append-path": "/usr/lib/sdk/rust-stable/bin:/usr/lib/sdk/llvm18/bin",
     "build-args": ["--share=network"],
     "env": {
       "CARGO_REGISTRIES_CRATES_IO_PROTOCOL": "sparse",
