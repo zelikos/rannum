@@ -1,9 +1,9 @@
 {
   "id": "dev.zelikos.rollit.Devel",
   "runtime": "org.gnome.Platform",
-  "runtime-version": "46",
+  "runtime-version": "47",
   "sdk": "org.gnome.Sdk",
-  "sdk-extensions": ["org.freedesktop.Sdk.Extension.rust-stable", "org.freedesktop.Sdk.Extension.llvm16"],
+  "sdk-extensions": ["org.freedesktop.Sdk.Extension.rust-stable", "org.freedesktop.Sdk.Extension.llvm18"],
   "command": "rollit",
   "finish-args": [
     "--share=ipc",
