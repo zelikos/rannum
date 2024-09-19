@@ -25,6 +25,10 @@ If you would like to build and hack on Chance, it is highly recommended to use [
 
 Manual build instructions to come later.
 
+## Source Code
+
+The source code for Chance is available on both [GitHub](https://github.com/zelikos/rannum) and [Codeberg](https://codeberg.org/zelikos/chance).
+
 ## Credits
 
 Other GTK Rust projects used for reference:
