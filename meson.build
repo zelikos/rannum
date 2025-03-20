@@ -1,7 +1,7 @@
 project(
   'rollit',
   'rust',
-  version: '4.0.1',
+  version: '4.0.2',
   meson_version: '>= 0.59.0',
   default_options: [
     'warning_level=2',
@@ -13,8 +13,8 @@ gnome = import('gnome')
 
 base_id = 'dev.zelikos.rollit'
 
-dependency('gtk4', version: '>=4.16.0')
-dependency('libadwaita-1', version: '>= 1.6')
+dependency('gtk4', version: '>=4.18.0')
+dependency('libadwaita-1', version: '>= 1.7')
 
 appstreamcli = find_program('appstreamcli', required: false)
 desktop_file_validate = find_program('desktop-file-validate', required: false)
