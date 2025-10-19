@@ -1,0 +1,182 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: rollit 4.0.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-28 18:50+0000\n"
+"PO-Revision-Date: 2025-09-28 18:50+0000\n"
+"Last-Translator: Renato Tavares\n"
+"Language-Team: Portuguese (Brazil)\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: src/application.rs
+msgid "translator-credits"
+msgstr "Renato Tavares"
+
+#: src/main.rs
+msgid "Chance"
+msgstr "Chance"
+
+#: src/window.rs
+msgid "Results cleared"
+msgstr "Resultados limpos"
+
+#: src/window.rs
+msgid "Undo"
+msgstr "Desfazer"
+
+#: src/dialogs/dice_chooser.rs
+msgid "Reset Dice Tray?"
+msgstr "Redefinir a bandeja de dados?"
+
+#: src/dialogs/dice_chooser.rs
+msgid "_Cancel"
+msgstr "_Cancelar"
+
+#: src/dialogs/dice_chooser.rs
+msgid "_Reset"
+msgstr "_Redefinir"
+
+#: src/widgets/history_pane.rs
+msgid "Result copied"
+msgstr "Resultado copiado"
+
+#: src/widgets/main_view.rs
+msgid "Result copied"
+msgstr "Resultado copiado"
+
+#: data/ui/window.blp
+msgid "Clear results"
+msgstr "Limpar resultados"
+
+#: data/ui/window.blp
+msgid "Toggle History List"
+msgstr "Alternar lista de histórico"
+
+#: data/ui/window.blp
+msgid "Main Menu"
+msgstr "Menu principal"
+
+#: data/ui/window.blp
+msgid "_Roll"
+msgstr "_Rolar"
+
+#: data/ui/window.blp
+msgid "Roll the dice"
+msgstr "Rolar os dados"
+
+#: data/ui/window.blp
+msgid "Select dice"
+msgstr "Selecionar dados"
+
+#: data/ui/window.blp
+msgid "_Keyboard Shortcuts"
+msgstr "Atalhos de _teclado"
+
+#: data/ui/window.blp
+msgid "_About Chance"
+msgstr "_Sobre o Chance"
+
+#: data/ui/dialogs/dice-chooser.blp
+msgid "Dice Chooser"
+msgstr "Seletor de dados"
+
+#: data/ui/dialogs/dice-chooser.blp
+msgid "Current dice"
+msgstr "Dado atual"
+
+#: data/ui/dialogs/dice-chooser.blp
+msgid "Add to tray"
+msgstr "Adicionar à bandeja"
+
+#: data/ui/dialogs/dice-chooser.blp
+msgid "Dice Tray"
+msgstr "Bandeja de dados"
+
+#: data/ui/dialogs/dice-chooser.blp
+msgid "Reset dice tray"
+msgstr "Redefinir bandeja de dados"
+
+#: data/ui/dialogs/dice-chooser.blp
+msgid "Reset"
+msgstr "Redefinir"
+
+#: data/ui/widgets/history-pane.blp
+msgid "No Results"
+msgstr "Sem resultados"
+
+#: data/ui/widgets/history-pane.blp
+msgid "Press 'Roll' to begin"
+msgstr "Pressione 'Rolar' para começar"
+
+#: data/ui/widgets/history-row.blp
+msgid "Out of"
+msgstr "de"
+
+#: data/ui/widgets/tray-row.blp
+msgid "Remove dice"
+msgstr "Remover dado"
+
+#: data/dev.zelikos.rollit.desktop.in.in
+msgid "Chance"
+msgstr "Chance"
+
+#: data/dev.zelikos.rollit.desktop.in.in
+msgid "Dice Roller App"
+msgstr "Aplicativo de rolagem de dados"
+
+#: data/dev.zelikos.rollit.desktop.in.in
+msgid "Roll the dice"
+msgstr "Role os dados"
+
+#: data/dev.zelikos.rollit.desktop.in.in
+msgid "Die;Dice;Roll;Random;Number;Rnd;Num;rng;"
+msgstr "Dado;Dados;Rolar;Aleatório;Número;Rnd;Num;rng;"
+
+#: data/ui/dialogs/help-overlay.blp
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Geral"
+
+#: data/ui/dialogs/help-overlay.blp
+msgctxt "shortcut window"
+msgid "Roll Dice"
+msgstr "Rolar dados"
+
+#: data/ui/dialogs/help-overlay.blp
+msgctxt "shortcut window"
+msgid "Show Dice Chooser"
+msgstr "Mostrar seletor de dados"
+
+#: data/ui/dialogs/help-overlay.blp
+msgctxt "shortcut window"
+msgid "Copy Last Result"
+msgstr "Copiar último resultado"
+
+#: data/ui/dialogs/help-overlay.blp
+msgctxt "shortcut window"
+msgid "History List"
+msgstr "Lista de histórico"
+
+#: data/ui/dialogs/help-overlay.blp
+msgctxt "shortcut window"
+msgid "Clear History"
+msgstr "Limpar histórico"
+
+#: data/ui/dialogs/help-overlay.blp
+msgctxt "shortcut window"
+msgid "Undo Clear"
+msgstr "Desfazer limpeza"
+
+#: data/ui/dialogs/help-overlay.blp
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Mostrar atalhos"
+
+#: data/ui/dialogs/help-overlay.blp
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Sair"
