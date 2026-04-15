@@ -1,54 +1,49 @@
 using Gtk 4.0;
+using Adw 1;
 
-ShortcutsWindow help_overlay {
-  modal: true;
+Adw.ShortcutsDialog shortcuts_dialog {
 
-  ShortcutsSection {
-    section-name: "shortcuts";
-    max-height: 10;
+  Adw.ShortcutsSection {
+    title: "General";
 
-    ShortcutsGroup {
-      title: C_("shortcut window", "General");
-
-      ShortcutsShortcut {
+      Adw.ShortcutsItem {
         title: C_("shortcut window", "Roll Dice");
         action-name: "win.roll-dice";
       }
 
-      ShortcutsShortcut {
+      Adw.ShortcutsItem {
         title: C_("shortcut window", "Show Dice Chooser");
         action-name: "win.dice-chooser";
       }
 
-      ShortcutsShortcut {
+      Adw.ShortcutsItem {
         title: C_("shortcut window", "Copy Last Result");
         action-name: "win.copy-latest";
       }
 
-      ShortcutsShortcut {
+      Adw.ShortcutsItem {
         title: C_("shortcut window", "History List");
         action-name: "win.toggle-history";
       }
 
-      ShortcutsShortcut {
+      Adw.ShortcutsItem {
         title: C_("shortcut window", "Clear History");
         action-name: "win.clear-history";
       }
 
-      ShortcutsShortcut {
+      Adw.ShortcutsItem {
         title: C_("shortcut window", "Undo Clear");
         action-name: "win.undo-clear";
       }
 
-      ShortcutsShortcut {
+      Adw.ShortcutsItem {
         title: C_("shortcut window", "Show Shortcuts");
-        action-name: "win.show-help-overlay";
+        action-name: "app.shortcuts";
       }
 
-      ShortcutsShortcut {
+      Adw.ShortcutsItem {
         title: C_("shortcut window", "Quit");
         action-name: "app.quit";
       }
-    }
   }
 }
