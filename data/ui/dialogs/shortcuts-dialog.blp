@@ -4,46 +4,55 @@ using Adw 1;
 Adw.ShortcutsDialog shortcuts_dialog {
 
   Adw.ShortcutsSection {
-    title: "General";
+    title: "Dice";
 
-      Adw.ShortcutsItem {
-        title: C_("shortcut window", "Roll Dice");
-        action-name: "win.roll-dice";
-      }
+    Adw.ShortcutsItem {
+      title: C_("shortcut window", "Roll Dice");
+      action-name: "win.roll-dice";
+    }
 
-      Adw.ShortcutsItem {
-        title: C_("shortcut window", "Show Dice Chooser");
-        action-name: "win.dice-chooser";
-      }
+    Adw.ShortcutsItem {
+      title: C_("shortcut window", "Show Dice Chooser");
+      action-name: "win.dice-chooser";
+    }
 
-      Adw.ShortcutsItem {
-        title: C_("shortcut window", "Copy Last Result");
-        action-name: "win.copy-latest";
-      }
+    Adw.ShortcutsItem {
+      title: C_("shortcut window", "Copy Last Result");
+      action-name: "win.copy-latest";
+    }
 
-      Adw.ShortcutsItem {
-        title: C_("shortcut window", "History List");
-        action-name: "win.toggle-history";
-      }
+  }
 
-      Adw.ShortcutsItem {
-        title: C_("shortcut window", "Clear History");
-        action-name: "win.clear-history";
-      }
+  Adw.ShortcutsSection {
+    title: "History";
 
-      Adw.ShortcutsItem {
-        title: C_("shortcut window", "Undo Clear");
-        action-name: "win.undo-clear";
-      }
+    Adw.ShortcutsItem {
+      title: C_("shortcut window", "History List");
+      action-name: "win.toggle-history";
+    }
 
-      Adw.ShortcutsItem {
-        title: C_("shortcut window", "Show Shortcuts");
-        action-name: "app.shortcuts";
-      }
+    Adw.ShortcutsItem {
+      title: C_("shortcut window", "Clear History");
+      action-name: "win.clear-history";
+    }
 
-      Adw.ShortcutsItem {
-        title: C_("shortcut window", "Quit");
-        action-name: "app.quit";
-      }
+    Adw.ShortcutsItem {
+      title: C_("shortcut window", "Undo Clear");
+      action-name: "win.undo-clear";
+    }
+  }
+
+  Adw.ShortcutsSection {
+  title: "General";
+
+    Adw.ShortcutsItem {
+      title: C_("shortcut window", "Show Shortcuts");
+      action-name: "app.shortcuts";
+    }
+
+    Adw.ShortcutsItem {
+      title: C_("shortcut window", "Quit");
+      action-name: "app.quit";
+    }
   }
 }
