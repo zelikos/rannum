@@ -45,8 +45,8 @@ msgid "Result copied"
 msgstr "Resultado copiado"
 
 #: src/widgets/main_view.rs
-msgid "Result copied"
-msgstr "Resultado copiado"
+#msgid "Result copied"
+#msgstr "Resultado copiado"
 
 #: data/ui/window.blp
 msgid "Clear results"
@@ -121,16 +121,16 @@ msgid "Remove dice"
 msgstr "Remover dado"
 
 #: data/dev.zelikos.rollit.desktop.in.in
-msgid "Chance"
-msgstr "Chance"
+#msgid "Chance"
+#msgstr "Chance"
 
 #: data/dev.zelikos.rollit.desktop.in.in
 msgid "Dice Roller App"
 msgstr "Aplicativo de rolagem de dados"
 
 #: data/dev.zelikos.rollit.desktop.in.in
-msgid "Roll the dice"
-msgstr "Role os dados"
+#msgid "Roll the dice"
+#msgstr "Role os dados"
 
 #: data/dev.zelikos.rollit.desktop.in.in
 msgid "Die;Dice;Roll;Random;Number;Rnd;Num;rng;"
