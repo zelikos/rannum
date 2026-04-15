@@ -1,4 +1,4 @@
-/*  Copyright (C) 2023-2024 Patrick Csikos (https://zelikos.dev)
+/*  Copyright (C) 2023-2026 Patrick Csikos (https://zelikos.dev)
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -71,7 +71,7 @@ mod imp {
 glib::wrapper! {
     pub struct RollitTrayRow(ObjectSubclass<imp::RollitTrayRow>)
         @extends gtk::Widget, gtk::ListBoxRow, adw::PreferencesRow, adw::ActionRow,
-        @implements gtk::Accessible, gtk::Actionable, gtk::Buildable;
+        @implements gtk::Accessible, gtk::Actionable, gtk::Buildable, gtk::ConstraintTarget;
 }
 
 impl RollitTrayRow {

@@ -1,4 +1,4 @@
-/*  Copyright (C) 2020-2023 Patrick Csikos (https://zelikos.dev)
+/*  Copyright (C) 2020-2026 Patrick Csikos (https://zelikos.dev)
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -74,7 +74,7 @@ mod imp {
 glib::wrapper! {
     pub struct RollitHistoryPane(ObjectSubclass<imp::RollitHistoryPane>)
         @extends gtk::Widget, adw::Bin,
-        @implements gtk::Buildable;
+        @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 }
 
 impl RollitHistoryPane {

@@ -1,4 +1,4 @@
-/*  Copyright (C) 2020-2024 Patrick Csikos (https://zelikos.dev)
+/*  Copyright (C) 2020-2026 Patrick Csikos (https://zelikos.dev)
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -132,7 +132,7 @@ mod imp {
 glib::wrapper! {
     pub struct RollitWindow(ObjectSubclass<imp::RollitWindow>)
         @extends gtk::Widget, gtk::Window, gtk::ApplicationWindow, adw::ApplicationWindow,
-        @implements gio::ActionGroup, gio::ActionMap, gtk::Root;
+        @implements gio::ActionGroup, gio::ActionMap, gtk::Accessible, gtk::Native, gtk::Root, gtk::ShortcutManager, gtk::Buildable, gtk::ConstraintTarget;
 }
 
 #[gtk::template_callbacks]
