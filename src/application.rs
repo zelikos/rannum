@@ -136,7 +136,7 @@ impl RollitApplication {
         // Translators: Replace "translator-credits" with your names, one per line
         let translators = &gettext("translator-credits");
 
-        let copyright = "Copyright © 2020-2024 Patrick Csikos";
+        let copyright = "Copyright © 2020-2026 Patrick Csikos";
 
         let about = adw::AboutDialog::from_appdata(
             &format!("/dev/zelikos/rollit/{}.metainfo.xml", APP_ID),
