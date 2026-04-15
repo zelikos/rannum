@@ -1,9 +1,9 @@
 {
     "id": "dev.zelikos.rollit.Devel",
     "runtime": "org.gnome.Platform",
-    "runtime-version": "48",
+    "runtime-version": "50",
     "sdk": "org.gnome.Sdk",
-    "sdk-extensions": ["org.freedesktop.Sdk.Extension.rust-stable", "org.freedesktop.Sdk.Extension.llvm20"],
+    "sdk-extensions": ["org.freedesktop.Sdk.Extension.rust-stable", "org.freedesktop.Sdk.Extension.llvm22"],
     "command": "rollit",
     "finish-args": [
         "--share=ipc",
@@ -14,7 +14,7 @@
         "--env=RUST_LOG=rollit=debug"
     ],
     "build-options": {
-        "append-path": "/usr/lib/sdk/rust-stable/bin:/usr/lib/sdk/llvm20/bin",
+        "append-path": "/usr/lib/sdk/rust-stable/bin:/usr/lib/sdk/llvm22/bin",
         "build-args": ["--share=network"],
         "env": {
             "CARGO_REGISTRIES_CRATES_IO_PROTOCOL": "sparse",
