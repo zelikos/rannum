@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright 2020-2024 Patrick Csikos <pcsikos@zelikos.dev> -->
+<!-- Copyright 2020-2026 Patrick Csikos <pcsikos@zelikos.dev> -->
 <component type="desktop-application">
   <id>@app-id@</id>
   <translation type="gettext">@gettext-package@</translation>
@@ -77,6 +77,11 @@
   </screenshots>
 
   <releases>
+    <release version="4.0.3" date="2026-04-15">
+      <description>
+        <p>This release updates Chance to use the latest GNOME 50 platform, including a re-designed shortcuts dialog. Brazilian Portuguese translations have also been added, thanks to Renato Tavares!</p>
+      </description>
+    </release>
     <release version="4.0.2" date="2025-03-20">
       <description>
         <p>This release updates Chance to use the latest GNOME 48 platform.</p>
