@@ -1,4 +1,4 @@
-/*  Copyright (C) 2022-2023 Patrick Csikos (https://zelikos.dev)
+/*  Copyright (C) 2022-2026 Patrick Csikos (https://zelikos.dev)
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -81,7 +81,7 @@ mod imp {
 glib::wrapper! {
     pub struct RollitMainView(ObjectSubclass<imp::RollitMainView>)
         @extends gtk::Widget, adw::Bin,
-        @implements gtk::Buildable;
+        @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 }
 
 impl RollitMainView {

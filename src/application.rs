@@ -1,4 +1,4 @@
-/*  Copyright (C) 2020-2024 Patrick Csikos (https://zelikos.dev)
+/*  Copyright (C) 2020-2026 Patrick Csikos (https://zelikos.dev)
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -119,6 +119,7 @@ impl RollitApplication {
 
     fn setup_accels(&self) {
         self.set_accels_for_action("app.quit", &["<Primary>Q"]);
+        self.set_accels_for_action("app.shortcuts", &["<Primary>question"]);
         self.set_accels_for_action("win.clear-history", &["<Primary>L"]);
         self.set_accels_for_action("win.copy-latest", &["<Primary>C"]);
         self.set_accels_for_action("win.dice-chooser", &["<Primary>comma"]);
@@ -135,7 +136,7 @@ impl RollitApplication {
         // Translators: Replace "translator-credits" with your names, one per line
         let translators = &gettext("translator-credits");
 
-        let copyright = "Copyright © 2020-2024 Patrick Csikos";
+        let copyright = "Copyright © 2020-2026 Patrick Csikos";
 
         let about = adw::AboutDialog::from_appdata(
             &format!("/dev/zelikos/rollit/{}.metainfo.xml", APP_ID),
