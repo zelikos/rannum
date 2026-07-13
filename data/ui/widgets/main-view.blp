@@ -9,7 +9,11 @@ template $RollitMainView : Adw.Bin {
 
   Adw.Clamp {
     maximum-size: 240;
-    Stack result_stack {
+    Box {
+      orientation: vertical;
+      spacing: 12;
+
+      Stack result_stack {
       StackPage {
         name: "empty";
         child:
@@ -49,6 +53,18 @@ template $RollitMainView : Adw.Bin {
             }
           }
         ;
+      }
+      }
+
+      ListBox tray_list {
+        accept-unpaired-release: true;
+        selection-mode: none;
+        show-separators: true;
+
+        styles [
+          "boxed-list",
+          "tray",
+        ]
       }
     }
   }
