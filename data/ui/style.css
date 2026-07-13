@@ -3,3 +3,7 @@
   font-size: 6em;
 }
 
+.history-row {
+  background-color: alpha(@card_bg_color, 0.5);
+}
+
