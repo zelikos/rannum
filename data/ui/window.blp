@@ -22,7 +22,15 @@ template $RollitWindow : Adw.ApplicationWindow {
           Adw.ToolbarView {
             [top]
             Adw.HeaderBar {
-              show-title: false;
+              title-widget:
+                Label {
+                  label: _("History");
+
+                  styles [
+                    "heading",
+                  ]
+                }
+              ;
 
               [start]
               Button {

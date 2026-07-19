@@ -3,3 +3,8 @@
   font-size: 6em;
 }
 
+.history-row {
+  background-color: @card_bg_color;
+  border: 1px solid @borders;
+  border-radius: 8px;
+}
