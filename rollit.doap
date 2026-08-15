@@ -12,8 +12,8 @@
   </description>
 
   <homepage rdf:resource="https://zelikos.dev/apps/rollit" />
-  <download-page rdf:resource="https://gitlab.com/zelikos/rollit" />
-  <bug-database rdf:resource="https://gitlab.com/zelikos/rollit/issues/" />
+  <download-page rdf:resource="https://codeberg.org/zelikos/chance" />
+  <bug-database rdf:resource="https://codeberg.org/zelikos/chance/issues/" />
 
   <programming-language>Rust</programming-language>
   <platform>GTK 4</platform>
@@ -25,13 +25,13 @@
       <foaf:mbox rdf:resource="mailto:pcsikos@zelikos.dev" />
       <foaf:account>
         <foaf:OnlineAccount>
-          <foaf:accountServiceHomepage rdf:resource="https://gitlab.com" />
+          <foaf:accountServiceHomepage rdf:resource="https://codeberg.org" />
           <foaf:accountName>zelikos</foaf:accountName>
         </foaf:OnlineAccount>
       </foaf:account>
       <foaf:account>
         <foaf:OnlineAccount>
-          <foaf:accountServiceHomepage rdf:resource="https://github.com"/>
+          <foaf:accountServiceHomepage rdf:resource="https://github.com" />
           <foaf:accountName>zelikos</foaf:accountName>
         </foaf:OnlineAccount>
       </foaf:account>
